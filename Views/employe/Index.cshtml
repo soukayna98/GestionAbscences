@@ -1,39 +1,303 @@
-﻿@model IEnumerable<GestionAbscences.Models.account>
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Page Title - SB Admin</title>
+    <link href="css/styles.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-primary">
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
+                                <div class="card-body">
+                                    <form>
+                                        <div class="col-lg-12">
+                                            <div class="form-row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="small mb-1" for="inputFirstName">1.REGULIER</label>
+                                                        @* <input class="form-control py-4" id="inputFirstName" type="text" placeholder="Enter first name" />*@
+                                                        <div class="row">
 
-@{
-    ViewBag.Title = "Index";
-}
+                                                            <div class="form-radio-group">
+                                                                <div class="row">
+                                                                    <div class="col-lg-3">
+                                                                        <div class="form-radio-item">
+                                                                            <input type="radio" name="payment" id="cash" checked>
+                                                                            <label for="cash">Reliquat</label>
+                                                                            <span class="check"></span>
+                                                                        </div>
+                                                                    </div>
 
-<h2>employe account</h2>
+                                                                    <div class="col-lg-3">
+                                                                        <div class="form-radio-item">
+                                                                            <input type="radio" name="payment" id="cheque">
+                                                                            <label for="cheque">1ere tranche</label>
+                                                                            <span class="check"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-3">
+                                                                        <div class="form-radio-item">
+                                                                            <input type="radio" name="payment" id="demand">
+                                                                            <label for="demand">2eme tranche</label>
+                                                                            <span class="check"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                </div>
+                                                        </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Login)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.pass)
-        </th>
-        <th></th>
-    </tr>
+                                                    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Login)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.pass)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="small mb-1" for="inputLastName">Nom & Prenom</label>
+                                                        <input class="form-control py-4" id="inputLastName" type="text" placeholder="Enter last name" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="small mb-1" for="inputFirstName">2.EXCEPTIONNEL/CR</label>
+                                                        @* <input class="form-control py-4" id="inputFirstName" type="text" placeholder="Enter first name" />*@
+                                                        <div class="row">
+                                                            <div class="form-radio-group">
+                                                                <div class="row">
+                                                                    <div class="col-lg-2">
+                                                                        <div class="form-radio-item">
+                                                                            <input type="radio" name="payment" id="cash" checked>
+                                                                            <label for="cash">1/2 journée</label>
+                                                                            <span class="check"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-2">
+                                                                        <div class="form-radio-item">
+                                                                            <input type="radio" name="payment" id="cheque">
+                                                                            <label for="cheque">1 journée</label>
+                                                                            <span class="check"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-2">
+                                                                        <div class="form-radio-item">
+                                                                            <input type="radio" name="payment" id="demand">
+                                                                            <label for="demand">1.5 journée</label>
+                                                                            <span class="check"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-2">
+                                                                        <div class="form-radio-item">
+                                                                            <input type="radio" name="payment" id="demand">
+                                                                            <label for="demand">2 journée</label>
+                                                                            <span class="check"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                    </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="small mb-1" for="inputLastName">Matricule</label>
+                                                        <input class="form-control py-4" id="inputLastName" type="text" placeholder="Enter last name" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="small mb-1" for="inputFirstName">3.EXCEPTIONNEL A.SOLDE</label>
+                                                        @* <input class="form-control py-4" id="inputFirstName" type="text" placeholder="Enter first name" />*@
 
-</table>
+                                                        <div class="row">
+
+                                                            <div class="form-radio-group">
+                                                                <div class="row">
+                                                                    <div class="col-lg-3">
+                                                                        <div class="form-radio-item">
+                                                                            <input type="radio" name="payment" id="cash" checked>
+                                                                            <label for="cash">Mariage</label>
+                                                                            <span class="check"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-4">
+                                                                        <div class="form-radio-item">
+                                                                            <input type="radio" name="payment" id="cheque">
+                                                                            <label for="cheque">Naissance</label>
+                                                                            <span class="check"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-3">
+                                                                        <div class="form-radio-item">
+                                                                            <input type="radio" name="payment" id="demand">
+                                                                            <label for="demand">Décès</label>
+                                                                            <span class="check"></span>
+                                                                        </div>
+                                                                     </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label class="small mb-1" for="inputLastName">Affectation</label>
+                                                                        <input class="form-control py-4" id="inputLastName" type="text" placeholder="Enter last name" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-12">
+                                                            <div class="form-row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label class="small mb-1" for="inputPassword">4.RECUPERATION</label><br />
+                                                                        @* <input class="form-control py-4" id="inputPassword" type="password" placeholder="Enter password" />*@
+
+
+                                                                        <div class="row">
+
+                                                                            <div class="form-radio-group">
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-3">
+                                                                                        <div class="form-radio-item">
+                                                                                            <input type="radio" name="payment" id="cash" checked>
+                                                                                            <label for="cash">H.S</label>
+                                                                                            <span class="check"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-lg-3">
+                                                                                        <div class="form-radio-item">
+                                                                                            <input type="radio" name="payment" id="cheque">
+                                                                                            <label for="cheque">J.F</label>
+                                                                                            <span class="check"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-lg-3">
+                                                                                        <div class="form-radio-item">
+                                                                                            <input type="radio" name="payment" id="demand">
+                                                                                            <label for="demand">J.R</label>
+                                                                                            <span class="check"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+
+                                                                    <div class="form-input">
+
+                                                                        <label for="chequeno">DU :</label> <input type="DATE" name="chequeno" id="chequeno" />
+
+                                                                        <input type="time" id="appt" name="appt"><br />
+                                                                        <label for="chequeno">AU :</label> <input type="DATE" name="chequeno" id="chequeno" />
+
+                                                                        <input type="time" id="appt" name="appt">
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label class="small mb-1" for="inputConfirmPassword">Durée de Congé</label>
+                                                                        @*   <input class="form-control py-4" id="inputConfirmPassword" type="password" placeholder="Confirm password" />*@
+
+                                                                        <div class="form-input">
+
+                                                                            <label for="chequeno">DU :</label> <input type="DATE" name="chequeno" id="chequeno" />
+                                                                            <input type="time" id="appt" name="appt"><br /><br />
+                                                                            <label for="chequeno">AU :</label> <input type="DATE" name="chequeno" id="chequeno" />
+                                                                            <input type="time" id="appt" name="appt">
+
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                         </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="small mb-1" for="inputConfirmPassword">5. sans solde</label>
+                                                                    @*   <input class="form-control py-4" id="inputConfirmPassword" type="password" placeholder="Confirm password" />*@
+
+                                                                    <div class="row">
+
+                                                                        <div class="form-radio-group">
+                                                                            <div class="row">
+                                                                                <div class="col-lg-10">
+                                                                                    <div class="form-radio-item">
+                                                                                        <input type="radio" name="payment" id="cash" checked>
+                                                                                        <label for="cash">Heure</label>
+                                                                                        <span class="check"></span>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-lg-1">
+                                                                                    <div class="form-radio-item">
+                                                                                        <input type="radio" name="payment" id="cheque">
+                                                                                        <label for="cheque">Jour</label>
+                                                                                        <span class="check"></span>
+                                                                                    </div>
+                                                                                </div></div></div></div>
+
+
+                                                                    <input type="time" id="appt" name="appt">
+                                                                                <input type="text" name="chequeno" id="chequeno" placeholder="jour" />
+                                                                            </div>
+                                                                        </div>
+
+
+</form>
+                                </div>
+
+
+                                <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block" href="login.html">Valider</a></div>
+
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </main>
+                </div>
+        
+    </div>
+    <div id="layoutAuthentication_footer">
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; Your Website 2020</div>
+                    <div>
+                        <a href="#">Privacy Policy</a>
+                        &middot;
+                        <a href="#">Terms &amp; Conditions</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+</body>
+</html>

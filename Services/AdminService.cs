@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GestionAbscences.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,9 @@ namespace GestionAbscences.Services
 
     public interface IAdminService
     {
-        bool Login(string Email, string Password);
-        bool ChangePassword(string Email, string Password);
-        bool ForgotPassword(string Email);
+        bool Login(int Id, string Password);
+        bool ChangePassword(int Id, string Password);
+        bool ForgotPassword(int Id);
     }
 
     public class AdminService : IAdminService
@@ -20,6 +21,7 @@ namespace GestionAbscences.Services
 
         public AdminService() {
 
+            context = new GestionAbscencesEntities();
         }
 
         public bool Login(int id, string Password)
@@ -27,19 +29,16 @@ namespace GestionAbscences.Services
             return context.employe.Where(a => a.idEmploye == id && a.password == Password).Any();
         }
 
-        public bool ChangePassword(string Email, string Password)
+        public bool ChangePassword(int Id, string Password)
         {
             throw new NotImplementedException();
         }
 
-        public bool ForgotPassword(string Email)
+        public bool ForgotPassword(int Id)
         {
             throw new NotImplementedException();
         }
 
-        bool IAdminService.Login(string Email, string Password)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }
