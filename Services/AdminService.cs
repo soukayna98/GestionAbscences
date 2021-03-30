@@ -16,6 +16,7 @@ namespace GestionAbscences.Services
 
     public class AdminService : IAdminService
     {
+        
 
         public GestionAbscencesEntities context { get; set; }
 

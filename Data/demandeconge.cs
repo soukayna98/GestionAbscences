@@ -14,6 +14,11 @@ namespace GestionAbscences.Data
     
     public partial class demandeconge
     {
+        internal int idtypeConge;
+        internal string validationN1;
+        internal string validationN2;
+        internal int idEmploye;
+
         public int idDemandeConge { get; set; }
         public Nullable<System.DateTime> DateDebut { get; set; }
         public Nullable<System.DateTime> DateFin { get; set; }
