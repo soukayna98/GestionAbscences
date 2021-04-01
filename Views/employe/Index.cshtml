@@ -1,303 +1,309 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Page Title - SB Admin</title>
-    <link href="css/styles.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
-</head>
-<body class="bg-primary">
-    <div id="layoutAuthentication">
-        <div id="layoutAuthentication_content">
-            <main>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-12">
-                            <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
-                                <div class="card-body">
-                                    <form>
-                                        <div class="col-lg-12">
-                                            <div class="form-row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="small mb-1" for="inputFirstName">1.REGULIER</label>
-                                                        @* <input class="form-control py-4" id="inputFirstName" type="text" placeholder="Enter first name" />*@
-                                                        <div class="row">
-
-                                                            <div class="form-radio-group">
-                                                                <div class="row">
-                                                                    <div class="col-lg-3">
-                                                                        <div class="form-radio-item">
-                                                                            <input type="radio" name="payment" id="cash" checked>
-                                                                            <label for="cash">Reliquat</label>
-                                                                            <span class="check"></span>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="col-lg-3">
-                                                                        <div class="form-radio-item">
-                                                                            <input type="radio" name="payment" id="cheque">
-                                                                            <label for="cheque">1ere tranche</label>
-                                                                            <span class="check"></span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-lg-3">
-                                                                        <div class="form-radio-item">
-                                                                            <input type="radio" name="payment" id="demand">
-                                                                            <label for="demand">2eme tranche</label>
-                                                                            <span class="check"></span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                </div>
-                                                        </div>
-
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="small mb-1" for="inputLastName">Nom & Prenom</label>
-                                                        <input class="form-control py-4" id="inputLastName" type="text" placeholder="Enter last name" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="form-row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="small mb-1" for="inputFirstName">2.EXCEPTIONNEL/CR</label>
-                                                        @* <input class="form-control py-4" id="inputFirstName" type="text" placeholder="Enter first name" />*@
-                                                        <div class="row">
-                                                            <div class="form-radio-group">
-                                                                <div class="row">
-                                                                    <div class="col-lg-2">
-                                                                        <div class="form-radio-item">
-                                                                            <input type="radio" name="payment" id="cash" checked>
-                                                                            <label for="cash">1/2 journée</label>
-                                                                            <span class="check"></span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-lg-2">
-                                                                        <div class="form-radio-item">
-                                                                            <input type="radio" name="payment" id="cheque">
-                                                                            <label for="cheque">1 journée</label>
-                                                                            <span class="check"></span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-lg-2">
-                                                                        <div class="form-radio-item">
-                                                                            <input type="radio" name="payment" id="demand">
-                                                                            <label for="demand">1.5 journée</label>
-                                                                            <span class="check"></span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-lg-2">
-                                                                        <div class="form-radio-item">
-                                                                            <input type="radio" name="payment" id="demand">
-                                                                            <label for="demand">2 journée</label>
-                                                                            <span class="check"></span>
-                                                                        </div>
-                                                                    </div>
-                                                                    </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                    </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="small mb-1" for="inputLastName">Matricule</label>
-                                                        <input class="form-control py-4" id="inputLastName" type="text" placeholder="Enter last name" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="form-row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="small mb-1" for="inputFirstName">3.EXCEPTIONNEL A.SOLDE</label>
-                                                        @* <input class="form-control py-4" id="inputFirstName" type="text" placeholder="Enter first name" />*@
-
-                                                        <div class="row">
-
-                                                            <div class="form-radio-group">
-                                                                <div class="row">
-                                                                    <div class="col-lg-3">
-                                                                        <div class="form-radio-item">
-                                                                            <input type="radio" name="payment" id="cash" checked>
-                                                                            <label for="cash">Mariage</label>
-                                                                            <span class="check"></span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-lg-4">
-                                                                        <div class="form-radio-item">
-                                                                            <input type="radio" name="payment" id="cheque">
-                                                                            <label for="cheque">Naissance</label>
-                                                                            <span class="check"></span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-lg-3">
-                                                                        <div class="form-radio-item">
-                                                                            <input type="radio" name="payment" id="demand">
-                                                                            <label for="demand">Décès</label>
-                                                                            <span class="check"></span>
-                                                                        </div>
-                                                                     </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label class="small mb-1" for="inputLastName">Affectation</label>
-                                                                        <input class="form-control py-4" id="inputLastName" type="text" placeholder="Enter last name" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-12">
-                                                            <div class="form-row">
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label class="small mb-1" for="inputPassword">4.RECUPERATION</label><br />
-                                                                        @* <input class="form-control py-4" id="inputPassword" type="password" placeholder="Enter password" />*@
+﻿
 
 
-                                                                        <div class="row">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
-                                                                            <div class="form-radio-group">
-                                                                                <div class="row">
-                                                                                    <div class="col-lg-3">
-                                                                                        <div class="form-radio-item">
-                                                                                            <input type="radio" name="payment" id="cash" checked>
-                                                                                            <label for="cash">H.S</label>
-                                                                                            <span class="check"></span>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-lg-3">
-                                                                                        <div class="form-radio-item">
-                                                                                            <input type="radio" name="payment" id="cheque">
-                                                                                            <label for="cheque">J.F</label>
-                                                                                            <span class="check"></span>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-lg-3">
-                                                                                        <div class="form-radio-item">
-                                                                                            <input type="radio" name="payment" id="demand">
-                                                                                            <label for="demand">J.R</label>
-                                                                                            <span class="check"></span>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="~/Content/cont2/fonts/material-icon/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="~/Content/cont2/vendor/nouislider/nouislider.min.css">
 
+    <!-- Main css -->
+    <link rel="stylesheet" href="~/Content/cont2/css/style.css">
+    <h2>Demande de Congé</h2>
+    <div class="main">
 
-
-                                                                    <div class="form-input">
-
-                                                                        <label for="chequeno">DU :</label> <input type="DATE" name="chequeno" id="chequeno" />
-
-                                                                        <input type="time" id="appt" name="appt"><br />
-                                                                        <label for="chequeno">AU :</label> <input type="DATE" name="chequeno" id="chequeno" />
-
-                                                                        <input type="time" id="appt" name="appt">
-
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label class="small mb-1" for="inputConfirmPassword">Durée de Congé</label>
-                                                                        @*   <input class="form-control py-4" id="inputConfirmPassword" type="password" placeholder="Confirm password" />*@
-
-                                                                        <div class="form-input">
-
-                                                                            <label for="chequeno">DU :</label> <input type="DATE" name="chequeno" id="chequeno" />
-                                                                            <input type="time" id="appt" name="appt"><br /><br />
-                                                                            <label for="chequeno">AU :</label> <input type="DATE" name="chequeno" id="chequeno" />
-                                                                            <input type="time" id="appt" name="appt">
-
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                         </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label class="small mb-1" for="inputConfirmPassword">5. sans solde</label>
-                                                                    @*   <input class="form-control py-4" id="inputConfirmPassword" type="password" placeholder="Confirm password" />*@
-
-                                                                    <div class="row">
-
-                                                                        <div class="form-radio-group">
-                                                                            <div class="row">
-                                                                                <div class="col-lg-10">
-                                                                                    <div class="form-radio-item">
-                                                                                        <input type="radio" name="payment" id="cash" checked>
-                                                                                        <label for="cash">Heure</label>
-                                                                                        <span class="check"></span>
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <div class="col-lg-1">
-                                                                                    <div class="form-radio-item">
-                                                                                        <input type="radio" name="payment" id="cheque">
-                                                                                        <label for="cheque">Jour</label>
-                                                                                        <span class="check"></span>
-                                                                                    </div>
-                                                                                </div></div></div></div>
-
-
-                                                                    <input type="time" id="appt" name="appt">
-                                                                                <input type="text" name="chequeno" id="chequeno" placeholder="jour" />
-                                                                            </div>
-                                                                        </div>
-
-
-</form>
-                                </div>
-
-
-                                <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block" href="login.html">Valider</a></div>
+        <div class="container">
+            <section>
+                <div class="row align-items-start">
+                    <div class="col">
+                        <div class="signup-content">
+                            <div class="signup-img col-4">
+                                <img src="~/Content/cont2/images/Sonasid.jpg" alt="">
 
                             </div>
-                            
+
                         </div>
                     </div>
+
                 </div>
-            </main>
-                </div>
-        
-    </div>
-    <div id="layoutAuthentication_footer">
-        <footer class="py-4 bg-light mt-auto">
-            <div class="container-fluid">
-                <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Copyright &copy; Your Website 2020</div>
-                    <div>
-                        <a href="#">Privacy Policy</a>
-                        &middot;
-                        <a href="#">Terms &amp; Conditions</a>
-                    </div>
-                </div>
+            </section>
+            <div class="col">
+
+                <H1 class="text-center"> DEMANDE DE CONGE </H1>
+
             </div>
-        </footer>
+            <br />
+            <br />
+            <div class="signup-form">
+
+                @using (Html.BeginForm("Dashboard1", "employe"))
+                {<div class="row align-items-start">
+                        <div class="col">
+                            <div class="label-flex">
+
+                                <label class="text-center text-decoration-underline" for="TITRE">Choix de Congé</label>
+                            </div>
+
+                            <br />
+                            <br />
+                            <div>
+
+                            </div>
+                            <div class="form-group">
+
+                                <div class="form-radio">
+                                    <div class="label-flex">
+                                        <label for="regulier">1.REGULIER</label>
+                                    </div>
+                                    <div class="form-radio-group">
+
+                                        <div class="form-radio-item">
+                                            <input type="radio" name="typeCongeIdTypeconge" id="reliquat" value="reliquat">
+                                            <label for="reliquat">Reliquat</label>
+                                            <span class="check"></span>
+
+                                        </div>
+                                        <div class="form-radio-item">
+                                            <input type="radio" name="typeCongeIdTypeconge" id="1 ere tranche" value="1 ere tranche">
+                                            <label for="1 ere tranche">1 ere tranche</label>
+                                            <span class="check"></span>
+                                        </div>
+                                        <div class="form-radio-item">
+                                            <input type="radio" name="typeCongeIdTypeconge" id="2 eme tranche" value="2 eme tranche">
+                                            <label for="2 eme tranche">2 ere tranche</label>
+                                            <span class="check"></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="label-flex">
+                                <label for="Exceptionnel/cr">2.EXCEPTIONNEL/CR</label>
+                            </div>
+                            <div class="form-radio-group">
+                                <div class="form-radio-item">
+                                    <input type="radio" name="typeCongeIdTypeconge" id="1/2 journée" value="1/2 journée">
+                                    <label for="1/2 journée">1/2 journée</label>
+                                    <span class="check"></span>
+                                </div>
+                                <div class="form-radio-item">
+                                    <input type="radio" name="typeCongeIdTypeconge" id="1 journée" value="1 journée">
+                                    <label for="1 journée">1 journée</label>
+                                    <span class="check"></span>
+                                </div>
+                                <div class="form-radio-item">
+                                    <input type="radio" name="typeCongeIdTypeconge" id="1.5 journée" value="1.5 journée">
+                                    <label for="1.5 journée">1.5 journée</label>
+                                    <span class="check"></span>
+                                </div>
+                                <div class="form-radio-item">
+                                    <input type="radio" name="typeCongeIdTypeconge" id="2 journée" value="2 journée">
+                                    <label for="2 journée">2 journée</label>
+                                    <span class="check"></span>
+                                </div>
+                            </div>
+
+
+                            <div class="label-flex">
+                                <label for="EXCEPTIONNEL A.SOLDE">3.EXCEPTIONNEL A.SOLDE</label>
+                            </div>
+                            <div class="form-radio-group">
+                                <div class="form-radio-item">
+                                    <input type="radio" name="typeCongeIdTypeconge" id="Mariage" value="Mariage">
+                                    <label for="Mariage">Mariage</label>
+                                    <span class="check"></span>
+                                </div>
+                                <div class="form-radio-item">
+                                    <input type="radio" name="typeCongeIdTypeconge" id="Naissance" value="Naissance">
+                                    <label for="Naissance">Naissance</label>
+                                    <span class="check"></span>
+                                </div>
+                                <div class="form-radio-item">
+                                    <input type="radio" name="typeCongeIdTypeconge" id="Décès" value="Décès">
+                                    <label for="Décès">Décès</label>
+                                    <span class="check"></span>
+                                </div>
+                            </div>
+                            <div class="label-flex">
+                                <label for="RECUPERATION">4.RECUPERATION</label>
+                            </div>
+
+                            <div class="form-radio-group">
+                                <div class="form-radio-item">
+                                    <input type="radio" name="typeCongeIdTypeconge" id="H.S" value="H.S">
+                                    <label for="H.S">H.S</label>
+                                    <span class="check"></span>
+                                </div>
+                                <div class="form-radio-item">
+                                    <input type="radio" name="typeCongeIdTypeconge" id="J.R" value="J.R">
+                                    <label for="J.R">J.R</label>
+                                    <span class="check"></span>
+                                </div>
+                                <div class="form-radio-item">
+                                    <input type="radio" name="typeCongeIdTypeconge" id="J.F" value="J.F">
+                                    <label for="J.F">J.F</label>
+                                    <span class="check"></span>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="form-input">
+
+
+                                <label for="chequeno">DU</label>
+                                <div class="row align-items-start">
+                                    <div class="col">
+                                        <input type="DATE" name="date1" id="date1" />
+                                    </div>
+                                    <div class="col">
+                                        <input type="time" id="time1" name="time1">
+
+                                    </div>
+                                </div>
+                                <label for="chequeno">AU</label>
+                                <div class="row align-items-start">
+                                    <div class="col">
+                                        <input type="DATE" name="date2" id="date2" />
+                                    </div>
+                                    <div class="col">
+
+                                        <input type="time" id="time2" name="time2">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="label-flex">
+                                <label for="regulier">5.SANS SOLDE</label>
+                            </div>
+
+                            <div class="form-radio-group">
+                                <div class="row align-items-start">
+                                    <div class="col">
+                                        <div class="form-radio-item">
+                                            <input type="radio" name="typeCongeIdTypeconge" id="heures" value="heures">
+                                            <label for="heures">Heures</label>
+                                            <input type="text" id="heureSansSolde" name="heureSansSolde">
+                                            <span class="check"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-radio-item">
+                                            <input type="radio" name="typeCongeIdTypeconge" id="jour" value="jours">
+                                            <label for="jour">Jours</label>
+                                            <input type="date" name="jourSansSolde" id="jourSansSolde" />
+                                            <span class="check"></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col">
+                            <br />
+
+
+                            <br /> <br /> <br /> <br /> <br /> <br />
+
+                            <div class="form-group col">
+                                <div></div>
+                                <div class="form-input">
+                                    <div class="row align-items-start">
+                                        <div class="col">
+                                            <label for="nomComplet">Nom & Prenom</label>
+                                            <input type="text" name="nomComplet" id="nomComplet" value="@Session["userName"]" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-input">
+                                    <div class="row align-items-start">
+
+                                        <div class="col">
+                                            <label for="matricule">Matricule</label>
+                                            <input type="text" name="matricule" id="matricule" value="@Session["matricule"]" />
+                                        </div>
+
+                                        <div class="col">
+                                            <label for="affectation">Affectation</label>
+                                            <input type="text" name="affectation" id="affectation" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-input ">
+
+                                    <label for="DATE FIN">Durée de Congé</label>
+
+                                    <label for="chequeno">DU</label>
+                                    <div class="row align-items-start">
+                                        <div class="col">
+                                            <input type="DATE" name="dateDebut" id="dateDebut" />
+                                        </div>
+                                        <div class="col">
+                                            <input type="time" id="timeDebut" name="timeDebut">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-input ">
+                                    <label for="chequeno">AU</label>
+                                    <div class="row align-items-start">
+                                        <div class="col">
+                                            <input type="DATE" name="dateFin" id="dateFin" />
+                                        </div>
+                                        <div class="col">
+                                            <input type="time" id="timeFin" name="timeFin">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <div class="form-submit d-grid gap-2 d-md-flex justify-content-md-end">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Envoyer" class=" btn btn-lg btn-success " id="submit" name="submit" />
+
+                                <input type="reset" value="Reset" class=" btn btn-lg btn-light" id="reset" name="reset" />
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            </div>
+
+        </div>
+
     </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
-</body>
-</html>
+
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+        </script>
+    }
+
+
+
+    <!-- JS -->
+    <script src="~/Content/cont2/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/cont2/vendor/nouislider/nouislider.min.js"></script>
+    <script src="~/Content/cont2/vendor/wnumb/wNumb.js"></script>
+    <script src="~/Content/cont2/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/Content/cont2/vendor/jquery-validation/dist/additional-methods.min.js"></script>
+    <script src="~/Content/cont2/js/main.js"></script>
+
+
+

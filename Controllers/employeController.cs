@@ -10,7 +10,7 @@ namespace GestionAbscences.Controllers
 {
     public class employeController : Controller
     {
-        private GestionAbscencesEntities db = new GestionAbscencesEntities();
+         private GestionAbscencesEntities db = new GestionAbscencesEntities();
 
         // GET: employe
         public ActionResult Index()
@@ -19,48 +19,11 @@ namespace GestionAbscences.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Index()
-        {
-
-            return View();
-        }
-
-
-
-        
-           /* public ActionResult Login(employe log)
-            {
-                var user = db.employes.Where(x => x.idEmploye == log.idEmploye && x.password == log.password).ToList().FirstOrDefault();
-                if (user != null)
-                {
-                    Session["userName"] = user.NomComplet;
-                    Session["matricule"] = user.idEmploye;
-                    return RedirectToAction("Dashboard");
-                }
-                else
-                {
-                    return View();
-                }
-
-            }
-            [HttpGet]
-
-            public ActionResult Dashboard()
-            {
-
-                return View();
-            }
-            public ActionResult index1()
-            {
-
-                return View();
-            }
-
+       
             [HttpPost]
             public string Dashboard1()
             {
-                DemandeConge demande = new DemandeConge();
+               demandeconge demande = new demandeconge();
 
 
                 string employeIdEmploye1 = Request["matricule"];
@@ -73,37 +36,36 @@ namespace GestionAbscences.Controllers
 
                 if (typeCongeIdTypeconge.Equals("reliquat"))
                 {
-                    demande.typeCongeIdTypeconge = 1;
+                demande.IdtypeConge = 1;
                 }
                 else if (typeCongeIdTypeconge.Equals("1 ere tranche"))
                 {
-                    demande.typeCongeIdTypeconge = 2;
+                    demande.IdtypeConge = 2;
                 }
                 else if (typeCongeIdTypeconge.Equals("2 eme tranche"))
                 {
-                    demande.typeCongeIdTypeconge = 3;
+                    demande.IdtypeConge = 3;
                 }
 
-                demande.validation1 = "En cours";
-                demande.validation2 = "En cours";
-                demande.employeIdEmploye1 = int.Parse(employeIdEmploye1);
+                demande.ValidationN1 = "En cours";
+                demande.ValidationN2 = "En cours";
+                demande.IdEmploye = int.Parse(employeIdEmploye1);
 
-                demande.dateDebut = Convert.ToDateTime(dateDebut);
-                demande.dateFin = Convert.ToDateTime(dateFin);
-                demande.dateDc = dc;
+                demande.DateDebut = Convert.ToDateTime(dateDebut);
+                demande.DateFin = Convert.ToDateTime(dateFin);
+                demande.DateDC = dc;
 
-                db.DemandeConges.Add(demande);
+                db.demandeconge.Add(demande);
 
 
                 db.SaveChanges();
 
-                ViewBag.Message = "la demande est enregistré !";
+                //ViewBag.Message = "la demande est enregistré !";
 
                 return "Demande : " + dc;
 
             }
-        }*/
+        }
     }
 
-}
-}
+
