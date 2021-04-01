@@ -1,4 +1,5 @@
-﻿using GestionAbscences.Models;
+﻿using GestionAbscences.Data;
+using GestionAbscences.Models;
 using GestionAbscences.Services;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,10 @@ namespace GestionAbscences.Controllers
 {
     public class LoginController : Controller
     {
+
+        public GestionAbscencesEntities db = new GestionAbscencesEntities();
+        
+
         // GET: Login
         public ActionResult Index()
         {
@@ -23,6 +28,7 @@ namespace GestionAbscences.Controllers
             var isLoggedIn = adminService.Login(loginInfo.Id, loginInfo.Password);
             if (isLoggedIn)
             {
+                
                 return RedirectToAction("Index", "Default");
             }
             else

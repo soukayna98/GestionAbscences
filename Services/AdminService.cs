@@ -12,6 +12,7 @@ namespace GestionAbscences.Services
         bool Login(int Id, string Password);
         bool ChangePassword(int Id, string Password);
         bool ForgotPassword(int Id);
+
     }
 
     public class AdminService : IAdminService

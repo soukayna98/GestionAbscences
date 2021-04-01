@@ -84,9 +84,9 @@ E:\workspace visual studio\GestionAbscences\bin\fr\System.Web.Razor.resources.dl
 E:\workspace visual studio\GestionAbscences\bin\fr\System.Web.WebPages.resources.dll
 E:\workspace visual studio\GestionAbscences\bin\fr\System.Web.WebPages.Deployment.resources.dll
 E:\workspace visual studio\GestionAbscences\bin\fr\System.Web.WebPages.Razor.resources.dll
-E:\workspace visual studio\GestionAbscences\obj\Debug\GestionAbscences.csprojAssemblyReference.cache
 E:\workspace visual studio\GestionAbscences\obj\Debug\GestionAbscences.csproj.CoreCompileInputs.cache
 E:\workspace visual studio\GestionAbscences\obj\Debug\GestionAbscences.csproj.CopyComplete
 E:\workspace visual studio\GestionAbscences\obj\Debug\GestionAbscences.dll
 E:\workspace visual studio\GestionAbscences\obj\Debug\GestionAbscences.pdb
 E:\workspace visual studio\GestionAbscences\bin\fr\EntityFramework.SqlServer.resources.dll
+E:\workspace visual studio\GestionAbscences\obj\Debug\GestionAbscences.csprojAssemblyReference.cache

@@ -458,6 +458,8 @@
     <Content Include="Content\cont2\scss\layouts\main.scss" />
     <Content Include="Content\cont2\scss\layouts\responsive.scss" />
     <Content Include="Content\cont2\scss\style.scss" />
+    <Content Include="Areas\Admin\Views\Employe\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Employe\Delete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

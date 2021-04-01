@@ -20,7 +20,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Login(LoginModel loginInfo)
         {
-            var adminService = new AdminService();
+           var adminService = new AdminService();
            var isLoggedIn =  adminService.Login(loginInfo.Id, loginInfo.Password);
             if (isLoggedIn)
             {
