@@ -43,25 +43,27 @@ namespace GestionAbscences.Controllers
 
             if (typeCongeIdTypeconge.Equals("reliquat"))
             {
-                demande.idtypeConge = 1;
+                demande.IdtypeConge = 1;
             }
             else if (typeCongeIdTypeconge.Equals("1 ere tranche"))
             {
-                demande.idtypeConge = 2;
+                demande.IdtypeConge = 2;
             }
             else if (typeCongeIdTypeconge.Equals("2 eme tranche"))
             {
-                demande.idtypeConge = 3;
+                demande.IdtypeConge = 3;
             }
 
-            demande.ValidationN1 = "En cours";
-            demande.ValidationN2 = "En cours";
+            
 
-            demande.idEmploye = int.Parse(employeIdEmploye1);
+            demande.IdEmploye = int.Parse(employeIdEmploye1);
 
             demande.DateDebut = Convert.ToDateTime(dateDebut);
             demande.DateFin = Convert.ToDateTime(dateFin);
             demande.DateDC = dc;
+
+            demande.ValidationN1 = "En cours";
+            demande.ValidationN2 = "En cours";
 
             db.demandeconge.Add(demande);
             db.SaveChanges();
