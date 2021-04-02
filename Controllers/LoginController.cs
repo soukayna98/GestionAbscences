@@ -12,7 +12,7 @@ namespace GestionAbscences.Controllers
     public class LoginController : Controller
     {
 
-        public GestionAbscencesEntities db = new GestionAbscencesEntities();
+        public GestionAbscencesEntities1 db = new GestionAbscencesEntities1();
         
 
         // GET: Login

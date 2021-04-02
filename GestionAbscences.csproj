@@ -139,35 +139,41 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImprimerController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Data\DbAbscence.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DbAbscence.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\DbAbscence.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DbAbscence.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\DbAbscence.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DbAbscence.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Data\demandeconge.cs">
-      <DependentUpon>DbAbscence.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\employe.cs">
-      <DependentUpon>DbAbscence.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\employehasentite.cs">
-      <DependentUpon>DbAbscence.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\entite.cs">
-      <DependentUpon>DbAbscence.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\entitesuper.cs">
-      <DependentUpon>DbAbscence.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\supervisionher.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\typeconge.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -176,12 +182,6 @@
     <Compile Include="Models\LoginModl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AdminService.cs" />
-    <Compile Include="Data\supervisionher.cs">
-      <DependentUpon>DbAbscence.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\typeconge.cs">
-      <DependentUpon>DbAbscence.tt</DependentUpon>
-    </Compile>
     <Compile Include="Services\EmployeService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -349,15 +349,15 @@
     <Content Include="Content\cont2\vendor\nouislider\nouislider.min.js" />
     <Content Include="Content\cont2\vendor\wnumb\wNumb.js" />
     <Content Include="css\styles.css" />
-    <Content Include="Data\DbAbscence.Context.tt">
+    <Content Include="Data\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DbAbscence.Context.cs</LastGenOutput>
-      <DependentUpon>DbAbscence.edmx</DependentUpon>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Data\DbAbscence.tt">
+    <Content Include="Data\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DbAbscence.edmx</DependentUpon>
-      <LastGenOutput>DbAbscence.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -366,13 +366,6 @@
     <Content Include="js\scripts.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Data\DbAbscence.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DbAbscence.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Data\DbAbscence.edmx.diagram">
-      <DependentUpon>DbAbscence.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
@@ -460,6 +453,13 @@
     <Content Include="Content\cont2\scss\style.scss" />
     <Content Include="Areas\Admin\Views\Employe\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Employe\Delete.cshtml" />
+    <EntityDeploy Include="Data\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Data\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

@@ -20,7 +20,7 @@ namespace GestionAbscences.Areas.Admin.Models
         [Required(ErrorMessage = "name is required")]
 
         public DateTime DateF { get; set; }
-
+        public int nbJ { get; set; }
 
     }
 }

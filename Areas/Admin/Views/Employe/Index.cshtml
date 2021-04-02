@@ -52,6 +52,9 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.DateF)
                             </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.nbJ)
+                            </th>
                             <th></th>
                         </tr>
                     </thead>
@@ -70,34 +73,40 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.DateF)
                             </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.nbJ)
+                            </th>
                             <th></th>
                         </tr>
                     </tfoot>
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Nom)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Classe)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DateD)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DateF)
-                                </td>
-                                <td>
-                                    <a href="@Url.Action("Delete", new {item.Id })" class="btn btn-danger">Delete</a>
-                                    <a href="@Url.Action("Edit", new {item.Id })" class="btn btn-warning">Edit</a>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nom)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Classe)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateD)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateF)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nbJ)
+                            </td>
+                            <td>
+                                <a href="@Url.Action("Delete", new {item.Id })" class="btn btn-danger">Delete</a>
+                                <a href="@Url.Action("Edit", new {item.Id })" class="btn btn-warning">Edit</a>
 
-                                    @* @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
-                                    @* @Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
-                                    @* @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
-                                </td>
-                            </tr>
+                                @* @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
+                                @* @Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
+                                @* @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                            </td>
+                        </tr>
                         }
                     </tbody>
 
