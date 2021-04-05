@@ -1,5 +1,6 @@
 ﻿using GestionAbscences.Data;
 using GestionAbscences.Models;
+using GestionAbscences.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +20,9 @@ namespace GestionAbscences.Controllers
             return View();
         }
 
-       
-            [HttpPost]
+
+
+        [HttpPost]
             public string Dashboard1()
             {
                demandeconge demande = new demandeconge();

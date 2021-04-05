@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_offlineLayout.cshtml";
 }
 
-<h2>Index</h2>
+
 
 
 <div class="card shadow-lg border-0 rounded-lg mt-5">
@@ -13,7 +13,7 @@
     <div class="card-body">
 
         @* <form action="/">*@
-        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+        @using (Html.BeginForm("Index", "Login", FormMethod.Post))
 
         {
             @Html.ValidationSummary()
