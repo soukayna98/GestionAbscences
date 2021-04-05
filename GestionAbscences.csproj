@@ -504,6 +504,7 @@
     <Content Include="Views\employe\Index.cshtml" />
     <Content Include="Views\Shared\_offlineLayout.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\employe\historique.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

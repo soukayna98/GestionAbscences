@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace GestionAbscences.Controllers
 {
@@ -21,7 +22,7 @@ namespace GestionAbscences.Controllers
 
        
             [HttpPost]
-            public string Dashboard1()
+            public ActionResult Dashboard1()
             {
                demandeconge demande = new demandeconge();
 
@@ -60,12 +61,30 @@ namespace GestionAbscences.Controllers
 
                 db.SaveChanges();
 
-                //ViewBag.Message = "la demande est enregistré !";
+            //ViewBag.Message = "la demande est enregistré !";
 
-                return "Demande : " + dc;
+            //return "Demande : " + dc;
+            return RedirectToAction("historique", "employe");
 
-            }
+
         }
+
+        public ActionResult historique()
+        {
+            employe e = new employe();
+
+            string x = Session["matricule"].ToString();
+
+            int x1 = int.Parse(x);
+
+
+            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.IdEmploye == x1);
+
+            return View(demandeConge.ToList());
+
+
+        }
+    }
     }
 
 
