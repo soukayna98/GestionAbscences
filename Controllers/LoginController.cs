@@ -21,7 +21,7 @@ namespace GestionAbscences.Controllers
             return View();
         }
 
-        [HttpPost]
+     /*   [HttpPost]
         public ActionResult Index(LoginModl loginInfo)
         {
             var adminService = new AdminService();
@@ -35,6 +35,25 @@ namespace GestionAbscences.Controllers
             {
                 loginInfo.Message = "email or pass incorrect";
                 return View(loginInfo);
+            }
+
+        }*/
+
+
+        [HttpPost]
+        public ActionResult Index(employe log)
+        {
+            var user = db.employe.Where(x => x.idEmploye == log.idEmploye && x.password == log.password).ToList().FirstOrDefault();
+            if (user != null)
+            {
+                Session["userName"] = user.NomComplet;
+                Session["matricule"] = user.idEmploye;
+                Session["nbjours"] = user.nbjours.ToString();
+                return RedirectToAction("Index", "Default");
+            }
+            else
+            {
+                return View();
             }
 
         }
