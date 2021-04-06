@@ -14,351 +14,341 @@
 <div class="main">
 
     <div class="container">
-        <section>
-            <div class="row align-items-start">
-                <div class="col">
-                    <div class="signup-content">
-                        <div class="signup-img col-4">
-                            <img src="~/Content/cont2/images/Sonasid.jpg" alt="">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card shadow-lg border-0 rounded-lg mt-5">
 
+                    <div class="card-header"><h3 class="text-center font-weight-light my-4">DEMANDE DE CONGE</h3></div>
+
+                    
+
+                        <div class="signup-form">
+
+                            @using (Html.BeginForm("Dashboard1", "employe"))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary()
+
+                                <div class="row align-items-start">
+                                    <div class="col">
+                                        <div class="label-flex">
+
+                                            <label class="text-center text-decoration-underline" for="TITRE">Choix de Congé</label>
+                                        </div>
+
+                                        <br />
+                                        <br />
+                                        <div>
+
+                                        </div>
+                                        <div class="form-group">
+
+                                            <div class="form-radio">
+                                                <div class="label-flex">
+                                                    <label for="regulier">1.REGULIER</label>
+                                                </div>
+                                                <div class="form-radio-group">
+                                                    <div class="form-radio-item">
+
+                                                        @{
+                                                            string x = Session["nbjours"].ToString();
+
+                                                            var y = float.Parse(x);
+                                                        }
+                                                        @if ((y > 0) && (7 >= y))
+                                                        {
+                                                            <input type="radio" name="typeCongeIdTypeconge" id="reliquat" value="reliquat">
+                                                            <label for="reliquat">Reliquat</label>
+                                                        }
+                                                        else
+                                                        {
+                                                            <input type="radio" name="typeCongeIdTypeconge" id="reliquat" value="reliquat" disabled>
+                                                            <label style="color:gray;" for="reliquat">Reliquat</label>
+                                                        }
+
+
+                                                        <span class="check"></span>
+                                                    </div>
+
+
+                                                    <div class="form-radio-item">
+
+                                                        @if ((y > 14) && (24 >= y))
+                                                        {
+                                                            <input type="radio" name="typeCongeIdTypeconge" id="1 ere tranche" value="1 ere tranche">
+                                                            <label for="1 ere tranche">1 ere tranche</label>
+                                                        }
+                                                        else
+                                                        {
+                                                            <input type="radio" name="typeCongeIdTypeconge" id="1 ere tranche" value="1 ere tranche" disabled>
+                                                            <label style="color:gray;" for="1 ere tranche">1 ere tranche</label>
+                                                        }
+
+                                                        <span class="check"></span>
+                                                    </div>
+                                                    <div class="form-radio-item">
+
+                                                        @if ((y > 7) && (14 >= y))
+                                                        {
+                                                            <input type="radio" name="typeCongeIdTypeconge" id="2 eme tranche" value="2 eme tranche">
+                                                            <label for="2 eme tranche">2 ere tranche</label>
+                                                        }
+                                                        else
+                                                        {
+                                                            <input type="radio" name="typeCongeIdTypeconge" id="2 eme tranche" value="2 eme tranche" disabled>
+                                                            <label style="color:gray;" for="2 eme tranche">2 ere tranche</label>
+                                                        }
+
+                                                        <span class="check"></span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="label-flex">
+                                            <label for="Exceptionnel/cr">2.EXCEPTIONNEL/CR</label>
+                                        </div>
+                                        <div class="form-radio-group">
+                                            <div class="form-radio-item">
+                                                <input type="radio" name="typeCongeIdTypeconge" id="1/2 journée" value="1/2 journée">
+                                                <label for="1/2 journée">1/2 journée</label>
+                                                <span class="check"></span>
+                                            </div>
+                                            <div class="form-radio-item">
+                                                <input type="radio" name="typeCongeIdTypeconge" id="1 journée" value="1 journée">
+                                                <label for="1 journée">1 journée</label>
+                                                <span class="check"></span>
+                                            </div>
+                                            <div class="form-radio-item">
+                                                <input type="radio" name="typeCongeIdTypeconge" id="1.5 journée" value="1.5 journée">
+                                                <label for="1.5 journée">1.5 journée</label>
+                                                <span class="check"></span>
+                                            </div>
+                                            <div class="form-radio-item">
+                                                <input type="radio" name="typeCongeIdTypeconge" id="2 journée" value="2 journée">
+                                                <label for="2 journée">2 journée</label>
+                                                <span class="check"></span>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="label-flex">
+                                            <label for="EXCEPTIONNEL A.SOLDE">3.EXCEPTIONNEL A.SOLDE</label>
+                                        </div>
+                                        <div class="form-radio-group">
+                                            <div class="form-radio-item">
+                                                <input type="radio" name="typeCongeIdTypeconge" id="Mariage" value="Mariage">
+                                                <label for="Mariage">Mariage</label>
+                                                <span class="check"></span>
+                                            </div>
+                                            <div class="form-radio-item">
+                                                <input type="radio" name="typeCongeIdTypeconge" id="Naissance" value="Naissance">
+                                                <label for="Naissance">Naissance</label>
+                                                <span class="check"></span>
+                                            </div>
+                                            <div class="form-radio-item">
+                                                <input type="radio" name="typeCongeIdTypeconge" id="Décès" value="Décès">
+                                                <label for="Décès">Décès</label>
+                                                <span class="check"></span>
+                                            </div>
+                                        </div>
+                                        <div class="label-flex">
+                                            <label for="RECUPERATION">4.RECUPERATION</label>
+                                        </div>
+
+                                        <div class="form-radio-group">
+                                            <div class="form-radio-item">
+                                                <input type="radio" name="typeCongeIdTypeconge" id="H.S" value="H.S">
+                                                <label for="H.S">H.S</label>
+                                                <span class="check"></span>
+                                            </div>
+                                            <div class="form-radio-item">
+                                                <input type="radio" name="typeCongeIdTypeconge" id="J.R" value="J.R">
+                                                <label for="J.R">J.R</label>
+                                                <span class="check"></span>
+                                            </div>
+                                            <div class="form-radio-item">
+                                                <input type="radio" name="typeCongeIdTypeconge" id="J.F" value="J.F">
+                                                <label for="J.F">J.F</label>
+                                                <span class="check"></span>
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="form-input">
+
+
+                                            <label for="chequeno">DU</label>
+                                            <div class="row align-items-start">
+                                                <div class="col">
+                                                    <input type="DATE" name="date1" id="date1" />
+                                                </div>
+                                                <div class="col">
+                                                    <input type="time" id="time1" name="time1">
+
+                                                </div>
+                                            </div>
+                                            <label for="chequeno">AU</label>
+                                            <div class="row align-items-start">
+                                                <div class="col">
+                                                    <input type="DATE" name="date2" id="date2" />
+                                                </div>
+                                                <div class="col">
+
+                                                    <input type="time" id="time2" name="time2">
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="label-flex">
+                                            <label for="regulier">5.SANS SOLDE</label>
+                                        </div>
+
+                                        <div class="form-radio-group">
+                                            <div class="row align-items-start">
+                                                <div class="col">
+                                                    <div class="form-radio-item">
+                                                        <input type="radio" name="typeCongeIdTypeconge" id="heures" value="heures">
+                                                        <label for="heures">Heures</label>
+                                                        <input type="text" id="heureSansSolde" name="heureSansSolde">
+                                                        <span class="check"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-radio-item">
+                                                        <input type="radio" name="typeCongeIdTypeconge" id="jour" value="jours">
+                                                        <label for="jour">Jours</label>
+                                                        <input type="date" name="jourSansSolde" id="jourSansSolde" />
+                                                        <span class="check"></span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-1">
+                                    </div>
+                                    <div class="col">
+                                        <br />
+
+
+                                        <br /> <br /> <br /> <br /> <br /> <br />
+
+                                        <div class="form-group col">
+                                            <div></div>
+                                            <div class="form-input">
+                                                <div class="row align-items-start">
+                                                    <div class="col">
+                                                        <label for="nomComplet">Nom & Prenom</label>
+                                                        <input type="text" name="nomComplet" id="nomComplet" value="@Session["userName"]" />
+                                                        @Html.ValidationMessageFor(model => model.NomComplet, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-input">
+                                                <div class="row align-items-start">
+
+                                                    <div class="col">
+                                                        <label for="matricule">Matricule</label>
+                                                        <input type="text" name="matricule" id="matricule" value="@Session["matricule"]" />
+                                                        @Html.ValidationMessageFor(model => model.idEmploye, "", new { @class = "text-danger" })
+                                                    </div>
+
+                                                    <div class="col">
+                                                        <label for="affectation">Affectation</label>
+                                                        <input type="text" name="affectation" id="affectation" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-input ">
+
+                                                <label for="DATE FIN">Durée de Congé</label>
+
+                                                <label for="chequeno">DU</label>
+                                                <div class="row align-items-start">
+                                                    <div class="col">
+                                                        <input type="DATE" name="dateDebut" id="dateDebut" />
+                                                        @Html.ValidationMessageFor(model => model.DateDebut, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="col">
+                                                        <input type="time" id="timeDebut" name="timeDebut">
+                                                        @Html.ValidationMessageFor(model => model.DateDebut, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-input ">
+                                                <label for="chequeno">AU</label>
+                                                <div class="row align-items-start">
+                                                    <div class="col">
+                                                        <input type="DATE" name="dateFin" id="dateFin" />
+                                                        @Html.ValidationMessageFor(model => model.DateFin, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="col">
+                                                        <input type="time" id="timeFin" name="timeFin">
+                                                        @Html.ValidationMessageFor(model => model.DateFin, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div>
+                                                <div>
+                                                    Justification
+                                                    @Html.TextBox("file", "", new { type = "file" })
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="form-submit d-grid gap-2 d-md-flex justify-content-md-end">
+                                        <div class="col-md-offset-2 col-md-10">
+
+                                            <input type="submit" value="Envoyer" class=" btn btn-lg btn-success " id="submit" name="submit" />
+
+                                            <input type="reset" value="Reset" class=" btn btn-lg btn-light" id="reset" name="reset" />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            }
                         </div>
-
+                    
                     </div>
                 </div>
-
             </div>
-        </section>
-        <div class="col">
-
-            <H1 class="text-center"> DEMANDE DE CONGE </H1>
-
-        </div>
-        <br />
-        <br />
-        <div class="signup-form">
-
-            @using (Html.BeginForm("Dashboard1", "employe"))
-            {
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary()
-
-                <div class="row align-items-start">
-                    <div class="col">
-                        <div class="label-flex">
-
-                            <label class="text-center text-decoration-underline" for="TITRE">Choix de Congé</label>
-                        </div>
-
-                        <br />
-                        <br />
-                        <div>
-
-                        </div>
-                        <div class="form-group">
-
-                            <div class="form-radio">
-                                <div class="label-flex">
-                                    <label for="regulier">1.REGULIER</label>
-                                </div>
-                                <div class="form-radio-group">
-                                    <div class="form-radio-item">
-
-                                        @{
-                                            string x = Session["nbjours"].ToString();
-
-                                            var y = float.Parse(x);
-                                        }
-                                        @if ((y > 0) && (7 >= y))
-                                        {
-                                            <input type="radio" name="typeCongeIdTypeconge" id="reliquat" value="reliquat">
-                                            <label for="reliquat">Reliquat</label>
-                                        }
-                                        else
-                                        {
-                                            <input type="radio" name="typeCongeIdTypeconge" id="reliquat" value="reliquat" disabled>
-                                            <label style="color:gray;" for="reliquat">Reliquat</label>
-                                        }
-
-
-                                        <span class="check"></span>
-                                    </div>
-
-
-                                    <div class="form-radio-item">
-
-                                        @if ((y > 14) && (24 >= y))
-                                        {
-                                            <input type="radio" name="typeCongeIdTypeconge" id="1 ere tranche" value="1 ere tranche">
-                                            <label for="1 ere tranche">1 ere tranche</label>
-                                        }
-                                        else
-                                        {
-                                            <input type="radio" name="typeCongeIdTypeconge" id="1 ere tranche" value="1 ere tranche" disabled>
-                                            <label style="color:gray;" for="1 ere tranche">1 ere tranche</label>
-                                        }
-
-                                        <span class="check"></span>
-                                    </div>
-                                    <div class="form-radio-item">
-
-                                        @if ((y > 7) && (14 >= y))
-                                        {
-                                            <input type="radio" name="typeCongeIdTypeconge" id="2 eme tranche" value="2 eme tranche">
-                                            <label for="2 eme tranche">2 ere tranche</label>
-                                        }
-                                        else
-                                        {
-                                            <input type="radio" name="typeCongeIdTypeconge" id="2 eme tranche" value="2 eme tranche" disabled>
-                                            <label style="color:gray;" for="2 eme tranche">2 ere tranche</label>
-                                        }
-
-                                        <span class="check"></span>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="label-flex">
-                            <label for="Exceptionnel/cr">2.EXCEPTIONNEL/CR</label>
-                        </div>
-                        <div class="form-radio-group">
-                            <div class="form-radio-item">
-                                <input type="radio" name="typeCongeIdTypeconge" id="1/2 journée" value="1/2 journée">
-                                <label for="1/2 journée">1/2 journée</label>
-                                <span class="check"></span>
-                            </div>
-                            <div class="form-radio-item">
-                                <input type="radio" name="typeCongeIdTypeconge" id="1 journée" value="1 journée">
-                                <label for="1 journée">1 journée</label>
-                                <span class="check"></span>
-                            </div>
-                            <div class="form-radio-item">
-                                <input type="radio" name="typeCongeIdTypeconge" id="1.5 journée" value="1.5 journée">
-                                <label for="1.5 journée">1.5 journée</label>
-                                <span class="check"></span>
-                            </div>
-                            <div class="form-radio-item">
-                                <input type="radio" name="typeCongeIdTypeconge" id="2 journée" value="2 journée">
-                                <label for="2 journée">2 journée</label>
-                                <span class="check"></span>
-                            </div>
-                        </div>
-
-
-                        <div class="label-flex">
-                            <label for="EXCEPTIONNEL A.SOLDE">3.EXCEPTIONNEL A.SOLDE</label>
-                        </div>
-                        <div class="form-radio-group">
-                            <div class="form-radio-item">
-                                <input type="radio" name="typeCongeIdTypeconge" id="Mariage" value="Mariage">
-                                <label for="Mariage">Mariage</label>
-                                <span class="check"></span>
-                            </div>
-                            <div class="form-radio-item">
-                                <input type="radio" name="typeCongeIdTypeconge" id="Naissance" value="Naissance">
-                                <label for="Naissance">Naissance</label>
-                                <span class="check"></span>
-                            </div>
-                            <div class="form-radio-item">
-                                <input type="radio" name="typeCongeIdTypeconge" id="Décès" value="Décès">
-                                <label for="Décès">Décès</label>
-                                <span class="check"></span>
-                            </div>
-                        </div>
-                        <div class="label-flex">
-                            <label for="RECUPERATION">4.RECUPERATION</label>
-                        </div>
-
-                        <div class="form-radio-group">
-                            <div class="form-radio-item">
-                                <input type="radio" name="typeCongeIdTypeconge" id="H.S" value="H.S">
-                                <label for="H.S">H.S</label>
-                                <span class="check"></span>
-                            </div>
-                            <div class="form-radio-item">
-                                <input type="radio" name="typeCongeIdTypeconge" id="J.R" value="J.R">
-                                <label for="J.R">J.R</label>
-                                <span class="check"></span>
-                            </div>
-                            <div class="form-radio-item">
-                                <input type="radio" name="typeCongeIdTypeconge" id="J.F" value="J.F">
-                                <label for="J.F">J.F</label>
-                                <span class="check"></span>
-                            </div>
-                        </div>
-
-
-
-
-
-                        <div class="form-input">
-
-
-                            <label for="chequeno">DU</label>
-                            <div class="row align-items-start">
-                                <div class="col">
-                                    <input type="DATE" name="date1" id="date1" />
-                                </div>
-                                <div class="col">
-                                    <input type="time" id="time1" name="time1">
-
-                                </div>
-                            </div>
-                            <label for="chequeno">AU</label>
-                            <div class="row align-items-start">
-                                <div class="col">
-                                    <input type="DATE" name="date2" id="date2" />
-                                </div>
-                                <div class="col">
-
-                                    <input type="time" id="time2" name="time2">
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="label-flex">
-                            <label for="regulier">5.SANS SOLDE</label>
-                        </div>
-
-                        <div class="form-radio-group">
-                            <div class="row align-items-start">
-                                <div class="col">
-                                    <div class="form-radio-item">
-                                        <input type="radio" name="typeCongeIdTypeconge" id="heures" value="heures">
-                                        <label for="heures">Heures</label>
-                                        <input type="text" id="heureSansSolde" name="heureSansSolde">
-                                        <span class="check"></span>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-radio-item">
-                                        <input type="radio" name="typeCongeIdTypeconge" id="jour" value="jours">
-                                        <label for="jour">Jours</label>
-                                        <input type="date" name="jourSansSolde" id="jourSansSolde" />
-                                        <span class="check"></span>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-md-1">
-                    </div>
-                    <div class="col">
-                        <br />
-
-
-                        <br /> <br /> <br /> <br /> <br /> <br />
-
-                        <div class="form-group col">
-                            <div></div>
-                            <div class="form-input">
-                                <div class="row align-items-start">
-                                    <div class="col">
-                                        <label for="nomComplet">Nom & Prenom</label>
-                                        <input type="text" name="nomComplet" id="nomComplet" value="@Session["userName"]" />
-                                        @Html.ValidationMessageFor(model => model.NomComplet, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-input">
-                                <div class="row align-items-start">
-
-                                    <div class="col">
-                                        <label for="matricule">Matricule</label>
-                                        <input type="text" name="matricule" id="matricule" value="@Session["matricule"]" />
-                                        @Html.ValidationMessageFor(model => model.idEmploye, "", new { @class = "text-danger" })
-                                    </div>
-
-                                    <div class="col">
-                                        <label for="affectation">Affectation</label>
-                                        <input type="text" name="affectation" id="affectation" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-input ">
-
-                                <label for="DATE FIN">Durée de Congé</label>
-
-                                <label for="chequeno">DU</label>
-                                <div class="row align-items-start">
-                                    <div class="col">
-                                        <input type="DATE" name="dateDebut" id="dateDebut" />
-                                        @Html.ValidationMessageFor(model => model.DateDebut, "", new { @class = "text-danger" })
-                                    </div>
-                                    <div class="col">
-                                        <input type="time" id="timeDebut" name="timeDebut">
-                                        @Html.ValidationMessageFor(model => model.DateDebut, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-input ">
-                                <label for="chequeno">AU</label>
-                                <div class="row align-items-start">
-                                    <div class="col">
-                                        <input type="DATE" name="dateFin" id="dateFin" />
-                                        @Html.ValidationMessageFor(model => model.DateFin, "", new { @class = "text-danger" })
-                                    </div>
-                                    <div class="col">
-                                        <input type="time" id="timeFin" name="timeFin">
-                                        @Html.ValidationMessageFor(model => model.DateFin, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div>
-                                <div>
-                                    Justification
-                                    @Html.TextBox("file", "", new { type = "file" })
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                    </div>
-
-                    <div class="form-submit d-grid gap-2 d-md-flex justify-content-md-end">
-                        <div class="col-md-offset-2 col-md-10">
-
-                            <input type="submit" value="Envoyer" class=" btn btn-lg btn-success " id="submit" name="submit" />
-
-                            <input type="reset" value="Reset" class=" btn btn-lg btn-light" id="reset" name="reset" />
-                        </div>
-                    </div>
-
-                </div>
-
-            }
         </div>
 
     </div>
 
-</div>
-
-@if (ViewBag.Message != null)
-{
-    <script type="text/javascript">
+        @if (ViewBag.Message != null)
+        {
+            <script type="text/javascript">
             window.onload = function () {
                 alert("@ViewBag.Message");
             };
-    </script>
-}
+            </script>
+        }
 
 
 
-<!-- JS -->
-<script src="~/Content/cont2/vendor/jquery/jquery.min.js"></script>
-<script src="~/Content/cont2/vendor/nouislider/nouislider.min.js"></script>
-<script src="~/Content/cont2/vendor/wnumb/wNumb.js"></script>
-<script src="~/Content/cont2/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
-<script src="~/Content/cont2/vendor/jquery-validation/dist/additional-methods.min.js"></script>
-<script src="~/Content/cont2/js/main.js"></script>
+        <!-- JS -->
+        <script src="~/Content/cont2/vendor/jquery/jquery.min.js"></script>
+        <script src="~/Content/cont2/vendor/nouislider/nouislider.min.js"></script>
+        <script src="~/Content/cont2/vendor/wnumb/wNumb.js"></script>
+        <script src="~/Content/cont2/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/Content/cont2/vendor/jquery-validation/dist/additional-methods.min.js"></script>
+        <script src="~/Content/cont2/js/main.js"></script>
 
 
 
