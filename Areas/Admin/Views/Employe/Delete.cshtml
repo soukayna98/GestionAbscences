@@ -1,0 +1,59 @@
+﻿@model GestionAbscences.Areas.Admin.Models.EmployeModel
+
+@{
+    ViewBag.Title = "Delete";
+    @*  Layout = "~/Views/Shared/_offlineLayout.cshtml";*@
+}
+
+<h2>Delete Employe</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Classe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Classe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateF)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("DeleteConfirmed", "employe", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="Id" id="Id" value="@Model.Id" />
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-primary" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

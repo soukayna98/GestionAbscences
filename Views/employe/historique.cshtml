@@ -1,0 +1,77 @@
+﻿@model IEnumerable<GestionAbscences.Data.demandeconge>
+
+@{
+    ViewBag.Title = "historique";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<br />
+<h2 class="text-center" style="color:cadetblue;">HISTORIQUE</h2>
+
+<br />
+<br />
+<br />
+
+<table class="table table-bordered table-striped table-hover border-info ">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DateDebut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateFin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateDC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValidationN1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValidationN2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.employe.NomComplet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.typeconge.designation)
+            </th>
+        </tr>
+
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateDebut)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateFin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateDC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValidationN1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValidationN2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.employe.NomComplet)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.typeconge.designation)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<br />
+<h3 style="color:darkcyan; align-content:center; "> jours de congé  : @Session["nbjours"]</h3>
+
