@@ -132,6 +132,8 @@
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HistoriqueController.cs" />
+    <Compile Include="Areas\Admin\Models\DemandeModel.cs" />
     <Compile Include="Areas\Admin\Models\EmployeModel.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
@@ -182,6 +184,7 @@
     <Compile Include="Models\LoginModl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AdminService.cs" />
+    <Compile Include="Services\DemandeService.cs" />
     <Compile Include="Services\EmployeService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -460,6 +463,7 @@
     <Content Include="Data\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\Historique\historique.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

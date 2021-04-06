@@ -12,6 +12,7 @@ namespace GestionAbscences.Services
         int Update(employe updatedEmploye);
         employe ReadById(int id);
         List<employe> ReadAll();
+
         int Create(employe newEmploye);
         bool Delete(int id);
     }
