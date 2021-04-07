@@ -1,0 +1,486 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GestionAbscencesModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="demandeconge">
+          <Key>
+            <PropertyRef Name="idDemandeConge" />
+          </Key>
+          <Property Name="idDemandeConge" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateDebut" Type="datetime" />
+          <Property Name="DateFin" Type="datetime" />
+          <Property Name="DateDC" Type="datetime" />
+          <Property Name="ValidationN1" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ValidationN2" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="IdEmploye" Type="int" Nullable="false" />
+          <Property Name="IdtypeConge" Type="int" Nullable="false" />
+          <Property Name="justification" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="employe">
+          <Key>
+            <PropertyRef Name="idEmploye" />
+          </Key>
+          <Property Name="idEmploye" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomComplet" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Classe" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="DateDebut" Type="datetime" />
+          <Property Name="DateFin" Type="datetime" />
+          <Property Name="password" Type="varchar" MaxLength="40" />
+          <Property Name="nbjours" Type="real" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'GestionAbscences.dbo.employehasentite' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="employehasentite">
+          <Key>
+            <PropertyRef Name="IdEmploye" />
+            <PropertyRef Name="IdEntite" />
+          </Key>
+          <Property Name="IdEmploye" Type="int" Nullable="false" />
+          <Property Name="IdEntite" Type="int" Nullable="false" />
+          <Property Name="date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="entite">
+          <Key>
+            <PropertyRef Name="idEntite" />
+          </Key>
+          <Property Name="idEntite" Type="int" Nullable="false" />
+          <Property Name="Designation" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <EntityType Name="entitesuper">
+          <Key>
+            <PropertyRef Name="IdEntite" />
+            <PropertyRef Name="IdSup" />
+          </Key>
+          <Property Name="IdEntite" Type="int" Nullable="false" />
+          <Property Name="IdSup" Type="int" Nullable="false" />
+          <Property Name="niveau" Type="int" />
+        </EntityType>
+        <EntityType Name="supervisionher">
+          <Key>
+            <PropertyRef Name="idSup" />
+          </Key>
+          <Property Name="idSup" Type="int" Nullable="false" />
+          <Property Name="NomComplet" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Designation" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="typeconge">
+          <Key>
+            <PropertyRef Name="idtypeConge" />
+          </Key>
+          <Property Name="idtypeConge" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="designation" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="dureeJ" Type="real" />
+        </EntityType>
+        <Association Name="fk_DemandeConge_Employe">
+          <End Role="employe" Type="Self.employe" Multiplicity="1" />
+          <End Role="demandeconge" Type="Self.demandeconge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employe">
+              <PropertyRef Name="idEmploye" />
+            </Principal>
+            <Dependent Role="demandeconge">
+              <PropertyRef Name="IdEmploye" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DemandeConge_typeConge">
+          <End Role="typeconge" Type="Self.typeconge" Multiplicity="1" />
+          <End Role="demandeconge" Type="Self.demandeconge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="typeconge">
+              <PropertyRef Name="idtypeConge" />
+            </Principal>
+            <Dependent Role="demandeconge">
+              <PropertyRef Name="IdtypeConge" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_employehasentite_Employe">
+          <End Role="employe" Type="Self.employe" Multiplicity="1" />
+          <End Role="employehasentite" Type="Self.employehasentite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employe">
+              <PropertyRef Name="idEmploye" />
+            </Principal>
+            <Dependent Role="employehasentite">
+              <PropertyRef Name="IdEmploye" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_employehasentite_Entite">
+          <End Role="entite" Type="Self.entite" Multiplicity="1" />
+          <End Role="employehasentite" Type="Self.employehasentite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="entite">
+              <PropertyRef Name="idEntite" />
+            </Principal>
+            <Dependent Role="employehasentite">
+              <PropertyRef Name="IdEntite" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_entitesuper_Entite">
+          <End Role="entite" Type="Self.entite" Multiplicity="1" />
+          <End Role="entitesuper" Type="Self.entitesuper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="entite">
+              <PropertyRef Name="idEntite" />
+            </Principal>
+            <Dependent Role="entitesuper">
+              <PropertyRef Name="IdEntite" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_entitesuper_SupervisionHer">
+          <End Role="supervisionher" Type="Self.supervisionher" Multiplicity="1" />
+          <End Role="entitesuper" Type="Self.entitesuper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="supervisionher">
+              <PropertyRef Name="idSup" />
+            </Principal>
+            <Dependent Role="entitesuper">
+              <PropertyRef Name="IdSup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GestionAbscencesModel1StoreContainer">
+          <EntitySet Name="demandeconge" EntityType="Self.demandeconge" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employe" EntityType="Self.employe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="entite" EntityType="Self.entite" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="supervisionher" EntityType="Self.supervisionher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="typeconge" EntityType="Self.typeconge" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employehasentite" EntityType="Self.employehasentite" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [employehasentite].[IdEmploye] AS [IdEmploye], 
+    [employehasentite].[IdEntite] AS [IdEntite], 
+    [employehasentite].[date] AS [date]
+    FROM [dbo].[employehasentite] AS [employehasentite]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="entitesuper" EntityType="Self.entitesuper" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [entitesuper].[IdEntite] AS [IdEntite], 
+    [entitesuper].[IdSup] AS [IdSup], 
+    [entitesuper].[niveau] AS [niveau]
+    FROM [dbo].[entitesuper] AS [entitesuper]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="fk_DemandeConge_Employe" Association="Self.fk_DemandeConge_Employe">
+            <End Role="employe" EntitySet="employe" />
+            <End Role="demandeconge" EntitySet="demandeconge" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DemandeConge_typeConge" Association="Self.fk_DemandeConge_typeConge">
+            <End Role="typeconge" EntitySet="typeconge" />
+            <End Role="demandeconge" EntitySet="demandeconge" />
+          </AssociationSet>
+          <AssociationSet Name="fk_employehasentite_Employe" Association="Self.fk_employehasentite_Employe">
+            <End Role="employe" EntitySet="employe" />
+            <End Role="employehasentite" EntitySet="employehasentite" />
+          </AssociationSet>
+          <AssociationSet Name="fk_employehasentite_Entite" Association="Self.fk_employehasentite_Entite">
+            <End Role="entite" EntitySet="entite" />
+            <End Role="employehasentite" EntitySet="employehasentite" />
+          </AssociationSet>
+          <AssociationSet Name="fk_entitesuper_Entite" Association="Self.fk_entitesuper_Entite">
+            <End Role="entite" EntitySet="entite" />
+            <End Role="entitesuper" EntitySet="entitesuper" />
+          </AssociationSet>
+          <AssociationSet Name="fk_entitesuper_SupervisionHer" Association="Self.fk_entitesuper_SupervisionHer">
+            <End Role="supervisionher" EntitySet="supervisionher" />
+            <End Role="entitesuper" EntitySet="entitesuper" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GestionAbscencesModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="demandeconge">
+          <Key>
+            <PropertyRef Name="idDemandeConge" />
+          </Key>
+          <Property Name="idDemandeConge" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateDebut" Type="DateTime" Precision="3" />
+          <Property Name="DateFin" Type="DateTime" Precision="3" />
+          <Property Name="DateDC" Type="DateTime" Precision="3" />
+          <Property Name="ValidationN1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ValidationN2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdEmploye" Type="Int32" Nullable="false" />
+          <Property Name="IdtypeConge" Type="Int32" Nullable="false" />
+          <Property Name="justification" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="employe" Relationship="Self.fk_DemandeConge_Employe" FromRole="demandeconge" ToRole="employe" />
+          <NavigationProperty Name="typeconge" Relationship="Self.fk_DemandeConge_typeConge" FromRole="demandeconge" ToRole="typeconge" />
+        </EntityType>
+        <EntityType Name="employe">
+          <Key>
+            <PropertyRef Name="idEmploye" />
+          </Key>
+          <Property Name="idEmploye" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomComplet" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Classe" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateDebut" Type="DateTime" Precision="3" />
+          <Property Name="DateFin" Type="DateTime" Precision="3" />
+          <Property Name="password" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="nbjours" Type="Single" />
+          <NavigationProperty Name="demandeconge" Relationship="Self.fk_DemandeConge_Employe" FromRole="employe" ToRole="demandeconge" />
+          <NavigationProperty Name="employehasentite" Relationship="Self.fk_employehasentite_Employe" FromRole="employe" ToRole="employehasentite" />
+        </EntityType>
+        <EntityType Name="entite">
+          <Key>
+            <PropertyRef Name="idEntite" />
+          </Key>
+          <Property Name="idEntite" Type="Int32" Nullable="false" />
+          <Property Name="Designation" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="employehasentite" Relationship="Self.fk_employehasentite_Entite" FromRole="entite" ToRole="employehasentite" />
+          <NavigationProperty Name="entitesuper" Relationship="Self.fk_entitesuper_Entite" FromRole="entite" ToRole="entitesuper" />
+        </EntityType>
+        <EntityType Name="supervisionher">
+          <Key>
+            <PropertyRef Name="idSup" />
+          </Key>
+          <Property Name="idSup" Type="Int32" Nullable="false" />
+          <Property Name="NomComplet" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Designation" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="entitesuper" Relationship="Self.fk_entitesuper_SupervisionHer" FromRole="supervisionher" ToRole="entitesuper" />
+        </EntityType>
+        <EntityType Name="typeconge">
+          <Key>
+            <PropertyRef Name="idtypeConge" />
+          </Key>
+          <Property Name="idtypeConge" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="designation" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dureeJ" Type="Single" />
+          <NavigationProperty Name="demandeconge" Relationship="Self.fk_DemandeConge_typeConge" FromRole="typeconge" ToRole="demandeconge" />
+        </EntityType>
+        <EntityType Name="employehasentite">
+          <Key>
+            <PropertyRef Name="IdEmploye" />
+            <PropertyRef Name="IdEntite" />
+          </Key>
+          <Property Name="IdEmploye" Type="Int32" Nullable="false" />
+          <Property Name="IdEntite" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="employe" Relationship="Self.fk_employehasentite_Employe" FromRole="employehasentite" ToRole="employe" />
+          <NavigationProperty Name="entite" Relationship="Self.fk_employehasentite_Entite" FromRole="employehasentite" ToRole="entite" />
+        </EntityType>
+        <EntityType Name="entitesuper">
+          <Key>
+            <PropertyRef Name="IdEntite" />
+            <PropertyRef Name="IdSup" />
+          </Key>
+          <Property Name="IdEntite" Type="Int32" Nullable="false" />
+          <Property Name="IdSup" Type="Int32" Nullable="false" />
+          <Property Name="niveau" Type="Int32" />
+          <NavigationProperty Name="entite" Relationship="Self.fk_entitesuper_Entite" FromRole="entitesuper" ToRole="entite" />
+          <NavigationProperty Name="supervisionher" Relationship="Self.fk_entitesuper_SupervisionHer" FromRole="entitesuper" ToRole="supervisionher" />
+        </EntityType>
+        <Association Name="fk_DemandeConge_Employe">
+          <End Role="employe" Type="Self.employe" Multiplicity="1" />
+          <End Role="demandeconge" Type="Self.demandeconge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employe">
+              <PropertyRef Name="idEmploye" />
+            </Principal>
+            <Dependent Role="demandeconge">
+              <PropertyRef Name="IdEmploye" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DemandeConge_typeConge">
+          <End Role="typeconge" Type="Self.typeconge" Multiplicity="1" />
+          <End Role="demandeconge" Type="Self.demandeconge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="typeconge">
+              <PropertyRef Name="idtypeConge" />
+            </Principal>
+            <Dependent Role="demandeconge">
+              <PropertyRef Name="IdtypeConge" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_employehasentite_Employe">
+          <End Role="employe" Type="Self.employe" Multiplicity="1" />
+          <End Role="employehasentite" Type="Self.employehasentite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employe">
+              <PropertyRef Name="idEmploye" />
+            </Principal>
+            <Dependent Role="employehasentite">
+              <PropertyRef Name="IdEmploye" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_employehasentite_Entite">
+          <End Role="entite" Type="Self.entite" Multiplicity="1" />
+          <End Role="employehasentite" Type="Self.employehasentite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="entite">
+              <PropertyRef Name="idEntite" />
+            </Principal>
+            <Dependent Role="employehasentite">
+              <PropertyRef Name="IdEntite" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_entitesuper_Entite">
+          <End Role="entite" Type="Self.entite" Multiplicity="1" />
+          <End Role="entitesuper" Type="Self.entitesuper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="entite">
+              <PropertyRef Name="idEntite" />
+            </Principal>
+            <Dependent Role="entitesuper">
+              <PropertyRef Name="IdEntite" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_entitesuper_SupervisionHer">
+          <End Role="supervisionher" Type="Self.supervisionher" Multiplicity="1" />
+          <End Role="entitesuper" Type="Self.entitesuper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="supervisionher">
+              <PropertyRef Name="idSup" />
+            </Principal>
+            <Dependent Role="entitesuper">
+              <PropertyRef Name="IdSup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GestionAbscencesEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="demandeconge" EntityType="Self.demandeconge" />
+          <EntitySet Name="employe" EntityType="Self.employe" />
+          <EntitySet Name="entite" EntityType="Self.entite" />
+          <EntitySet Name="supervisionher" EntityType="Self.supervisionher" />
+          <EntitySet Name="typeconge" EntityType="Self.typeconge" />
+          <EntitySet Name="employehasentite" EntityType="Self.employehasentite" />
+          <EntitySet Name="entitesuper" EntityType="Self.entitesuper" />
+          <AssociationSet Name="fk_DemandeConge_Employe" Association="Self.fk_DemandeConge_Employe">
+            <End Role="employe" EntitySet="employe" />
+            <End Role="demandeconge" EntitySet="demandeconge" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DemandeConge_typeConge" Association="Self.fk_DemandeConge_typeConge">
+            <End Role="typeconge" EntitySet="typeconge" />
+            <End Role="demandeconge" EntitySet="demandeconge" />
+          </AssociationSet>
+          <AssociationSet Name="fk_employehasentite_Employe" Association="Self.fk_employehasentite_Employe">
+            <End Role="employe" EntitySet="employe" />
+            <End Role="employehasentite" EntitySet="employehasentite" />
+          </AssociationSet>
+          <AssociationSet Name="fk_employehasentite_Entite" Association="Self.fk_employehasentite_Entite">
+            <End Role="entite" EntitySet="entite" />
+            <End Role="employehasentite" EntitySet="employehasentite" />
+          </AssociationSet>
+          <AssociationSet Name="fk_entitesuper_Entite" Association="Self.fk_entitesuper_Entite">
+            <End Role="entite" EntitySet="entite" />
+            <End Role="entitesuper" EntitySet="entitesuper" />
+          </AssociationSet>
+          <AssociationSet Name="fk_entitesuper_SupervisionHer" Association="Self.fk_entitesuper_SupervisionHer">
+            <End Role="supervisionher" EntitySet="supervisionher" />
+            <End Role="entitesuper" EntitySet="entitesuper" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GestionAbscencesModel1StoreContainer" CdmEntityContainer="GestionAbscencesEntities2">
+          <EntitySetMapping Name="demandeconge">
+            <EntityTypeMapping TypeName="GestionAbscencesModel1.demandeconge">
+              <MappingFragment StoreEntitySet="demandeconge">
+                <ScalarProperty Name="idDemandeConge" ColumnName="idDemandeConge" />
+                <ScalarProperty Name="DateDebut" ColumnName="DateDebut" />
+                <ScalarProperty Name="DateFin" ColumnName="DateFin" />
+                <ScalarProperty Name="DateDC" ColumnName="DateDC" />
+                <ScalarProperty Name="ValidationN1" ColumnName="ValidationN1" />
+                <ScalarProperty Name="ValidationN2" ColumnName="ValidationN2" />
+                <ScalarProperty Name="IdEmploye" ColumnName="IdEmploye" />
+                <ScalarProperty Name="IdtypeConge" ColumnName="IdtypeConge" />
+                <ScalarProperty Name="justification" ColumnName="justification" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employe">
+            <EntityTypeMapping TypeName="GestionAbscencesModel1.employe">
+              <MappingFragment StoreEntitySet="employe">
+                <ScalarProperty Name="idEmploye" ColumnName="idEmploye" />
+                <ScalarProperty Name="NomComplet" ColumnName="NomComplet" />
+                <ScalarProperty Name="Classe" ColumnName="Classe" />
+                <ScalarProperty Name="DateDebut" ColumnName="DateDebut" />
+                <ScalarProperty Name="DateFin" ColumnName="DateFin" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="nbjours" ColumnName="nbjours" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="entite">
+            <EntityTypeMapping TypeName="GestionAbscencesModel1.entite">
+              <MappingFragment StoreEntitySet="entite">
+                <ScalarProperty Name="idEntite" ColumnName="idEntite" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="supervisionher">
+            <EntityTypeMapping TypeName="GestionAbscencesModel1.supervisionher">
+              <MappingFragment StoreEntitySet="supervisionher">
+                <ScalarProperty Name="idSup" ColumnName="idSup" />
+                <ScalarProperty Name="NomComplet" ColumnName="NomComplet" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="typeconge">
+            <EntityTypeMapping TypeName="GestionAbscencesModel1.typeconge">
+              <MappingFragment StoreEntitySet="typeconge">
+                <ScalarProperty Name="idtypeConge" ColumnName="idtypeConge" />
+                <ScalarProperty Name="designation" ColumnName="designation" />
+                <ScalarProperty Name="dureeJ" ColumnName="dureeJ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employehasentite">
+            <EntityTypeMapping TypeName="GestionAbscencesModel1.employehasentite">
+              <MappingFragment StoreEntitySet="employehasentite">
+                <ScalarProperty Name="IdEmploye" ColumnName="IdEmploye" />
+                <ScalarProperty Name="IdEntite" ColumnName="IdEntite" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="entitesuper">
+            <EntityTypeMapping TypeName="GestionAbscencesModel1.entitesuper">
+              <MappingFragment StoreEntitySet="entitesuper">
+                <ScalarProperty Name="IdEntite" ColumnName="IdEntite" />
+                <ScalarProperty Name="IdSup" ColumnName="IdSup" />
+                <ScalarProperty Name="niveau" ColumnName="niveau" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

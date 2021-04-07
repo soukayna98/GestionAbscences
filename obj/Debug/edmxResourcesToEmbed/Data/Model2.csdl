@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GestionAbscencesModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="demandeconge">
+    <Key>
+      <PropertyRef Name="idDemandeConge" />
+    </Key>
+    <Property Name="idDemandeConge" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateDebut" Type="DateTime" Precision="3" />
+    <Property Name="DateFin" Type="DateTime" Precision="3" />
+    <Property Name="DateDC" Type="DateTime" Precision="3" />
+    <Property Name="ValidationN1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ValidationN2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdEmploye" Type="Int32" Nullable="false" />
+    <Property Name="IdtypeConge" Type="Int32" Nullable="false" />
+    <Property Name="justification" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="employe" Relationship="Self.fk_DemandeConge_Employe" FromRole="demandeconge" ToRole="employe" />
+    <NavigationProperty Name="typeconge" Relationship="Self.fk_DemandeConge_typeConge" FromRole="demandeconge" ToRole="typeconge" />
+  </EntityType>
+  <EntityType Name="employe">
+    <Key>
+      <PropertyRef Name="idEmploye" />
+    </Key>
+    <Property Name="idEmploye" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NomComplet" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Classe" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DateDebut" Type="DateTime" Precision="3" />
+    <Property Name="DateFin" Type="DateTime" Precision="3" />
+    <Property Name="password" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="nbjours" Type="Single" />
+    <NavigationProperty Name="demandeconge" Relationship="Self.fk_DemandeConge_Employe" FromRole="employe" ToRole="demandeconge" />
+    <NavigationProperty Name="employehasentite" Relationship="Self.fk_employehasentite_Employe" FromRole="employe" ToRole="employehasentite" />
+  </EntityType>
+  <EntityType Name="entite">
+    <Key>
+      <PropertyRef Name="idEntite" />
+    </Key>
+    <Property Name="idEntite" Type="Int32" Nullable="false" />
+    <Property Name="Designation" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="employehasentite" Relationship="Self.fk_employehasentite_Entite" FromRole="entite" ToRole="employehasentite" />
+    <NavigationProperty Name="entitesuper" Relationship="Self.fk_entitesuper_Entite" FromRole="entite" ToRole="entitesuper" />
+  </EntityType>
+  <EntityType Name="supervisionher">
+    <Key>
+      <PropertyRef Name="idSup" />
+    </Key>
+    <Property Name="idSup" Type="Int32" Nullable="false" />
+    <Property Name="NomComplet" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Designation" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="entitesuper" Relationship="Self.fk_entitesuper_SupervisionHer" FromRole="supervisionher" ToRole="entitesuper" />
+  </EntityType>
+  <EntityType Name="typeconge">
+    <Key>
+      <PropertyRef Name="idtypeConge" />
+    </Key>
+    <Property Name="idtypeConge" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="designation" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dureeJ" Type="Single" />
+    <NavigationProperty Name="demandeconge" Relationship="Self.fk_DemandeConge_typeConge" FromRole="typeconge" ToRole="demandeconge" />
+  </EntityType>
+  <EntityType Name="employehasentite">
+    <Key>
+      <PropertyRef Name="IdEmploye" />
+      <PropertyRef Name="IdEntite" />
+    </Key>
+    <Property Name="IdEmploye" Type="Int32" Nullable="false" />
+    <Property Name="IdEntite" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="employe" Relationship="Self.fk_employehasentite_Employe" FromRole="employehasentite" ToRole="employe" />
+    <NavigationProperty Name="entite" Relationship="Self.fk_employehasentite_Entite" FromRole="employehasentite" ToRole="entite" />
+  </EntityType>
+  <EntityType Name="entitesuper">
+    <Key>
+      <PropertyRef Name="IdEntite" />
+      <PropertyRef Name="IdSup" />
+    </Key>
+    <Property Name="IdEntite" Type="Int32" Nullable="false" />
+    <Property Name="IdSup" Type="Int32" Nullable="false" />
+    <Property Name="niveau" Type="Int32" />
+    <NavigationProperty Name="entite" Relationship="Self.fk_entitesuper_Entite" FromRole="entitesuper" ToRole="entite" />
+    <NavigationProperty Name="supervisionher" Relationship="Self.fk_entitesuper_SupervisionHer" FromRole="entitesuper" ToRole="supervisionher" />
+  </EntityType>
+  <Association Name="fk_DemandeConge_Employe">
+    <End Role="employe" Type="Self.employe" Multiplicity="1" />
+    <End Role="demandeconge" Type="Self.demandeconge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employe">
+        <PropertyRef Name="idEmploye" />
+      </Principal>
+      <Dependent Role="demandeconge">
+        <PropertyRef Name="IdEmploye" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_DemandeConge_typeConge">
+    <End Role="typeconge" Type="Self.typeconge" Multiplicity="1" />
+    <End Role="demandeconge" Type="Self.demandeconge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="typeconge">
+        <PropertyRef Name="idtypeConge" />
+      </Principal>
+      <Dependent Role="demandeconge">
+        <PropertyRef Name="IdtypeConge" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_employehasentite_Employe">
+    <End Role="employe" Type="Self.employe" Multiplicity="1" />
+    <End Role="employehasentite" Type="Self.employehasentite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employe">
+        <PropertyRef Name="idEmploye" />
+      </Principal>
+      <Dependent Role="employehasentite">
+        <PropertyRef Name="IdEmploye" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_employehasentite_Entite">
+    <End Role="entite" Type="Self.entite" Multiplicity="1" />
+    <End Role="employehasentite" Type="Self.employehasentite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="entite">
+        <PropertyRef Name="idEntite" />
+      </Principal>
+      <Dependent Role="employehasentite">
+        <PropertyRef Name="IdEntite" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_entitesuper_Entite">
+    <End Role="entite" Type="Self.entite" Multiplicity="1" />
+    <End Role="entitesuper" Type="Self.entitesuper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="entite">
+        <PropertyRef Name="idEntite" />
+      </Principal>
+      <Dependent Role="entitesuper">
+        <PropertyRef Name="IdEntite" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_entitesuper_SupervisionHer">
+    <End Role="supervisionher" Type="Self.supervisionher" Multiplicity="1" />
+    <End Role="entitesuper" Type="Self.entitesuper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="supervisionher">
+        <PropertyRef Name="idSup" />
+      </Principal>
+      <Dependent Role="entitesuper">
+        <PropertyRef Name="IdSup" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GestionAbscencesEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="demandeconge" EntityType="Self.demandeconge" />
+    <EntitySet Name="employe" EntityType="Self.employe" />
+    <EntitySet Name="entite" EntityType="Self.entite" />
+    <EntitySet Name="supervisionher" EntityType="Self.supervisionher" />
+    <EntitySet Name="typeconge" EntityType="Self.typeconge" />
+    <EntitySet Name="employehasentite" EntityType="Self.employehasentite" />
+    <EntitySet Name="entitesuper" EntityType="Self.entitesuper" />
+    <AssociationSet Name="fk_DemandeConge_Employe" Association="Self.fk_DemandeConge_Employe">
+      <End Role="employe" EntitySet="employe" />
+      <End Role="demandeconge" EntitySet="demandeconge" />
+    </AssociationSet>
+    <AssociationSet Name="fk_DemandeConge_typeConge" Association="Self.fk_DemandeConge_typeConge">
+      <End Role="typeconge" EntitySet="typeconge" />
+      <End Role="demandeconge" EntitySet="demandeconge" />
+    </AssociationSet>
+    <AssociationSet Name="fk_employehasentite_Employe" Association="Self.fk_employehasentite_Employe">
+      <End Role="employe" EntitySet="employe" />
+      <End Role="employehasentite" EntitySet="employehasentite" />
+    </AssociationSet>
+    <AssociationSet Name="fk_employehasentite_Entite" Association="Self.fk_employehasentite_Entite">
+      <End Role="entite" EntitySet="entite" />
+      <End Role="employehasentite" EntitySet="employehasentite" />
+    </AssociationSet>
+    <AssociationSet Name="fk_entitesuper_Entite" Association="Self.fk_entitesuper_Entite">
+      <End Role="entite" EntitySet="entite" />
+      <End Role="entitesuper" EntitySet="entitesuper" />
+    </AssociationSet>
+    <AssociationSet Name="fk_entitesuper_SupervisionHer" Association="Self.fk_entitesuper_SupervisionHer">
+      <End Role="supervisionher" EntitySet="supervisionher" />
+      <End Role="entitesuper" EntitySet="entitesuper" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e58f5c4aadc044f4817100272610b330" Name="Diagram1">
+        <EntityTypeShape EntityType="GestionAbscencesModel1.demandeconge" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAbscencesModel1.employe" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAbscencesModel1.entite" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAbscencesModel1.supervisionher" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAbscencesModel1.typeconge" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAbscencesModel1.employehasentite" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAbscencesModel1.entitesuper" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="GestionAbscencesModel1.fk_DemandeConge_Employe" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionAbscencesModel1.fk_DemandeConge_typeConge" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionAbscencesModel1.fk_employehasentite_Employe" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionAbscencesModel1.fk_employehasentite_Entite" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionAbscencesModel1.fk_entitesuper_Entite" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionAbscencesModel1.fk_entitesuper_SupervisionHer" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
