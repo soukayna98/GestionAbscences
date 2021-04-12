@@ -2,10 +2,11 @@
 
 @{
     ViewBag.Title = "historique";
-    
+
 }
 
 <h2>Historique des demandes de congés</h2>
+<title> Historique des Demandes de Conge </title>
 
 
 <!DOCTYPE html>
@@ -34,7 +35,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
                     <thead>
-                        <tr class="table-primary">
+                        <tr class="table-success">
                             <th>
                                 @Html.DisplayNameFor(model => model.NomComplet)
                             </th>
@@ -71,40 +72,6 @@
 
                     <tfoot>
 
-                        <tr class="table-primary">
-                            <th>
-                                @Html.DisplayNameFor(model => model.NomComplet)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.IdTypeConge)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.matricule)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.IdDemandeConge)
-                            </th>
-
-
-                            <th>
-                                @Html.DisplayNameFor(model => model.validationN1)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.validationN2)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DateDebut)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DateFin)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DateDc)
-                            </th>
-
-
-
-                        </tr>
                     </tfoot>
                     <tbody>
                         @foreach (var item in Model)
