@@ -12,7 +12,7 @@ namespace GestionAbscences.Controllers
     public class LoginController : Controller
     {
 
-        public GestionAbscencesEntities1 db = new GestionAbscencesEntities1();
+        public GestionAbscencesEntities2 db = new GestionAbscencesEntities2();
         
 
         // GET: Login
@@ -44,12 +44,18 @@ namespace GestionAbscences.Controllers
         [HttpPost]
         public ActionResult Index(employe log)
         {
-            var user = db.employe.Where(x => x.idEmploye == log.idEmploye && x.password == log.password).ToList().FirstOrDefault();
+            var user = db.employe.Where(x => x.matricule == log.matricule && x.password == log.password).ToList().FirstOrDefault();
             if (user != null)
             {
                 Session["userName"] = user.NomComplet;
-                Session["matricule"] = user.idEmploye;
+                Session["matricule"] = user.matricule;
+                Session["affectation"] = user.affectation;
                 Session["nbjours"] = user.nbjours.ToString();
+                Session["nbjoursR"] = user.nbjoursR.ToString();
+                Session["Classe"] = user.Classe;
+                @Session["DateFin"] = user.DateFin;
+                @Session["DateDebut"] = user.DateDebut;
+
                 return RedirectToAction("Index", "Default");
             }
             else

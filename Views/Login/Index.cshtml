@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_offlineLayout.cshtml";
 }
 
-<h2>Index</h2>
+
 
 
 <div class="card shadow-lg border-0 rounded-lg mt-5">
@@ -24,9 +24,9 @@
 
             <div class="form-group">
 
-                <label class="small mb-1" for="inputEmailAddress">Email</label>
+                <label class="small mb-1" for="inputEmailAddress">Identifiant</label>
                 @* <label >id</label>*@
-                @Html.TextBoxFor(m => m.idEmploye, new { @class = "form-control py-4", placeholder = "Enter identifiant" })
+                @Html.TextBoxFor(m => m.matricule, new { @class = "form-control py-4", placeholder = "Enter identifiant" })
                 @* @Html.LabelFor(m => m.Id)*@
                 @* <input class="form-control py-4" id="inputEmailAddress" type="email" placeholder="Enter email address" />*@
             </div>
@@ -42,7 +42,7 @@
             </div>
 
             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                <a class="small" href="password.html">Forgot Password?</a>
+                <a class="small" href="@Url.Action("changePassword","employe")">Forgot Password?</a>
                 <button type="submit" class="btn btn-primary btn-block">Login</button>
             </div>
         }
