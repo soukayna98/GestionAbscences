@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="GestionAbscencesModelStoreContainer" CdmEntityContainer="GestionAbscencesEntities1">
+  <EntityContainerMapping StorageEntityContainer="GestionAbscencesModelStoreContainer" CdmEntityContainer="GestionAbscencesEntities2">
     <EntitySetMapping Name="demandeconge">
       <EntityTypeMapping TypeName="GestionAbscencesModel.demandeconge">
         <MappingFragment StoreEntitySet="demandeconge">
@@ -12,6 +12,7 @@
           <ScalarProperty Name="ValidationN2" ColumnName="ValidationN2" />
           <ScalarProperty Name="IdEmploye" ColumnName="IdEmploye" />
           <ScalarProperty Name="IdtypeConge" ColumnName="IdtypeConge" />
+          <ScalarProperty Name="justification" ColumnName="justification" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -25,6 +26,9 @@
           <ScalarProperty Name="DateFin" ColumnName="DateFin" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="nbjours" ColumnName="nbjours" />
+          <ScalarProperty Name="nbjoursR" ColumnName="nbjoursR" />
+          <ScalarProperty Name="matricule" ColumnName="matricule" />
+          <ScalarProperty Name="affectation" ColumnName="affectation" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

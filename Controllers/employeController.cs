@@ -11,7 +11,7 @@ namespace GestionAbscences.Controllers
 {
     public class employeController : Controller
     {
-         private GestionAbscencesEntities1 db = new GestionAbscencesEntities1();
+         private GestionAbscencesEntities2 db = new GestionAbscencesEntities2();
 
         // GET: employe
         public ActionResult Index()
@@ -20,8 +20,49 @@ namespace GestionAbscences.Controllers
             return View();
         }
 
-       
-            [HttpPost]
+
+        [HttpGet]
+        public ActionResult changePassword()
+        {
+            return View();
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult changePassword(ChangePasswordModel obj)
+        {
+            if (ModelState.IsValid)
+            {
+                int uid = int.Parse(Session["matricule"].ToString());
+
+                employe e = db.employe.Find(uid);
+
+                if (e.password == obj.OldPassword)
+                {
+                    e.password = obj.NewPassword;
+                    db.Entry(e).State = EntityState.Modified;
+                    db.SaveChanges();
+                     obj.Message = "Your Password is updated successfully";
+                    //ViewBag.Success = true;
+                  // ViewBag.Message = $"password updated succefully";
+                  // return RedirectToAction("Index", "Default");
+
+                }
+                else
+                {
+                   // ViewBag.Message = $"an error occurred while updation password !";
+                  obj.Message = "Invalid currrent  Password";
+                  // return RedirectToAction("Index", "Default");
+                }
+
+            }
+
+            return View(obj);
+
+
+        }
+
+
+        [HttpPost]
             public ActionResult Dashboard1()
             {
                demandeconge demande = new demandeconge();
@@ -83,6 +124,12 @@ namespace GestionAbscences.Controllers
             return View(demandeConge.ToList());
 
 
+        }
+
+        public ActionResult Donnee()
+        {
+
+            return View();
         }
     }
     }

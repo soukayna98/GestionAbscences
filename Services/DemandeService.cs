@@ -16,11 +16,11 @@ namespace GestionAbscences.Services
     {
        
 
-            private readonly GestionAbscencesEntities1 db;
+            private readonly GestionAbscencesEntities2 db;
 
             public DemandeService()
             {
-                db = new GestionAbscencesEntities1();
+                db = new GestionAbscencesEntities2();
             }
 
         public List<demandeconge> ReadAll()

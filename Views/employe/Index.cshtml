@@ -15,7 +15,7 @@
 
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-10">
+            <div class="col-lg-12">
                 <div class="card shadow-lg border-0 rounded-lg mt-5">
 
                     <div class="card-header"><h3 class="text-center font-weight-light my-4">DEMANDE DE CONGE</h3></div>
@@ -52,10 +52,13 @@
 
                                                         @{
                                                             string x = Session["nbjours"].ToString();
+                                                            string x1 = Session["nbjoursR"].ToString();
 
                                                             var y = float.Parse(x);
+                                                            var y1 = float.Parse(x1);
                                                         }
-                                                        @if ((y > 0) && (7 >= y))
+                                                        @*  @if ((y > 0) && (7 >= y))*@
+                                                        @if (y1 > 0 )
                                                         {
                                                             <input type="radio" name="typeCongeIdTypeconge" id="reliquat" value="reliquat">
                                                             <label for="reliquat">Reliquat</label>
@@ -72,8 +75,10 @@
 
 
                                                     <div class="form-radio-item">
+                                                        @* @if ((y > 14) && (24 >= y))*@
+                                                        @if (y1 >= 10 && y1 <= y)
 
-                                                        @if ((y > 14) && (24 >= y))
+
                                                         {
                                                             <input type="radio" name="typeCongeIdTypeconge" id="1 ere tranche" value="1 ere tranche">
                                                             <label for="1 ere tranche">1 ere tranche</label>
@@ -88,7 +93,8 @@
                                                     </div>
                                                     <div class="form-radio-item">
 
-                                                        @if ((y > 7) && (14 >= y))
+                                                        @*@if ((y > 7) && (14 >= y))*@
+                                                        @if (y1 >= 7 && y1 <= y )
                                                         {
                                                             <input type="radio" name="typeCongeIdTypeconge" id="2 eme tranche" value="2 eme tranche">
                                                             <label for="2 eme tranche">2 ere tranche</label>
@@ -263,7 +269,9 @@
 
                                                     <div class="col">
                                                         <label for="affectation">Affectation</label>
-                                                        <input type="text" name="affectation" id="affectation" />
+                                                        <input type="text" name="affectation" id="affectation" value="@Session["affectation"]" />
+                                                        @Html.ValidationMessageFor(model => model.affectation, "", new { @class = "text-danger" })
+
                                                     </div>
                                                 </div>
                                             </div>
