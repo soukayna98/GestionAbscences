@@ -15,7 +15,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Admin / Employe</title>
+    <title> Historique des Demande de Conge </title>
+
     <link href="css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
@@ -32,7 +33,7 @@
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
-                        <tr class="table-primary">
+                        <tr class="table-success">
                             <th>
                                 @Html.DisplayNameFor(model => model.DateDebut)
                             </th>
@@ -60,30 +61,7 @@
                     </thead>
                     <tfoot>
 
-                        <tr class="table-primary">
-
-                            <th>
-                                @Html.DisplayNameFor(model => model.DateDebut)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DateFin)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DateDC)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.ValidationN1)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.ValidationN2)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.employe.NomComplet)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.typeconge.designation)
-                            </th>
-                        </tr>
+                       
                     </tfoot>
 
                     <tbody>
