@@ -67,13 +67,14 @@ namespace GestionAbscences.Controllers
             {
                demandeconge demande = new demandeconge();
 
-
+            int uid = int.Parse(Session["idEmploye"].ToString());
                 string employeIdEmploye1 = Request["matricule"];
                 string typeCongeIdTypeconge = Request.Form["typeCongeIdTypeconge"];
                 string dateDebut = Request["dateDebut"] + " " + Request["timeDebut"];
                 string dateFin = Request["dateFin"] + " " + Request["timeFin"];
+                string justification = Request["justification"];
 
-                DateTime dc = DateTime.Now;
+            DateTime dc = DateTime.Now;
 
 
                 if (typeCongeIdTypeconge.Equals("reliquat"))
@@ -91,9 +92,10 @@ namespace GestionAbscences.Controllers
 
                 demande.ValidationN1 = "En cours";
                 demande.ValidationN2 = "En cours";
-                demande.IdEmploye = int.Parse(employeIdEmploye1);
+            // demande.IdEmploye = int.Parse(employeIdEmploye1);
+            demande.IdEmploye = uid;
 
-                demande.DateDebut = Convert.ToDateTime(dateDebut);
+            demande.DateDebut = Convert.ToDateTime(dateDebut);
                 demande.DateFin = Convert.ToDateTime(dateFin);
                 demande.DateDC = dc;
 
