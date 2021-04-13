@@ -53,8 +53,10 @@ namespace GestionAbscences.Controllers
                 Session["nbjours"] = user.nbjours.ToString();
                 Session["nbjoursR"] = user.nbjoursR.ToString();
                 Session["Classe"] = user.Classe;
-                @Session["DateFin"] = user.DateFin;
-                @Session["DateDebut"] = user.DateDebut;
+                Session["DateFin"] = user.DateFin;
+                Session["DateDebut"] = user.DateDebut;
+                Session["idEmploye"] = user.idEmploye; ;
+
 
                 string role = user.role;
                 if (role == "admin")

@@ -112,14 +112,14 @@ namespace GestionAbscences.Controllers
 
         public ActionResult historique()
         {
-            employe e = new employe();
+            //employe e = new employe();
 
             string x = Session["matricule"].ToString();
 
             int x1 = int.Parse(x);
 
 
-            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.IdEmploye == x1);
+            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == x);
 
             return View(demandeConge.ToList());
 
