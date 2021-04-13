@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="GestionAbscencesModelStoreContainer" CdmEntityContainer="GestionAbscencesEntities2">
+  <EntityContainerMapping StorageEntityContainer="GestionAbscencesModelStoreContainer" CdmEntityContainer="GestionAbscencesEntities3">
     <EntitySetMapping Name="demandeconge">
       <EntityTypeMapping TypeName="GestionAbscencesModel.demandeconge">
         <MappingFragment StoreEntitySet="demandeconge">
@@ -29,6 +29,9 @@
           <ScalarProperty Name="nbjoursR" ColumnName="nbjoursR" />
           <ScalarProperty Name="matricule" ColumnName="matricule" />
           <ScalarProperty Name="affectation" ColumnName="affectation" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="soldeConge" ColumnName="soldeConge" />
+          <ScalarProperty Name="nbjoursA" ColumnName="nbjoursA" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

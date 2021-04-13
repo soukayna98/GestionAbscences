@@ -30,9 +30,12 @@
           <Property Name="DateFin" Type="datetime" />
           <Property Name="password" Type="varchar" MaxLength="40" />
           <Property Name="nbjours" Type="int" />
-          <Property Name="nbjoursR" Type="int" />
-          <Property Name="matricule" Type="int" />
+          <Property Name="nbjoursR" Type="float" />
+          <Property Name="matricule" Type="varchar" MaxLength="50" />
           <Property Name="affectation" Type="varchar" MaxLength="50" />
+          <Property Name="role" Type="varchar" MaxLength="50" />
+          <Property Name="soldeConge" Type="float" />
+          <Property Name="nbjoursA" Type="float" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
 avertissement 6002: La table/vue 'GestionAbscences.dbo.employehasentite' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
@@ -228,9 +231,12 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
           <Property Name="DateFin" Type="DateTime" Precision="3" />
           <Property Name="password" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="nbjours" Type="Int32" />
-          <Property Name="nbjoursR" Type="Int32" />
-          <Property Name="matricule" Type="Int32" />
+          <Property Name="nbjoursR" Type="Double" />
+          <Property Name="matricule" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="affectation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="soldeConge" Type="Double" />
+          <Property Name="nbjoursA" Type="Double" />
           <NavigationProperty Name="demandeconge" Relationship="Self.fk_DemandeConge_Employe" FromRole="employe" ToRole="demandeconge" />
           <NavigationProperty Name="employehasentite" Relationship="Self.fk_employehasentite_Employe" FromRole="employe" ToRole="employehasentite" />
         </EntityType>
@@ -355,7 +361,7 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="GestionAbscencesEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="GestionAbscencesEntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="demandeconge" EntityType="Self.demandeconge" />
           <EntitySet Name="employe" EntityType="Self.employe" />
           <EntitySet Name="entite" EntityType="Self.entite" />
@@ -393,7 +399,7 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="GestionAbscencesModelStoreContainer" CdmEntityContainer="GestionAbscencesEntities2">
+        <EntityContainerMapping StorageEntityContainer="GestionAbscencesModelStoreContainer" CdmEntityContainer="GestionAbscencesEntities3">
           <EntitySetMapping Name="demandeconge">
             <EntityTypeMapping TypeName="GestionAbscencesModel.demandeconge">
               <MappingFragment StoreEntitySet="demandeconge">
@@ -422,6 +428,9 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
                 <ScalarProperty Name="nbjoursR" ColumnName="nbjoursR" />
                 <ScalarProperty Name="matricule" ColumnName="matricule" />
                 <ScalarProperty Name="affectation" ColumnName="affectation" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="soldeConge" ColumnName="soldeConge" />
+                <ScalarProperty Name="nbjoursA" ColumnName="nbjoursA" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

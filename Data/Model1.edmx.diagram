@@ -4,9 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7e3edf0f0d194b5ca1d5ad22bc7f3f08" Name="Diagram1">
+      <Diagram DiagramId="686dc378af164492a8e2c10d377840d6" Name="Diagram1">
         <EntityTypeShape EntityType="GestionAbscencesModel.demandeconge" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionAbscencesModel.employe" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAbscencesModel.employe" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GestionAbscencesModel.entite" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="GestionAbscencesModel.supervisionher" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="GestionAbscencesModel.typeconge" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
