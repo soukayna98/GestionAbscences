@@ -78,10 +78,56 @@
                                     @Html.DisplayFor(modelItem => item.DateDC)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.ValidationN1)
+                                    @if (item.ValidationN1 == "refuse")
+                                    {
+
+
+                                        <p class="p-2 mb-2 bg-danger text-white">
+                                            @Html.DisplayFor(modelItem => item.ValidationN1)
+                                        </p>
+                                    }
+                                    else if (item.ValidationN1 == "En cours")
+                                    {
+                                        <p class="p-2 mb-2 bg-warning text-dark">
+                                            @Html.DisplayFor(modelItem => item.ValidationN1)
+                                        </p>
+                                    }
+                                    else 
+                                    {
+                                    <p class="p-2 mb-2 bg-success text-white">
+                                        @Html.DisplayFor(modelItem => item.ValidationN1)
+                                    </p>
+                                    }
                                 </td>
+
+
+
+
+
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.ValidationN2)
+
+                                    @if (item.ValidationN2 == "refuse")
+                                    {
+
+
+                                        <p class="p-2 mb-2 bg-danger text-white">
+                                            @Html.DisplayFor(modelItem => item.ValidationN2)
+                                        </p>
+                                    }
+                                    else if (item.ValidationN2 == "En cours")
+                                    {
+                                        <p class="p-2 mb-2 bg-warning text-dark">
+                                            @Html.DisplayFor(modelItem => item.ValidationN2)
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <p class="p-2 mb-2 bg-success text-white">
+                                            @Html.DisplayFor(modelItem => item.ValidationN2)
+                                        </p>
+                                    }
+
+
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.employe.NomComplet)
