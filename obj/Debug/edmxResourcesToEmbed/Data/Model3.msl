@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GestionAbscencesModelStoreContainer" CdmEntityContainer="GestionAbscencesEntities3">
+    <EntitySetMapping Name="demandeconge">
+      <EntityTypeMapping TypeName="GestionAbscencesModel.demandeconge">
+        <MappingFragment StoreEntitySet="demandeconge">
+          <ScalarProperty Name="idDemandeConge" ColumnName="idDemandeConge" />
+          <ScalarProperty Name="DateDebut" ColumnName="DateDebut" />
+          <ScalarProperty Name="DateFin" ColumnName="DateFin" />
+          <ScalarProperty Name="DateDC" ColumnName="DateDC" />
+          <ScalarProperty Name="ValidationN1" ColumnName="ValidationN1" />
+          <ScalarProperty Name="ValidationN2" ColumnName="ValidationN2" />
+          <ScalarProperty Name="IdEmploye" ColumnName="IdEmploye" />
+          <ScalarProperty Name="IdtypeConge" ColumnName="IdtypeConge" />
+          <ScalarProperty Name="justification" ColumnName="justification" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="employe">
+      <EntityTypeMapping TypeName="GestionAbscencesModel.employe">
+        <MappingFragment StoreEntitySet="employe">
+          <ScalarProperty Name="idEmploye" ColumnName="idEmploye" />
+          <ScalarProperty Name="NomComplet" ColumnName="NomComplet" />
+          <ScalarProperty Name="Classe" ColumnName="Classe" />
+          <ScalarProperty Name="DateDebut" ColumnName="DateDebut" />
+          <ScalarProperty Name="DateFin" ColumnName="DateFin" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="nbjours" ColumnName="nbjours" />
+          <ScalarProperty Name="nbjoursR" ColumnName="nbjoursR" />
+          <ScalarProperty Name="matricule" ColumnName="matricule" />
+          <ScalarProperty Name="affectation" ColumnName="affectation" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="soldeConge" ColumnName="soldeConge" />
+          <ScalarProperty Name="nbjoursA" ColumnName="nbjoursA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="entite">
+      <EntityTypeMapping TypeName="GestionAbscencesModel.entite">
+        <MappingFragment StoreEntitySet="entite">
+          <ScalarProperty Name="idEntite" ColumnName="idEntite" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="supervisionher">
+      <EntityTypeMapping TypeName="GestionAbscencesModel.supervisionher">
+        <MappingFragment StoreEntitySet="supervisionher">
+          <ScalarProperty Name="idSup" ColumnName="idSup" />
+          <ScalarProperty Name="NomComplet" ColumnName="NomComplet" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="typeconge">
+      <EntityTypeMapping TypeName="GestionAbscencesModel.typeconge">
+        <MappingFragment StoreEntitySet="typeconge">
+          <ScalarProperty Name="idtypeConge" ColumnName="idtypeConge" />
+          <ScalarProperty Name="designation" ColumnName="designation" />
+          <ScalarProperty Name="dureeJ" ColumnName="dureeJ" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="employehasentite">
+      <EntityTypeMapping TypeName="GestionAbscencesModel.employehasentite">
+        <MappingFragment StoreEntitySet="employehasentite">
+          <ScalarProperty Name="IdEmploye" ColumnName="IdEmploye" />
+          <ScalarProperty Name="IdEntite" ColumnName="IdEntite" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="entitesuper">
+      <EntityTypeMapping TypeName="GestionAbscencesModel.entitesuper">
+        <MappingFragment StoreEntitySet="entitesuper">
+          <ScalarProperty Name="IdEntite" ColumnName="IdEntite" />
+          <ScalarProperty Name="IdSup" ColumnName="IdSup" />
+          <ScalarProperty Name="niveau" ColumnName="niveau" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

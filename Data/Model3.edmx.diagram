@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6d8dc8947ccf49f4a2757b0a3bfca3de" Name="Diagram1">
+        <EntityTypeShape EntityType="GestionAbscencesModel.demandeconge" Width="1.5" PointX="3.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAbscencesModel.employe" Width="1.5" PointX="1.125" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAbscencesModel.entite" Width="1.5" PointX="4.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAbscencesModel.supervisionher" Width="1.5" PointX="7.375" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAbscencesModel.typeconge" Width="1.5" PointX="6.5" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAbscencesModel.employehasentite" Width="1.5" PointX="1.375" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAbscencesModel.entitesuper" Width="1.5" PointX="7.375" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="GestionAbscencesModel.fk_DemandeConge_Employe" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionAbscencesModel.fk_DemandeConge_typeConge" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionAbscencesModel.fk_employehasentite_Employe" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionAbscencesModel.fk_employehasentite_Entite" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionAbscencesModel.fk_entitesuper_Entite" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionAbscencesModel.fk_entitesuper_SupervisionHer" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
