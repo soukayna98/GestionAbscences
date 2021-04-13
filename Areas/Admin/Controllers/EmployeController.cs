@@ -29,10 +29,12 @@ namespace GestionAbscences.Areas.Admin.Controllers
                 employesList.Add(new EmployeModel
                 {
                     Id = item.idEmploye,
+                    //matricule = item.matricule,
                     Classe = item.Classe,
                     DateD = (DateTime)item.DateDebut,
                     DateF = (DateTime)item.DateFin,
                     Nom = item.NomComplet
+                    
 
                 });
             }

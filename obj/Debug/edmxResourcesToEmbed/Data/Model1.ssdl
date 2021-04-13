@@ -25,9 +25,12 @@
     <Property Name="DateFin" Type="datetime" />
     <Property Name="password" Type="varchar" MaxLength="40" />
     <Property Name="nbjours" Type="int" />
-    <Property Name="nbjoursR" Type="int" />
-    <Property Name="matricule" Type="int" />
+    <Property Name="nbjoursR" Type="float" />
+    <Property Name="matricule" Type="varchar" MaxLength="50" />
     <Property Name="affectation" Type="varchar" MaxLength="50" />
+    <Property Name="role" Type="varchar" MaxLength="50" />
+    <Property Name="soldeConge" Type="float" />
+    <Property Name="nbjoursA" Type="float" />
   </EntityType>
   <!--Erreurs détectées durant la génération :
 avertissement 6002: La table/vue 'GestionAbscences.dbo.employehasentite' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->

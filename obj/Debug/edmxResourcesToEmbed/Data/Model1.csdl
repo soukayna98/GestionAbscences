@@ -27,9 +27,12 @@
     <Property Name="DateFin" Type="DateTime" Precision="3" />
     <Property Name="password" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
     <Property Name="nbjours" Type="Int32" />
-    <Property Name="nbjoursR" Type="Int32" />
-    <Property Name="matricule" Type="Int32" />
+    <Property Name="nbjoursR" Type="Double" />
+    <Property Name="matricule" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="affectation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="soldeConge" Type="Double" />
+    <Property Name="nbjoursA" Type="Double" />
     <NavigationProperty Name="demandeconge" Relationship="Self.fk_DemandeConge_Employe" FromRole="employe" ToRole="demandeconge" />
     <NavigationProperty Name="employehasentite" Relationship="Self.fk_employehasentite_Employe" FromRole="employe" ToRole="employehasentite" />
   </EntityType>
@@ -154,7 +157,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="GestionAbscencesEntities2" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="GestionAbscencesEntities3" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="demandeconge" EntityType="Self.demandeconge" />
     <EntitySet Name="employe" EntityType="Self.employe" />
     <EntitySet Name="entite" EntityType="Self.entite" />

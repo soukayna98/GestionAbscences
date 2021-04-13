@@ -12,8 +12,8 @@ namespace GestionAbscences.Controllers
     public class LoginController : Controller
     {
 
-        public GestionAbscencesEntities2 db = new GestionAbscencesEntities2();
-        
+        public GestionAbscencesEntities3 db = new GestionAbscencesEntities3();
+
 
         // GET: Login
         public ActionResult Index()
@@ -56,13 +56,17 @@ namespace GestionAbscences.Controllers
                 @Session["DateFin"] = user.DateFin;
                 @Session["DateDebut"] = user.DateDebut;
 
-                return RedirectToAction("Index", "Default");
-            }
-            else
-            {
-                return View();
-            }
+                string role = user.role;
+                if (role == "admin")
+                {
+                    return RedirectToAction("Index", "Default", new { area = "Admin" });
+                }
 
+            }
+                    return RedirectToAction("Index", "Default");
+                
+            
+            
         }
     }
 }
