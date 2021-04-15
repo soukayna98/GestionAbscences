@@ -277,3 +277,6 @@ C:\Users\HP\source\repos\GestionAbscencesM\obj\Debug\GestionAbscences.csproj.Cor
 C:\Users\HP\source\repos\GestionAbscencesM\obj\Debug\GestionAbscences.csproj.CopyComplete
 C:\Users\HP\source\repos\GestionAbscencesM\obj\Debug\GestionAbscences.dll
 C:\Users\HP\source\repos\GestionAbscencesM\obj\Debug\GestionAbscences.pdb
+C:\Users\HP\source\repos\GestionAbscences\bin\Microsoft.Owin.dll
+C:\Users\HP\source\repos\GestionAbscences\bin\Owin.dll
+C:\Users\HP\source\repos\GestionAbscences\bin\Microsoft.Owin.xml

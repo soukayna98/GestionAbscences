@@ -4,13 +4,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+
+
+
+
+@{
+    ViewBag.Title = "Donnee";
+    @* Layout = "~/Views/Shared/_Layout.cshtml";*@
+}
+
+<title> Profil Employe </title>
+
 <div class="card shadow-lg border-0 rounded-lg mt-5" style="margin-right:280px; margin-left:280px; ">
-    <div class="card-header"><h3 class="text-center font-weight-blod my-4">Donné personnel</h3></div>
+    <div class="card-header"><h3 class="text-center font-weight-blod my-4">Données personnel</h3></div>
     <div class="card-body border-danger">
         <table class="table table-bordered border-success zmdi-hc-border-circle">
 
             <tr>
-                <td class="table-warning text-center " style="font-weight:bold;" >Nom Complet </td>
+                <td class="table-warning text-center " style="font-weight:bold;">Nom Complet </td>
                 <td class="table-light text-center">@Session["userName"]</td>
             </tr>
 
@@ -22,9 +34,10 @@
                 <td class="table-warning text-center" style="font-weight:bold;">Classe</td>
                 <td class="table-light text-center">@Session["Classe"]</td>
             </tr>
+
             <tr>
                 <td class="table-warning text-center" style="font-weight:bold;">Date Début</td>
-                <td class="table-light text-center">@Session["DateDébut"]</td>
+                <td class="table-light text-center">@Session["DateDebut"]</td>
             </tr>
             <tr>
                 <td class="table-warning text-center" style="font-weight:bold;">Date Fin</td>
@@ -36,9 +49,8 @@
             </tr>
             <tr>
                 <td class="table-warning text-center" style="font-weight:bold;">Mot de Passe</td>
-                <td class="table-light text-center ">@Session["password"] <a class="nav-link" href="@Url.Action("changePassword","employe")">Modifier</a></td>
+                <td class="table-light text-center ">@Session["password"] <a class="nav-link" href="@Url.Action("changePassword","employe")">changer le mot de passe</a></td>
             </tr>
-
 
 
         </table>

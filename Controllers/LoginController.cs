@@ -12,7 +12,7 @@ namespace GestionAbscences.Controllers
 {
     public class LoginController : Controller
     {
-        private GestionAbscencesEntities1 db = new GestionAbscencesEntities1();
+        private GestionAbscencesEntities3 db = new GestionAbscencesEntities3();
         // GET: Login
         public ActionResult Index()
         {
@@ -43,13 +43,31 @@ namespace GestionAbscences.Controllers
         [HttpPost]
         public ActionResult Index(employe log)
         {
-            var user = db.employe.Where(x => x.idEmploye == log.idEmploye && x.password == log.password).ToList().FirstOrDefault();
+            var user = db.employe.Where(x => x.matricule == log.matricule && x.password == log.password).ToList().FirstOrDefault();
             if (user != null)
             {
                 Session["userName"] = user.NomComplet;
-                Session["matricule"] = user.idEmploye;
+                Session["matricule"] = user.matricule;
+                Session["idEmploye"] = user.idEmploye;
+                Session["affectation"] = user.affectation;
                 Session["nbjours"] = user.nbjours.ToString();
-                return RedirectToAction("Index", "Default");
+                Session["nbjoursR"] = user.nbjoursR.ToString();
+                Session["Classe"] = user.Classe;
+                Session["DateFin"] = user.DateFin;
+                Session["DateDebut"] = user.DateDebut;
+                String role  = user.role;
+
+                if(role == "admin")
+                {
+                    return RedirectToAction("Index", "Default" , new { area = "Admin" });
+
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Default");
+
+                }
+              
             }
             else
             {

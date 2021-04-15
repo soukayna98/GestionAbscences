@@ -21,6 +21,7 @@ list-type-ulli, ul {
     src: local("Poppins Light"), local("Poppins-Light"), url("../fonts/poppins/poppins-v5-latin-300.eot?#iefix") format("embedded-opentype"), url("../fonts/poppins/poppins-v5-latin-300.woff2") format("woff2"), url("../fonts/poppins/poppins-v5-latin-300.woff") format("woff"), url("../fonts/poppins/poppins-v5-latin-300.ttf") format("truetype"), url("../fonts/poppins/poppins-v5-latin-300.svg#Poppins") format("svg");
     /* Legacy iOS */
 }
+
 /* poppins-300italic - latin */
 @font-face {
     font-family: 'Poppins';
@@ -241,7 +242,7 @@ body {
 
 .container {
     width: 1400px;
-    margin: 0 auto;
+    margin: 0;
 }
 
 .signup-img {
