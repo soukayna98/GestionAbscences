@@ -11,8 +11,11 @@ namespace GestionAbscences.Services
     {
 
         List<demandeconge> ReadAll();
+        demandeconge ReadById(int id);
+        int Update(demandeconge updatedDemande);
+
     }
-        public class DemandeService : IDemandeService
+    public class DemandeService : IDemandeService
     {
        
 
@@ -26,6 +29,19 @@ namespace GestionAbscences.Services
         public List<demandeconge> ReadAll()
         {
             return db.demandeconge.ToList();
+        }
+
+        public demandeconge ReadById(int id)
+        {
+            return db.demandeconge.Find(id);
+        }
+
+        public int Update(demandeconge updatedDemande)
+        {
+            //prend les ancien data remplace par nv
+            db.demandeconge.Attach(updatedDemande);
+            db.Entry(updatedDemande).State = System.Data.Entity.EntityState.Modified;
+            return db.SaveChanges();
         }
     }
 

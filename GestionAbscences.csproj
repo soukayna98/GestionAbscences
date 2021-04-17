@@ -137,6 +137,7 @@
     <Compile Include="Areas\Admin\Models\ChangePasswordModel.cs" />
     <Compile Include="Areas\Admin\Models\DemandeModel.cs" />
     <Compile Include="Areas\Admin\Models\EmployeModel.cs" />
+    <Compile Include="Areas\Admin\Models\HistoriqueModel.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\employeController.cs" />
@@ -470,6 +471,7 @@
     <Content Include="Data\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\Historique\Validation.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

@@ -48,9 +48,75 @@ namespace GestionAbscences.Areas.Admin.Controllers
                 });
             }
                 return View(employesList);
+        }
+        //"Edit", "Edit", new { id = item.IdDemandeConge }
+        public ActionResult Validation(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return RedirectToAction("Index", "Default");
             }
 
+            var currentDemande = demandeService.ReadById(id.Value);
+            if (currentDemande == null)
+            {
+                return HttpNotFound($"this demande ({id}) is not found");
+            }
+            var historiqueModel = new HistoriqueModel
+            {
+                IdDemande = currentDemande.idDemandeConge,
+                IdType = currentDemande.IdtypeConge,
+                //Nom = currentDemande.employe.NomComplet,
+                //matricule = currentDemande.employe.matricule,
+                DateD = (DateTime)currentDemande.DateDebut,
+                DateF = (DateTime)currentDemande.DateFin,
+                Datedc = (DateTime)currentDemande.DateDC,
+                validation1 = currentDemande.ValidationN1,
+                validation2 = currentDemande.ValidationN2,
+                IdEmploye = currentDemande.IdEmploye
 
-        
+
+
+            };
+
+            return View(historiqueModel);
+        }
+
+       [HttpPost]
+        public ActionResult Validation(HistoriqueModel data)
+        {
+            
+            if (ModelState.IsValid)
+            {
+                var updatedDemande = new demandeconge
+                {
+                    idDemandeConge = data.IdDemande,
+                    IdtypeConge = data.IdType,
+                    IdEmploye = data.IdEmploye,
+                   // d.NomComplet = data.Nom,
+                    // matricule = data.employe.matricule,
+                    DateDebut = (DateTime)data.DateD,
+                    DateFin = (DateTime)data.DateF,
+                    DateDC = (DateTime)data.Datedc,
+                    ValidationN1 = data.validation1,
+                    ValidationN2 = data.validation2
+                };
+                var result = demandeService.Update(updatedDemande);
+
+                if (result > 0)
+                {
+                    ViewBag.Success = true;
+                    ViewBag.Message = $"demande ({data.IdDemande}) updated succefully";
+                }
+                else
+                    ViewBag.Message = $"an error occurred while updation demande !";
+
+            }
+
+            return View(data);
+        }
+
+
+
     }
 }
