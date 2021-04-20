@@ -22,7 +22,7 @@ namespace GestionAbscences.Data
     
         public int idtypeConge { get; set; }
         public string designation { get; set; }
-        public Nullable<float> dureeJ { get; set; }
+        public Nullable<double> dureeJ { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<demandeconge> demandeconge { get; set; }

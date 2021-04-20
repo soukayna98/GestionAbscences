@@ -11,7 +11,7 @@ namespace GestionAbscences.Controllers
 {
     public class employeController : Controller
     {
-         private GestionAbscencesEntities3 db = new GestionAbscencesEntities3();
+         private GestionAbscencesEntities4 db = new GestionAbscencesEntities4();
 
         // GET: employe
         public ActionResult Index()
@@ -27,6 +27,21 @@ namespace GestionAbscences.Controllers
             return View();
         }
 
+        public ActionResult historique()
+        {
+            //employe e = new employe();
+
+            string x = Session["matricule"].ToString();
+
+            int x1 = int.Parse(x);
+
+
+            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == x);
+
+            return View(demandeConge.ToList());
+
+
+        }
 
         [HttpGet]
         public ActionResult Donnée()
@@ -64,82 +79,60 @@ namespace GestionAbscences.Controllers
 
 
         }
-        public ActionResult historique()
-        {
-            employe e = new employe();
-     
-            string x = Session["idEmploye"].ToString();
-
-            int x1 = int.Parse(x);
-
-
-            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.IdEmploye == x1);
-
-                return View(demandeConge.ToList());
-            
-            
-        }
-
-
+      
 
 
 
         [HttpPost]
-      
         public ActionResult Dashboard1()
-         {
-            
-                demandeconge demande = new demandeconge();
+        {
+            demandeconge demande = new demandeconge();
+
 
             int uid = int.Parse(Session["idEmploye"].ToString());
-          
-                string typeCongeIdTypeconge = Request.Form["typeCongeIdTypeconge"];
-                string dateDebut = Request["dateDebut"] + " " + Request["timeDebut"];
-                string dateFin = Request["dateFin"] + " " + Request["timeFin"];
-                string justification = Request["justification"];
-           
-                
-               DateTime debut = Convert.ToDateTime(Request["dateDebut"]);
-               DateTime fin = Convert.ToDateTime(Request["dateFin"]);
-               TimeSpan objTimeSpan = fin - debut;
 
-               double jours = Convert.ToDouble(Session["nbjours"].ToString());
-               double j = 24;
-             
-               double j0 = 0;
-                double j10 = 14;
-               double j7 = 7;
-               double j1 = 1;
-               double j2 = 2;
-
-               double j15 = 1680;
-               double j05 = 720;
-
-               TimeSpan tm = TimeSpan.FromMinutes(j05);
-               TimeSpan tm1 = TimeSpan.FromMinutes(j15);
+            string typeCongeIdTypeconge = Request.Form["typeCongeIdTypeconge"];
+            string dateDebut = Request["dateDebut"] + " " + Request["timeDebut"];
+            string dateFin = Request["dateFin"] + " " + Request["timeFin"];
+            string justification = Request["justification"];
 
 
-               TimeSpan tt = TimeSpan.FromDays(jours);
-               TimeSpan t = TimeSpan.FromDays(j);
+            DateTime debut = Convert.ToDateTime(Request["dateDebut"]);
+            DateTime fin = Convert.ToDateTime(Request["dateFin"]);
+            //le nb de jour choisi dans le form
+            TimeSpan objTimeSpan = fin - debut;
+
+            double jours = Convert.ToDouble(Session["nbjours"].ToString());
+            double j = 24;
+
+            double j0 = 0;
+            double j10 = 14;
+            double j7 = 7;
+            double j1 = 1;
+            double j2 = 2;
+
+            double j15 = 1680;
+            double j05 = 720;
+
+            TimeSpan tm = TimeSpan.FromMinutes(j05); //j05:720
+            TimeSpan tm1 = TimeSpan.FromMinutes(j15);//j15:1680
+
+
+            TimeSpan tt = TimeSpan.FromDays(jours); //jurs: nbjours
+            TimeSpan t = TimeSpan.FromDays(j);//24
+            TimeSpan t0 = TimeSpan.FromDays(j0);//0
+            TimeSpan t10 = TimeSpan.FromDays(j10);//14
+            TimeSpan t7 = TimeSpan.FromDays(j7);//7
+            //pour 1j
+            TimeSpan t1 = TimeSpan.FromDays(j1);//1
+            //pour 2j
+            TimeSpan t2 = TimeSpan.FromDays(j2);//2
+            //pour la demi journée
+            TimeSpan t12 = TimeSpan.FromHours(12);
+            //pour la jour et demi
+            TimeSpan t112 = TimeSpan.FromHours(36);
+
             
-               TimeSpan t0 = TimeSpan.FromDays(j0);
-               TimeSpan t10 = TimeSpan.FromDays(j10);
-               TimeSpan t7 = TimeSpan.FromDays(j7);
-
-               TimeSpan t1 = TimeSpan.FromDays(j1);
-               TimeSpan t2 = TimeSpan.FromDays(j2);
-               
-
-            if (objTimeSpan > t0 && objTimeSpan < t )
-            {
-                Session["total"] = "hi;";
-            }
-            else
-            {
-
-                Session["total"] = "bye";
-            }
-                
 
             DateTime dc = DateTime.Now;
             demande.ValidationN1 = "En cours";
@@ -153,29 +146,28 @@ namespace GestionAbscences.Controllers
             demande.DateDC = dc;
             demande.justification = justification;
 
-
             if (typeCongeIdTypeconge.Equals("reliquat") && objTimeSpan > t0 && objTimeSpan <= t7)
-                {
-                  
-                    demande.IdtypeConge = 1;
-                }
-                else if (typeCongeIdTypeconge.Equals("1 ere tranche") && objTimeSpan > t10 && objTimeSpan <= t)
-                {
-                    demande.IdtypeConge = 2;
-                }
-                else if (typeCongeIdTypeconge.Equals("2 eme tranche") && objTimeSpan > t7 && objTimeSpan <= t10)
-                {
-                    demande.IdtypeConge = 3;
-                }
-                 else if (typeCongeIdTypeconge.Equals("1/2 journée") && objTimeSpan <= tm)
-                {
-                    demande.IdtypeConge = 7;
-                }
+            {
+
+                demande.IdtypeConge = 1;
+            }
+            else if (typeCongeIdTypeconge.Equals("1 ere tranche") && objTimeSpan > t10 && objTimeSpan <= t) //obj <JR ,obj >=10
+            {
+                demande.IdtypeConge = 2;
+            }
+            else if (typeCongeIdTypeconge.Equals("2 eme tranche") && objTimeSpan > t7 && objTimeSpan <= t10)//obj <7(t7) , obj <=jR
+            {
+                demande.IdtypeConge = 3;
+            }
+            else if (typeCongeIdTypeconge.Equals("1/2 journée") && objTimeSpan <= t12)
+            {
+                demande.IdtypeConge = 7;
+            }
             else if (typeCongeIdTypeconge.Equals("1 journée") && objTimeSpan == t1)
             {
                 demande.IdtypeConge = 8;
             }
-            else if (typeCongeIdTypeconge.Equals("1.5 journée") && objTimeSpan <= tm1)
+            else if (typeCongeIdTypeconge.Equals("1.5 journée") && objTimeSpan <= t112)
             {
                 demande.IdtypeConge = 9;
             }
@@ -183,15 +175,15 @@ namespace GestionAbscences.Controllers
             {
                 demande.IdtypeConge = 10;
             }
-            else if (typeCongeIdTypeconge.Equals("Mariage"))
+            else if (typeCongeIdTypeconge.Equals("Mariage") && justification != null)
             {
                 demande.IdtypeConge = 4;
             }
-            else if (typeCongeIdTypeconge.Equals("Naissance"))
+            else if (typeCongeIdTypeconge.Equals("Naissance") && justification != null)
             {
                 demande.IdtypeConge = 5;
             }
-            else if (typeCongeIdTypeconge.Equals("Décès"))
+            else if (typeCongeIdTypeconge.Equals("Décès") && justification != null)
             {
                 demande.IdtypeConge = 6;
             }
@@ -220,14 +212,15 @@ namespace GestionAbscences.Controllers
                 Session["demande"] = "Vérifier vos information svp  !";
                 return RedirectToAction("Index", "Default");
             }
-           
-                db.demandeconge.Add(demande);
 
-                db.SaveChanges();
+            db.demandeconge.Add(demande);
 
-                return RedirectToAction("historique", "employe");
-           
-            }
+            db.SaveChanges();
+
+            return RedirectToAction("historique", "employe");
+
+        }
+
 
         [HttpPost]
         public ActionResult demande()

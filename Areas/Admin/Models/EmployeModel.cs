@@ -10,10 +10,10 @@ namespace GestionAbscences.Areas.Admin.Models
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "name is required")]
-        public String Nom { get; set; }
+        public string Nom { get; set; }
         [Required(ErrorMessage = "name is required")]
 
-        public String Classe { get; set; }
+        public string Classe { get; set; }
         [Required(ErrorMessage = "name is required")]
 
         public DateTime DateD { get; set; }

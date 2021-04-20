@@ -12,17 +12,18 @@ namespace GestionAbscences.Services
         int Update(employe updatedEmploye);
         employe ReadById(int id);
         List<employe> ReadAll();
+
         int Create(employe newEmploye);
         bool Delete(int id);
     }
 
     public class EmployeService : IEmployeService
     {
-        private readonly GestionAbscencesEntities3 db;
+        private readonly GestionAbscencesEntities4 db;
 
         public EmployeService()
         {
-            db = new GestionAbscencesEntities3();
+            db = new GestionAbscencesEntities4();
         }
 
         public int Create(employe newEmploye)

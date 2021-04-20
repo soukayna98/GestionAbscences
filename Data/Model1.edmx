@@ -29,13 +29,13 @@
           <Property Name="DateDebut" Type="datetime" />
           <Property Name="DateFin" Type="datetime" />
           <Property Name="password" Type="varchar" MaxLength="40" />
-          <Property Name="nbjours" Type="real" />
-          <Property Name="nbjoursR" Type="real" />
+          <Property Name="nbjours" Type="int" />
+          <Property Name="nbjoursR" Type="int" />
           <Property Name="matricule" Type="varchar" MaxLength="50" />
           <Property Name="affectation" Type="varchar" MaxLength="50" />
           <Property Name="role" Type="varchar" MaxLength="50" />
-          <Property Name="soldeConge" Type="real" />
-          <Property Name="nbjoursA" Type="real" />
+          <Property Name="soldeConge" Type="float" />
+          <Property Name="nbjoursA" Type="int" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
 avertissement 6002: La table/vue 'GestionAbscences.dbo.employehasentite' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
@@ -80,7 +80,7 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
           </Key>
           <Property Name="idtypeConge" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="designation" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="dureeJ" Type="real" />
+          <Property Name="dureeJ" Type="float" />
         </EntityType>
         <Association Name="fk_DemandeConge_Employe">
           <End Role="employe" Type="Self.employe" Multiplicity="1" />
@@ -230,13 +230,13 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
           <Property Name="DateDebut" Type="DateTime" Precision="3" />
           <Property Name="DateFin" Type="DateTime" Precision="3" />
           <Property Name="password" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="nbjours" Type="Single" />
-          <Property Name="nbjoursR" Type="Single" />
+          <Property Name="nbjours" Type="Int32" />
+          <Property Name="nbjoursR" Type="Int32" />
           <Property Name="matricule" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="affectation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="soldeConge" Type="Single" />
-          <Property Name="nbjoursA" Type="Single" />
+          <Property Name="soldeConge" Type="Double" />
+          <Property Name="nbjoursA" Type="Int32" />
           <NavigationProperty Name="demandeconge" Relationship="Self.fk_DemandeConge_Employe" FromRole="employe" ToRole="demandeconge" />
           <NavigationProperty Name="employehasentite" Relationship="Self.fk_employehasentite_Employe" FromRole="employe" ToRole="employehasentite" />
         </EntityType>
@@ -264,7 +264,7 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
           </Key>
           <Property Name="idtypeConge" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="designation" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="dureeJ" Type="Single" />
+          <Property Name="dureeJ" Type="Double" />
           <NavigationProperty Name="demandeconge" Relationship="Self.fk_DemandeConge_typeConge" FromRole="typeconge" ToRole="demandeconge" />
         </EntityType>
         <EntityType Name="employehasentite">
@@ -361,7 +361,7 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="GestionAbscencesEntities3" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="GestionAbscencesEntities4" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="demandeconge" EntityType="Self.demandeconge" />
           <EntitySet Name="employe" EntityType="Self.employe" />
           <EntitySet Name="entite" EntityType="Self.entite" />
@@ -399,7 +399,7 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="GestionAbscencesModelStoreContainer" CdmEntityContainer="GestionAbscencesEntities3">
+        <EntityContainerMapping StorageEntityContainer="GestionAbscencesModelStoreContainer" CdmEntityContainer="GestionAbscencesEntities4">
           <EntitySetMapping Name="demandeconge">
             <EntityTypeMapping TypeName="GestionAbscencesModel.demandeconge">
               <MappingFragment StoreEntitySet="demandeconge">

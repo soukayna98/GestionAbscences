@@ -24,13 +24,13 @@
     <Property Name="DateDebut" Type="datetime" />
     <Property Name="DateFin" Type="datetime" />
     <Property Name="password" Type="varchar" MaxLength="40" />
-    <Property Name="nbjours" Type="int" />
-    <Property Name="nbjoursR" Type="int" />
+    <Property Name="nbjours" Type="real" />
+    <Property Name="nbjoursR" Type="real" />
     <Property Name="matricule" Type="varchar" MaxLength="50" />
     <Property Name="affectation" Type="varchar" MaxLength="50" />
     <Property Name="role" Type="varchar" MaxLength="50" />
-    <Property Name="soldeConge" Type="float" />
-    <Property Name="nbjoursA" Type="int" />
+    <Property Name="soldeConge" Type="real" />
+    <Property Name="nbjoursA" Type="real" />
   </EntityType>
   <!--Erreurs détectées durant la génération :
 avertissement 6002: La table/vue 'GestionAbscences.dbo.employehasentite' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
@@ -75,7 +75,7 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
     </Key>
     <Property Name="idtypeConge" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="designation" Type="varchar" MaxLength="45" Nullable="false" />
-    <Property Name="dureeJ" Type="float" />
+    <Property Name="dureeJ" Type="real" />
   </EntityType>
   <Association Name="fk_DemandeConge_Employe">
     <End Role="employe" Type="Self.employe" Multiplicity="1" />

@@ -12,21 +12,22 @@ namespace GestionAbscences.Services
         bool Login(int Id, string Password);
         bool ChangePassword(int Id, string Password);
         bool ForgotPassword(int Id);
+
     }
 
     public class AdminService : IAdminService
     {
 
-        public GestionAbscencesEntities3 context { get; set; }
+        public GestionAbscencesEntities4 context { get; set; }
 
-        public AdminService() {
+        public AdminService()
+        {
 
-            context = new GestionAbscencesEntities3();
+            context = new GestionAbscencesEntities4();
         }
 
         public bool Login(int id, string Password)
         {
-
             return context.employe.Where(a => a.idEmploye == id && a.password == Password).Any();
         }
 
@@ -40,6 +41,6 @@ namespace GestionAbscences.Services
             throw new NotImplementedException();
         }
 
-       
+
     }
 }
