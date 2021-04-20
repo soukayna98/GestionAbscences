@@ -43,6 +43,7 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.matricule)
                             </th>
+                           
                             <th>
                                 @Html.DisplayNameFor(model => model.IdTypeConge)
                             </th>
@@ -101,7 +102,7 @@
 
                             <td>
 
-                                @if (item.validationN1 == "refuse")
+                                @if (item.validationN1 == "refusé")
                                 {
 
 
@@ -125,7 +126,7 @@
                             </td>
                             <td>
 
-                                @if (item.validationN2 == "refuse")
+                                @if (item.validationN2 == "refusé")
                                 {
 
 
