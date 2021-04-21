@@ -36,17 +36,17 @@
 
                     <thead>
                         <tr class="table-success">
-                            @*
+                            
         <th>
             @Html.DisplayNameFor(model => model.NomComplet)
-        </th>*@
+        </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.IdTypeConge)
                             </th>
-                            @*
+                            
         <th>
             @Html.DisplayNameFor(model => model.matricule)
-        </th>*@
+        </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.IdDemandeConge)
                             </th>
@@ -82,24 +82,24 @@
                         @foreach (var item in Model)
                         {
                         <tr>
-                            @*
+                            
         <td>
             @Html.DisplayFor(modelItem => item.NomComplet)
-        </td>*@
+        </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.IdTypeConge)
                             </td>
-                            @*
+                            
         <td>
             @Html.DisplayFor(modelItem => item.matricule)
-        </td>*@
+        </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.IdDemandeConge)
                             </td>
 
                             <td>
 
-                                @if (item.validationN1 == "refuse")
+                                @if ( item.validationN2 == "refuse")
                                 {
 
 
@@ -113,7 +113,7 @@
                                         @Html.DisplayFor(modelItem => item.validationN1)
                                     </p>
                                 }
-                                else
+                                else 
                                 {
                                     <p class="p-2 mb-2 bg-success text-white">
                                         @Html.DisplayFor(modelItem => item.validationN1)
@@ -123,7 +123,7 @@
                             </td>
                             <td>
 
-                                @if (item.validationN2 == "refuse")
+                                @if ( item.validationN2 == "refuse")
                                 {
 
 
@@ -131,13 +131,13 @@
                                         @Html.DisplayFor(modelItem => item.validationN2)
                                     </p>
                                 }
-                                else if (item.validationN2 == "En cours")
+                                else if (item.validationN2 == "En cours" )
                                 {
                                     <p class="p-2 mb-2 bg-warning text-dark">
                                         @Html.DisplayFor(modelItem => item.validationN2)
                                     </p>
                                 }
-                                else
+                                else 
                                 {
                                     <p class="p-2 mb-2 bg-success text-white">
                                         @Html.DisplayFor(modelItem => item.validationN2)

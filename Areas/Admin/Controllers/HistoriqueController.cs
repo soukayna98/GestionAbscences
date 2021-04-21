@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using GestionAbscences.Services;
 using GestionAbscences.Areas.Admin.Models;
-
+using System.Net;
 
 namespace GestionAbscences.Areas.Admin.Controllers
 {
@@ -15,6 +15,8 @@ namespace GestionAbscences.Areas.Admin.Controllers
     {
 
         private readonly DemandeService demandeService;
+        private GestionAbscencesEntities3 db = new GestionAbscencesEntities3();
+
 
         public HistoriqueController()
         {
@@ -50,11 +52,13 @@ namespace GestionAbscences.Areas.Admin.Controllers
                 return View(employesList);
         }
         //"Edit", "Edit", new { id = item.IdDemandeConge }
+        //get infos
         public ActionResult Validation(int? id)
         {
-            if (id == null || id == 0)
+            if (id == null )
             {
-                return RedirectToAction("Index", "Default");
+                //return RedirectToAction("Index", "Default");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             var currentDemande = demandeService.ReadById(id.Value);
@@ -62,6 +66,17 @@ namespace GestionAbscences.Areas.Admin.Controllers
             {
                 return HttpNotFound($"this demande ({id}) is not found");
             }
+
+            demandeconge demandeconge = db.demandeconge.Find(id);
+            Session["uid"] = currentDemande.idDemandeConge;
+
+            if (demandeconge == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(demandeconge);
+            /*
             var historiqueModel = new HistoriqueModel
             {
                 IdDemande = currentDemande.idDemandeConge,
@@ -79,42 +94,89 @@ namespace GestionAbscences.Areas.Admin.Controllers
 
             };
 
-            return View(historiqueModel);
+            return View(historiqueModel);*/
         }
 
-       [HttpPost]
-        public ActionResult Validation(HistoriqueModel data)
+        [HttpPost]
+        public ActionResult Validation()
         {
-            
-            if (ModelState.IsValid)
+
+            string validation1 = Request.Form["validation1"];
+            string validation2 = Request.Form["validation2"];
+
+            int uid = int.Parse(Session["uid"].ToString());
+
+            demandeconge e = db.demandeconge.Find(uid);
+
+            Session["index"] = uid;
+
+
+
+            if (validation2.Equals("Accepte"))
             {
-                var updatedDemande = new demandeconge
-                {
-                    idDemandeConge = data.IdDemande,
-                    IdtypeConge = data.IdType,
-                    IdEmploye = data.IdEmploye,
-                   // d.NomComplet = data.Nom,
-                    // matricule = data.employe.matricule,
-                    DateDebut = (DateTime)data.DateD,
-                    DateFin = (DateTime)data.DateF,
-                    DateDC = (DateTime)data.Datedc,
-                    ValidationN1 = data.validation1,
-                    ValidationN2 = data.validation2
-                };
-                var result = demandeService.Update(updatedDemande);
-
-                if (result > 0)
-                {
-                    ViewBag.Success = true;
-                    ViewBag.Message = $"demande ({data.IdDemande}) updated succefully";
-                }
-                else
-                    ViewBag.Message = $"an error occurred while updation demande !";
-
+                e.ValidationN2 = "accepte";
+            }
+            if (validation2.Equals("Refuse"))
+            {
+                e.ValidationN2 = "refuse";
+            }
+            if (validation1.Equals("Accepte"))
+            {
+                e.ValidationN1 = "accepte";
+            }
+            if (validation1.Equals("Refuse"))
+            {
+                e.ValidationN1 = "refuse";
             }
 
-            return View(data);
+
+
+
+            db.Entry(e).State = EntityState.Modified;
+            db.SaveChanges();
+
+
+
+
+
+            return RedirectToAction("historique", "Historique");
         }
+
+
+
+        /* [HttpPost]
+          public ActionResult Validation(HistoriqueModel data)
+          {
+
+             // if (ModelState.IsValid)
+              //{
+                  var updatedDemande = new demandeconge
+                  {
+                      idDemandeConge = data.IdDemande,
+                    IdtypeConge = data.IdType,
+                     // IdEmploye = data.IdEmploye,
+                     // d.NomComplet = data.Nom,
+                      // matricule = data.employe.matricule,
+                      //DateDebut = (DateTime)data.DateD,
+                     // DateFin = (DateTime)data.DateF,
+                    //  DateDC = (DateTime)data.Datedc,
+                      ValidationN1 = data.validation1,
+                      ValidationN2 = data.validation2
+                  };
+                  var result = demandeService.Update(updatedDemande);
+
+                  if (result > 0)
+                  {
+                      ViewBag.Success = true;
+                      ViewBag.Message = $"demande ({data.IdDemande}) updated succefully";
+                  }
+                  else
+                      ViewBag.Message = $"an error occurred while updation demande !";
+
+              //}
+
+              return View(data);
+          }*/
 
 
 
