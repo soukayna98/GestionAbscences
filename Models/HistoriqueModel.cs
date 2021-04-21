@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace GestionAbscences.Areas.Admin.Models
+namespace GestionAbscences.Models
 {
     public class HistoriqueModel
     {
@@ -13,11 +13,11 @@ namespace GestionAbscences.Areas.Admin.Models
         // [Required(ErrorMessage ="name is required")]
         public int IdEmploye { get; set; }
         public string matricule { get; set; }
-        public string Nom { get; set; }
+        public String Nom { get; set; }
         // [Required(ErrorMessage = "classe is required")]
 
-        public string validation1 { get; set; }
-        public string validation2 { get; set; }
+        public String validation1 { get; set; }
+        public String validation2 { get; set; }
         // [Required(ErrorMessage = "date debut is required")]
 
         public DateTime DateD { get; set; }
@@ -26,6 +26,6 @@ namespace GestionAbscences.Areas.Admin.Models
         public DateTime DateF { get; set; }
         public DateTime Datedc { get; set; }
 
-
+        
     }
 }

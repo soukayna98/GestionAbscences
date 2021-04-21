@@ -6,17 +6,19 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using GestionAbscences.Services;
+using System.Net;
 
 namespace GestionAbscences.Controllers
 {
     public class employeController : Controller
     {
-         private GestionAbscencesEntities3 db = new GestionAbscencesEntities3();
+        private GestionAbscencesEntities3 db = new GestionAbscencesEntities3();
 
         // GET: employe
         public ActionResult Index()
         {
- 
+
             return View();
         }
 
@@ -42,17 +44,17 @@ namespace GestionAbscences.Controllers
                     e.password = obj.NewPassword;
                     db.Entry(e).State = EntityState.Modified;
                     db.SaveChanges();
-                     obj.Message = "Your Password is updated successfully";
+                    obj.Message = "Your Password is updated successfully";
                     //ViewBag.Success = true;
-                  // ViewBag.Message = $"password updated succefully";
-                  // return RedirectToAction("Index", "Default");
+                    // ViewBag.Message = $"password updated succefully";
+                    // return RedirectToAction("Index", "Default");
 
                 }
                 else
                 {
-                   // ViewBag.Message = $"an error occurred while updation password !";
-                  obj.Message = "Invalid currrent  Password";
-                  // return RedirectToAction("Index", "Default");
+                    // ViewBag.Message = $"an error occurred while updation password !";
+                    obj.Message = "Invalid currrent  Password";
+                    // return RedirectToAction("Index", "Default");
                 }
 
             }
@@ -64,8 +66,8 @@ namespace GestionAbscences.Controllers
 
 
         [HttpPost]
-            public ActionResult Dashboard1()
-            {
+        public ActionResult Dashboard1()
+        {
             demandeconge demande = new demandeconge();
 
 
@@ -231,6 +233,39 @@ namespace GestionAbscences.Controllers
 
             return View();
         }
+
+        private readonly DemandeService demandeService;
+
+        public employeController()
+        {
+            demandeService = new DemandeService();
+        }
+        public ActionResult Imprimer(int? id)
+        {
+
+            if (id == null)
+            {
+                //return RedirectToAction("Index", "Default");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var currentDemande = demandeService.ReadById(id.Value);
+            if (currentDemande == null)
+            {
+                return HttpNotFound($"this demande ({id}) is not found");
+            }
+
+            demandeconge demandeconge = db.demandeconge.Find(id);
+            Session["uid"] = currentDemande.idDemandeConge;
+
+            if (demandeconge == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(demandeconge);
+        }
+
     }
     }
 
