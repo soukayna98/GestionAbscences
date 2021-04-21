@@ -10,10 +10,12 @@
 
     <div class="row justify-content-center">
         <div class="col-lg-12">
-            <div class="card shadow-lg border-0 rounded-lg mt-5 " style="margin-right:90px; margin-left:60px;height:auto;">
+            <div class="card shadow-lg border-0 rounded-lg mt-0 " style="margin-right:90px; margin-left:60px;height:auto;">
+                
+                <img src="~/Content/images/sonasid.jpg"  width="90" height="60" style=" border-radius:8px; ">
 
- <h2 class="text-center font-weight-bold my-2 font-italic text-warning text-decoration-underline"> TITRE DE CONGE </h2>
-                </br>
+                <h2 class="text-center font-weight-bold my-2 font-italic text-warning text-decoration-underline"> TITRE DE CONGE </h2>
+                
 
                 @using (Html.BeginForm())
                 {
@@ -23,98 +25,101 @@
                         <form>
                             <table class="table table-light table-striped" style="margin-left:90px;margin-right:90px; width:750px; margin-top:10px;">
                                 <tr>
-                                    <td style="font-weight:bold; text-align:center;">
-                                        Nom complet
+                                    <td colspan="1" style="font-weight:bold; text-align:center;text-align:left">
+                                        Nom & Prénom
                                     </td>
-                                    <td>
+                                    <td colspan="3">
                                         @Model.employe.NomComplet
                                     </td>
-                                    <td style="font-weight:bold; text-align:center;">
+
+
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:bold; text-align:center;text-align:left">
                                         Matricule
                                     </td>
-                                    <td>
+                                    <td style="text-align:left">
                                         @Model.employe.matricule
                                     </td>
-
+                                    <td style="font-weight:bold; text-align:center;text-align:right">
+                                        Affectation
+                                    </td>
+                                    <td style="text-align:left">
+                                        @Model.employe.affectation
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td style="font-weight:bold; text-align:center;">
+
+                                    <td colspan="2" style="font-weight:bold; text-align:center;text-align:left">
                                         Type de congé
                                     </td>
-                                    <td>
+                                    <td colspan="2">
                                         @Model.typeconge.designation
-                                    </td>
-                                    <td style="font-weight:bold; text-align:center;">
-                                        Date de demande
-                                    </td>
-                                    <td>
-                                        @Model.DateDC
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td style="font-weight:bold; text-align:center;">
-                                        Date début
+                                    <td colspan="3" style="font-weight:bold; text-align:center;text-align:left">
+                                        Durée de congé (à préciser jours ou heures)  :
                                     </td>
-                                    <td>
+                                    <td colspan="1">
+
+                                        @{ DateTime debut = Convert.ToDateTime(Model.DateDebut);
+                                            DateTime fin = Convert.ToDateTime(Model.DateFin);
+                                            //le nb de jour choisi dans le form
+                                            TimeSpan objTimeSpan = fin - debut;
+                                        }
+                                        @objTimeSpan
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td colspan="3" style=" text-align:center;font-weight:bold;">
+                                        <li>  Date Début :</li>
+                                    </td>
+                                    <td colspan="1">
                                         @Model.DateDebut
                                     </td>
-                                    <td style="font-weight:bold; text-align:center;">
-                                        Date fin
+
+                                </tr>
+                                <tr>
+                                    <td colspan="3" style=" text-align:center;font-weight:bold;">
+                                        <li> Date Fin: </li>
 
                                     </td>
-                                    <td>
+                                    <td colspan="1">
                                         @Model.DateFin
+
                                     </td>
+
+                                </tr>
+
+                            </table>
+                          
+
+                            <table style=" margin-left: 90px; margin-right: 90px; width: 750px; border: 1px solid black; font-weight: bold; text-align: center;">
+                                <tr>
+                                    <td style="border: 1px solid black; height: 100px ; vertical-align: text-top">
+                                        Date et visa de l'intéressé :
+                                        <br /> @Model.employe.NomComplet
+                                    </td>
+                                    <td style="border: 1px solid black; height: 100px ; vertical-align: text-top">
+                                        Date et visa de la hiérarchie :
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style=" height: 100px; vertical-align: text-top"> Cadre réservé aux structure ressources humaines </td>
+
                                 </tr>
                             </table>
                             <br />
-
-                            <div class="col-12" style="font-weight:bold; margin-left:70px; color:cornflowerblue; font-size:20px;">
-                                Validation  :
-                            </div>
-                            <br />
-
-                            <div class="row align-items-start">
-
-                                <div class="col" style="font-weight:bold; text-align:center; font-size:20px; margin-left:150px;">
-                                    N+1
-                                </div>
-                                <div class="col">
-                                    <input type="radio" name="validation1" id="Accepte" value="Accepte">
-                                    <label for="Accepte">Accepté</label>
-                                </div>
-                                <div class="col">
-                                    <input type="radio" name="validation1" id="Refuse" value="Refuse">
-                                    <label for="Refuse">Refusé</label>
-                                </div>
-                                <div class="col">
-                                </div>
-                                <div class="col">
-                                </div>
-                            </div>
-                            <div class="row align-items-start">
-                                <div class="col" style="font-weight:bold; text-align:center; font-size:20px; margin-left:150px;">
-                                    N+2
-                                </div>
-                                <div class="col">
-                                    <input type="radio" name="validation2" id="Accepte" value="Accepte">
-                                    <label for="Accepte">Accepté</label>
-                                </div>
-
-                                <div class="col">
-                                    <input type="radio" name="validation2" id="Refuse" value="Refuse">
-                                    <label for="Refuse">Refusé</label>
-                                </div>
-                                <div class="col">
-                                </div>
-                                <div class="col">
-                                </div>
-                            </div>
-                            <br /> <br /><br /><br />
                             <div class="col-4">
 
-                                <button type="submit" style="padding-left:40px; margin-left:380px; padding-right:40px" class="btn btn-info btn-primary  btn-lg bt" id="submit" name="submit"> Enregistrer </button>
+
+                                <button type="submit" style="padding-left:40px; margin-left:380px; padding-right:40px" class="btn btn-info btn-primary  btn-lg bt" id="submit" name="submit"> Imprimer </button>
                             </div>
                         </form>
                     </div>

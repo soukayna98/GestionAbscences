@@ -355,6 +355,7 @@
     <Content Include="Content\cont2\vendor\nouislider\nouislider.min.css" />
     <Content Include="Content\cont2\vendor\nouislider\nouislider.min.js" />
     <Content Include="Content\cont2\vendor\wnumb\wNumb.js" />
+    <Content Include="Content\images\sonasid.jpg" />
     <Content Include="css\styles.css" />
     <Content Include="Data\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

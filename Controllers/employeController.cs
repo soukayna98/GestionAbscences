@@ -83,6 +83,7 @@ namespace GestionAbscences.Controllers
             DateTime fin = Convert.ToDateTime(Request["dateFin"]);
             //le nb de jour choisi dans le form
             TimeSpan objTimeSpan = fin - debut;
+            Session["objTimeSpan"] = objTimeSpan.ToString();
 
             double jours = Convert.ToDouble(Session["nbjours"].ToString());
             double j = 24;
@@ -243,14 +244,15 @@ namespace GestionAbscences.Controllers
         public ActionResult Imprimer(int? id)
         {
 
-            if (id == null)
+            //condition pas encore
+            if (id == null || db.demandeconge.Find(id).ValidationN1 == "refuse" || db.demandeconge.Find(id).ValidationN2 == "refuse")
             {
                 //return RedirectToAction("Index", "Default");
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             var currentDemande = demandeService.ReadById(id.Value);
-            if (currentDemande == null)
+            if (currentDemande == null || db.demandeconge.Find(id).ValidationN1 == "refuse" || db.demandeconge.Find(id).ValidationN2 == "refuse")
             {
                 return HttpNotFound($"this demande ({id}) is not found");
             }
@@ -258,7 +260,7 @@ namespace GestionAbscences.Controllers
             demandeconge demandeconge = db.demandeconge.Find(id);
             Session["uid"] = currentDemande.idDemandeConge;
 
-            if (demandeconge == null)
+            if (demandeconge == null || db.demandeconge.Find(id).ValidationN1 == "refuse" || db.demandeconge.Find(id).ValidationN2 == "refuse")
             {
                 return HttpNotFound();
             }
