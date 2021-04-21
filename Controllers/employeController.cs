@@ -83,6 +83,7 @@ namespace GestionAbscences.Controllers
             DateTime fin = Convert.ToDateTime(Request["dateFin"]);
             //le nb de jour choisi dans le form
             TimeSpan objTimeSpan = fin - debut;
+            Session["objTimeSpan"] = objTimeSpan.ToString();
 
             double jours = Convert.ToDouble(Session["nbjours"].ToString());
             double j = 24;

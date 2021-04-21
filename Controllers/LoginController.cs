@@ -55,7 +55,7 @@ namespace GestionAbscences.Controllers
                 Session["Classe"] = user.Classe;
                 Session["DateFin"] = user.DateFin;
                 Session["DateDebut"] = user.DateDebut;
-                Session["idEmploye"] = user.idEmploye; ;
+                Session["idEmploye"] = user.idEmploye; 
 
 
                 string role = user.role;
