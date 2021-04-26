@@ -103,31 +103,18 @@ namespace GestionAbscences.Controllers
            
             string justification = Request["justification"];
 
-            double jours = Convert.ToDouble(Session["nbjours"].ToString());
-            double joursR = Convert.ToDouble(Session["nbjoursR"].ToString());
-
-            double j0 = 0;
-            double j10 = 10;
-            double j7 = 7;
-            double j1 = 1;
-            double j2 = 2;
-
-            double j15 = 1680;
-            double j05 = 720;
-
-            TimeSpan tm = TimeSpan.FromMinutes(j05); //j05:720
-            TimeSpan tm1 = TimeSpan.FromMinutes(j15);//j15:1680
-
+            double jours = Convert.ToDouble(Session["nbjours"].ToString()) - 1;
+            double joursR = Convert.ToDouble(Session["nbjoursR"].ToString()) - 1;
 
             TimeSpan t = TimeSpan.FromDays(jours); //jurs: nbjours
             TimeSpan tR = TimeSpan.FromDays(joursR); //jurs: nbjoursR
-            TimeSpan t0 = TimeSpan.FromDays(j0);//0
-            TimeSpan t10 = TimeSpan.FromDays(10);//10
-            TimeSpan t7 = TimeSpan.FromDays(j7);//7
+            TimeSpan t0 = TimeSpan.FromDays(0);//0
+            TimeSpan t10 = TimeSpan.FromDays(9);//10
+            TimeSpan t7 = TimeSpan.FromDays(6);//7
             //pour 1j
-            TimeSpan t1 = TimeSpan.FromDays(j1);//1
+            TimeSpan t1 = TimeSpan.FromDays(1);//1
             //pour 2j
-            TimeSpan t2 = TimeSpan.FromDays(j2);//2
+            TimeSpan t2 = TimeSpan.FromDays(2);//2
             //pour la demi journée
             TimeSpan t12 = TimeSpan.FromHours(12);
             //pour la jour et demi
@@ -139,6 +126,11 @@ namespace GestionAbscences.Controllers
             if (Request["dateDebut"].Equals("")|| Request["dateFin"].Equals("") || typeCongeIdTypeconge.Equals(""))
             {
                 Session["demande"] = "Remlpir tout les champs svp !";
+                return RedirectToAction("Index", "Default");
+            }
+            else if ((typeCongeIdTypeconge.Equals("Mariage") || typeCongeIdTypeconge.Equals("Naissance") || typeCongeIdTypeconge.Equals("Décès")) && justification.Equals(""))
+            {
+                Session["demande"] = "Remlir la  justification svp !";
                 return RedirectToAction("Index", "Default");
             }
             else
@@ -189,7 +181,8 @@ namespace GestionAbscences.Controllers
                     db.SaveChanges();
                 }
                 else if (typeCongeIdTypeconge.Equals("Mariage") && !(justification.Equals("")))
-                {
+                { 
+
                     demande.IdtypeConge = 4;
                 }
                 else if (typeCongeIdTypeconge.Equals("Naissance") && !(justification.Equals("")))
@@ -222,7 +215,7 @@ namespace GestionAbscences.Controllers
                 }
                 else
                 {
-                    Session["demande"] = "le nombre de jours qui reste est insuffisant!";
+                    Session["demande"] = "Vérifier vos données svp !";
                     return RedirectToAction("Index", "Default");
                 }
                
