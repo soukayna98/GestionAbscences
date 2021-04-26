@@ -155,7 +155,19 @@
                                 @* @Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
                                 @* @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
                             </td>
+                            <td>
 
+                                @if (item.ValidationN1 == "accepte" || item.ValidationN2 == "accepte")
+                                {
+                                    @Html.ActionLink("Modifier", "Modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Modifier", "Modifier", new { id = item.idDemandeConge })
+                                }
+
+
+                            </td>
                         </tr>
                         }
                     </tbody>

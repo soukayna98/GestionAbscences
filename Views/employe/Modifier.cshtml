@@ -1,5 +1,11 @@
-﻿@model GestionAbscences.Data.employe
-<title> Demange de Conge </title>
+﻿@model GestionAbscences.Data.demandeconge
+@{
+    ViewBag.Title = "Modifier";
+}
+
+
+
+<title> Modifier la Demange de Conge </title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
@@ -21,7 +27,7 @@
 
                 <div class="signup-form" style="margin-left:20px; ">
 
-                    @using (Html.BeginForm("Dashboard1", "employe"))
+                    @using (Html.BeginForm("Modifier", "employe"))
                     {
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary()
@@ -46,66 +52,28 @@
                                         <div class="form-radio-group">
                                             <div class="form-radio-item">
 
-                                                @{
-                                                    string x = Session["nbjours"].ToString();
-                                                    string x1 = Session["nbjoursR"].ToString();
-
-                                                    var y = float.Parse(x);
-                                                    var y1 = float.Parse(x1);
-                                                    var y2 = y - 10;
-                                                    var y3 = y - 7;
-                                                }
-                                                @if ((y1 > 0) && (7 > y1))
-
-                                                {
+                                                
                                                     <input type="radio" name="typeCongeIdTypeconge" id="reliquat" value="reliquat">
                                                     <label for="reliquat">Reliquat</label>
-                                                }
-                                                else
-                                                {
-                                                    <input type="radio" name="typeCongeIdTypeconge" id="reliquat" value="reliquat" disabled>
-                                                    <label style="color:gray;" for="reliquat">Reliquat</label>
-                                                }
-
+                                               
 
                                                 <span class="check"></span>
                                             </div>
 
 
                                             <div class="form-radio-item">
-                                                @* @if ((y > 14) && (24 >= y))*@
-                                                @*  @if (y1 <= y2 && y1 <= y && y1 >= y3)  *@
-
-
-                                                @if (y1 >= y2 && y1 <= y)
-                                                {
+                                                
                                                     <input type="radio" name="typeCongeIdTypeconge" id="1 ere tranche" value="1 ere tranche">
                                                     <label for="1 ere tranche">1 ere tranche</label>
-                                                }
-                                                else
-                                                {
-                                                    <input type="radio" name="typeCongeIdTypeconge" id="1 ere tranche" value="1 ere tranche" disabled>
-                                                    <label style="color:gray;" for="1 ere tranche">1 ere tranche</label>
-                                                }
+                                               
 
                                                 <span class="check"></span>
                                             </div>
                                             <div class="form-radio-item">
 
-                                                @*@if ((y > 7) && (14 >= y))*@
+                                                <input type="radio" name="typeCongeIdTypeconge" id="2 eme tranche" value="2 eme tranche">
+                                                <label for="2 eme tranche">2 eme tranche</label>
 
-                                                @* @if (y1 >= 7 && y1 <= y2)*@
-
-                                                @if (y1 >= 7 && y1 < y && y1 < 10)
-                                                {
-                                                    <input type="radio" name="typeCongeIdTypeconge" id="2 eme tranche" value="2 eme tranche">
-                                                    <label for="2 eme tranche">2 eme tranche</label>
-                                                }
-                                                else
-                                                {
-                                                    <input type="radio" name="typeCongeIdTypeconge" id="2 eme tranche" value="2 eme tranche" disabled>
-                                                    <label style="color:gray;" for="2 eme tranche">2 ere tranche</label>
-                                                }
 
                                                 <span class="check"></span>
                                             </div>
@@ -246,7 +214,7 @@
                                             <div class="col">
                                                 <label for="nomComplet">Nom & Prenom</label>
                                                 <input type="text" name="nomComplet" id="nomComplet" value="@Session["userName"]" style="padding:2px; " />
-                                                @Html.ValidationMessageFor(model => model.NomComplet, "", new { @class = "text-danger" })
+                                                @*  @Html.ValidationMessageFor(model => model.NomComplet, "", new { @class = "text-danger" })*@
                                             </div>
                                         </div>
                                     </div>
@@ -256,13 +224,13 @@
                                             <div class="col">
                                                 <label for="matricule">Matricule</label>
                                                 <input type="text" name="matricule" id="matricule" value="@Session["matricule"]" style="padding:2px;" />
-                                                @Html.ValidationMessageFor(model => model.idEmploye, "", new { @class = "text-danger" })
+                                                @*   @Html.ValidationMessageFor(model => model.idEmploye, "", new { @class = "text-danger" })*@
                                             </div>
 
                                             <div class="col">
                                                 <label for="affectation">Affectation</label>
                                                 <input type="text" name="affectation" id="affectation" value="@Session["affectation"]" style="padding:2px;" />
-                                                @Html.ValidationMessageFor(model => model.affectation, "", new { @class = "text-danger" })
+                                                @* @Html.ValidationMessageFor(model => model.affectation, "", new { @class = "text-danger" })*@
 
                                             </div>
                                         </div>
@@ -274,12 +242,10 @@
                                         <label for="chequeno">DU</label>
                                         <div class="row align-items-start">
                                             <div class="col">
-                                                <input type="DATE" name="dateDebut" id="dateDebut" style="padding:2px;" />
-                                                @Html.ValidationMessageFor(model => model.DateDebut, "", new { @class = "text-danger" })
+                                                <input type="DATE" name="dateDebut" id="dateDebut" value=" @Model.DateDebut" style="padding:2px;" />
                                             </div>
                                             <div class="col">
-                                                <input type="time" id="timeDebut" name="timeDebut" style="padding:2px;">
-                                                @Html.ValidationMessageFor(model => model.DateDebut, "", new { @class = "text-danger" })
+                                                <input type="time" id="timeDebut" name="timeDebut" value=" @Model.DateDebut" style="padding:2px;">
                                             </div>
                                         </div>
                                     </div>
@@ -288,12 +254,10 @@
                                         <label for="chequeno">AU</label>
                                         <div class="row align-items-start">
                                             <div class="col">
-                                                <input type="DATE" name="dateFin" id="dateFin" style="padding:2px;" />
-                                                @Html.ValidationMessageFor(model => model.DateFin, "", new { @class = "text-danger" })
+                                                <input type="DATE" name="dateFin" id="dateFin" value=" @Model.DateFin" style="padding:2px;" />
                                             </div>
                                             <div class="col">
-                                                <input type="time" id="timeFin" name="timeFin" style="padding:2px;">
-                                                @Html.ValidationMessageFor(model => model.DateFin, "", new { @class = "text-danger" })
+                                                <input type="time" id="timeFin" name="timeFin" value=" @Model.DateFin" style="padding:2px;">
                                             </div>
                                         </div>
 
