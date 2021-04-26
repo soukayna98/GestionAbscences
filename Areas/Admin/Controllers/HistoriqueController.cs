@@ -190,17 +190,25 @@ namespace GestionAbscences.Areas.Admin.Controllers
                 {
                          e.ValidationN2 = "Accepté";
                 }
-                 if (validation2.Equals("Refuse"))
+                 else if (validation2.Equals("Refuse"))
                 {
                          e.ValidationN2 = "refusé";
                 }
-                 if (validation1.Equals("Accepte"))
+            else 
+            {
+                e.ValidationN2 = "En cours";
+            }
+            if (validation1.Equals("Accepte"))
                 {
                 e.ValidationN1 = "Accepté";
                 }
-            if (validation1.Equals("Refuse"))
+            else if (validation1.Equals("Refuse"))
             {
                 e.ValidationN1 = "refusé";
+            }
+            else
+            {
+                e.ValidationN1 = "En cours";
             }
 
 

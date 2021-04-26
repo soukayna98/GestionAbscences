@@ -58,6 +58,9 @@
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Rotativa.1.7.4-rc\lib\net45\Rotativa.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -147,7 +150,6 @@
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\employeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ImprimerController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Data\demandeconge.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -191,6 +193,7 @@
     <Compile Include="Models\account.cs" />
     <Compile Include="Models\ChangePasswordModel.cs" />
     <Compile Include="Models\Demande.cs" />
+    <Compile Include="Models\HistoriqueModel.cs" />
     <Compile Include="Models\LoginModl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AdminService.cs" />
@@ -377,6 +380,10 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="js\scripts.js" />
+    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
+    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
+    <Content Include="Rotativa\wkhtmltoimage.exe" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
@@ -475,6 +482,7 @@
     <Content Include="Areas\Admin\Views\Employe\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Employe\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Employe\Delete.cshtml" />
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -523,10 +531,11 @@
     <Content Include="Views\employe\changePassword.cshtml" />
     <Content Include="Views\employe\Donnée.cshtml" />
     <Content Include="Views\employe\demande.cshtml" />
+    <Content Include="Views\employe\Imprimer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Imprimer\" />
+    <Folder Include="Content\images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
