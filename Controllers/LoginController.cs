@@ -52,6 +52,7 @@ namespace GestionAbscences.Controllers
                 Session["affectation"] = user.affectation;
                 Session["nbjours"] = user.nbjours.ToString();
                 Session["nbjoursR"] = user.nbjoursR.ToString();
+                Session["nbjoursR"] = user.nbjoursR.ToString();
                 Session["Classe"] = user.Classe;
                 Session["DateFin"] = user.DateFin;
                 Session["DateDebut"] = user.DateDebut;

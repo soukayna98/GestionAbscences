@@ -296,7 +296,6 @@ namespace GestionAbscences.Controllers
         public ActionResult Modifier(int? id)
         {
 
-            //condition pas encore
             if (id == null)
             {
                 //return RedirectToAction("Index", "Default");
@@ -316,7 +315,6 @@ namespace GestionAbscences.Controllers
             {
                 return HttpNotFound();
             }
-
             return View(demandeconge);
         }
 

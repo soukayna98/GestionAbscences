@@ -1,325 +1,100 @@
 ﻿@model GestionAbscences.Data.demandeconge
+
 @{
     ViewBag.Title = "Modifier";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-
-
-<title> Modifier la Demange de Conge </title>
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-<!-- Font Icon -->
-
-<link rel="stylesheet" href="~/Content/cont2/fonts/material-icon/css/material-design-iconic-font.min.css">
-<link rel="stylesheet" href="~/Content/cont2/vendor/nouislider/nouislider.min.css">
-
-<div class="container">
-
-    <div class="row justify-content-center">
-        <div class="col-lg-12">
-            <div class="card shadow-lg border-0 rounded-lg mt-0 " style="margin-right:2px; margin-left:60px;">
-
-                <div class="card-header " style="background-color:#DCDCDC; margin-top:0px; padding:0px;"><h3 class="text-center font-weight-normal ">DEMANDE DE CONGE</h3></div>
-
-
-
-                <div class="signup-form" style="margin-left:20px; ">
-
-                    @using (Html.BeginForm("Modifier", "employe"))
-                    {
-                        @Html.AntiForgeryToken()
-                        @Html.ValidationSummary()
-
-                        <div class="row align-items-start">
-                            <div class="col">
-                                <div class="label-flex">
-
-                                    <label class="text-center text-decoration-underline" style="color:cornflowerblue" for="TITRE">Choix de Congé</label>
-                                </div>
-
-
-                                <div>
-
-                                </div>
-                                <div class="form-group">
-
-                                    <div class="form-radio">
-                                        <div class="label-flex">
-                                            <label for="regulier">1.REGULIER</label>
-                                        </div>
-                                        <div class="form-radio-group">
-                                            <div class="form-radio-item">
-
-                                                
-                                                    <input type="radio" name="typeCongeIdTypeconge" id="reliquat" value="reliquat">
-                                                    <label for="reliquat">Reliquat</label>
-                                               
-
-                                                <span class="check"></span>
-                                            </div>
-
-
-                                            <div class="form-radio-item">
-                                                
-                                                    <input type="radio" name="typeCongeIdTypeconge" id="1 ere tranche" value="1 ere tranche">
-                                                    <label for="1 ere tranche">1 ere tranche</label>
-                                               
-
-                                                <span class="check"></span>
-                                            </div>
-                                            <div class="form-radio-item">
-
-                                                <input type="radio" name="typeCongeIdTypeconge" id="2 eme tranche" value="2 eme tranche">
-                                                <label for="2 eme tranche">2 eme tranche</label>
-
-
-                                                <span class="check"></span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="label-flex">
-                                    <label for="Exceptionnel/cr">2.EXCEPTIONNEL/CR</label>
-                                </div>
-                                <div class="form-radio-group">
-                                    <div class="form-radio-item">
-                                        <input type="radio" name="typeCongeIdTypeconge" id="1/2 journée" value="1/2 journée">
-                                        <label for="1/2 journée">1/2 journée</label>
-                                        <span class="check"></span>
-                                    </div>
-                                    <div class="form-radio-item">
-                                        <input type="radio" name="typeCongeIdTypeconge" id="1 journée" value="1 journée">
-                                        <label for="1 journée">1 journée</label>
-                                        <span class="check"></span>
-                                    </div>
-                                    <div class="form-radio-item">
-                                        <input type="radio" name="typeCongeIdTypeconge" id="1.5 journée" value="1.5 journée">
-                                        <label for="1.5 journée">1.5 journée</label>
-                                        <span class="check"></span>
-                                    </div>
-                                    <div class="form-radio-item">
-                                        <input type="radio" name="typeCongeIdTypeconge" id="2 journée" value="2 journée">
-                                        <label for="2 journée">2 journée</label>
-                                        <span class="check"></span>
-                                    </div>
-                                </div>
-
-
-                                <div class="label-flex">
-                                    <label for="EXCEPTIONNEL A.SOLDE">3.EXCEPTIONNEL A.SOLDE</label>
-                                </div>
-                                <div class="form-radio-group">
-                                    <div class="form-radio-item">
-                                        <input type="radio" name="typeCongeIdTypeconge" id="Mariage" value="Mariage">
-                                        <label for="Mariage">Mariage</label>
-                                        <span class="check"></span>
-                                    </div>
-                                    <div class="form-radio-item">
-                                        <input type="radio" name="typeCongeIdTypeconge" id="Naissance" value="Naissance">
-                                        <label for="Naissance">Naissance</label>
-                                        <span class="check"></span>
-                                    </div>
-                                    <div class="form-radio-item">
-                                        <input type="radio" name="typeCongeIdTypeconge" id="Décès" value="Décès">
-                                        <label for="Décès">Décès</label>
-                                        <span class="check"></span>
-                                    </div>
-                                </div>
-                                <div class="label-flex">
-                                    <label for="RECUPERATION">4.RECUPERATION</label>
-                                </div>
-
-                                <div class="form-radio-group">
-                                    <div class="form-radio-item">
-                                        <input type="radio" name="typeCongeIdTypeconge" id="H.S" value="H.S">
-                                        <label for="H.S">H.S</label>
-                                        <span class="check"></span>
-                                    </div>
-                                    <div class="form-radio-item">
-                                        <input type="radio" name="typeCongeIdTypeconge" id="J.R" value="J.R">
-                                        <label for="J.R">J.R</label>
-                                        <span class="check"></span>
-                                    </div>
-                                    <div class="form-radio-item">
-                                        <input type="radio" name="typeCongeIdTypeconge" id="J.F" value="J.F">
-                                        <label for="J.F">J.F</label>
-                                        <span class="check"></span>
-                                    </div>
-                                </div>
-
-
-
-
-
-                                <div class="form-input">
-
-
-                                    <label for="chequeno">DU</label>
-                                    <div class="row align-items-start">
-                                        <div class="col">
-                                            <input type="DATE" name="date1" id="date1" style="padding:2px;" />
-                                        </div>
-                                        <div class="col">
-                                            <input type="time" id="time1" name="time1" style="padding:2px;">
-
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="label-flex">
-                                    <label for="regulier">5.SANS SOLDE</label>
-                                </div>
-
-                                <div class="form-radio-group">
-                                    <div class="row align-items-start">
-                                        <div class="col">
-                                            <div class="form-radio-item">
-                                                <input type="radio" name="typeCongeIdTypeconge" id="heures" value="heures">
-                                                <label for="heures">Heures</label>
-                                                <input type="text" id="heureSansSolde" name="heureSansSolde" style="padding:2px;">
-                                                <span class="check"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-radio-item">
-                                                <input type="radio" name="typeCongeIdTypeconge" id="jour" value="jours">
-                                                <label for="jour">Jours</label>
-                                                <input type="date" name="jourSansSolde" id="jourSansSolde" style="padding:2px;" />
-                                                <span class="check"></span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="col-md-1">
-                            </div>
-                            <div class="col">
-                                <br />
-
-
-
-
-                                <div class="form-group col">
-                                    <div></div>
-                                    <div class="form-input">
-                                        <div class="row align-items-start">
-                                            <div class="col">
-                                                <label for="nomComplet">Nom & Prenom</label>
-                                                <input type="text" name="nomComplet" id="nomComplet" value="@Session["userName"]" style="padding:2px; " />
-                                                @*  @Html.ValidationMessageFor(model => model.NomComplet, "", new { @class = "text-danger" })*@
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-input">
-                                        <div class="row align-items-start">
-
-                                            <div class="col">
-                                                <label for="matricule">Matricule</label>
-                                                <input type="text" name="matricule" id="matricule" value="@Session["matricule"]" style="padding:2px;" />
-                                                @*   @Html.ValidationMessageFor(model => model.idEmploye, "", new { @class = "text-danger" })*@
-                                            </div>
-
-                                            <div class="col">
-                                                <label for="affectation">Affectation</label>
-                                                <input type="text" name="affectation" id="affectation" value="@Session["affectation"]" style="padding:2px;" />
-                                                @* @Html.ValidationMessageFor(model => model.affectation, "", new { @class = "text-danger" })*@
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-input ">
-
-                                        <label for="DATE FIN">Durée de Congé</label>
-
-                                        <label for="chequeno">DU</label>
-                                        <div class="row align-items-start">
-                                            <div class="col">
-                                                <input type="DATE" name="dateDebut" id="dateDebut" value=" @Model.DateDebut" style="padding:2px;" />
-                                            </div>
-                                            <div class="col">
-                                                <input type="time" id="timeDebut" name="timeDebut" value=" @Model.DateDebut" style="padding:2px;">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-input ">
-                                        <label for="chequeno">AU</label>
-                                        <div class="row align-items-start">
-                                            <div class="col">
-                                                <input type="DATE" name="dateFin" id="dateFin" value=" @Model.DateFin" style="padding:2px;" />
-                                            </div>
-                                            <div class="col">
-                                                <input type="time" id="timeFin" name="timeFin" value=" @Model.DateFin" style="padding:2px;">
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div>
-                                        <div class="form-group shadow-textarea">
-                                            <label for="justification">Justification</label>
-                                            <textarea class="form-control z-depth-1" name="justification" id="justification" rows="4" placeholder="votre justification"></textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-submit ">
-
-                                        <div class="row align-items-start">
-                                            <div class="col">
-                                                @*<input type="submit" value="Envoyer" class=" btn btn-lg btn-success " id="submit" name="submit" />*@
-                                                <button type="submit" style="padding-left:60px; padding-right:60px;" class="btn btn-primary btn-primary  btn-lg bt" id="submit" name="submit"> Valider </button>
-                                            </div> <div class="col">
-                                                <button type="reset" style="padding-left:60px; padding-right:60px;" class="btn btn-primary btn-danger btn-lg" name="reset"> Reset </button>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-
-
-                        </div>
-
-                    }
-                </div>
-
+<h2>Modifier</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>demandeconge</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.idDemandeConge, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.idDemandeConge, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.idDemandeConge, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DateDebut, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DateDebut, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateDebut, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DateFin, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DateFin, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateFin, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DateDC, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DateDC, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateDC, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ValidationN1, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ValidationN1, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ValidationN1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ValidationN2, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ValidationN2, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ValidationN2, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdEmploye, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IdEmploye, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IdEmploye, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdtypeConge, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IdtypeConge, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IdtypeConge, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.justification, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.justification, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.justification, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
-</div>
-
-@if (ViewBag.Message != null)
-{
-    <script type="text/javascript">
-            window.onload = function () {
-                alert("@ViewBag.Message");
-            };
-    </script>
 }
 
-
-
-<!-- JS -->
-<script src="~/Content/cont2/vendor/jquery/jquery.min.js"></script>
-<script src="~/Content/cont2/vendor/nouislider/nouislider.min.js"></script>
-<script src="~/Content/cont2/vendor/wnumb/wNumb.js"></script>
-<script src="~/Content/cont2/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
-<script src="~/Content/cont2/vendor/jquery-validation/dist/additional-methods.min.js"></script>
-<script src="~/Content/cont2/js/main.js"></script>
-
-
-
-
-<!-- Main css -->
-<link rel="stylesheet" href="~/Content/cont2/css/style.css">
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
