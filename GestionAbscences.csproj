@@ -521,6 +521,7 @@
     <Content Include="Views\employe\changePassword.cshtml" />
     <Content Include="Views\employe\Donnee.cshtml" />
     <Content Include="Views\employe\Imprimer.cshtml" />
+    <Content Include="Views\employe\Modifier.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
