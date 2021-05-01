@@ -14,6 +14,9 @@
 
     <div class="row justify-content-center">
         <div class="col-lg-12">
+            <h4 style="color:brown;">
+                Votre demande est en cours de traitement.
+            </h4>
             <div class="card shadow-lg border-0 rounded-lg mt-0 " style="margin-right:2px; margin-left:60px;">
 
                 <div class="card-header " style="background-color:#EFEFEF; "><h3 class="text-center font-weight-normal ">DEMANDE DE CONGE <h5 class="text-center font-weight-normal ">(Nombre de jours qui reste : @Session["nbjoursR"].ToString())</h5> </h3></div>
@@ -22,7 +25,7 @@
 
                 <div class="signup-form" style="margin-left:20px; ">
 
-                    @using (Html.BeginForm("Dashboard1", "employe"))
+                    @using (Html.BeginForm("modifier", "employe"))
                     {
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary()
@@ -35,9 +38,7 @@
                                 </div>
 
 
-                                <div>
 
-                                </div>
                                 <div class="form-group">
 
                                     <div class="form-radio">
@@ -47,26 +48,11 @@
                                         <div class="form-radio-group">
                                             <div class="form-radio-item">
 
-                                                @{
-                                                    string x = Session["nbjours"].ToString();
-                                                    string x1 = Session["nbjoursR"].ToString();
 
-                                                    var y = float.Parse(x);
-                                                    var y1 = float.Parse(x1);
-                                                    var y2 = y - 10;
 
-                                                }
-                                                 @if ((y1 > 0) && (7 > y1) )
-                                               
-                                                {
-                                                    <input type="radio" name="typeCongeIdTypeconge" id="reliquat" value="reliquat">
-                                                    <label for="reliquat">Reliquat</label>
-                                                }
-                                                else
-                                                {
-                                                    <input type="radio" name="typeCongeIdTypeconge" id="reliquat" value="reliquat" disabled>
-                                                    <label style="color:gray;" for="reliquat">Reliquat</label>
-                                                }
+                                                <input type="radio" name="typeCongeIdTypeconge" id="reliquat" value="reliquat" disabled>
+                                                <label style="color:gray;" for="reliquat">Reliquat</label>
+
 
 
                                                 <span class="check"></span>
@@ -74,35 +60,20 @@
 
 
                                             <div class="form-radio-item">
-                                                @* @if ((y > 14) && (24 >= y))*@
-                                                @if (y1 >= 10 && y1 <= y)
 
 
-                                                {
-                                                    <input type="radio" name="typeCongeIdTypeconge" id="1 ere tranche" value="1 ere tranche">
-                                                    <label for="1 ere tranche">1ère tranche</label>
-                                                }
-                                                else
-                                                {
-                                                    <input type="radio" name="typeCongeIdTypeconge" id="1 ere tranche" value="1 ere tranche" disabled>
-                                                    <label style="color:gray;" for="1ère tranche">1 ere tranche</label>
-                                                }
+                                                <input type="radio" name="typeCongeIdTypeconge" id="1 ere tranche" value="1 ere tranche" disabled>
+                                                <label style="color:gray;" for="1ère tranche">1 ere tranche</label>
+
 
                                                 <span class="check"></span>
                                             </div>
                                             <div class="form-radio-item">
 
-                                                @*@if ((y > 7) && (14 >= y))*@
-                                                @if (y1 >= 7 && y1 < y &&  y1 < 10)
-                                                {
-                                                    <input type="radio" name="typeCongeIdTypeconge" id="2 eme tranche" value="2 eme tranche">
-                                                    <label for="2 eme tranche">2ème tranche</label>
-                                                }
-                                                else
-                                                {
-                                                    <input type="radio" name="typeCongeIdTypeconge" id="2 eme tranche" value="2 eme tranche" disabled>
-                                                    <label style="color:gray;" for="2 eme tranche">2ème tranche</label>
-                                                }
+
+                                                <input type="radio" name="typeCongeIdTypeconge" id="2 eme tranche" value="2 eme tranche" disabled>
+                                                <label style="color:gray;" for="2 eme tranche">2ème tranche</label>
+
 
                                                 <span class="check"></span>
                                             </div>
@@ -117,22 +88,22 @@
                                 </div>
                                 <div class="form-radio-group">
                                     <div class="form-radio-item">
-                                        <input type="radio" name="typeCongeIdTypeconge" id="1/2 journée" value="1/2 journée">
+                                        <input type="radio" name="typeCongeIdTypeconge" id="1/2 journée" value="1/2 journée" disabled>
                                         <label for="1/2 journée">1/2 journée</label>
                                         <span class="check"></span>
                                     </div>
                                     <div class="form-radio-item">
-                                        <input type="radio" name="typeCongeIdTypeconge" id="1 journée" value="1 journée">
+                                        <input type="radio" name="typeCongeIdTypeconge" id="1 journée" value="1 journée" disabled>
                                         <label for="1 journée">1 journée</label>
                                         <span class="check"></span>
                                     </div>
                                     <div class="form-radio-item">
-                                        <input type="radio" name="typeCongeIdTypeconge" id="1.5 journée" value="1.5 journée">
+                                        <input type="radio" name="typeCongeIdTypeconge" id="1.5 journée" value="1.5 journée" disabled>
                                         <label for="1.5 journée">1.5 journée</label>
                                         <span class="check"></span>
                                     </div>
                                     <div class="form-radio-item">
-                                        <input type="radio" name="typeCongeIdTypeconge" id="2 journée" value="2 journée">
+                                        <input type="radio" name="typeCongeIdTypeconge" id="2 journée" value="2 journée" disabled>
                                         <label for="2 journée">2 journée</label>
                                         <span class="check"></span>
                                     </div>
@@ -144,17 +115,17 @@
                                 </div>
                                 <div class="form-radio-group">
                                     <div class="form-radio-item">
-                                        <input type="radio" name="typeCongeIdTypeconge" id="Mariage" value="Mariage">
+                                        <input type="radio" name="typeCongeIdTypeconge" id="Mariage" value="Mariage" disabled>
                                         <label for="Mariage">Mariage</label>
                                         <span class="check"></span>
                                     </div>
                                     <div class="form-radio-item">
-                                        <input type="radio" name="typeCongeIdTypeconge" id="Naissance" value="Naissance">
+                                        <input type="radio" name="typeCongeIdTypeconge" id="Naissance" value="Naissance" disabled>
                                         <label for="Naissance">Naissance</label>
                                         <span class="check"></span>
                                     </div>
                                     <div class="form-radio-item">
-                                        <input type="radio" name="typeCongeIdTypeconge" id="Décès" value="Décès">
+                                        <input type="radio" name="typeCongeIdTypeconge" id="Décès" value="Décès" disabled>
                                         <label for="Décès">Décès</label>
                                         <span class="check"></span>
                                     </div>
@@ -165,17 +136,17 @@
 
                                 <div class="form-radio-group">
                                     <div class="form-radio-item">
-                                        <input type="radio" name="typeCongeIdTypeconge" id="H.S" value="H.S">
+                                        <input type="radio" name="typeCongeIdTypeconge" id="H.S" value="H.S" disabled>
                                         <label for="H.S">H.S</label>
                                         <span class="check"></span>
                                     </div>
                                     <div class="form-radio-item">
-                                        <input type="radio" name="typeCongeIdTypeconge" id="J.R" value="J.R">
+                                        <input type="radio" name="typeCongeIdTypeconge" id="J.R" value="J.R" disabled>
                                         <label for="J.R">J.R</label>
                                         <span class="check"></span>
                                     </div>
                                     <div class="form-radio-item">
-                                        <input type="radio" name="typeCongeIdTypeconge" id="J.F" value="J.F">
+                                        <input type="radio" name="typeCongeIdTypeconge" id="J.F" value="J.F" disabled>
                                         <label for="J.F">J.F</label>
                                         <span class="check"></span>
                                     </div>
@@ -209,7 +180,7 @@
                                     <div class="row align-items-start">
                                         <div class="col">
                                             <div class="form-radio-item">
-                                                <input type="radio" name="typeCongeIdTypeconge" id="heures" value="heures">
+                                                <input type="radio" name="typeCongeIdTypeconge" id="heures" value="heures" disabled>
                                                 <label for="heures">Heures</label>
                                                 <input type="text" id="heureSansSolde" name="heureSansSolde" style="padding:2px;">
                                                 <span class="check"></span>
@@ -217,7 +188,7 @@
                                         </div>
                                         <div class="col">
                                             <div class="form-radio-item">
-                                                <input type="radio" name="typeCongeIdTypeconge" id="jour" value="jours">
+                                                <input type="radio" name="typeCongeIdTypeconge" id="jour" value="jours" disabled>
                                                 <label for="jour">Jours</label>
                                                 <input type="date" name="jourSansSolde" id="jourSansSolde" style="padding:2px;" />
                                                 <span class="check"></span>
@@ -242,7 +213,7 @@
                                         <div class="row align-items-start">
                                             <div class="col">
                                                 <label for="nomComplet">Nom & Prenom</label>
-                                                <input type="text" name="nomComplet" id="nomComplet" value="@Session["userNam"]" style="padding:2px; " />
+                                                <input type="text" name="nomComplet" id="nomComplet" value="@Session["userName"]" style="padding:2px; " />
                                                 @Html.ValidationMessageFor(model => model.NomComplet, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
@@ -252,13 +223,13 @@
 
                                             <div class="col">
                                                 <label for="matricule">Matricule</label>
-                                                <input type="text" name="matricule" id="matricule" value="@Session["matricul"]" style="padding:2px;" />
+                                                <input type="text" name="matricule" id="matricule" value="@Session["matricule"]" style="padding:2px;" />
                                                 @Html.ValidationMessageFor(model => model.idEmploye, "", new { @class = "text-danger" })
                                             </div>
 
                                             <div class="col">
                                                 <label for="affectation">Affectation</label>
-                                                <input type="text" name="affectation" id="affectation" value="@Session["affectatio"]" style="padding:2px;" />
+                                                <input type="text" name="affectation" id="affectation" value="@Session["affectation"]" style="padding:2px;" />
                                                 @Html.ValidationMessageFor(model => model.affectation, "", new { @class = "text-danger" })
 
                                             </div>
@@ -307,10 +278,8 @@
                                         <div class="row align-items-start">
                                             <div class="col">
                                                 @*<input type="submit" value="Envoyer" class=" btn btn-lg btn-success " id="submit" name="submit" />*@
-                                                <button type="submit" style="padding-left:60px; padding-right:60px;" class="btn btn-primary btn-primary  btn-lg bt" id="submit" name="submit"> Valider </button>
-                                            </div> <div class="col">
-                                                <button type="reset" style="padding-left:60px; padding-right:60px;" class="btn btn-primary btn-danger btn-lg" name="reset"> Reset </button>
-                                            </div>
+                                                <button type="submit" style="padding-left:60px; padding-right:60px;" class="btn btn-primary btn-primary  btn-lg bt" id="submit" name="submit"> Enregistrer </button>
+                                            </div> 
                                         </div>
 
 

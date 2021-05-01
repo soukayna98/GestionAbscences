@@ -532,6 +532,7 @@
     <Content Include="Views\employe\Donnée.cshtml" />
     <Content Include="Views\employe\demande.cshtml" />
     <Content Include="Views\employe\Imprimer.cshtml" />
+    <Content Include="Views\employe\modifier.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -5,9 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 </br>
-<h2 class="text-center">Historique des demandes de conges de : @Session["userName"]</h2>
 
-</br></br></br>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,19 +15,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title> Historique des Demande de Conge </title>
+    
 
     <link href="css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
+    <div class="sb-nav-fixed">
 
 
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                Nombre de jour de conges de @Session["userName"]
+            </div>
+            <div class="card-body">
+                <div class="table">
+                    
+                        <div class="row align-items-start">
+                            <div class="col-4" style=" text-align:center;font-weight:bold;">
+                                Nombre de jour total
+                            </div>
+                            <div class="col-2">
+                                @Session["nbjours"]
+                            </div>
+                            <div class="col-4" style=" text-align:center;font-weight:bold;">
+                                Nombre de jour Restants
+                            </div>
+                            <div class="col-2">
+                                @Session["nbjoursR"]
+                            </div>
+                        </div>
+                    
+
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+    @* <div class="card mb-4">*@
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table mr-1"></i>
-            demande DataTable
+            Historique des demandes de conges de  @Session["userName"]
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -36,32 +67,43 @@
                     <thead>
                         <tr class="table-success">
                             <th>
-                                @Html.DisplayNameFor(model => model.idDemandeConge)
+                                @*Html.DisplayNameFor(model => model.DateDC)*@
+                                Date creation DC
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.IdtypeConge)
+                                @*Html.DisplayNameFor(model => model.employe.matricule)*@
+                                Matricule
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.DateDebut)
+                                @*Html.DisplayNameFor(model => model.employe.NomComplet)*@
+                                Nom complet
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.DateFin)
+                                @*Html.DisplayNameFor(model => model.typeconge.designation)*@
+                                Designation
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.DateDC)
+                                @*Html.DisplayNameFor(model => model.DateDebut)*@
+
+                                Debut
+
+                            </th>
+
+                            <th>
+                                @*Html.DisplayNameFor(model => model.DateFin)*@
+                                Fin
+                            </th>
+
+                            <th>
+                                @*Html.DisplayNameFor(model => model.ValidationN1)*@
+                                Validation N+1
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.ValidationN1)
+                                @*Html.DisplayNameFor(model => model.ValidationN2)*@
+                                Validation N+2
                             </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.ValidationN2)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.employe.NomComplet)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.typeconge.designation)
-                            </th>
+
+
                         </tr>
 
                     </thead>
@@ -76,20 +118,25 @@
                         {
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.idDemandeConge)
+                                    @Html.DisplayFor(modelItem => item.DateDC)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.IdtypeConge)
+                                    @Html.DisplayFor(modelItem => item.employe.matricule)
                                 </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.employe.NomComplet)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.typeconge.designation)
+                                </td>
+
                                 <td>
                                     @Html.DisplayFor(modelItem => item.DateDebut)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.DateFin)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DateDC)
-                                </td>
+
                                 <td>
                                     @if (item.ValidationN1 == "refuse")
                                     {
@@ -142,17 +189,26 @@
 
 
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.employe.NomComplet)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.typeconge.designation)
-                                </td>
+
                                 <td>
                                     @* <a href="@Url.Action("Delete", new {item.Id })" class="btn btn-danger">Delete</a>*@
                                     @* <a href="@Url.Action("Edit", new {item.Id })" class="btn btn-warning">Edit</a>*@
+                                    @if (item.ValidationN2.Equals("Accepte"))
+                                    {
+                                        @Html.ActionLink("Imprimer titre", "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-primary " })
+                                        @Html.ActionLink("Modifier", "Modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                    }
+                                    else if (item.ValidationN2.Equals("En cours"))
+                                    {
+                                        @Html.ActionLink("Modifier", "Modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-primary " })
+                                        @Html.ActionLink("Imprimer titre", "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink("Imprimer titre", "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                        @Html.ActionLink("Modifier", "Modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                    }
 
-                                    @Html.ActionLink("Imprimer", "Imprimer", new { id = item.idDemandeConge })
                                     @* @Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
                                     @* @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
                                 </td>
@@ -173,6 +229,6 @@
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <script src="assets/demo/datatables-demo.js"></script>
 
-    <h3 style="color:darkcyan; align-content:center; "> jours de conge  : @Session["nbjours"]</h3>
+
 </body>
 </html>

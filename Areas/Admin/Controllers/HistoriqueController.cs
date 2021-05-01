@@ -25,33 +25,39 @@ namespace GestionAbscences.Areas.Admin.Controllers
         //private GestionAbscencesEntities1 db = new GestionAbscencesEntities1();
 
         // GET: Admin/Historique
+
+        /*  public ActionResult historique()
+          {
+              //les employes from DB
+
+              var employes = demandeService.ReadAll();
+
+              var employesList = new List<DemandeModel>();
+              foreach (var item in employes)
+              {
+                  employesList.Add(new DemandeModel
+                  {
+                      DateDebut = (DateTime)item.DateDebut,
+                      DateFin = (DateTime)item.DateFin,
+                      DateDc = (DateTime)item.DateDC,
+                      validationN1 = item.ValidationN1,
+                      validationN2 = item.ValidationN2,
+                      matricule = item.IdEmploye,
+                      IdTypeConge = item.IdtypeConge,
+                      IdDemandeConge = item.idDemandeConge,
+                      NomComplet = item.employe.NomComplet
+
+                  });
+              }
+              return View(employesList);
+          }*/
+
         public ActionResult historique()
         {
-            //les employes from DB
+            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge);
 
-            var employes = demandeService.ReadAll();
-
-            var employesList = new List<DemandeModel>();
-            foreach (var item in employes)
-            {
-                employesList.Add(new DemandeModel
-                {
-                    DateDebut = (DateTime)item.DateDebut,
-                    DateFin = (DateTime)item.DateFin,
-                    DateDc = (DateTime)item.DateDC,
-                    validationN1 = item.ValidationN1,
-                    validationN2 = item.ValidationN2,
-                    matricule = item.IdEmploye,
-                    IdTypeConge = item.IdtypeConge,
-                    IdDemandeConge = item.idDemandeConge,
-                    NomComplet = item.employe.NomComplet
-
-                });
-            }
-            return View(employesList);
+            return View(demandeConge.ToList());
         }
-
-        
          public ActionResult validation(int? id)
          {
              if (id == null)
@@ -170,59 +176,91 @@ namespace GestionAbscences.Areas.Admin.Controllers
 
             return View(historiqueModel);
         }*/
-
+       
         [HttpPost]
         public ActionResult Validation()
         {
-
-                string validation1 = Request.Form["validation1"];
-                string validation2 = Request.Form["validation2"];
-
-                int uid = int.Parse(Session["uid"].ToString());
-
-                demandeconge e = db.demandeconge.Find(uid);
-
-                Session["index"] = uid;
-
-                
-
-                if (validation2.Equals("Accepte"))
-                {
-                         e.ValidationN2 = "Accepté";
-                }
-                 else if (validation2.Equals("Refuse"))
-                {
-                         e.ValidationN2 = "refusé";
-                }
-            else 
+            int uid = int.Parse(Session["uid"].ToString());
+            demandeconge e = db.demandeconge.Find(uid);
+            string button = Request["button"];
+            switch (button)
             {
-                e.ValidationN2 = "En cours";
-            }
-            if (validation1.Equals("Accepte"))
-                {
-                e.ValidationN1 = "Accepté";
-                }
-            else if (validation1.Equals("Refuse"))
-            {
-                e.ValidationN1 = "refusé";
-            }
-            else
-            {
-                e.ValidationN1 = "En cours";
+                case "Accepté":
+                    e.ValidationN1 = "Accepte";
+                    db.Entry(e).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("historique");
+                case "Refusé":
+                    e.ValidationN1 = "refuse";
+                    db.Entry(e).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("historique");
+                case "Annulé":
+                  
+                    return RedirectToAction("historique");
+                default:
+                    return View();
+
             }
 
-
-
-
-            db.Entry(e).State = EntityState.Modified;
-                db.SaveChanges();
             
 
-
-
-
-            return RedirectToAction("Index" ,"Default");
         }
+
+        /*  [HttpPost]
+         * 
+        public ActionResult Validation()
+        {
+
+             string validation1 = Request.Form["validation1"];
+               string validation2 = Request.Form["validation2"];
+
+               int uid = int.Parse(Session["uid"].ToString());
+
+               demandeconge e = db.demandeconge.Find(uid);
+
+               Session["index"] = uid;
+
+
+
+               if (validation2.Equals("Accepte"))
+               {
+                        e.ValidationN2 = "Accepté";
+               }
+                else if (validation2.Equals("Refuse"))
+               {
+                        e.ValidationN2 = "refusé";
+               }
+           else 
+           {
+               e.ValidationN2 = "En cours";
+           }
+           if (validation1.Equals("Accepte"))
+               {
+               e.ValidationN1 = "Accepté";
+               }
+           else if (validation1.Equals("Refuse"))
+           {
+               e.ValidationN1 = "refusé";
+           }
+           else
+           {
+               e.ValidationN1 = "En cours";
+           }
+
+
+
+
+           db.Entry(e).State = EntityState.Modified;
+               db.SaveChanges();
+
+
+
+
+
+           return RedirectToAction("Index" ,"Default");
+
+       }*/
 
 
 

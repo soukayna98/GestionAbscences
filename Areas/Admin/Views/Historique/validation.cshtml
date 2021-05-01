@@ -13,7 +13,7 @@
         <div class="col-lg-12">
             <div class="card shadow-lg border-0 rounded-lg mt-0 " style="margin-right:90px; margin-left:60px;height:auto;">
 
-                <div class="card-header " style="background-color:burlywood; padding:30px;"><h2 class="text-center font-weight-bold my-0">Validez la demande de congé</h2></div>
+                <div class="card-header " style="background-color:cornsilk; padding:30px;"><h2 class="text-center font-weight-bold my-0">Validez la demande de congé</h2></div>
 
 
                 @using (Html.BeginForm())
@@ -77,46 +77,18 @@
                             <br />
 
                             <div class="row align-items-start">
-
-                                <div class="col" style="font-weight:bold; text-align:center; font-size:20px; margin-left:150px;">
-                                    N+1
+                                <div class="col-3">
+                                    <button type="submit" style="padding-left:40px; margin-left:140px; padding-right:40px" class="btn btn-success   btn-lg bt" id="submit" name="button" value="Accepté">Accepté</button>
                                 </div>
-                                <div class="col">
-                                    <input type="radio" name="validation1" id="Accepte" value="Accepte">
-                                    <label for="Accepte">Accepté</label>
+                                <div class="col-3">
+                                    <button type="submit" style="padding-left:40px; margin-left:140px; padding-right:40px" class="btn btn-danger btn-primary  btn-lg bt" name="button" value="Refusé" >Refusé</button>
                                 </div>
-                                <div class="col">
-                                    <input type="radio" name="validation1" id="Refuse" value="Refuse">
-                                    <label for="Refuse">Refusé</label>
-                                </div>
-                                <div class="col">
-                                </div>
-                                <div class="col">
+                                <div class="col-3">
+                                     <button type="submit" style="padding-left:40px; margin-left:140px; padding-right:40px" class="btn btn-white btn-primary  btn-lg bt"  name="button" value="Annulé"> Annulé</button>
                                 </div>
                             </div>
-                            <div class="row align-items-start">
-                                <div class="col" style="font-weight:bold; text-align:center; font-size:20px; margin-left:150px;">
-                                    N+2
-                                </div>
-                                <div class="col">
-                                    <input type="radio" name="validation2" id="Accepte" value="Accepte">
-                                    <label for="Accepte">Accepté</label>
-                                </div>
-
-                                <div class="col">
-                                    <input type="radio" name="validation2" id="Refuse" value="Refuse">
-                                    <label for="Refuse">Refusé</label>
-                                </div>
-                                <div class="col">
-                                </div>
-                                <div class="col">
-                                </div>
-                            </div>
-                            <br /> <br /><br /><br />
-                            <div class="col-4">
-
-                                <button type="submit" style="padding-left:40px; margin-left:380px; padding-right:40px" class="btn btn-info btn-primary  btn-lg bt" id="submit" name="submit"> Enregistrer </button>
-                            </div>
+                            
+                           
                         </form>
                     </div>
 
