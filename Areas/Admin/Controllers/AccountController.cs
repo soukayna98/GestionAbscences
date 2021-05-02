@@ -15,7 +15,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
     public class AccountController : Controller
     {
 
-        private GestionAbscencesEntities3  db = new GestionAbscencesEntities3();
+        private GestionAbscencesEntities4  db = new GestionAbscencesEntities4();
 
         // GET: Admin/Account
         public ActionResult Login()

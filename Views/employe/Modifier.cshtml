@@ -287,10 +287,14 @@
                                         <div class="row align-items-start">
                                             <div class="col">
                                                 <input type="DATE" name="dateFin" id="dateFin" style="padding:2px;" />
+                                                @Html.EditorFor(model => model.DateDebut, new { htmlAttributes = new { @class = "form-control" } })
+
                                                 @Html.ValidationMessageFor(model => model.DateFin, "", new { @class = "text-danger" })
                                             </div>
                                             <div class="col">
                                                 <input type="time" id="timeFin" name="timeFin" style="padding:2px;">
+                                                @Html.EditorFor(model => model.DateDebut, new { htmlAttributes = new { @class = "form-control" } })
+
                                                 @Html.ValidationMessageFor(model => model.DateFin, "", new { @class = "text-danger" })
                                             </div>
                                         </div>

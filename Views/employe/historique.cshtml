@@ -31,21 +31,23 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table>
+                        <table class="table table-bordered">
 
                             <tr>
-                                <td  style=" text-align:center;font-weight:bold;">
-                                    <li> Nombre de jour total </li>
+                                <td style=" text-align:center;font-weight:bold;">
+                                     Nombre de jour total 
                                 </td>
-                                <td>
+                                <td style=" text-align:center;font-weight:bold;">
+                                    Nombre de jour Restants 
+                                </td>
+                                </tr>
+                            <tr>
+                                <td style=" text-align:center;">
                                     @Session["nbjours"]
                                 </td>
-                            </tr>
-                            <tr>
-                                <td style=" text-align:center;font-weight:bold;">
-                                    <li> Nombre de jour Restants </li>
-                                </td>
-                                <td>
+
+
+                                <td style=" text-align:center;">
                                     @Session["nbjoursR"]
                                 </td>
                             </tr>

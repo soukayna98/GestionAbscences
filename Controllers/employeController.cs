@@ -13,7 +13,7 @@ namespace GestionAbscences.Controllers
 {
     public class employeController : Controller
     {
-        private GestionAbscencesEntities3 db = new GestionAbscencesEntities3();
+        private GestionAbscencesEntities4 db = new GestionAbscencesEntities4();
 
         // GET: employe
         public ActionResult Index()
@@ -128,7 +128,7 @@ namespace GestionAbscences.Controllers
                     /* e.nbjoursR = e.nbjoursR - reste;
                      db.Entry(e).State = EntityState.Modified;
                      db.SaveChanges();*/
-                    e.nbjoursR = e.nbjoursR - Convert.ToDouble(dateSpan);
+                  //  e.nbjoursR = e.nbjoursR - Convert.ToDouble(dateSpan);
                     db.Entry(e).State = EntityState.Modified;
                     db.SaveChanges();
                 }
@@ -160,7 +160,7 @@ namespace GestionAbscences.Controllers
                 else if (typeCongeIdTypeconge.Equals("2 journée") && dateSpan == t2)
                 {
                     demande.IdtypeConge = 10;
-                    e.nbjoursR = e.nbjoursR - 2;
+                  //  e.nbjoursR = e.nbjoursR - 2;
                     db.Entry(e).State = EntityState.Modified;
                     db.SaveChanges();
                 }

@@ -12,7 +12,7 @@ namespace GestionAbscences.Controllers
     public class LoginController : Controller
     {
 
-        public GestionAbscencesEntities3 db = new GestionAbscencesEntities3();
+        public GestionAbscencesEntities4 db = new GestionAbscencesEntities4();
 
 
         // GET: Login
@@ -60,9 +60,16 @@ namespace GestionAbscences.Controllers
 
 
                 string role = user.role;
-                if (role == "admin")
+                if (role == "adminN1")
                 {
                     return RedirectToAction("Index", "Default", new { area = "Admin" });
+                }
+                else if (role == "adminN2")
+                {
+                    return RedirectToAction("Index", "Default", new { area = "AdminN2" });
+                }else if (role == "Rh")
+                {
+                    return RedirectToAction("Index", "Default", new { area = "RH" });
                 }
                 else
                 {

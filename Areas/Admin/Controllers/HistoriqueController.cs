@@ -15,7 +15,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
     {
 
         private readonly DemandeService demandeService;
-        private GestionAbscencesEntities3 db = new GestionAbscencesEntities3();
+        private GestionAbscencesEntities4 db = new GestionAbscencesEntities4();
 
 
         public HistoriqueController()
@@ -35,19 +35,22 @@ namespace GestionAbscences.Areas.Admin.Controllers
             var employesList = new List<DemandeModel>();
             foreach (var item in employes)
             {
-                employesList.Add(new DemandeModel
+                if (item.ValidationN2 == "En cours")
                 {
-                    DateDebut = (DateTime)item.DateDebut,
-                    DateFin = (DateTime)item.DateFin,
-                    DateDc = (DateTime)item.DateDC,
-                    validationN1 = item.ValidationN1,
-                    validationN2 = item.ValidationN2,
-                    matricule = item.IdEmploye,
-                    IdTypeConge = item.IdtypeConge,
-                    IdDemandeConge = item.idDemandeConge,
-                    NomComplet = item.employe.NomComplet
+                    employesList.Add(new DemandeModel
+                    {
+                        DateDebut = (DateTime)item.DateDebut,
+                        DateFin = (DateTime)item.DateFin,
+                        DateDc = (DateTime)item.DateDC,
+                        validationN1 = item.ValidationN1,
+                        validationN2 = item.ValidationN2,
+                        matricule = item.IdEmploye,
+                        IdTypeConge = item.IdtypeConge,
+                        IdDemandeConge = item.idDemandeConge,
+                        NomComplet = item.employe.NomComplet
 
-                });
+                    });
+                }
             }
                 return View(employesList);
         }

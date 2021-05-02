@@ -13,6 +13,7 @@
     <Property Name="IdEmploye" Type="int" Nullable="false" />
     <Property Name="IdtypeConge" Type="int" Nullable="false" />
     <Property Name="justification" Type="varchar(max)" />
+    <Property Name="ValidationRH" Type="varchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="employe">
     <Key>
@@ -24,8 +25,8 @@
     <Property Name="DateDebut" Type="datetime" />
     <Property Name="DateFin" Type="datetime" />
     <Property Name="password" Type="varchar" MaxLength="40" />
-    <Property Name="nbjours" Type="int" />
-    <Property Name="nbjoursR" Type="float" />
+    <Property Name="nbjours" Type="datetime" />
+    <Property Name="nbjoursR" Type="datetime" />
     <Property Name="matricule" Type="varchar" MaxLength="50" />
     <Property Name="affectation" Type="varchar" MaxLength="50" />
     <Property Name="role" Type="varchar" MaxLength="50" />

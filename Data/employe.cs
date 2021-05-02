@@ -27,8 +27,8 @@ namespace GestionAbscences.Data
         public Nullable<System.DateTime> DateDebut { get; set; }
         public Nullable<System.DateTime> DateFin { get; set; }
         public string password { get; set; }
-        public Nullable<int> nbjours { get; set; }
-        public Nullable<double> nbjoursR { get; set; }
+        public Nullable<System.DateTime> nbjours { get; set; }
+        public Nullable<System.DateTime> nbjoursR { get; set; }
         public string matricule { get; set; }
         public string affectation { get; set; }
         public string role { get; set; }

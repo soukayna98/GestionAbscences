@@ -13,10 +13,10 @@ namespace GestionAbscences.Data
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class GestionAbscencesEntities3 : DbContext
+    public partial class GestionAbscencesEntities4 : DbContext
     {
-        public GestionAbscencesEntities3()
-            : base("name=GestionAbscencesEntities3")
+        public GestionAbscencesEntities4()
+            : base("name=GestionAbscencesEntities4")
         {
         }
     

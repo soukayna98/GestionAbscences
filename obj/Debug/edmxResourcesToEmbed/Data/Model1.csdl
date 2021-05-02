@@ -13,6 +13,7 @@
     <Property Name="IdEmploye" Type="Int32" Nullable="false" />
     <Property Name="IdtypeConge" Type="Int32" Nullable="false" />
     <Property Name="justification" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ValidationRH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="employe" Relationship="Self.fk_DemandeConge_Employe" FromRole="demandeconge" ToRole="employe" />
     <NavigationProperty Name="typeconge" Relationship="Self.fk_DemandeConge_typeConge" FromRole="demandeconge" ToRole="typeconge" />
   </EntityType>
@@ -26,8 +27,8 @@
     <Property Name="DateDebut" Type="DateTime" Precision="3" />
     <Property Name="DateFin" Type="DateTime" Precision="3" />
     <Property Name="password" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-    <Property Name="nbjours" Type="Int32" />
-    <Property Name="nbjoursR" Type="Double" />
+    <Property Name="nbjours" Type="DateTime" Precision="3" />
+    <Property Name="nbjoursR" Type="DateTime" Precision="3" />
     <Property Name="matricule" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="affectation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -157,7 +158,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="GestionAbscencesEntities3" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="GestionAbscencesEntities4" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="demandeconge" EntityType="Self.demandeconge" />
     <EntitySet Name="employe" EntityType="Self.employe" />
     <EntitySet Name="entite" EntityType="Self.entite" />
