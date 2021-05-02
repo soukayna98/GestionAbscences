@@ -5,6 +5,7 @@
     Layout = "~/Areas/AdminN2/Views/Shared/_Layout.cshtml";
 }
 
+
 <h2>Historique des demandes de congés</h2>
 <title> Historique des Demandes de Conge </title>
 
@@ -38,37 +39,43 @@
                         <tr class="table-success">
 
                             <th>
-                                @Html.DisplayNameFor(model => model.NomComplet)
+                                @*Html.DisplayNameFor(model => model.DateDC)*@
+                                Date creation DC
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.IdTypeConge)
+                                @*Html.DisplayNameFor(model => model.employe.matricule)*@
+                                Matricule
+                            </th>
+                            <th>
+                                @*Html.DisplayNameFor(model => model.employe.NomComplet)*@
+                                Nom complet
+                            </th>
+                            <th>
+                                @*Html.DisplayNameFor(model => model.typeconge.designation)*@
+                                Designation
+                            </th>
+                            <th>
+                                @*Html.DisplayNameFor(model => model.DateDebut)*@
+
+                                Debut
+
                             </th>
 
                             <th>
-                                @Html.DisplayNameFor(model => model.matricule)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.IdDemandeConge)
+                                @*Html.DisplayNameFor(model => model.DateFin)*@
+                                Fin
                             </th>
 
-
                             <th>
-                                @Html.DisplayNameFor(model => model.validationN1)
+                                @*Html.DisplayNameFor(model => model.ValidationN1)*@
+                                Validation N+1
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.validationN2)
+                                @*Html.DisplayNameFor(model => model.ValidationN2)*@
+                                Validation N+2
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.validationRh)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DateDebut)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DateFin)
-                            </th>
-                            <th>
-
+                                Validation RH
                             </th>
                             <th>
 
@@ -84,91 +91,110 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                        <tr>
-
-                            <td>
-                                @Html.DisplayFor(modelItem => item.NomComplet)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.IdTypeConge)
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(modelItem => item.matricule)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.IdDemandeConge)
-                            </td>
-
-                            <td>
-
-                                @if (item.validationN2 == "refuse")
-                                {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateDc)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.matricule)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NomComplet)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.designation)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateDebut)
+                                </td>
 
 
-                                    <p class="p-2 mb-2 bg-danger text-white">
-                                        @Html.DisplayFor(modelItem => item.validationN1)
-                                    </p>
-                                }
-                                else if (item.validationN1 == "En cours")
-                                {
-                                    <p class="p-2 mb-2 bg-warning text-dark">
-                                        @Html.DisplayFor(modelItem => item.validationN1)
-                                    </p>
-                                }
-                                else
-                                {
-                                    <p class="p-2 mb-2 bg-success text-white">
-                                        @Html.DisplayFor(modelItem => item.validationN1)
-                                    </p>
-                                }
-
-                            </td>
-                            <td>
-
-                                @if (item.validationN2 == "refuse")
-                                {
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateFin)
+                                </td>
 
 
-                                    <p class="p-2 mb-2 bg-danger text-white">
-                                        @Html.DisplayFor(modelItem => item.validationN2)
-                                    </p>
-                                }
-                                else if (item.validationN2 == "En cours")
-                                {
-                                    <p class="p-2 mb-2 bg-warning text-dark">
-                                        @Html.DisplayFor(modelItem => item.validationN2)
-                                    </p>
-                                }
-                                else
-                                {
-                                    <p class="p-2 mb-2 bg-success text-white">
-                                        @Html.DisplayFor(modelItem => item.validationN2)
-                                    </p>
-                                }
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.validationRh)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DateDebut)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DateFin)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DateDc)
-                            </td>
-                            <td>
-                                @* <a href="@Url.Action("Delete", new {item.Id })" class="btn btn-danger">Delete</a>*@
-                                @* <a href="@Url.Action("Edit", new {item.Id })" class="btn btn-warning">Edit</a>*@
+                                <td>
 
-                                @Html.ActionLink("Edit", "Validation", new { id = item.IdDemandeConge })
-                                @* @Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
-                                @* @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
-                            </td>
+                                    @if (item.validationN1 == "refuse")
+                                    {
 
-                        </tr>
+
+                                        <p class="p-2 mb-2 bg-danger text-white">
+                                            @Html.DisplayFor(modelItem => item.validationN1)
+                                        </p>
+                                    }
+                                    else if (item.validationN1 == "En cours")
+                                    {
+                                        <p class="p-2 mb-2 bg-warning text-dark">
+                                            @Html.DisplayFor(modelItem => item.validationN1)
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <p class="p-2 mb-2 bg-success text-white">
+                                            @Html.DisplayFor(modelItem => item.validationN1)
+                                        </p>
+                                    }
+
+                                </td>
+                                <td>
+
+                                    @if (item.validationN2 == "refuse")
+                                    {
+
+
+                                        <p class="p-2 mb-2 bg-danger text-white">
+                                            @Html.DisplayFor(modelItem => item.validationN2)
+                                        </p>
+                                    }
+                                    else if (item.validationN2 == "En cours")
+                                    {
+                                        <p class="p-2 mb-2 bg-warning text-dark">
+                                            @Html.DisplayFor(modelItem => item.validationN2)
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <p class="p-2 mb-2 bg-success text-white">
+                                            @Html.DisplayFor(modelItem => item.validationN2)
+                                        </p>
+                                    }
+                                </td>
+                                <td>
+
+                                    @if (item.validationRh == "refuse")
+                                    {
+
+
+                                        <p class="p-2 mb-2 bg-danger text-white">
+                                            @Html.DisplayFor(modelItem => item.validationRh)
+                                        </p>
+                                    }
+                                    else if (item.validationRh == "En cours")
+                                    {
+                                        <p class="p-2 mb-2 bg-warning text-dark">
+                                            @Html.DisplayFor(modelItem => item.validationRh)
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <p class="p-2 mb-2 bg-success text-white">
+                                            @Html.DisplayFor(modelItem => item.validationRh)
+                                        </p>
+                                    }
+                                </td>
+
+                                <td>
+                                    @* <a href="@Url.Action("Delete", new {item.Id })" class="btn btn-danger">Delete</a>*@
+                                    @* <a href="@Url.Action("Edit", new {item.Id })" class="btn btn-warning">Edit</a>*@
+
+                                    @Html.ActionLink("Repondre", "Validation", new { id = item.IdDemandeConge })
+                                    @* @Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
+                                    @* @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                                </td>
+
+                            </tr>
                         }
 
                     </tbody>
@@ -187,3 +213,4 @@
 
 </body>
 </html>
+

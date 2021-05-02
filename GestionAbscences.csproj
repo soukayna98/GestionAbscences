@@ -482,6 +482,10 @@
     <Content Include="Areas\RH\Views\Default\Index.cshtml" />
     <Content Include="Areas\AdminN2\Views\Employe\Index.cshtml" />
     <Content Include="Areas\AdminN2\Views\Historique\historique.cshtml" />
+    <Content Include="Areas\RH\Views\Historique\historique.cshtml" />
+    <Content Include="Areas\RH\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\AdminN2\Views\Historique\Validation.cshtml" />
+    <Content Include="Areas\RH\Views\Historique\Validation.cshtml" />
     <EntityDeploy Include="Data\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -489,8 +493,6 @@
     <Content Include="Data\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\RH\Views\Historique\historique.cshtml" />
-    <Content Include="Areas\RH\Views\Shared\_Layout.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

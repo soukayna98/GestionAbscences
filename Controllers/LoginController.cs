@@ -12,7 +12,7 @@ namespace GestionAbscences.Controllers
     public class LoginController : Controller
     {
 
-        public GestionAbscencesEntities4 db = new GestionAbscencesEntities4();
+        public GestionAbscencesEntities5 db = new GestionAbscencesEntities5();
 
 
         // GET: Login
@@ -52,7 +52,6 @@ namespace GestionAbscences.Controllers
                 Session["affectation"] = user.affectation;
                 Session["nbjours"] = user.nbjours.ToString();
                 Session["nbjoursR"] = user.nbjoursR.ToString();
-                Session["nbjoursR"] = user.nbjoursR.ToString();
                 Session["Classe"] = user.Classe;
                 Session["DateFin"] = user.DateFin;
                 Session["DateDebut"] = user.DateDebut;
@@ -62,14 +61,14 @@ namespace GestionAbscences.Controllers
                 string role = user.role;
                 if (role == "adminN1")
                 {
-                    return RedirectToAction("Index", "Default", new { area = "Admin" });
+                    return RedirectToAction("historique", "Historique", new { area = "Admin" });
                 }
                 else if (role == "adminN2")
                 {
-                    return RedirectToAction("Index", "Default", new { area = "AdminN2" });
+                    return RedirectToAction("historique", "Historique", new { area = "AdminN2" });
                 }else if (role == "Rh")
                 {
-                    return RedirectToAction("Index", "Default", new { area = "RH" });
+                    return RedirectToAction("historique", "Historique", new { area = "RH" });
                 }
                 else
                 {

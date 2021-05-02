@@ -25,8 +25,8 @@
     <Property Name="DateDebut" Type="datetime" />
     <Property Name="DateFin" Type="datetime" />
     <Property Name="password" Type="varchar" MaxLength="40" />
-    <Property Name="nbjours" Type="datetime" />
-    <Property Name="nbjoursR" Type="datetime" />
+    <Property Name="nbjours" Type="int" />
+    <Property Name="nbjoursR" Type="int" />
     <Property Name="matricule" Type="varchar" MaxLength="50" />
     <Property Name="affectation" Type="varchar" MaxLength="50" />
     <Property Name="role" Type="varchar" MaxLength="50" />

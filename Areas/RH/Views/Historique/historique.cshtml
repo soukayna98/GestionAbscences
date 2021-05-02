@@ -5,96 +5,210 @@
     Layout = "~/Areas/AdminN2/Views/Shared/_Layout.cshtml";
 }
 
-<h2>historique</h2>
+<h2>Historique des demandes de congés</h2>
+<title> Historique des Demandes de Conge </title>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.IdTypeConge)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.matricule)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IdDemandeConge)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NomComplet)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Classe)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.validationN1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.validationN2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.validationRh)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateDebut)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateFin)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateDc)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nbJ)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdTypeConge)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.matricule)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IdDemandeConge)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NomComplet)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Classe)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.validationN1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.validationN2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.validationRh)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateDebut)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateFin)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateDc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nbJ)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Admin / Employe</title>
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+</head>
+<body class="sb-nav-fixed">
 
-</table>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table mr-1"></i>
+            demande DataTable
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                    <thead>
+                        <tr class="table-success">
+
+                            <th>
+                                @*Html.DisplayNameFor(model => model.DateDC)*@
+                                Date creation DC
+                            </th>
+                            <th>
+                                @*Html.DisplayNameFor(model => model.employe.matricule)*@
+                                Matricule
+                            </th>
+                            <th>
+                                @*Html.DisplayNameFor(model => model.employe.NomComplet)*@
+                                Nom complet
+                            </th>
+                            <th>
+                                @*Html.DisplayNameFor(model => model.typeconge.designation)*@
+                                Designation
+                            </th>
+                            <th>
+                                @*Html.DisplayNameFor(model => model.DateDebut)*@
+
+                                Debut
+
+                            </th>
+
+                            <th>
+                                @*Html.DisplayNameFor(model => model.DateFin)*@
+                                Fin
+                            </th>
+
+                            <th>
+                                @*Html.DisplayNameFor(model => model.ValidationN1)*@
+                                Validation N+1
+                            </th>
+                            <th>
+                                @*Html.DisplayNameFor(model => model.ValidationN2)*@
+                                Validation N+2
+                            </th>
+                            <th>
+                                Validation RH
+                            </th>
+                            <th>
+
+                            </th>
+
+
+                        </tr>
+                    </thead>
+
+                    <tfoot>
+
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateDc)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.matricule)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NomComplet)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.designation)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateDebut)
+                                </td>
+
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateFin)
+                                </td>
+
+
+                                <td>
+
+                                    @if (item.validationN1 == "refuse")
+                                    {
+
+
+                                        <p class="p-2 mb-2 bg-danger text-white">
+                                            @Html.DisplayFor(modelItem => item.validationN1)
+                                        </p>
+                                    }
+                                    else if (item.validationN1 == "En cours")
+                                    {
+                                        <p class="p-2 mb-2 bg-warning text-dark">
+                                            @Html.DisplayFor(modelItem => item.validationN1)
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <p class="p-2 mb-2 bg-success text-white">
+                                            @Html.DisplayFor(modelItem => item.validationN1)
+                                        </p>
+                                    }
+
+                                </td>
+                                <td>
+
+                                    @if (item.validationN2 == "refuse")
+                                    {
+
+
+                                        <p class="p-2 mb-2 bg-danger text-white">
+                                            @Html.DisplayFor(modelItem => item.validationN2)
+                                        </p>
+                                    }
+                                    else if (item.validationN2 == "En cours")
+                                    {
+                                        <p class="p-2 mb-2 bg-warning text-dark">
+                                            @Html.DisplayFor(modelItem => item.validationN2)
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <p class="p-2 mb-2 bg-success text-white">
+                                            @Html.DisplayFor(modelItem => item.validationN2)
+                                        </p>
+                                    }
+                                </td>
+                                <td>
+
+                                    @if (item.validationRh == "refuse")
+                                    {
+
+
+                                        <p class="p-2 mb-2 bg-danger text-white">
+                                            @Html.DisplayFor(modelItem => item.validationRh)
+                                        </p>
+                                    }
+                                    else if (item.validationRh == "En cours")
+                                    {
+                                        <p class="p-2 mb-2 bg-warning text-dark">
+                                            @Html.DisplayFor(modelItem => item.validationRh)
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <p class="p-2 mb-2 bg-success text-white">
+                                            @Html.DisplayFor(modelItem => item.validationRh)
+                                        </p>
+                                    }
+                                </td>
+
+                                <td>
+                                    @* <a href="@Url.Action("Delete", new {item.Id })" class="btn btn-danger">Delete</a>*@
+                                    @* <a href="@Url.Action("Edit", new {item.Id })" class="btn btn-warning">Edit</a>*@
+
+                                    @Html.ActionLink("Repondre", "Validation", new { id = item.IdDemandeConge })
+                                    @* @Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
+                                    @* @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <script src="assets/demo/datatables-demo.js"></script>
+
+</body>
+</html>

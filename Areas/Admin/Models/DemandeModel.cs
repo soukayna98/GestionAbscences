@@ -14,6 +14,8 @@ namespace GestionAbscences.Areas.Admin.Models
         public String NomComplet { get; set; }
 
         public String Classe { get; set; }
+        public String designation { get; set; }
+
         public string validationN1 { get; set; }
         public string validationN2 { get; set; }
         public string validationRh { get; set; }
