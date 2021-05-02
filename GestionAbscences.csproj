@@ -129,6 +129,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\AdminN2\AdminN2AreaRegistration.cs" />
+    <Compile Include="Areas\AdminN2\Controllers\DefaultController.cs" />
+    <Compile Include="Areas\AdminN2\Controllers\EmployeController.cs" />
+    <Compile Include="Areas\AdminN2\Controllers\HistoriqueController.cs" />
+    <Compile Include="Areas\AdminN2\Models\DemandeModel.cs" />
+    <Compile Include="Areas\AdminN2\Models\EmployeModel.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\DefaultController.cs" />
@@ -139,6 +145,9 @@
     <Compile Include="Areas\Admin\Models\EmployeModel.cs" />
     <Compile Include="Areas\Admin\Models\HistoriqueModel.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
+    <Compile Include="Areas\RH\Controllers\DefaultController.cs" />
+    <Compile Include="Areas\RH\Controllers\HistoriqueController.cs" />
+    <Compile Include="Areas\RH\RHAreaRegistration.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\employeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -465,6 +474,18 @@
     <Content Include="Areas\Admin\Views\Account\changePassword.cshtml" />
     <Content Include="Rotativa.nupkg" />
     <Content Include="Areas\Admin\Views\Account\Donnee.cshtml" />
+    <Content Include="Areas\Admin\Views\Historique\Validation.cshtml" />
+    <Content Include="Areas\AdminN2\Views\web.config" />
+    <Content Include="Areas\AdminN2\Views\Default\Index.cshtml" />
+    <Content Include="Areas\AdminN2\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\RH\Views\web.config" />
+    <Content Include="Areas\RH\Views\Default\Index.cshtml" />
+    <Content Include="Areas\AdminN2\Views\Employe\Index.cshtml" />
+    <Content Include="Areas\AdminN2\Views\Historique\historique.cshtml" />
+    <Content Include="Areas\RH\Views\Historique\historique.cshtml" />
+    <Content Include="Areas\RH\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\AdminN2\Views\Historique\Validation.cshtml" />
+    <Content Include="Areas\RH\Views\Historique\Validation.cshtml" />
     <EntityDeploy Include="Data\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -472,7 +493,6 @@
     <Content Include="Data\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\Admin\Views\Historique\Validation.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -525,7 +545,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\AdminN2\Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\RH\Data\" />
     <Folder Include="Views\Imprimer\" />
   </ItemGroup>
   <ItemGroup>

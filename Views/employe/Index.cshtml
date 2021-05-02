@@ -50,10 +50,13 @@
                                                     string x = Session["nbjours"].ToString();
                                                     string x1 = Session["nbjoursR"].ToString();
 
+
+
                                                     var y = float.Parse(x);
                                                     var y1 = float.Parse(x1);
                                                     var y2 = y - 10;
-                                                    var y3 = y - 7;
+
+
                                                 }
                                                 @if ((y1 > 0) && (7 > y1))
 
@@ -73,38 +76,32 @@
 
 
                                             <div class="form-radio-item">
-                                                @* @if ((y > 14) && (24 >= y))*@
-                                                @*  @if (y1 <= y2 && y1 <= y && y1 >= y3)  *@
+                                                @if (y1 >= 10 && y1 <= y)
 
 
-                                                @if (y1 >= y2 && y1 <= y)
                                                 {
                                                     <input type="radio" name="typeCongeIdTypeconge" id="1 ere tranche" value="1 ere tranche">
-                                                    <label for="1 ere tranche">1 ere tranche</label>
+                                                    <label for="1 ere tranche">1ère tranche</label>
                                                 }
                                                 else
                                                 {
                                                     <input type="radio" name="typeCongeIdTypeconge" id="1 ere tranche" value="1 ere tranche" disabled>
-                                                    <label style="color:gray;" for="1 ere tranche">1 ere tranche</label>
+                                                    <label style="color:gray;" for="1ère tranche">1 ere tranche</label>
                                                 }
 
                                                 <span class="check"></span>
                                             </div>
                                             <div class="form-radio-item">
 
-                                                @*@if ((y > 7) && (14 >= y))*@
-
-                                                @* @if (y1 >= 7 && y1 <= y2)*@
-
                                                 @if (y1 >= 7 && y1 < y && y1 < 10)
                                                 {
                                                     <input type="radio" name="typeCongeIdTypeconge" id="2 eme tranche" value="2 eme tranche">
-                                                    <label for="2 eme tranche">2 eme tranche</label>
+                                                    <label for="2 eme tranche">2ème tranche</label>
                                                 }
                                                 else
                                                 {
                                                     <input type="radio" name="typeCongeIdTypeconge" id="2 eme tranche" value="2 eme tranche" disabled>
-                                                    <label style="color:gray;" for="2 eme tranche">2 ere tranche</label>
+                                                    <label style="color:gray;" for="2 eme tranche">2ème tranche</label>
                                                 }
 
                                                 <span class="check"></span>

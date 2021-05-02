@@ -15,7 +15,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
     {
 
         private readonly DemandeService demandeService;
-        private GestionAbscencesEntities3 db = new GestionAbscencesEntities3();
+        private GestionAbscencesEntities5 db = new GestionAbscencesEntities5();
 
 
         public HistoriqueController()
@@ -35,19 +35,22 @@ namespace GestionAbscences.Areas.Admin.Controllers
             var employesList = new List<DemandeModel>();
             foreach (var item in employes)
             {
-                employesList.Add(new DemandeModel
+                if (item.ValidationN2 == "En cours")
                 {
-                    DateDebut = (DateTime)item.DateDebut,
-                    DateFin = (DateTime)item.DateFin,
-                    DateDc = (DateTime)item.DateDC,
-                    validationN1 = item.ValidationN1,
-                    validationN2 = item.ValidationN2,
-                    matricule = item.IdEmploye,
-                    IdTypeConge = item.IdtypeConge,
-                    IdDemandeConge = item.idDemandeConge,
-                    NomComplet = item.employe.NomComplet
+                    employesList.Add(new DemandeModel
+                    {
+                        DateDebut = (DateTime)item.DateDebut,
+                        DateFin = (DateTime)item.DateFin,
+                        DateDc = (DateTime)item.DateDC,
+                        validationN1 = item.ValidationN1,
+                        validationN2 = item.ValidationN2,
+                        matricule = item.IdEmploye,
+                        IdTypeConge = item.IdtypeConge,
+                        IdDemandeConge = item.idDemandeConge,
+                        NomComplet = item.employe.NomComplet
 
-                });
+                    });
+                }
             }
                 return View(employesList);
         }
@@ -97,49 +100,36 @@ namespace GestionAbscences.Areas.Admin.Controllers
             return View(historiqueModel);*/
         }
 
+       
+
         [HttpPost]
         public ActionResult Validation()
         {
-
-            string validation1 = Request.Form["validation1"];
-            string validation2 = Request.Form["validation2"];
-
             int uid = int.Parse(Session["uid"].ToString());
-
             demandeconge e = db.demandeconge.Find(uid);
-
-            Session["index"] = uid;
-
-
-
-            if (validation2.Equals("Accepte"))
+            string button = Request["button"];
+            switch (button)
             {
-                e.ValidationN2 = "accepte";
+                case "Accepté":
+                    e.ValidationN1 = "Accepte";
+                    db.Entry(e).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("historique");
+                case "Refusé":
+                    e.ValidationN1 = "refuse";
+                    db.Entry(e).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("historique");
+                case "Annulé":
+
+                    return RedirectToAction("historique");
+                default:
+                    return View();
+
             }
-            if (validation2.Equals("Refuse"))
-            {
-                e.ValidationN2 = "refuse";
-            }
-            if (validation1.Equals("Accepte"))
-            {
-                e.ValidationN1 = "accepte";
-            }
-            if (validation1.Equals("Refuse"))
-            {
-                e.ValidationN1 = "refuse";
-            }
 
 
 
-
-            db.Entry(e).State = EntityState.Modified;
-            db.SaveChanges();
-
-
-
-
-
-            return RedirectToAction("historique", "Historique");
         }
 
 

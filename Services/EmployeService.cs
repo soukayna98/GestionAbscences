@@ -19,11 +19,11 @@ namespace GestionAbscences.Services
 
     public class EmployeService : IEmployeService
     {
-        private readonly GestionAbscencesEntities3 db;
+        private readonly GestionAbscencesEntities5 db;
 
         public EmployeService()
         {
-            db = new GestionAbscencesEntities3();
+            db = new GestionAbscencesEntities5();
         }
 
         public int Create(employe newEmploye)

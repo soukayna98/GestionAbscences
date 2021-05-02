@@ -23,6 +23,7 @@ namespace GestionAbscences.Data
         public int IdEmploye { get; set; }
         public int IdtypeConge { get; set; }
         public string justification { get; set; }
+        public string ValidationRH { get; set; }
     
         public virtual employe employe { get; set; }
         public virtual typeconge typeconge { get; set; }

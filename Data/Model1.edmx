@@ -18,6 +18,7 @@
           <Property Name="IdEmploye" Type="int" Nullable="false" />
           <Property Name="IdtypeConge" Type="int" Nullable="false" />
           <Property Name="justification" Type="varchar(max)" />
+          <Property Name="ValidationRH" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="employe">
           <Key>
@@ -30,7 +31,7 @@
           <Property Name="DateFin" Type="datetime" />
           <Property Name="password" Type="varchar" MaxLength="40" />
           <Property Name="nbjours" Type="int" />
-          <Property Name="nbjoursR" Type="float" />
+          <Property Name="nbjoursR" Type="int" />
           <Property Name="matricule" Type="varchar" MaxLength="50" />
           <Property Name="affectation" Type="varchar" MaxLength="50" />
           <Property Name="role" Type="varchar" MaxLength="50" />
@@ -217,6 +218,7 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
           <Property Name="IdEmploye" Type="Int32" Nullable="false" />
           <Property Name="IdtypeConge" Type="Int32" Nullable="false" />
           <Property Name="justification" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ValidationRH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="employe" Relationship="Self.fk_DemandeConge_Employe" FromRole="demandeconge" ToRole="employe" />
           <NavigationProperty Name="typeconge" Relationship="Self.fk_DemandeConge_typeConge" FromRole="demandeconge" ToRole="typeconge" />
         </EntityType>
@@ -231,7 +233,7 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
           <Property Name="DateFin" Type="DateTime" Precision="3" />
           <Property Name="password" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="nbjours" Type="Int32" />
-          <Property Name="nbjoursR" Type="Double" />
+          <Property Name="nbjoursR" Type="Int32" />
           <Property Name="matricule" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="affectation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -361,7 +363,7 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="GestionAbscencesEntities3" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="GestionAbscencesEntities5" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="demandeconge" EntityType="Self.demandeconge" />
           <EntitySet Name="employe" EntityType="Self.employe" />
           <EntitySet Name="entite" EntityType="Self.entite" />
@@ -399,7 +401,7 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="GestionAbscencesModelStoreContainer" CdmEntityContainer="GestionAbscencesEntities3">
+        <EntityContainerMapping StorageEntityContainer="GestionAbscencesModelStoreContainer" CdmEntityContainer="GestionAbscencesEntities5">
           <EntitySetMapping Name="demandeconge">
             <EntityTypeMapping TypeName="GestionAbscencesModel.demandeconge">
               <MappingFragment StoreEntitySet="demandeconge">
@@ -412,6 +414,7 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
                 <ScalarProperty Name="IdEmploye" ColumnName="IdEmploye" />
                 <ScalarProperty Name="IdtypeConge" ColumnName="IdtypeConge" />
                 <ScalarProperty Name="justification" ColumnName="justification" />
+                <ScalarProperty Name="ValidationRH" ColumnName="ValidationRH" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

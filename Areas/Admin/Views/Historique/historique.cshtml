@@ -36,39 +36,48 @@
 
                     <thead>
                         <tr class="table-success">
-                            
-        <th>
-            @Html.DisplayNameFor(model => model.NomComplet)
-        </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.IdTypeConge)
-                            </th>
-                            
-        <th>
-            @Html.DisplayNameFor(model => model.matricule)
-        </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.IdDemandeConge)
-                            </th>
-
 
                             <th>
-                                @Html.DisplayNameFor(model => model.validationN1)
+                                @*Html.DisplayNameFor(model => model.DateDC)*@
+                                Date creation DC
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.validationN2)
+                                @*Html.DisplayNameFor(model => model.employe.matricule)*@
+                                Matricule
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.DateDebut)
+                                @*Html.DisplayNameFor(model => model.employe.NomComplet)*@
+                                Nom complet
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.DateFin)
+                                @*Html.DisplayNameFor(model => model.typeconge.designation)*@
+                                Designation
                             </th>
                             <th>
-                               
+                                @*Html.DisplayNameFor(model => model.DateDebut)*@
+
+                                Debut
+
+                            </th>
+
+                            <th>
+                                @*Html.DisplayNameFor(model => model.DateFin)*@
+                                Fin
+                            </th>
+
+                            <th>
+                                @*Html.DisplayNameFor(model => model.ValidationN1)*@
+                                Validation N+1
                             </th>
                             <th>
-                                
+                                @*Html.DisplayNameFor(model => model.ValidationN2)*@
+                                Validation N+2
+                            </th>
+                            <th>
+                                Validation RH
+                            </th>
+                            <th>
+
                             </th>
 
 
@@ -82,24 +91,31 @@
                         @foreach (var item in Model)
                         {
                         <tr>
-                            
-        <td>
-            @Html.DisplayFor(modelItem => item.NomComplet)
-        </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.IdTypeConge)
+                                @Html.DisplayFor(modelItem => item.DateDc)
                             </td>
-                            
-        <td>
-            @Html.DisplayFor(modelItem => item.matricule)
-        </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.IdDemandeConge)
+                                @Html.DisplayFor(modelItem => item.matricule)
                             </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NomComplet)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.designation)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateDebut)
+                            </td>
+
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateFin)
+                            </td>
+                           
 
                             <td>
 
-                                @if ( item.validationN2 == "refuse")
+                                @if (item.validationN1 == "refuse")
                                 {
 
 
@@ -113,7 +129,7 @@
                                         @Html.DisplayFor(modelItem => item.validationN1)
                                     </p>
                                 }
-                                else 
+                                else
                                 {
                                     <p class="p-2 mb-2 bg-success text-white">
                                         @Html.DisplayFor(modelItem => item.validationN1)
@@ -123,7 +139,7 @@
                             </td>
                             <td>
 
-                                @if ( item.validationN2 == "refuse")
+                                @if (item.validationN2 == "refuse")
                                 {
 
 
@@ -131,13 +147,13 @@
                                         @Html.DisplayFor(modelItem => item.validationN2)
                                     </p>
                                 }
-                                else if (item.validationN2 == "En cours" )
+                                else if (item.validationN2 == "En cours")
                                 {
                                     <p class="p-2 mb-2 bg-warning text-dark">
                                         @Html.DisplayFor(modelItem => item.validationN2)
                                     </p>
                                 }
-                                else 
+                                else
                                 {
                                     <p class="p-2 mb-2 bg-success text-white">
                                         @Html.DisplayFor(modelItem => item.validationN2)
@@ -145,19 +161,16 @@
                                 }
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.DateDebut)
+                           
+                                        @Html.DisplayFor(modelItem => item.validationRh)
+                                    
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DateFin)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DateDc)
-                            </td>
+                           
                             <td>
                                 @* <a href="@Url.Action("Delete", new {item.Id })" class="btn btn-danger">Delete</a>*@
                                 @* <a href="@Url.Action("Edit", new {item.Id })" class="btn btn-warning">Edit</a>*@
 
-                                 @Html.ActionLink("Edit", "Validation", new { id = item.IdDemandeConge }) 
+                                @Html.ActionLink("Repondre", "Validation", new { id = item.IdDemandeConge })
                                 @* @Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
                                 @* @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
                             </td>
