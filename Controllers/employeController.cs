@@ -25,45 +25,42 @@ namespace GestionAbscences.Controllers
 
         public ActionResult modifier(int? id)
         {
-
-            if (id == null)
-            {
-                //return RedirectToAction("Index", "Default");
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            var currentDemande = demandeService.ReadById(id.Value);
-            if (currentDemande == null)
-            {
-                return HttpNotFound($"this demande ({id}) is not found");
-            }
-
             demandeconge demandeconge = db.demandeconge.Find(id);
-            Session["uid"] = currentDemande.idDemandeConge;
+            Session["modifierID"] = id;
 
-            if (demandeconge == null)
-            {
-                return HttpNotFound();
-            }
-            return View(demandeconge);
+            return View();
         }
-       /* [HttpPost]
-        public ActionResult modifier()
-        {
-            int uid = int.Parse(Session["uid1"].ToString());
+             [HttpPost]
+             public ActionResult modifier()
+             {
+            int uid = int.Parse(Session["modifierID"].ToString());
+            demandeconge e = db.demandeconge.Find(uid);
+            string button = Request["modifier"];
             string dateDebut = Request["dateDebut"] + " " + Request["timeDebut"];
             string dateFin = Request["dateFin"] + " " + Request["timeFin"];
-            demandeconge d = db.demandeconge.Find(uid);
+            DateTime dc = DateTime.Now;
+            switch (button)
+            {
+                case "valide":
+                    e.DateDebut = Convert.ToDateTime(dateDebut);
+                    e.DateFin = Convert.ToDateTime(dateFin);
+                    e.DateDC = dc;
+                    db.Entry(e).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("historique");
+                
+                case "annule":
 
-            d.DateDebut = Convert.ToDateTime(dateDebut);
-            d.DateFin = Convert.ToDateTime(dateFin);
-            db.Entry(d).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("historique");
+                    return RedirectToAction("historique");
+                default:
+                    return View();
+
+            }
+
         }
-       */
+            
 
-        [HttpGet]
+            [HttpGet]
         public ActionResult changePassword()
         {
             

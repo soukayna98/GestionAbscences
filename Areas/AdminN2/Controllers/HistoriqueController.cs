@@ -161,11 +161,11 @@ namespace GestionAbscences.Areas.AdminN2.Controllers
             string button = Request["button"];
 
             //nbr jours qui reste
-            DateTime dateDebut = e.DateDebut.Value ;
+          /*  DateTime dateDebut = e.DateDebut.Value ;
             DateTime dateFin = e.DateFin.Value;
 
             TimeSpan diff = dateFin - dateDebut;
-            DateTime diff1 = Convert.ToDateTime(diff);
+            DateTime diff1 = Convert.ToDateTime(diff);*/
 
          //   TimeSpan nbR = Convert.ToDateTime(e.employe.nbjoursR);
            
