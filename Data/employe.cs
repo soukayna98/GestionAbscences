@@ -28,12 +28,12 @@ namespace GestionAbscences.Data
         public Nullable<System.DateTime> DateFin { get; set; }
         public string password { get; set; }
         public Nullable<int> nbjours { get; set; }
-        public Nullable<int> nbjoursR { get; set; }
+        public string nbjoursR { get; set; }
         public string matricule { get; set; }
         public string affectation { get; set; }
         public string role { get; set; }
         public Nullable<double> soldeConge { get; set; }
-        public Nullable<int> nbjoursA { get; set; }
+        public string nbjoursA { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<demandeconge> demandeconge { get; set; }

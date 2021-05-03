@@ -25,7 +25,7 @@
 
                 <div class="signup-form" style="margin-left:20px; ">
 
-                    @using (Html.BeginForm("modifier", "employe"))
+                    @using (Html.BeginForm())
                     {
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary()
@@ -213,7 +213,7 @@
                                         <div class="row align-items-start">
                                             <div class="col">
                                                 <label for="nomComplet">Nom & Prenom</label>
-                                                <input type="text" name="nomComplet" id="nomComplet" value="@Session["userName"]" style="padding:2px; " />
+                                                <input type="text" name="nomComplet" id="nomComplet" value="@Model.NomComplet" style="padding:2px; " />
                                                 @Html.ValidationMessageFor(model => model.NomComplet, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
@@ -223,13 +223,13 @@
 
                                             <div class="col">
                                                 <label for="matricule">Matricule</label>
-                                                <input type="text" name="matricule" id="matricule" value="@Session["matricule"]" style="padding:2px;" />
+                                                <input type="text" name="matricule" id="matricule" value="@Model.matricule" style="padding:2px;" />
                                                 @Html.ValidationMessageFor(model => model.idEmploye, "", new { @class = "text-danger" })
                                             </div>
 
                                             <div class="col">
                                                 <label for="affectation">Affectation</label>
-                                                <input type="text" name="affectation" id="affectation" value="@Session["affectation"]" style="padding:2px;" />
+                                                <input type="text" name="affectation" id="affectation" value="@Model.affectation" style="padding:2px;" />
                                                 @Html.ValidationMessageFor(model => model.affectation, "", new { @class = "text-danger" })
 
                                             </div>

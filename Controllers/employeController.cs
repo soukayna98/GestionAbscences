@@ -14,7 +14,7 @@ namespace GestionAbscences.Controllers
 {
     public class employeController : Controller
     {
-         private GestionAbscencesEntities4 db = new GestionAbscencesEntities4();
+         private GestionAbscencesEntities5 db = new GestionAbscencesEntities5();
 
         // GET: employe
         public ActionResult Index()
@@ -22,34 +22,46 @@ namespace GestionAbscences.Controllers
  
             return View();
         }
-        [HttpGet]
-        public ActionResult Modifier(int? id)
+
+        public ActionResult modifier(int? id)
         {
-            Session["id"] = id;
-            return View();
+
+            if (id == null)
+            {
+                //return RedirectToAction("Index", "Default");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var currentDemande = demandeService.ReadById(id.Value);
+            if (currentDemande == null)
+            {
+                return HttpNotFound($"this demande ({id}) is not found");
+            }
+
+            demandeconge demandeconge = db.demandeconge.Find(id);
+            Session["uid"] = currentDemande.idDemandeConge;
+
+            if (demandeconge == null)
+            {
+                return HttpNotFound();
+            }
+            return View(demandeconge);
         }
-/*
-        [HttpPost]
-        public ActionResult Modifier()
+       /* [HttpPost]
+        public ActionResult modifier()
         {
-            int id = int.Parse(Session["id"].ToString());
+            int uid = int.Parse(Session["uid1"].ToString());
             string dateDebut = Request["dateDebut"] + " " + Request["timeDebut"];
             string dateFin = Request["dateFin"] + " " + Request["timeFin"];
+            demandeconge d = db.demandeconge.Find(uid);
 
-            
-            
-                demandeconge d = db.demandeconge.Find(id);
-                
-                
-                    d.DateDebut = Convert.ToDateTime(dateDebut);
-                    d.DateFin = Convert.ToDateTime(dateFin);
-                    db.Entry(d).State = EntityState.Modified;
-                    db.SaveChanges();
-                
-                return RedirectToAction("historique");
-
-            
-        }*/
+            d.DateDebut = Convert.ToDateTime(dateDebut);
+            d.DateFin = Convert.ToDateTime(dateFin);
+            db.Entry(d).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("historique");
+        }
+       */
 
         [HttpGet]
         public ActionResult changePassword()
@@ -65,7 +77,27 @@ namespace GestionAbscences.Controllers
             string x = Session["matricule"].ToString();
 
             int x1 = int.Parse(x);
+            var employes = demandeService.ReadAll();
+            foreach (var item in employes)
+            {
+                if (item.IdtypeConge == 1)
+                {
+                    Session["tranche1"] = "tranche 1";
 
+                }
+                else
+                     if (item.IdtypeConge == 2)
+                {
+                    Session["tranche2"] = "tranche 2";
+
+                }
+                else
+                     if (item.IdtypeConge == 3)
+                {
+                    Session["Reqliquat"] = "Reliquat";
+
+                }
+            }
 
             var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == x);
 
@@ -137,15 +169,10 @@ namespace GestionAbscences.Controllers
      
 
             var x = db.demandeconge.Where(p => p.IdEmploye == uid && p.IdtypeConge == 1);
-            if (!(x.Equals("")))
-            {
-                return RedirectToAction("Modifier");
-            }
-            else
-            {
-              
+            
 
-                double jours = Convert.ToDouble(Session["nbjours"].ToString()) - 1;
+
+                    double jours = Convert.ToDouble(Session["nbjours"].ToString()) - 1;
                 double joursR = Convert.ToDouble(Session["nbjoursR"].ToString()) - 1;
 
                 TimeSpan t = TimeSpan.FromDays(jours); //jurs: nbjours
@@ -218,9 +245,9 @@ namespace GestionAbscences.Controllers
                     else if (typeCongeIdTypeconge.Equals("2 journée") && dateSpan == t2)
                     {
                         demande.IdtypeConge = 10;
-                        e.nbjoursR = e.nbjoursR - 2;
-                        db.Entry(e).State = EntityState.Modified;
-                        db.SaveChanges();
+                      //  e.nbjoursR = e.nbjoursR - 2;
+                      //  db.Entry(e).State = EntityState.Modified;
+                      //  db.SaveChanges();
                     }
                     else if (typeCongeIdTypeconge.Equals("Mariage") && !(justification.Equals("")))
                     {
@@ -262,7 +289,7 @@ namespace GestionAbscences.Controllers
                     }
 
 
-                }
+                
 
 
             }
@@ -280,7 +307,8 @@ namespace GestionAbscences.Controllers
             
             demande.ValidationN1 = "En cours";
             demande.ValidationN2 = "En cours";
-            
+            demande.ValdationRH = "En cours";
+
             demande.IdEmploye = uid;
 
             demande.DateDebut = Convert.ToDateTime(dateDebut);

@@ -50,7 +50,7 @@
                                                 @{
                                                     string x = Session["nbjours"].ToString();
                                                     string x1 = Session["nbjoursR"].ToString();
-
+                                                    string w = Session["tranche1"].ToString();
                                                     var y = float.Parse(x);
                                                     var y1 = float.Parse(x1);
                                                     var y2 = y - 10;
@@ -61,12 +61,13 @@
                                                 {
                                                     <input type="radio" name="typeCongeIdTypeconge" id="reliquat" value="reliquat">
                                                     <label for="reliquat">Reliquat</label>
-                                                }
-                                                else
-                                                {
+                                                 }
+                                                
+                                                 else
+                                                 {
                                                     <input type="radio" name="typeCongeIdTypeconge" id="reliquat" value="reliquat" disabled>
                                                     <label style="color:gray;" for="reliquat">Reliquat</label>
-                                                }
+                                                     }
 
 
                                                 <span class="check"></span>
@@ -81,6 +82,11 @@
                                                 {
                                                     <input type="radio" name="typeCongeIdTypeconge" id="1 ere tranche" value="1 ere tranche">
                                                     <label for="1 ere tranche">1ère tranche</label>
+                                                }
+                                                else if (w.Equals("tranche 1"))
+                                                {
+                                                    <input type="radio" name="typeCongeIdTypeconge" id="1 ere tranche" value="1 ere tranche" disabled>
+                                                    <label style="color:gray;" for="1ère tranche">1 ere tranche</label>
                                                 }
                                                 else
                                                 {
@@ -242,7 +248,7 @@
                                         <div class="row align-items-start">
                                             <div class="col">
                                                 <label for="nomComplet">Nom & Prenom</label>
-                                                <input type="text" name="nomComplet" id="nomComplet" value="@Session["userNam"]" style="padding:2px; " />
+                                                <input type="text" name="nomComplet" id="nomComplet" value="@Session["userName"]" style="padding:2px; " />
                                                 @Html.ValidationMessageFor(model => model.NomComplet, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
@@ -252,13 +258,13 @@
 
                                             <div class="col">
                                                 <label for="matricule">Matricule</label>
-                                                <input type="text" name="matricule" id="matricule" value="@Session["matricul"]" style="padding:2px;" />
+                                                <input type="text" name="matricule" id="matricule" value="@Session["matricule"]" style="padding:2px;" />
                                                 @Html.ValidationMessageFor(model => model.idEmploye, "", new { @class = "text-danger" })
                                             </div>
 
                                             <div class="col">
                                                 <label for="affectation">Affectation</label>
-                                                <input type="text" name="affectation" id="affectation" value="@Session["affectatio"]" style="padding:2px;" />
+                                                <input type="text" name="affectation" id="affectation" value="@Session["affectation"]" style="padding:2px;" />
                                                 @Html.ValidationMessageFor(model => model.affectation, "", new { @class = "text-danger" })
 
                                             </div>

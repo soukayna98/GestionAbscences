@@ -12,33 +12,36 @@ namespace GestionAbscences.Controllers
 {
     public class LoginController : Controller
     {
-        private GestionAbscencesEntities4 db = new GestionAbscencesEntities4();
+        private GestionAbscencesEntities5 db = new GestionAbscencesEntities5();
         // GET: Login
         public ActionResult Index()
         {
             return View();
         }
 
-      /*  [HttpPost]
-        public ActionResult Index(LoginModl loginInfo)
-        {
+        /*  [HttpPost]
+          public ActionResult Index(LoginModl loginInfo)
+          {
 
-            var adminService = new AdminService();
-            var isLoggedIn = adminService.Login(loginInfo.Id, loginInfo.Password);
-            if (isLoggedIn)
-            {
-               
-                return RedirectToAction("Index", "Default");
-            }
-            else
-            {
-                loginInfo.Message = "email or pass incorrect";
-                return View(loginInfo);
-            }
+              var adminService = new AdminService();
+              var isLoggedIn = adminService.Login(loginInfo.Id, loginInfo.Password);
+              if (isLoggedIn)
+              {
+
+                  return RedirectToAction("Index", "Default");
+              }
+              else
+              {
+                  loginInfo.Message = "email or pass incorrect";
+                  return View(loginInfo);
+              }
 
 
 
-        }*/
+          }*/
+        private readonly DemandeService demandeService;
+
+
 
         [HttpPost]
         public ActionResult Index(employe log)
@@ -51,31 +54,42 @@ namespace GestionAbscences.Controllers
                 Session["idEmploye"] = user.idEmploye;
                 Session["affectation"] = user.affectation;
                 Session["nbjours"] = user.nbjours.ToString();
-                Session["nbjoursR"] = user.nbjoursR.ToString();
+               Session["nbjoursR"] = user.nbjoursR.ToString();
                 Session["Classe"] = user.Classe;
                 Session["DateFin"] = user.DateFin;
                 Session["DateDebut"] = user.DateDebut;
-                String role  = user.role;
 
-                if(role == "admin")
+               
+
+                string role = user.role;
+                if (role == "adminN1")
                 {
-                    return RedirectToAction("Index", "Default" , new { area = "Admin" });
-
+                    return RedirectToAction("historique", "Historique", new { area = "Admin" });
+                }
+                else if (role == "adminN2")
+                {
+                    return RedirectToAction("historique", "Historique", new { area = "AdminN2" });
+                }
+                else if (role == "Rh")
+                {
+                    return RedirectToAction("historique", "Historique", new { area = "RH" });
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Default");
+                    return RedirectToAction("historique", "employe");
 
                 }
-              
+
             }
             else
             {
                 return View();
             }
 
+
+
         }
-       
+
 
     }
 }
