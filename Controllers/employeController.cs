@@ -88,13 +88,13 @@ namespace GestionAbscences.Controllers
 
 
 
-            var x = db.demandeconge.Where(p => p.IdEmploye == uid && p.IdtypeConge == 1);
+         /*   var x = db.demandeconge.Where(p => p.IdEmploye == uid && p.IdtypeConge == 1);
             if (!(x.Equals("")))
             {
                 return RedirectToAction("Modifier");
             }
             else
-            {
+            {*/
 
 
                 double jours = Convert.ToDouble(Session["nbjours"].ToString()) - 1;
@@ -220,7 +220,7 @@ namespace GestionAbscences.Controllers
                 }
 
 
-            }
+            
 
 
 
@@ -313,30 +313,42 @@ namespace GestionAbscences.Controllers
             return View(demandeconge);
         }
 
-        public ActionResult Modifier(int? id)
+        public ActionResult modifier(int? id)
         {
-
-            if (id == null)
-            {
-                //return RedirectToAction("Index", "Default");
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            var currentDemande = demandeService.ReadById(id.Value);
-            if (currentDemande == null)
-            {
-                return HttpNotFound($"this demande ({id}) is not found");
-            }
-
             demandeconge demandeconge = db.demandeconge.Find(id);
-            Session["uid"] = currentDemande.idDemandeConge;
+            Session["modifierID"] = id;
 
-            if (demandeconge == null)
-            {
-                return HttpNotFound();
-            }
-            return View(demandeconge);
+            return View();
         }
+        [HttpPost]
+        public ActionResult modifier()
+        {
+            int uid = int.Parse(Session["modifierID"].ToString());
+            demandeconge e = db.demandeconge.Find(uid);
+            string button = Request["modifier"];
+            string dateDebut = Request["dateDebut"] + " " + Request["timeDebut"];
+            string dateFin = Request["dateFin"] + " " + Request["timeFin"];
+            DateTime dc = DateTime.Now;
+            switch (button)
+            {
+                case "valide":
+                    e.DateDebut = Convert.ToDateTime(dateDebut);
+                    e.DateFin = Convert.ToDateTime(dateFin);
+                    e.DateDC = dc;
+                    db.Entry(e).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("historique");
+
+                case "annule":
+
+                    return RedirectToAction("historique");
+                default:
+                    return View();
+
+            }
+
+        }
+
 
     }
 }
