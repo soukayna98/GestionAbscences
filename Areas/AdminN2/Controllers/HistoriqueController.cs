@@ -26,35 +26,53 @@ namespace GestionAbscences.Areas.AdminN2.Controllers
         //private GestionAbscencesEntities1 db = new GestionAbscencesEntities1();
 
         // GET: Admin/Historique
+        /* public ActionResult historique()
+         {
+             //les employes from DB
+
+             var employes = demandeService.ReadAll();
+
+             var employesList = new List<DemandeModel>();
+
+             foreach (var item in employes)
+             {
+                 if (item.ValidationN2 == "En cours" || item.ValidationN2 == "accepte" )
+                 {
+                     employesList.Add(new DemandeModel
+                     {
+                         DateDebut = (DateTime)item.DateDebut,
+                         DateFin = (DateTime)item.DateFin,
+                         DateDc = (DateTime)item.DateDC,
+                         validationN1 = item.ValidationN1,
+                         validationN2 = item.ValidationN2,
+                         matricule = item.IdEmploye,
+                         IdTypeConge = item.IdtypeConge,
+                         IdDemandeConge = item.idDemandeConge,
+                         NomComplet = item.employe.NomComplet
+
+                     });
+                 }
+             }
+             return View(employesList);
+         }*/
         public ActionResult historique()
         {
-            //les employes from DB
+            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "En cours" && p.ValidationN1 != "refuse");
 
-            var employes = demandeService.ReadAll();
-
-            var employesList = new List<DemandeModel>();
-            
-            foreach (var item in employes)
-            {
-                if (item.ValidationN2 == "En cours")
-                {
-                    employesList.Add(new DemandeModel
-                    {
-                        DateDebut = (DateTime)item.DateDebut,
-                        DateFin = (DateTime)item.DateFin,
-                        DateDc = (DateTime)item.DateDC,
-                        validationN1 = item.ValidationN1,
-                        validationN2 = item.ValidationN2,
-                        matricule = item.IdEmploye,
-                        IdTypeConge = item.IdtypeConge,
-                        IdDemandeConge = item.idDemandeConge,
-                        NomComplet = item.employe.NomComplet
-
-                    });
-                }
-            }
-            return View(employesList);
+            return View(demandeConge.ToList());
         }
+        public ActionResult historiques()
+        {
+            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge);
+
+            return View(demandeConge.ToList());
+        }
+        /*   public ActionResult historique()
+           {
+               var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge);
+
+               return View(demandeConge.ToList());
+           }*/
         //"Edit", "Edit", new { id = item.IdDemandeConge }
         //get infos
 
@@ -113,12 +131,12 @@ namespace GestionAbscences.Areas.AdminN2.Controllers
             switch (button)
             {
                 case "Accepté":
-                    e.ValidationN1 = "Accepte";
+                    e.ValidationN2 = "Accepte";
                     db.Entry(e).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("historique");
                 case "Refusé":
-                    e.ValidationN1 = "refuse";
+                    e.ValidationN2 = "refuse";
                     db.Entry(e).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("historique");

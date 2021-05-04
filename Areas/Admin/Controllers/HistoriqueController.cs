@@ -26,36 +26,46 @@ namespace GestionAbscences.Areas.Admin.Controllers
         //private GestionAbscencesEntities1 db = new GestionAbscencesEntities1();
 
         // GET: Admin/Historique
+        /* public ActionResult historique()
+         {
+             //les employes from DB
+
+             var employes = demandeService.ReadAll();
+
+             var employesList = new List<DemandeModel>();
+             foreach (var item in employes)
+             {
+                 if (item.ValidationN2 == "En cours")
+                 {
+                     employesList.Add(new DemandeModel
+                     {
+                         DateDebut = (DateTime)item.DateDebut,
+                         DateFin = (DateTime)item.DateFin,
+                         DateDc = (DateTime)item.DateDC,
+                         validationN1 = item.ValidationN1,
+                         validationN2 = item.ValidationN2,
+                         matricule = item.IdEmploye,
+                         IdTypeConge = item.IdtypeConge,
+                         IdDemandeConge = item.idDemandeConge,
+                         NomComplet = item.employe.NomComplet
+
+                     });
+                 }
+             }
+                 return View(employesList);
+         }*/
         public ActionResult historique()
         {
-            //les employes from DB
+            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours" && p.ValidationN2 == "En cours");
 
-            var employes = demandeService.ReadAll();
-
-            var employesList = new List<DemandeModel>();
-            foreach (var item in employes)
-            {
-                if (item.ValidationN2 == "En cours")
-                {
-                    employesList.Add(new DemandeModel
-                    {
-                        DateDebut = (DateTime)item.DateDebut,
-                        DateFin = (DateTime)item.DateFin,
-                        DateDc = (DateTime)item.DateDC,
-                        validationN1 = item.ValidationN1,
-                        validationN2 = item.ValidationN2,
-                        matricule = item.IdEmploye,
-                        IdTypeConge = item.IdtypeConge,
-                        IdDemandeConge = item.idDemandeConge,
-                        NomComplet = item.employe.NomComplet
-
-                    });
-                }
-            }
-                return View(employesList);
+            return View(demandeConge.ToList());
         }
-        //"Edit", "Edit", new { id = item.IdDemandeConge }
-        //get infos
+        public ActionResult historiques()
+        {
+            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge);
+
+            return View(demandeConge.ToList());
+        }
         public ActionResult Validation(int? id)
         {
             if (id == null )
