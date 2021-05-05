@@ -127,6 +127,8 @@ namespace GestionAbscences.Areas.Admin.Controllers
                     return RedirectToAction("historique");
                 case "Refusé":
                     e.ValidationN1 = "refuse";
+                    e.ValidationN2 = "****";
+                    e.ValidationRH = "****";
                     db.Entry(e).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("historique");

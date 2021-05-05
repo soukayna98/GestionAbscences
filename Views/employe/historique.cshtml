@@ -190,11 +190,17 @@
                                                 @Html.DisplayFor(modelItem => item.ValidationN2)
                                             </p>
                                         }
-                                        else
+                                        else if (item.ValidationN2 == "Accepte")
                                         {
                                             <p class="p-2 mb-2 bg-success text-white">
                                                 @Html.DisplayFor(modelItem => item.ValidationN2)
                                             </p>
+                                        }
+                                        else
+                                        {
+                                        <p class="p-2 mb-2 bg-light text-dark">
+                                            @Html.DisplayFor(modelItem => item.ValidationN2)
+                                        </p>
                                         }
 
 
@@ -216,10 +222,16 @@
                                                 @Html.DisplayFor(modelItem => item.ValidationRH)
                                             </p>
                                         }
-                                        else
+                                        else if (item.ValidationRH == "Accepte")
                                         {
                                             <p class="p-2 mb-2 bg-success text-white">
-                                                @Html.DisplayFor(modelItem => item.ValidationRH)
+                                                @Html.DisplayFor(modelItem => item.ValidationN2)
+                                            </p>
+                                        }
+                                        else
+                                        {
+                                            <p class="p-2 mb-2 bg-light text-dark">
+                                                @Html.DisplayFor(modelItem => item.ValidationN2)
                                             </p>
                                         }
 

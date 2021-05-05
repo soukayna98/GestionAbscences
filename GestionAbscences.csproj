@@ -493,10 +493,10 @@
     <Content Include="Data\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\Admin\Views\Historique\historiques.cshtml" />
     <Content Include="Areas\AdminN2\Views\Historique\historiques.cshtml" />
     <Content Include="Areas\RH\Views\Historique\historiques.cshtml" />
     <Content Include="Areas\RH\Views\Historique\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Historique\historiques.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
