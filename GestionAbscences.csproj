@@ -137,6 +137,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\Controllers\DemandeCongeController.cs" />
+    <Compile Include="Areas\RH\Controllers\EmployeController.cs" />
     <Compile Include="Areas\RH\RHAreaRegistration.cs" />
     <Compile Include="Areas\RH\Controllers\DefaultController.cs" />
     <Compile Include="Areas\RH\Controllers\HistoriqueController.cs" />
@@ -504,6 +506,11 @@
     <Content Include="Areas\RH\Views\Shared\_offlineLayout.cshtml" />
     <Content Include="Areas\RH\Views\web.config" />
     <Content Include="Areas\.editorconfig" />
+    <Content Include="Areas\RH\Views\Employe\Index.cshtml" />
+    <Content Include="Areas\RH\Views\Employe\Create.cshtml" />
+    <Content Include="Areas\RH\Views\Employe\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\DemandeConge\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DemandeConge\modifier.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

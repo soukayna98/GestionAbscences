@@ -44,7 +44,7 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.matricule)
                             </th>
-          
+
                             <th>
                                 @Html.DisplayNameFor(model => model.NomComplet)
                             </th>
@@ -78,7 +78,7 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.soldeConge)
                             </th>
-                            
+
                             <th></th>
                         </tr>
                     </thead>
@@ -89,52 +89,52 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.matricule)
-                            </td>
-            
-                            <td>
-                                @Html.DisplayFor(modelItem => item.NomComplet)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Classe)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.affectation)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DateDebut)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DateFin)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.role)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.password)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.nbjours)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.nbjoursR)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.nbjoursA)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.soldeConge)
-                            </td>
-                            <td>
-                                
-                                @Html.ActionLink("Supprimer", "Delete", new { id = item.idEmploye })
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.matricule)
+                                </td>
 
-                                
-                               
-                            </td>
-                        </tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NomComplet)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Classe)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.affectation)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateDebut)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateFin)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.role)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.password)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.nbjours)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.nbjoursR)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.nbjoursA)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.soldeConge)
+                                </td>
+                                <td>
+
+                                    @Html.ActionLink("Supprimer", "Delete", new { id = item.idEmploye })
+
+
+
+                                </td>
+                            </tr>
                         }
                     </tbody>
 

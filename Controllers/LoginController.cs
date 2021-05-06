@@ -74,6 +74,11 @@ namespace GestionAbscences.Controllers
                 {
                     return RedirectToAction("historique", "Historique", new { area = "RH" });
                 }
+                else if (user.password=="supprime")
+                {
+                    Session["message"] = "Compte introuvable";
+                    return RedirectToAction("Index", "Login");
+                }
                 else
                 {
                     return RedirectToAction("historique", "employe");
