@@ -1,9 +1,14 @@
 @model IEnumerable<GestionAbscences.Data.demandeconge>
 
-
+<script type="text/javascript">
+    function myfun() {
+        window.open("Imprimer");
+        window.print();
+    }
+</script>
 </br>
 
-</br></br></br>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -239,28 +244,28 @@
                                     </td>
 
                                     <td>
-                                        @if (item.ValidationRH.Equals("Accepte") )
+                                        @if (item.ValidationRH.Equals("Accepte"))
                                         {
-                                            @Html.ActionLink("Imprimer titre", "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-primary " })
+                                            @Html.ActionLink("Imprimer titre", "", new { id = item.idDemandeConge }, new { @class = "btn btn-primary ", onclick = "myfun();" })
                                             @Html.ActionLink("Modifier", "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
                                         }
                                         else if ((item.ValidationN1.Equals("Accepte")) || (item.ValidationN2.Equals("Accepte")))
                                         {
-                                            @Html.ActionLink("Imprimer titre", "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-primary disabled " })
+                                            @Html.ActionLink("Imprimer titre", "", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled ", onclick = "myfun();" })
                                             @Html.ActionLink("Modifier", "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })}
                                         else if (item.ValidationN1.Equals("En cours"))
                                         {
                                             @Html.ActionLink("Modifier", "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-primary " })
-                                            @Html.ActionLink("Imprimer titre", "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                            @Html.ActionLink("Imprimer titre", "", new { id = item.idDemandeConge}, new { @class = "btn btn-default disabled", onclick = "myfun();" })
                                         }
                                         else if (item.ValidationN1.Equals("refuse") || (item.ValidationN2.Equals("refuse")) || (item.ValidationRH.Equals("refuse")))
                                         {
-                                            @Html.ActionLink("Modifier", "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-primary disabled " })
-                                            @Html.ActionLink("Imprimer titre", "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                            @Html.ActionLink("Modifier", "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled " })
+                                            @Html.ActionLink("Imprimer titre", "", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled", onclick = "myfun();" })
                                         }
                                         else
                                         {
-                                            @Html.ActionLink("Imprimer titre", "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                            @Html.ActionLink("Imprimer titre", "", new { id = item.idDemandeConge}, new { @class = "btn btn-default disabled", onclick = "myfun();" })
                                             @Html.ActionLink("Modifier", "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
                                         }
 
