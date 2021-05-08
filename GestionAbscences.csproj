@@ -139,6 +139,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\Controllers\DemandeCongeController.cs" />
     <Compile Include="Areas\RH\Controllers\EmployeController.cs" />
+    <Compile Include="Areas\RH\Controllers\ModificationDureController.cs" />
     <Compile Include="Areas\RH\RHAreaRegistration.cs" />
     <Compile Include="Areas\RH\Controllers\DefaultController.cs" />
     <Compile Include="Areas\RH\Controllers\HistoriqueController.cs" />
@@ -565,6 +566,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\NewFolder1\" />
+    <Folder Include="Areas\RH\Views\ModificationDure\" />
     <Folder Include="Content\images\" />
   </ItemGroup>
   <ItemGroup>

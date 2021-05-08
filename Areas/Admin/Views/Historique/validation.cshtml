@@ -18,81 +18,83 @@
 
                 @using (Html.BeginForm())
                 {
+
                     @Html.AntiForgeryToken()
+                   
 
-                    <div class="form-group">
-                        <form>
-                            <table class="table table-light table-striped" style="margin-left:90px;margin-right:90px; width:750px; margin-top:10px;">
-                                <tr>
-                                    <td style="font-weight:bold; text-align:center;">
-                                        Nom complet
-                                    </td>
-                                    <td>
-                                        @Model.employe.NomComplet
-                                    </td>
-                                    <td style="font-weight:bold; text-align:center;">
-                                        Matricule
-                                    </td>
-                                    <td>
-                                        @Model.employe.matricule
-                                    </td>
+            <div class="form-group">
+                <form>
+                    <table class="table table-light table-striped" style="margin-left:90px;margin-right:90px; width:750px; margin-top:10px;">
+                        <tr>
+                            <td style="font-weight:bold; text-align:center;">
+                                Nom complet
+                            </td>
+                            <td>
+                                @Model.employe.NomComplet
+                            </td>
+                            <td style="font-weight:bold; text-align:center;">
+                                Matricule
+                            </td>
+                            <td>
+                                @Model.employe.matricule
+                            </td>
 
-                                </tr>
-                                <tr>
-                                    <td style="font-weight:bold; text-align:center;">
-                                        Type de congé
-                                    </td>
-                                    <td>
-                                        @Model.typeconge.designation
-                                    </td>
-                                    <td style="font-weight:bold; text-align:center;">
-                                        Date de demande
-                                    </td>
-                                    <td>
-                                        @Model.DateDC
-                                    </td>
-                                </tr>
+                        </tr>
+                        <tr>
+                            <td style="font-weight:bold; text-align:center;">
+                                Type de congé
+                            </td>
+                            <td>
+                                @Model.typeconge.designation
+                            </td>
+                            <td style="font-weight:bold; text-align:center;">
+                                Date de demande
+                            </td>
+                            <td>
+                                @Model.DateDC
+                            </td>
+                        </tr>
 
-                                <tr>
-                                    <td style="font-weight:bold; text-align:center;">
-                                        Date début
-                                    </td>
-                                    <td>
-                                        @Model.DateDebut
-                                    </td>
-                                    <td style="font-weight:bold; text-align:center;">
-                                        Date fin
+                        <tr>
+                            <td style="font-weight:bold; text-align:center;">
+                                Date début
+                            </td>
+                            <td>
+                                @Model.DateDebut
+                            </td>
+                            <td style="font-weight:bold; text-align:center;">
+                                Date fin
 
-                                    </td>
-                                    <td>
-                                        @Model.DateFin
-                                    </td>
-                                </tr>
-                            </table>
-                            <br />
+                            </td>
+                            <td>
+                                @Model.DateFin
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
 
-                            <div class="col-12" style="font-weight:bold; margin-left:70px; color:cornflowerblue; font-size:20px;">
-                                Validation  :
-                            </div>
-                            <br />
+                    <div class="col-12" style="font-weight:bold; margin-left:70px; color:cornflowerblue; font-size:20px;">
+                        Validation  :
+                    </div>
+                    <br />
 
-                            <div class="row align-items-start">
-                                <div class="col-3">
-                                    <button type="submit" style="padding-left:40px; margin-left:140px; padding-right:40px" class="btn btn-success   btn-lg bt" id="submit" name="button" value="Accepté">Accepté</button>
-                                </div>
-                                <div class="col-3">
-                                    <button type="submit" style="padding-left:40px; margin-left:140px; padding-right:40px" class="btn btn-danger btn-primary  btn-lg bt" name="button" value="Refusé" >Refusé</button>
-                                </div>
-                                <div class="col-3">
-                                     <button type="submit" style="padding-left:40px; margin-left:140px; padding-right:40px" class="btn btn-white btn-primary  btn-lg bt"  name="button" value="Annulé"> Annulé</button>
-                                </div>
-                            </div>
-                            
-                           
-                        </form>
+                    <div class="row align-items-start">
+                        <div class="col-3">
+                            <button type="submit" style="padding-left:40px; margin-left:140px; padding-right:40px" class="btn btn-success   btn-lg bt" id="submit" name="button" value="Accepté">Accepté</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="submit" style="padding-left:40px; margin-left:140px; padding-right:40px" class="btn btn-danger btn-primary  btn-lg bt" name="button" value="Refusé">Refusé</button>
+                        </div>
+                        <div class="col-3">
+                            <button type="submit" style="padding-left:40px; margin-left:140px; padding-right:40px" class="btn btn-white btn-primary  btn-lg bt" name="button" value="Annulé"> Annulé</button>
+                        </div>
                     </div>
 
-                }
+
+                </form>
+            </div>
+
+        }
 
 
             </div>

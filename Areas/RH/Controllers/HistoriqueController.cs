@@ -159,10 +159,28 @@ namespace GestionAbscences.Areas.RH.Controllers
             int uid = int.Parse(Session["uid"].ToString());
             demandeconge e = db.demandeconge.Find(uid);
             string button = Request["button"];
+
+            DateTime dateDebut = e.DateDebut.Value;
+           DateTime dateFin = e.DateFin.Value;
+          var  dure = (dateFin - dateDebut).Days;
+            var dureM = (dateFin - dateDebut).TotalMinutes;
+
+            double du = Convert.ToDouble(dure) + 1;
+            double duM = Convert.ToDouble(dureM) + 1440;
+            double nb = Convert.ToDouble(e.employe.nbjoursR);
+            double nbM = Convert.ToDouble(e.employe.nbjoursR) * 24 * 60;
+            double res = nb - du;
+            double resM = nbM - duM;
+            double resJ = resM / 1440;
+            
+          //  Session["dur1"] = duM;
             switch (button)
             {
                 case "Accepté":
                     e.ValdationRH = "accepte";
+        
+
+                    e.employe.nbjoursR = res.ToString();
                     db.Entry(e).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("historique");

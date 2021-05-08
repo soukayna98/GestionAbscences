@@ -30,17 +30,25 @@ namespace GestionAbscences.Areas.RH.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(EmployeModel data)
+        public ActionResult Create(employe data)
         {
             if (ModelState.IsValid)
             {
                 int creationResult = employeService.Create(new Data.employe
                 {
-                    NomComplet = data.Nom,
+                    NomComplet = data.NomComplet,
+                    matricule = data.matricule,
+                    nbjours = data.nbjours,
+                    nbjoursA = data.nbjoursA,
+                    nbjoursR= data.nbjoursR,
+                    affectation= data.affectation,
+                    role = data.role,
+                    password= data.password,
+                    soldeConge= data.soldeConge,
                     Classe = data.Classe,
-                    DateDebut = data.DateD,
-                    DateFin = data.DateF
-                });
+                    DateDebut = data.DateDebut,
+                    DateFin = data.DateFin
+                }) ;
                 if (creationResult == -2)
                 {
                     ViewBag.Message = "nom exist";

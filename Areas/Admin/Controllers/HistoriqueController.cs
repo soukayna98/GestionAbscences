@@ -162,7 +162,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
             switch (button)
             {
                 case "Accepté":
-                    e.ValidationN1 = "Accepte";
+                    e.ValidationN1 = "accepte";
                     db.Entry(e).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("historique");

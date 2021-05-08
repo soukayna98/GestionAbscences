@@ -177,7 +177,7 @@ namespace GestionAbscences.Areas.AdminN2.Controllers
             switch (button)
             {
                 case "Accepté":
-                    e.ValidationN2 = "Accepte";
+                    e.ValidationN2 = "accepte";
                    // e.employe.nbjoursR = nbjoursR;
                     db.Entry(e).State = EntityState.Modified;
                     db.SaveChanges();
