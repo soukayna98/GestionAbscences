@@ -281,3 +281,4 @@ C:\Users\HP\source\repos\GestionAbscences\bin\Microsoft.Owin.dll
 C:\Users\HP\source\repos\GestionAbscences\bin\Owin.dll
 C:\Users\HP\source\repos\GestionAbscences\bin\Microsoft.Owin.xml
 C:\Users\HP\source\repos\GestionAbscences\bin\Rotativa.dll
+C:\Users\HP\source\repos\GestionAbscences\bin\GridMvc.dll

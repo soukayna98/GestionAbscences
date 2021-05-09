@@ -189,12 +189,17 @@
 
                                 </td>
                                 <td>
-                                    @* <a href="@Url.Action("Delete", new {item.Id })" class="btn btn-danger">Delete</a>*@
-                                    @* <a href="@Url.Action("Edit", new {item.Id })" class="btn btn-warning">Edit</a>*@
+                                    @if (item.ValdationRH.Equals("accepte"))
 
-                                    @Html.ActionLink("Répondre", "Validation", new { id = item.idDemandeConge })
-                                    @* @Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
-                                    @* @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                                    {
+                                        @Html.ActionLink("Répondre", "Validation", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink("Répondre", "Validation", new { id = item.idDemandeConge })
+                                    }
+
+
                                 </td>
 
                             </tr>
@@ -213,6 +218,6 @@
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <script src="assets/demo/datatables-demo.js"></script>
-    @Session["dur1"]
+
 </body>
 </html>

@@ -1,0 +1,85 @@
+﻿@model GestionAbscences.Data.typeconge
+
+@{
+    ViewBag.Title = "Delete";
+
+}
+
+
+
+<div>
+    <br />
+    <div class="container">
+
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="card shadow-lg border-0 rounded-lg mt-0 " style="margin-right:180px;margin-top:10px; margin-left:180px;height:auto;">
+
+                    <div class="card-header " style="background-color:#EFEFEF;  padding:10px;"><h4 class="text-center font-weight-bold my-0">Êtes-vous sûr de vouloir le supprimer?</h4></div>
+
+
+                    <br />
+                    <div class="form-group">
+
+                        <table class="table table-light table-striped" style="margin-left:60px;margin-right:30px; width:590px; margin-top:10px;">
+                            <tr>
+                                <td style="font-weight:bold; ">
+                                    Designation
+                                </td>
+                                <td>
+                                    @Model.designation
+                                </td>
+
+
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold; ">
+                                    Durée
+                                </td>
+                                <td>
+                                    @Model.dureeJ
+                                </td>
+
+
+                            </tr>
+                        </table>
+
+                    </div>
+
+
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <br>
+
+
+                        <div class="form-group">
+                            <div class="row align-items-start">
+                                <div class="col-4">
+                                </div>
+                                <div class="col-6">
+
+                                    <input type="submit" value="Supprimer" class="btn btn-warning" style="padding-left:50px; padding-right:50px;">
+
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+
+
+                    }
+
+                    <div style="margin-left:100px;">
+                        @Html.ActionLink("Retour à la liste ", "Index")
+
+                    </div>
+
+                    <br>    <br>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>   

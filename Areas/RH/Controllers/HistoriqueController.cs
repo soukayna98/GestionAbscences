@@ -22,36 +22,10 @@ namespace GestionAbscences.Areas.RH.Controllers
         }
 
 
-        //private GestionAbscencesEntities1 db = new GestionAbscencesEntities1();
-
-        // GET: Admin/Historique
-
-        /*  public ActionResult historique()
-          {
-              //les employes from DB
-              var employes = demandeService.ReadAll();
-              var employesList = new List<DemandeModel>();
-              foreach (var item in employes)
-              {
-                  employesList.Add(new DemandeModel
-                  {
-                      DateDebut = (DateTime)item.DateDebut,
-                      DateFin = (DateTime)item.DateFin,
-                      DateDc = (DateTime)item.DateDC,
-                      validationN1 = item.ValidationN1,
-                      validationN2 = item.ValidationN2,
-                      matricule = item.IdEmploye,
-                      IdTypeConge = item.IdtypeConge,
-                      IdDemandeConge = item.idDemandeConge,
-                      NomComplet = item.employe.NomComplet
-                  });
-              }
-              return View(employesList);
-          }*/
-
+        
         public ActionResult historique()
         {
-            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "accepte" &&  p.ValidationN2 == "accepte");
+            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where((p => p.ValidationN2 == "accepte" && p.ValidationN1 != "refuse"));
 
             return View(demandeConge.ToList());
         }
@@ -161,8 +135,8 @@ namespace GestionAbscences.Areas.RH.Controllers
             string button = Request["button"];
 
             DateTime dateDebut = e.DateDebut.Value;
-           DateTime dateFin = e.DateFin.Value;
-          var  dure = (dateFin - dateDebut).Days;
+            DateTime dateFin = e.DateFin.Value;
+            var dure = (dateFin - dateDebut).Days;
             var dureM = (dateFin - dateDebut).TotalMinutes;
 
             double du = Convert.ToDouble(dure) + 1;
@@ -172,13 +146,13 @@ namespace GestionAbscences.Areas.RH.Controllers
             double res = nb - du;
             double resM = nbM - duM;
             double resJ = resM / 1440;
-            
-          //  Session["dur1"] = duM;
+
+            //  Session["dur1"] = duM;
             switch (button)
             {
                 case "Accepté":
                     e.ValdationRH = "accepte";
-        
+
 
                     e.employe.nbjoursR = res.ToString();
                     db.Entry(e).State = EntityState.Modified;
@@ -200,47 +174,6 @@ namespace GestionAbscences.Areas.RH.Controllers
 
 
         }
-
-        /*  [HttpPost]
-         * 
-        public ActionResult Validation()
-        {
-             string validation1 = Request.Form["validation1"];
-               string validation2 = Request.Form["validation2"];
-               int uid = int.Parse(Session["uid"].ToString());
-               demandeconge e = db.demandeconge.Find(uid);
-               Session["index"] = uid;
-               if (validation2.Equals("Accepte"))
-               {
-                        e.ValidationN2 = "Accepté";
-               }
-                else if (validation2.Equals("Refuse"))
-               {
-                        e.ValidationN2 = "refusé";
-               }
-           else 
-           {
-               e.ValidationN2 = "En cours";
-           }
-           if (validation1.Equals("Accepte"))
-               {
-               e.ValidationN1 = "Accepté";
-               }
-           else if (validation1.Equals("Refuse"))
-           {
-               e.ValidationN1 = "refusé";
-           }
-           else
-           {
-               e.ValidationN1 = "En cours";
-           }
-           db.Entry(e).State = EntityState.Modified;
-               db.SaveChanges();
-           return RedirectToAction("Index" ,"Default");
-       }*/
-
-
-
 
     }
 }

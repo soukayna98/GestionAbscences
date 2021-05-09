@@ -232,6 +232,41 @@ namespace GestionAbscences.Areas.Admin.Controllers
             }
 
         }
+        public ActionResult historique()
+        {
+            //employe e = new employe();
+
+            string x = Session["matricule"].ToString();
+
+            int x1 = int.Parse(x);
+            var employes = demandeService.ReadAll();
+            foreach (var item in employes)
+            {
+                if (item.IdtypeConge == 1)
+                {
+                    Session["tranche1"] = "tranche 1";
+
+                }
+                else
+                     if (item.IdtypeConge == 2)
+                {
+                    Session["tranche2"] = "tranche 2";
+
+                }
+                else
+                     if (item.IdtypeConge == 3)
+                {
+                    Session["Reqliquat"] = "Reliquat";
+
+                }
+            }
+
+            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == x);
+
+            return View(demandeConge.ToList());
+
+        }
+
 
     }
 }

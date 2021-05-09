@@ -24,30 +24,6 @@ namespace GestionAbscences.Areas.Admin.Controllers
 
         //private GestionAbscencesEntities1 db = new GestionAbscencesEntities1();
 
-        // GET: Admin/Historique
-
-        /*  public ActionResult historique()
-          {
-              //les employes from DB
-              var employes = demandeService.ReadAll();
-              var employesList = new List<DemandeModel>();
-              foreach (var item in employes)
-              {
-                  employesList.Add(new DemandeModel
-                  {
-                      DateDebut = (DateTime)item.DateDebut,
-                      DateFin = (DateTime)item.DateFin,
-                      DateDc = (DateTime)item.DateDC,
-                      validationN1 = item.ValidationN1,
-                      validationN2 = item.ValidationN2,
-                      matricule = item.IdEmploye,
-                      IdTypeConge = item.IdtypeConge,
-                      IdDemandeConge = item.idDemandeConge,
-                      NomComplet = item.employe.NomComplet
-                  });
-              }
-              return View(employesList);
-          }*/
 
         public ActionResult historique()
         {
@@ -168,6 +144,8 @@ namespace GestionAbscences.Areas.Admin.Controllers
                     return RedirectToAction("historique");
                 case "Refusé":
                     e.ValidationN1 = "refuse";
+                    e.ValidationN2 = "******";
+                    e.ValdationRH = "******";
                     db.Entry(e).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("historique");
