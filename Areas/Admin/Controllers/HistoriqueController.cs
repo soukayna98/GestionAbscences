@@ -8,6 +8,9 @@ using System.Data.Entity;
 using GestionAbscences.Services;
 using GestionAbscences.Areas.Admin.Models;
 using System.Net;
+using System.IO;
+using System.Data;
+using ClosedXML.Excel;
 
 namespace GestionAbscences.Areas.Admin.Controllers
 {
@@ -24,7 +27,38 @@ namespace GestionAbscences.Areas.Admin.Controllers
 
         //private GestionAbscencesEntities1 db = new GestionAbscencesEntities1();
 
+        [HttpPost]
+        public FileResult Export()
+        {
+            GestionAbscencesEntities5 entities = new GestionAbscencesEntities5();
 
+            DataTable dt = new DataTable("Grid");
+            dt.Columns.AddRange(new DataColumn[8] { new  DataColumn("Date creation"),
+                                            new DataColumn("Nom complet"),
+                                           new  DataColumn("Matricule"),
+                                            new DataColumn("Début"),
+                                            new DataColumn("Fin"),
+                                            new DataColumn("Validation N+1"),
+                                            new DataColumn("Validation N+2"),
+                                            new DataColumn("Validation RH") });
+
+            var demande = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours");
+
+            foreach (var d in demande)
+            {
+                dt.Rows.Add(d.DateDC, d.employe.matricule, d.employe.NomComplet, d.DateDebut, d.DateFin, d.ValidationN1, d.ValidationN2, d.ValdationRH);
+            }
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
+                }
+            }
+        }
         public ActionResult historique()
         {
             var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours");

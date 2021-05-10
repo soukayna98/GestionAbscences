@@ -4,7 +4,12 @@
     ViewBag.Title = "historique";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-</br>
+<br>
+@using (Html.BeginForm("Export", "employe", FormMethod.Post))
+{
+    <input type="submit" class="btn btn-primary" value="Export To Excel" />
+}
+<br>
 
 <script type="text/javascript">
     function popupBasique(page) {
@@ -21,7 +26,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    
+
 
     <link href="css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
@@ -29,7 +34,7 @@
 </head>
 <body class="sb-nav-fixed">
     <div class="sb-nav-fixed">
-       
+
 
         <div class="card mb-4">
             <div class="card-header">
@@ -38,24 +43,24 @@
             </div>
             <div class="card-body">
                 <div class="table">
-                    
-                        <div class="row align-items-start">
-                            <div class="col-4" style=" text-align:center;font-weight:bold;">
-                                Nombre de jour total
-                            </div>
-                            <div class="col-2">
-                                @Session["nbjours"]
-                            </div>
-                            <div class="col-4" style=" text-align:center;font-weight:bold;">
-                                Nombre de jour Restants
-                            </div>
-                            <div class="col-2">
-                                @Session["nbjoursR"]
-                            </div>
-                        </div>
-                    
 
-            </div>
+                    <div class="row align-items-start">
+                        <div class="col-4" style=" text-align:center;font-weight:bold;">
+                            Nombre de jour total
+                        </div>
+                        <div class="col-2">
+                            @Session["nbjours"]
+                        </div>
+                        <div class="col-4" style=" text-align:center;font-weight:bold;">
+                            Nombre de jour Restants
+                        </div>
+                        <div class="col-2">
+                            @Session["nbjoursR"]
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
         </div>
     </div>
@@ -235,41 +240,41 @@
                                         @Html.ActionLink("Modifier", "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
                                         if (item.IdtypeConge == 1)
                                         {
-                                  //  <a href="javascript:popupBasique('Imprimer')">Imprimer1</a>
-                        
-                    }
-                }
-                else if ((item.ValidationN1.Equals("accepte")) || (item.ValidationN2.Equals("accepte")))
-                {
-                    @Html.ActionLink("Imprimer titre", "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-primary disabled " })
-                    @Html.ActionLink("Modifier", "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })}
-                else if (item.ValidationN1.Equals("En cours"))
-                {
-                    @Html.ActionLink("Modifier", "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-primary " })
-                    @Html.ActionLink("Imprimer titre", "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
-                }
-                else if (item.ValidationN1.Equals("refuse") || (item.ValidationN2.Equals("refuse")) || (item.ValdationRH.Equals("refuse")))
-                {
-                    @Html.ActionLink("Modifier", "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-primary disabled " })
-                    @Html.ActionLink("Imprimer titre", "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
-                }
-                else
-                {
-                    @Html.ActionLink("Imprimer titre", "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
-                    @Html.ActionLink("Modifier", "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
-                }
+                                            //  <a href="javascript:popupBasique('Imprimer')">Imprimer1</a>
+
+                                        }
+                                    }
+                                    else if ((item.ValidationN1.Equals("accepte")) || (item.ValidationN2.Equals("accepte")))
+                                    {
+                                        @Html.ActionLink("Imprimer titre", "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-primary disabled " })
+                                        @Html.ActionLink("Modifier", "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })}
+                                    else if (item.ValidationN1.Equals("En cours"))
+                                    {
+                                        @Html.ActionLink("Modifier", "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-primary " })
+                                        @Html.ActionLink("Imprimer titre", "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                    }
+                                    else if (item.ValidationN1.Equals("refuse") || (item.ValidationN2.Equals("refuse")) || (item.ValdationRH.Equals("refuse")))
+                                    {
+                                        @Html.ActionLink("Modifier", "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-primary disabled " })
+                                        @Html.ActionLink("Imprimer titre", "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink("Imprimer titre", "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                        @Html.ActionLink("Modifier", "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                    }
 
                                     @* @Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
                                     @* @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
-                                    </td>
+                                </td>
 
-                                    </tr>
-                                }
-                        </tbody>
-                        </table>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
 
-                    </div>
         </div>
+    </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>

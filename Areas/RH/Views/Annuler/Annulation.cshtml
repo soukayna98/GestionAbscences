@@ -8,6 +8,11 @@
 }
 
 <br>
+@using (Html.BeginForm("Export", "Annuler", FormMethod.Post))
+{
+    <input type="submit" class="btn btn-primary" value="Export To Excel" />
+}
+<br>
 
 <div class="container">
 

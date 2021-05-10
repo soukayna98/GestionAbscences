@@ -282,3 +282,11 @@ C:\Users\HP\source\repos\GestionAbscences\bin\Owin.dll
 C:\Users\HP\source\repos\GestionAbscences\bin\Microsoft.Owin.xml
 C:\Users\HP\source\repos\GestionAbscences\bin\Rotativa.dll
 C:\Users\HP\source\repos\GestionAbscences\bin\GridMvc.dll
+C:\Users\HP\source\repos\GestionAbscences\bin\ClosedXML.dll
+C:\Users\HP\source\repos\GestionAbscences\bin\DocumentFormat.OpenXml.dll
+C:\Users\HP\source\repos\GestionAbscences\bin\ExcelNumberFormat.dll
+C:\Users\HP\source\repos\GestionAbscences\bin\System.IO.Packaging.dll
+C:\Users\HP\source\repos\GestionAbscences\bin\ClosedXML.pdb
+C:\Users\HP\source\repos\GestionAbscences\bin\ClosedXML.xml
+C:\Users\HP\source\repos\GestionAbscences\bin\DocumentFormat.OpenXml.xml
+C:\Users\HP\source\repos\GestionAbscences\bin\ExcelNumberFormat.xml

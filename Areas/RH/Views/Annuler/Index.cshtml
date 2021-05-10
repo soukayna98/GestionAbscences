@@ -23,6 +23,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
+     <br>
+    @using (Html.BeginForm("Export", "Annuler", FormMethod.Post))
+    {
+        <input type="submit" class="btn btn-primary" value="Export To Excel" />
+    }
+    <br>
 
 
     <div class="card mb-4">
