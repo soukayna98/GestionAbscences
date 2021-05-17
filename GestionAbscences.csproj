@@ -547,6 +547,9 @@
     <Content Include="Grid.mvc.readme" />
     <Content Include="Areas\RH\Views\Annuler\Annulation.cshtml" />
     <Content Include="Areas\RH\Views\Annuler\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Demande\historique.cshtml" />
+    <Content Include="Areas\Admin\Views\Demande\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Demande\modifier.cshtml" />
     <None Include="Dockerfile" />
     <None Include=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>
@@ -610,7 +613,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\Demande\" />
     <Folder Include="Areas\NewFolder1\" />
     <Folder Include="Content\images\" />
   </ItemGroup>

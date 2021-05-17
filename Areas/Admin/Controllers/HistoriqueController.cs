@@ -11,6 +11,7 @@ using System.Net;
 using System.IO;
 using System.Data;
 using ClosedXML.Excel;
+using System.Text;
 
 namespace GestionAbscences.Areas.Admin.Controllers
 {
@@ -27,44 +28,60 @@ namespace GestionAbscences.Areas.Admin.Controllers
 
         //private GestionAbscencesEntities1 db = new GestionAbscencesEntities1();
 
-        [HttpPost]
-        public FileResult Export()
-        {
-            GestionAbscencesEntities5 entities = new GestionAbscencesEntities5();
-
-            DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[8] { new  DataColumn("Date creation"),
-                                            new DataColumn("Nom complet"),
-                                           new  DataColumn("Matricule"),
-                                            new DataColumn("Début"),
-                                            new DataColumn("Fin"),
-                                            new DataColumn("Validation N+1"),
-                                            new DataColumn("Validation N+2"),
-                                            new DataColumn("Validation RH") });
-
-            var demande = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours");
-
-            foreach (var d in demande)
-            {
-                dt.Rows.Add(d.DateDC, d.employe.matricule, d.employe.NomComplet, d.DateDebut, d.DateFin, d.ValidationN1, d.ValidationN2, d.ValdationRH);
-            }
-
-            using (XLWorkbook wb = new XLWorkbook())
-            {
-                wb.Worksheets.Add(dt);
-                using (MemoryStream stream = new MemoryStream())
-                {
-                    wb.SaveAs(stream);
-                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
-                }
-            }
-        }
+       
+    
         public ActionResult historique()
         {
-            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours");
+            ViewBag.val1 = new SelectList(db.demandeconge, "idDemandeConge", "ValidationN1");
+            ViewBag.val2 = new SelectList(db.demandeconge, "idDemandeConge", "ValidationN2");
+            ViewBag.valR = new SelectList(db.demandeconge, "idDemandeConge", "ValdationRH");
+            ViewBag.dateD = new SelectList(db.demandeconge, "idDemandeConge", "DateDebut");
 
+            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours");
             return View(demandeConge.ToList());
         }
+     /*   [HttpPost]
+        public ActionResult historique(int? v1, int? v2 , int? vrh, int? dateD)
+        {
+            if (v1 == null)
+            {
+                ViewBag.val1 = new SelectList(db.demandeconge, "idDemandeConge", "ValidationN1");
+                ViewBag.val2 = new SelectList(db.demandeconge, "idDemandeConge", "ValidationN2");
+                ViewBag.valR = new SelectList(db.demandeconge, "idDemandeConge", "ValdationRH");
+                ViewBag.dateD = new SelectList(db.demandeconge, "idDemandeConge", "DateDebut");
+                var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == v2 && p.ValdationRH == vrh && p.DateDebut == dateD);
+                return View(demandeConge.ToList());
+            }
+            else if (v2 == null)
+            {
+                ViewBag.val1 = new SelectList(db.demandeconge, "idDemandeConge", "ValidationN1");
+                ViewBag.val2 = new SelectList(db.demandeconge, "idDemandeConge", "ValidationN2");
+                ViewBag.valR = new SelectList(db.demandeconge, "idDemandeConge", "ValdationRH");
+                ViewBag.dateD = new SelectList(db.demandeconge, "idDemandeConge", "DateDebut");
+                var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours");
+
+                return View(demandeConge.ToList());
+            }
+            else if (catId == null && marId == null)
+            {
+                ViewBag.val1 = new SelectList(db.demandeconge, "idDemandeConge", "ValidationN1");
+                ViewBag.val2 = new SelectList(db.demandeconge, "idDemandeConge", "ValidationN2");
+                ViewBag.valR = new SelectList(db.demandeconge, "idDemandeConge", "ValdationRH");
+                ViewBag.dateD = new SelectList(db.demandeconge, "idDemandeConge", "DateDebut");
+                var voitures = db.Voitures.Include(v => v.Categorie1).Include(v => v.Marque1).Include(v => v.Module1).Include(v => v.Propretaire1).OrderBy(v => v.montant);
+                return View(voitures.ToList());
+            }
+            else
+            {
+                ViewBag.val1 = new SelectList(db.demandeconge, "idDemandeConge", "ValidationN1");
+                ViewBag.val2 = new SelectList(db.demandeconge, "idDemandeConge", "ValidationN2");
+                ViewBag.valR = new SelectList(db.demandeconge, "idDemandeConge", "ValdationRH");
+                ViewBag.dateD = new SelectList(db.demandeconge, "idDemandeConge", "DateDebut");
+                var voitures = db.Voitures.Include(v => v.Categorie1).Include(v => v.Marque1).Include(v => v.Module1).Include(v => v.Propretaire1).OrderBy(v => v.montant).Where(x => x.Categorie1.Id == catId && x.Marque1.Id == marId);
+                return View(voitures.ToList());
+            }
+
+        }*/
         public ActionResult validation(int? id)
         {
             if (id == null)
@@ -173,6 +190,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
             {
                 case "Accepté":
                     e.ValidationN1 = "accepte";
+                    
                     db.Entry(e).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("historique");

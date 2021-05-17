@@ -4,11 +4,20 @@
     ViewBag.Title = "historique";
 
 }
+<br>
+@using (Html.BeginForm("Export", "employe", FormMethod.Post))
+{
+    <input type="submit" class="btn btn-primary" value="Export To Excel" />
+}
+<br>
 
+<script type="text/javascript">
+    function popupBasique(page) {
+        window.open(page);
+    }
+</script>
 
-<title> Historique des Demandes de Conge </title>
-
-
+@Session["demande"]
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,42 +26,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Admin / Employe</title>
+
+
     <link href="css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-    <link href=" https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet" crossorigin="anonymous" />
-    <link href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css" rel="stylesheet" crossorigin="anonymous" />
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js" crossorigin="anonymous"></script>
 </head>
-
-<br>
 <body class="sb-nav-fixed">
-    <div class="btn btn-primary" onclick="fnExcelReport();">Export EXCEL</div>
-    <br>
-   
+    <div class="sb-nav-fixed">
 
-    <br>
 
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                Nombre de jour de conges de @Session["userName"]
+            </div>
+            <div class="card-body">
+                <div class="table">
+
+                    <div class="row align-items-start">
+                        <div class="col-4" style=" text-align:center;font-weight:bold;">
+                            Nombre de jour total
+                        </div>
+                        <div class="col-2">
+                            @Session["nbjours"]
+                        </div>
+                        <div class="col-4" style=" text-align:center;font-weight:bold;">
+                            Nombre de jour Restants
+                        </div>
+                        <div class="col-2">
+                            @Session["nbjoursR"]
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @* <div class="card mb-4">*@
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table mr-1"></i>
-            Historique des demandes de congés
+            Historique des demandes de conges de  @Session["userName"]
         </div>
         <div class="card-body">
-            <div class="table-responsive" id="Grid">
-                <table class="table table-bordered" id="example" width="100%" cellspacing="0">
-
+            <button class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr class="table-success">
                             <th>
@@ -95,21 +117,20 @@
                                 @*Html.DisplayNameFor(model => model.ValidationN2)*@
                                 Validation RH
                             </th>
-                            <th>
 
-                            </th>
 
                         </tr>
-                    </thead>
 
+                    </thead>
                     <tfoot>
 
+
                     </tfoot>
+
                     <tbody>
+
                         @foreach (var item in Model)
                         {
-
-
                             <tr>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.DateDC)
@@ -183,7 +204,6 @@
 
 
                                 </td>
-
                                 <td>
 
                                     @if (item.ValdationRH == "refuse")
@@ -209,47 +229,53 @@
 
 
                                 </td>
-                                <td>
-                                    @if (item.ValidationN1.Equals("accepte"))
 
+                                <td>
+                                    @* <a href="@Url.Action("Delete", new {item.Id })" class="btn btn-danger">Delete</a>*@
+                                    @* <a href="@Url.Action("Edit", new {item.Id })" class="btn btn-warning">Edit</a>*@
+                                    @if (item.ValdationRH.Equals("accepte"))
                                     {
-                                        @Html.ActionLink("Répondre", "Validation", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+
+                                        @Html.ActionLink("Imprimer titre", "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-primary " })
+                                        @Html.ActionLink("Modifier", "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                        if (item.IdtypeConge == 1)
+                                        {
+                                            //  <a href="javascript:popupBasique('Imprimer')">Imprimer1</a>
+
+                                        }
+                                    }
+                                    else if ((item.ValidationN1.Equals("accepte")) || (item.ValidationN2.Equals("accepte")))
+                                    {
+                                        @Html.ActionLink("Imprimer titre", "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-primary disabled " })
+                                        @Html.ActionLink("Modifier", "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })}
+                                    else if (item.ValidationN1.Equals("En cours"))
+                                    {
+                                        @Html.ActionLink("Modifier", "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-primary " })
+                                        @Html.ActionLink("Imprimer titre", "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                    }
+                                    else if (item.ValidationN1.Equals("refuse") || (item.ValidationN2.Equals("refuse")) || (item.ValdationRH.Equals("refuse")))
+                                    {
+                                        @Html.ActionLink("Modifier", "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-primary disabled " })
+                                        @Html.ActionLink("Imprimer titre", "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
                                     }
                                     else
                                     {
-                                        @Html.ActionLink("Répondre", "Validation", new { id = item.idDemandeConge })
+                                        @Html.ActionLink("Imprimer titre", "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                        @Html.ActionLink("Modifier", "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
                                     }
 
+                                    @* @Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
+                                    @* @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
                                 </td>
 
                             </tr>
                         }
-
                     </tbody>
-
                 </table>
-            </div>
+
         </div>
     </div>
-
-    
-
-    @*
-           @using (Html.BeginForm("Export1", "Historique", FormMethod.Post))
-        {
-            <input type="hidden" name="GridHtml" />
-            <input type="submit" id="btnSubmit" value="Export" />
-        }
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-        <script type="text/javascript">
-            $(function () {
-                $("#btnSubmit").click(function () {
-                    $("input[name='GridHtml']").val($("#Grid").html());
-                });
-            });
-        </script>
-
-    *@
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
@@ -258,50 +284,6 @@
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <script src="assets/demo/datatables-demo.js"></script>
 
-    <script>
 
-        function fnExcelReport() {
-            var tab_text = "<table border='2px'>";
-            var tab_text = tab_text + "<tr bgcolor='#eeeeee' height='50'><th colspan='12' style='text-align:center; font-size:20px;'>Historique</th></tr><tr bgcolor='#bf997e' height='50' color='#FFFFFF'>";
-
-            var i = 0;
-            tab = document.getElementById('example'); // id of table
-
-
-
-
-            for (i = 0; i < tab.rows.length; i++) {
-                var row = tab.rows[i];
-                var numberOfCells = row.cells.length;
-                row.deleteCell(numberOfCells - 1);
-                tab_text = tab_text + tab.rows[i].innerHTML + "</tr>";
-
-            }
-
-            tab_text = tab_text + "</table>";
-            tab_text = tab_text.replace(/<a[^>]*>|<\/a>/g, "");//remove if u want links in your table
-            tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
-            tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
-
-            var ua = window.navigator.userAgent;
-            var msie = ua.indexOf("MSIE ");
-
-            if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
-            {
-                txtArea1.document.open("txt/html", "replace");
-                txtArea1.document.write(tab_text);
-                txtArea1.document.close();
-                txtArea1.focus();
-                sa = txtArea1.document.execCommand("SaveAs", true, "Say T.xls");
-            }
-            else                 //other browser not tested on IE 11
-                sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
-
-
-            return (sa);
-        }
-
-
-    </script>
 </body>
 </html>

@@ -22,7 +22,74 @@ namespace GestionAbscences.Controllers
         // GET: employe
         public ActionResult Index()
         {
- 
+            string w = Session["matricule"].ToString();
+          //  Session["tranche1"] = ""; Session["test1"] = ""; Session["tranche2"] = ""; Session["test2"] = ""; Session["rel"] = ""; Session["test3"] = "";
+
+
+            //var employes = demandeService.ReadAll();
+            var employes = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == w);
+
+            foreach (var item in employes)
+            {
+
+                if (item.IdtypeConge == 1 && (item.ValdationRH.Equals("En cours") || item.ValdationRH.Equals("accepte")) && (item.ValidationN1.Equals("En cours") || item.ValidationN1.Equals("accepte")) && (item.ValidationN2.Equals("En cours") || item.ValidationN2.Equals("accepte")))
+                {
+                    Session["tranche1"] = "oui";
+
+                }
+                else if ((item.typeconge.designation.Equals("1ere tranche")) && (item.ValdationRH.Equals("accepte")))
+                {
+
+                    Session["test1"] = "oui";
+                }
+                else
+                {
+                    Session["tranche1"] = "non";
+                    Session["test1"] = "non";
+                }
+            }
+
+            foreach (var item in employes)
+            {
+                if (item.IdtypeConge == 2 && (item.ValdationRH.Equals("En cours") || item.ValdationRH.Equals("accepte")) && (item.ValidationN1.Equals("En cours") || item.ValidationN1.Equals("accepte")) && (item.ValidationN2.Equals("En cours") || item.ValidationN2.Equals("accepte")))
+                {
+                    Session["tranche2"] = "oui";
+
+                }
+                else if (item.IdtypeConge == 2 && item.ValdationRH.Equals("accepte"))
+                {
+                    Session["test2"] = "oui";
+                }
+                else 
+                {
+                    Session["tranche2"] = "non";
+                    Session["test2"] = "non";
+                }
+
+            }
+            foreach (var item in employes)
+            {
+                 
+                if (item.IdtypeConge == 3 && (item.ValdationRH.Equals("En cours") || item.ValdationRH.Equals("accepte")) && (item.ValidationN1.Equals("En cours") || item.ValidationN1.Equals("accepte")) && (item.ValidationN2.Equals("En cours") || item.ValidationN2.Equals("accepte")))
+                {
+                    Session["rel"] = "oui";
+
+                }
+                else if (item.IdtypeConge == 3 && item.ValdationRH.Equals("accepte"))
+                {
+                    Session["test3"] = "oui";
+                }
+
+                else 
+                {
+                    Session["rel"] = "non";
+                    Session["test3"] = "non";
+                }
+
+           
+            }
+
+
             return View();
         }
         [HttpPost]
@@ -113,27 +180,7 @@ namespace GestionAbscences.Controllers
             string x = Session["matricule"].ToString();
 
             int x1 = int.Parse(x);
-            var employes = demandeService.ReadAll();
-            foreach (var item in employes)
-            {
-                if (item.IdtypeConge == 1)
-                {
-                    Session["tranche1"] = "tranche 1";
-
-                }
-                else
-                     if (item.IdtypeConge == 2)
-                {
-                    Session["tranche2"] = "tranche 2";
-
-                }
-                else
-                     if (item.IdtypeConge == 3)
-                {
-                    Session["Reqliquat"] = "Reliquat";
-
-                }
-            }
+            
 
             var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == x);
 
@@ -184,6 +231,7 @@ namespace GestionAbscences.Controllers
         [HttpPost]
         public ActionResult Dashboard1()
         {
+            int uid = int.Parse(Session["idEmploye"].ToString());
             demandeconge demande = new demandeconge();
             string dateDebut = Request["dateDebut"] + " " + Request["timeDebut"];
             string dateFin = Request["dateFin"] + " " + Request["timeFin"];
@@ -194,7 +242,7 @@ namespace GestionAbscences.Controllers
             string justification = Request["justification"];
 
 
-            int uid = int.Parse(Session["idEmploye"].ToString());
+          
             employe e = db.employe.Find(uid);
             Session["affectatio"] = e.affectation;
             Session["nbjour"] = e.nbjours.ToString();
@@ -208,7 +256,7 @@ namespace GestionAbscences.Controllers
             
 
 
-                    double jours = Convert.ToDouble(Session["nbjours"].ToString()) - 1;
+                double jours = Convert.ToDouble(Session["nbjours"].ToString()) - 1;
                 double joursR = Convert.ToDouble(Session["nbjoursR"].ToString()) - 1;
 
                 TimeSpan t = TimeSpan.FromDays(jours); //jurs: nbjours
