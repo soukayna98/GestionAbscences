@@ -1,0 +1,144 @@
+﻿@model GestionAbscences.Data.employe
+
+@{
+    ViewBag.Title = "Supprimer";
+    Layout = "~/Areas/RH/Views/Shared/_Layout.cshtml";
+
+
+}
+
+
+
+<div class="container">
+
+    <div class="row justify-content-center">
+        <div class="col-lg-12">
+            <div class="card shadow-lg border-0 rounded-lg mt-0 " style="margin-right:90px; margin-left:60px;height:auto;">
+
+                <div class="card-header " style="background-color:#EFEFEF; padding:30px;"><h2 class="text-center font-weight-bold my-0">Voulez-vous supprimer cet employé ?</h2></div>
+
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        <form>
+                            <table class="table table-light table-striped" style="margin-left:90px;margin-right:90px; width:750px; margin-top:10px;">
+                                <tr>
+
+                                    <td style="font-weight:bold; text-align:center;">
+                                        Matricule
+                                    </td>
+                                    <td>
+                                        @Model.matricule
+                                    </td>
+                                    <td style="font-weight:bold; text-align:center;">
+                                        Nom complet
+                                    </td>
+                                    <td>
+                                        @Model.NomComplet
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:bold; text-align:center;">
+                                        Classe
+                                    </td>
+                                    <td>
+                                        @Model.Classe
+                                    </td>
+                                    <td style="font-weight:bold; text-align:center;">
+                                        Affectation
+                                    </td>
+                                    <td>
+                                        @Model.affectation
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="font-weight:bold; text-align:center;">
+                                        Date début
+                                    </td>
+                                    <td>
+                                        @Model.DateDebut
+                                    </td>
+                                    <td style="font-weight:bold; text-align:center;">
+                                        Date fin
+
+                                    </td>
+                                    <td>
+                                        @Model.DateFin
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:bold; text-align:center;">
+                                        Role
+                                    </td>
+                                    <td>
+                                        @Model.role
+                                    </td>
+                                    <td style="font-weight:bold; text-align:center;">
+                                        Mot de passe
+
+                                    </td>
+                                    <td>
+                                        @Model.password
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:bold; text-align:center;">
+                                        Nombre de jours
+                                    </td>
+                                    <td>
+                                        @Model.nbjours
+                                    </td>
+                                    <td style="font-weight:bold; text-align:center;">
+                                        Reste
+
+                                    </td>
+                                    <td>
+                                        @Model.nbjoursR
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:bold; text-align:center;">
+                                        last year
+                                    </td>
+                                    <td>
+                                        @Model.nbjoursA
+                                    </td>
+                                    <td style="font-weight:bold; text-align:center;">
+                                        Solde de congé
+
+                                    </td>
+                                    <td>
+                                        @Model.soldeConge
+                                    </td>
+                                </tr>
+                            </table>
+                            <br />
+
+
+                            <div class="row align-items-start">
+
+                                <div class="col-3">
+                                    <button type="submit" style="padding-left:40px; margin-left:270px; padding-right:40px" class="btn btn-success   btn-lg bt" id="submit" name="button" value="Supprimer">Supprimer</button>
+                                </div>
+
+                                <div class="col-3">
+                                    <button type="submit" style="padding-left:40px; margin-left:290px; padding-right:40px" class="btn btn-white btn-primary  btn-lg bt" name="button" value="Annuler"> Annuler</button>
+                                </div>
+                            </div>
+
+
+                        </form>
+                    </div>
+
+                }
+
+
+            </div>
+        </div>
+    </div>
+</div>
