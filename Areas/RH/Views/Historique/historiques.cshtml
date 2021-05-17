@@ -6,12 +6,11 @@
 }
 
 
-<title> Historique des Demandes de Conge </title>
+<title> RH/Historique des Demandes de Conge </title>
 
 
 
 
-<title> Historique des Demandes de Conge </title>
 
 
 <!DOCTYPE html>
@@ -22,11 +21,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Admin / Employe</title>
     <link href="css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
 </head>
+</br>
 <body class="sb-nav-fixed">
 
 
@@ -158,9 +157,15 @@
                                             @Html.DisplayFor(modelItem => item.ValidationN2)
                                         </p>
                                     }
-                                    else
+                                    else if (item.ValidationN2 == "Accepte")
                                     {
                                         <p class="p-2 mb-2 bg-success text-white">
+                                            @Html.DisplayFor(modelItem => item.ValidationN2)
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <p class="p-2 mb-2 bg-light text-dark">
                                             @Html.DisplayFor(modelItem => item.ValidationN2)
                                         </p>
                                     }
@@ -184,23 +189,23 @@
                                             @Html.DisplayFor(modelItem => item.ValidationRH)
                                         </p>
                                     }
-                                    else
+                                    else if (item.ValidationRH == "Accepte")
                                     {
                                         <p class="p-2 mb-2 bg-success text-white">
-                                            @Html.DisplayFor(modelItem => item.ValidationRH)
+                                            @Html.DisplayFor(modelItem => item.ValidationN2)
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <p class="p-2 mb-2 bg-light text-dark">
+                                            @Html.DisplayFor(modelItem => item.ValidationN2)
                                         </p>
                                     }
 
 
-                                </td>
-                                <td>
-                                    @* <a href="@Url.Action("Delete", new {item.Id })" class="btn btn-danger">Delete</a>*@
-                                    @* <a href="@Url.Action("Edit", new {item.Id })" class="btn btn-warning">Edit</a>*@
 
-                                    @Html.ActionLink("Répondre", "Validation", new { id = item.idDemandeConge })
-                                    @* @Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
-                                    @* @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
                                 </td>
+                          
 
                             </tr>
                         }

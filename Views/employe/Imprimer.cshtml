@@ -1,6 +1,7 @@
 ﻿@model GestionAbscences.Data.demandeconge
 @{
     ViewBag.Title = "Validation";
+    Layout = "~/Views/Shared/_offlineLayout.cshtml";
 
 }
 
@@ -17,11 +18,57 @@
 
     <div class="row justify-content-center">
         <div class="col-lg-12">
-            <div class="card shadow-lg border-0 rounded-lg mt-0 " style="margin-right:30px; margin-left:30px;height:auto;">
+            <div>
+                <div class="row align-items-start text-decoration-underline" style="margin-top:30px;">
+                    <div class="col-3">
 
-                <img src="~/Content/images/sonasid.jpg" width="90" height="60" style=" border-radius:8px; ">
+                        <img src="~/Content/images/sonasid.jpg" width="120" height="120" style=" border-radius:8px; ">
+                    </div>
+                    <div class="col-1">
 
-                <h2 class="text-center font-weight-bold my-2 font-italic text-warning text-decoration-underline"> TITRE DE CONGE </h2>
+
+                    </div>
+
+                    <div class="col-5">
+                        <h1 class="text-center font-weight-bold my-2 font-italic  text-decoration-underline" style="color:coral; margin-top:30px; font-weight:bold; font-size:40px;"> TITRE DE CONGE </h1>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row align-items-start text-decoration-underline" style="margin-top:30px;">
+
+                    <div class="col-7">
+
+
+                    </div>
+
+                    <div class="col-4">
+                        <h1 class="text-center font-weight-bold my-2 font-italic  text-decoration-underline" style="color:black;  font-weight:bold; font-size:20px;"> Nador, Le @DateTime.Now.Date.ToString(("MM/dd/yyyy"))  </h1>
+                    </div>
+                </div>
+                <div class="row align-items-start text-decoration-underline">
+                    <div class="col-3">
+
+                        <h1 class="text-center font-weight-bold my-2 font-italic text-decoration-underline" style="color: black; margin-top: 30px; font-weight: bold; font-size: 20px;"> APN/A/NS/XX/XXXX </h1>
+                    </div>
+
+                </div>
+                <br><br><br><br>
+
+                <div class="row align-items-start ">
+                    <div class="col">
+
+                        <h1 class="text-center font-weight-bold my-2 font-italic  text-decoration-underline" style=" margin-top: 30px; font-weight: bold; font-size: 20px;">
+                            TITRE DE CONGE <br>
+                            (Première tranche)
+                            <br><br><br><br>
+                        </h1>
+                    </div>
+
+                </div>
+
+
+
 
 
                 @using (Html.BeginForm())
@@ -29,108 +76,22 @@
                     @Html.AntiForgeryToken()
 
                     <div class="form-group">
-                        <form>
-                            <table class="table table-light table-striped" style="margin-left:90px;margin-right:90px; width:750px; margin-top:10px;">
-                                <tr>
-                                    <td colspan="1" style="font-weight:bold; text-align:center;text-align:left">
-                                        Nom & Prénom
-                                    </td>
-                                    <td colspan="3">
-                                        @Model.employe.NomComplet
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td style="font-weight:bold; text-align:center;text-align:left">
-                                        Matricule
-                                    </td>
-                                    <td style="text-align:left">
-                                        @Model.employe.matricule
-                                    </td>
-                                    <td style="font-weight:bold; text-align:center;text-align:right">
-                                        Affectation
-                                    </td>
-                                    <td style="text-align:left">
-                                        @Model.employe.affectation
-                                    </td>
-                                </tr>
-                                <tr>
-
-                                    <td colspan="2" style="font-weight:bold; text-align:center;text-align:left">
-                                        Type de congé
-                                    </td>
-                                    <td colspan="2">
-                                        @Model.typeconge.designation
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td colspan="3" style="font-weight:bold; text-align:center;text-align:left">
-                                        Durée de congé (à préciser jours ou heures)  :
-                                    </td>
-                                    <td colspan="1">
-
-                                        @{ DateTime debut = Convert.ToDateTime(Model.DateDebut);
-                                            DateTime fin = Convert.ToDateTime(Model.DateFin);
-                                            //le nb de jour choisi dans le form
-                                            TimeSpan objTimeSpan = fin - debut;
-                                        }
-                                        @objTimeSpan
-                                    </td>
-
-                                </tr>
-
-                                <tr>
-
-                                    <td colspan="3" style=" text-align:center;font-weight:bold;">
-                                        <li>  Date Début :</li>
-                                    </td>
-                                    <td colspan="1">
-                                        @Model.DateDebut
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td colspan="3" style=" text-align:center;font-weight:bold;">
-                                        <li> Date Fin: </li>
-
-                                    </td>
-                                    <td colspan="1">
-                                        @Model.DateFin
-
-                                    </td>
-
-                                </tr>
-
-                            </table>
-
-
-                            <table style=" margin-left: 90px; margin-right: 90px; width: 750px; border: 1px solid black; font-weight: bold; text-align: center;">
-                                <tr>
-                                    <td style="border: 1px solid black; height: 100px ; vertical-align: text-top">
-                                        Date et visa de l'intéressé :
-                                        <br /> @Model.employe.NomComplet
-                                    </td>
-                                    <td style="border: 1px solid black; height: 100px ; vertical-align: text-top">
-                                        Date et visa de la hiérarchie :
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td colspan="2" style=" height: 100px; vertical-align: text-top"> Cadre réservé aux structure ressources humaines </td>
-
-                                </tr>
-                            </table>
-                            <br />
-                            <div class="col-4">
-
-                                <button type="submit" style="padding-left:40px; margin-left:380px; padding-right:40px" class="btn btn-info btn-primary  btn-lg bt" id="submit" name="submit" onclick="myfun()"> Imprimer </button>
-                            </div>
-                        </form>
+                        <p style="font-size:large;">
+                            Monsieur @Model.employe.NomComplet   Mle @Model.employe.matricule, « grade »   à la SONASID, est autorisé à bénéficier au titre de l’année @DateTime.Now.Date.ToString(("yyyy")) d’un congé régulier de « durée » jours (xx j), à prendre du @Model.DateDebut au @Model.DateFin inclus.
+                            <br><br>
+                            A cette occasion, l’intéressé percevra l’indemnité forfaitaire de congé prévue par la note de service DG/IN° 43/92 du 1er Septembre 1992, et le protocole d’accord 2007 d’un montant de ……… Dirhams    (……..) Dirhams.
+                            <br><br><br><br>
+                            -	Agent « Marié ou Célibataire »
+                            <br><br>
+                            -	Nbre d’enfants
+                            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><hr>
+                        </p>
                     </div>
-
                 }
+
+
+
+
 
 
             </div>

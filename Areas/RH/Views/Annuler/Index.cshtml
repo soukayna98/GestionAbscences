@@ -2,15 +2,12 @@
 
 @{
     ViewBag.Title = "historique";
-    Layout = "~/Areas/AdminN2/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/RH/Views/Shared/_Layout.cshtml";
 }
 
 
 
-<title> N+2/Historique des Demandes de Conge </title>
-
-
-
+<title> Historique des Demandes de Conge accepté </title>
 
 
 <!DOCTYPE html>
@@ -21,13 +18,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Admin / Employe</title>
     <link href="css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
 </head>
-</br>
 <body class="sb-nav-fixed">
+    <br>
+   
+    <br>
 
 
     <div class="card mb-4">
@@ -158,19 +156,12 @@
                                             @Html.DisplayFor(modelItem => item.ValidationN2)
                                         </p>
                                     }
-                                    else if (item.ValidationN2 == "Accepte")
+                                    else
                                     {
                                         <p class="p-2 mb-2 bg-success text-white">
                                             @Html.DisplayFor(modelItem => item.ValidationN2)
                                         </p>
                                     }
-                                    else
-                                    {
-                                        <p class="p-2 mb-2 bg-light text-dark">
-                                            @Html.DisplayFor(modelItem => item.ValidationN2)
-                                        </p>
-                                    }
-
 
 
                                 </td>
@@ -191,23 +182,28 @@
                                             @Html.DisplayFor(modelItem => item.ValidationRH)
                                         </p>
                                     }
-                                    else if (item.ValidationN2 == "Accepte")
-                                    {
-                                        <p class="p-2 mb-2 bg-success text-white">
-                                            @Html.DisplayFor(modelItem => item.ValidationN2)
-                                        </p>
-                                    }
                                     else
                                     {
-                                        <p class="p-2 mb-2 bg-light text-dark">
-                                            @Html.DisplayFor(modelItem => item.ValidationN2)
+                                        <p class="p-2 mb-2 bg-success text-white">
+                                            @Html.DisplayFor(modelItem => item.ValidationRH)
                                         </p>
                                     }
-
 
 
                                 </td>
-                              
+                                <td>
+                                    @if (item.ValidationRH.Equals("Accepte"))
+
+                                    {
+                                        @Html.ActionLink("Annuler", "Annulation", new { id = item.idDemandeConge })
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink("Consulter", "Annulation", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                    }
+
+
+                                </td>
 
                             </tr>
                         }

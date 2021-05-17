@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using GestionAbscences.Services;
 using System.Net;
+using System.Data;
+using System.IO;
 
 namespace GestionAbscences.Controllers
 {
@@ -349,7 +351,40 @@ namespace GestionAbscences.Controllers
 
         }
 
+       /* public FileResult Export()
+        {
+            GestionAbscencesEntities5 entities = new GestionAbscencesEntities5();
+            string x = Session["matricule"].ToString();
+            DataTable dt = new DataTable("Grid");
+            dt.Columns.AddRange(new DataColumn[8] { new  DataColumn("Date creation"),
+                                            new DataColumn("Nom complet"),
+                                           new  DataColumn("Matricule"),
+                                            new DataColumn("Début"),
+                                            new DataColumn("Fin"),
+                                            new DataColumn("Validation N+1"),
+                                            new DataColumn("Validation N+2"),
+                                            new DataColumn("Validation RH") });
 
+            // var demande = from demandeconge in entities.demandeconge.Take(100)
+            //         select demandeconge where 
+
+            var demande = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == x);
+
+            foreach (var d in demande)
+            {
+                dt.Rows.Add(d.DateDC, d.employe.matricule, d.employe.NomComplet, d.DateDebut, d.DateFin, d.ValidationN1, d.ValidationN2, d.ValdationRH);
+            }
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
+                }
+            }
+        }*/
     }
 }
 

@@ -1,19 +1,22 @@
 ﻿@model GestionAbscences.Data.demandeconge
 
 @{
-    ViewBag.Title = "Validation";
-
+    ViewBag.Title = "historique";
+    Layout = "~/Areas/RH/Views/Shared/_Layout.cshtml";
 }
 
-</br>
+
+<br>
+
+<br>
 
 <div class="container">
 
     <div class="row justify-content-center">
         <div class="col-lg-12">
-            <div class="card shadow-lg border-0 rounded-lg mt-0 " style="margin-right:90px; margin-left:60px;height:auto;">
+            <div class="card shadow-lg border-0 rounded-lg mt-0 " style="margin-right:90px;margin-top:10px; margin-left:60px;height:auto;">
 
-                <div class="card-header " style="background-color:#EFEFEF; padding:10px;"><h2 class="text-center font-weight-bold my-0"> Demande en attente de réponse</h2></div>
+                <div class="card-header " style="background-color:#EFEFEF;  padding:10px;"><h2 class="text-center font-weight-bold my-0">Annulez la demande de congé</h2></div>
 
 
                 @using (Html.BeginForm())
@@ -24,13 +27,13 @@
                         <form>
                             <table class="table table-light table-striped" style="margin-left:90px;margin-right:90px; width:750px; margin-top:10px;">
                                 <tr>
-                                    <td style="font-weight:bold; text-align:center;text-align:left ">
+                                    <td style="font-weight:bold; ">
                                         Nom complet
                                     </td>
                                     <td>
                                         @Model.employe.NomComplet
                                     </td>
-                                    <td style="font-weight:bold; text-align:center;text-align:left">
+                                    <td style="font-weight:bold; ">
                                         Matricule
                                     </td>
                                     <td>
@@ -39,53 +42,68 @@
 
                                 </tr>
                                 <tr>
-                                    <td style="font-weight:bold; text-align:center;text-align:left">
+                                    <td style="font-weight:bold; ">
                                         Type de congé
                                     </td>
                                     <td>
                                         @Model.typeconge.designation
                                     </td>
-                                    <td style="font-weight:bold; text-align:center;text-align:left">
+                                    <td style="font-weight:bold; ">
+                                        Affectation
+                                    </td>
+                                    <td>
+                                        @Model.employe.affectation
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:bold; ">
                                         Date de demande
+
                                     </td>
                                     <td>
                                         @Model.DateDC
                                     </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
                                 </tr>
 
                                 <tr>
-                                    <td style="font-weight:bold; text-align:center;text-align:left">
+                                    <td style="font-weight:bold; ">
                                         Date début
                                     </td>
                                     <td>
                                         @Model.DateDebut
                                     </td>
-                                    <td style="font-weight:bold; text-align:center;text-align:left">
+                                    <td style="font-weight:bold; ">
                                         Date fin
 
                                     </td>
                                     <td>
                                         @Model.DateFin
                                     </td>
+
                                 </tr>
                             </table>
                             <br />
 
                             <div class="col-12" style="font-weight:bold; margin-left:70px; color:cornflowerblue; font-size:20px;">
-                                votre décision :
+                                Votre décision  :
                             </div>
                             <br />
 
                             <div class="row align-items-start">
                                 <div class="col-3">
-                                    <button type="submit" style="padding-left:40px; margin-left:140px; padding-right:40px" class="btn btn-success   btn-lg bt" id="submit" name="button" value="Accepté">Accepter</button>
+                                    <button type="submit" style="padding-left:40px; margin-left:260px; padding-right:40px" class="btn btn-warning btn-primary  btn-lg bt" name="button" value="Annulé"> Annuler</button>
                                 </div>
-                                <div class="col-3">
-                                    <button type="submit" style="padding-left:40px; margin-left:140px; padding-right:40px" class="btn btn-danger btn-primary  btn-lg bt" name="button" value="Refusé">Refuser</button>
-                                </div>
-                                <div class="col-3">
-                                    <button type="submit" style="padding-left:40px; margin-left:140px; padding-right:40px" class="btn btn-white btn-primary  btn-lg bt" name="button" value="Annulé"> Annuler</button>
-                                </div>
+
+                                @*
+        <div class="col-3">
+            <button type="submit" style="padding-left:40px; margin-left:260px; padding-right:40px" class="btn btn-primary btn-primary  btn-lg bt" name="button" value="Retour">Retour</button>
+        </div>
+                                *@
+
                             </div>
 
 

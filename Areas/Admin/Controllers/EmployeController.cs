@@ -3,7 +3,9 @@ using GestionAbscences.Data;
 using GestionAbscences.Services;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -11,6 +13,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
 {
     public class EmployeController : Controller
     {
+        private GestionAbscencesEntities5 db = new GestionAbscencesEntities5();
         private readonly EmployeService employeService;
 
         public EmployeController()
@@ -122,27 +125,80 @@ namespace GestionAbscences.Areas.Admin.Controllers
             return View(data);
         }
 
-       
 
-        public ActionResult Delete(int? Id)
+
+        /*  public ActionResult Delete(int? Id)
+          {
+              if(Id != null)
+              {
+                  var employe = employeService.ReadById(Id.Value);
+                  var employeInfo = new EmployeModel
+                  {
+                      Id = employe.idEmploye,
+                      Classe = employe.Classe,
+                      DateD = (DateTime)employe.DateDebut,
+                      DateF = (DateTime)employe.DateFin,
+                      Nom = employe.NomComplet
+                  };
+                  return View(employeInfo);
+              }
+              return RedirectToAction("Index");
+          }
+        */
+
+        public ActionResult Delete(int? id)
         {
-            if(Id != null)
+            if (id == null)
             {
-                var employe = employeService.ReadById(Id.Value);
-                var employeInfo = new EmployeModel
-                {
-                    Id = employe.idEmploye,
-                    Classe = employe.Classe,
-                    DateD = (DateTime)employe.DateDebut,
-                    DateF = (DateTime)employe.DateFin,
-                    Nom = employe.NomComplet
-                };
-                return View(employeInfo);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            return RedirectToAction("Index");
+            var currentEmploye = employeService.ReadById(id.Value);
+            if (currentEmploye == null)
+            {
+                return HttpNotFound($"this demande ({id}) is not found");
+            }
+
+
+            employe e = db.employe.Find(id);
+            Session["idE"] = currentEmploye.idEmploye;
+
+            if (e == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(e);
+        }
+        [HttpPost]
+        public ActionResult Delete()
+        {
+
+            int uid = int.Parse(Session["idE"].ToString());
+            employe e = db.employe.Find(uid);
+            DateTime dc = DateTime.Now;
+
+
+            string button = Request["button"];
+            switch (button)
+            {
+                case "Supprimer":
+                    e.DateFin = dc;
+                    e.password = "supprime";
+                    db.Entry(e).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+
+                case "Annuler":
+
+                    return RedirectToAction("Index");
+
+                default:
+                    return View();
+
+            }
         }
 
-        [HttpPost]
+           /* [HttpPost]
         public ActionResult DeleteConfirmed(int? Id)
         {
             if(Id != null)
@@ -156,6 +212,6 @@ namespace GestionAbscences.Areas.Admin.Controllers
 
             }
             return HttpNotFound();
-        }
+        }*/
     }
 }

@@ -2,7 +2,7 @@
 
 
 
-<title> Historique des Demandes de Conge </title>
+<title> N+1/Historique des Demandes de Conge </title>
 
 
 @{
@@ -26,8 +26,9 @@
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
 </head>
+</br>
 <body class="sb-nav-fixed">
-
+    @Session["dure"]
 
     <div class="card mb-4">
         <div class="card-header">
@@ -36,6 +37,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
+
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
                     <thead>
@@ -81,7 +83,7 @@
                                 Validation RH
                             </th>
 
-
+                            <th></th>
                         </tr>
                     </thead>
 
@@ -157,12 +159,19 @@
                                             @Html.DisplayFor(modelItem => item.ValidationN2)
                                         </p>
                                     }
-                                    else
+                                    else if (item.ValidationN2 == "Accepte")
                                     {
                                         <p class="p-2 mb-2 bg-success text-white">
                                             @Html.DisplayFor(modelItem => item.ValidationN2)
                                         </p>
                                     }
+                                    else
+                                    {
+                                        <p class="p-2 mb-2 bg-light text-dark">
+                                            @Html.DisplayFor(modelItem => item.ValidationN2)
+                                        </p>
+                                    }
+
 
 
                                 </td>
@@ -183,12 +192,19 @@
                                             @Html.DisplayFor(modelItem => item.ValidationRH)
                                         </p>
                                     }
-                                    else
+                                    else if (item.ValidationRH == "Accepte")
                                     {
                                         <p class="p-2 mb-2 bg-success text-white">
-                                            @Html.DisplayFor(modelItem => item.ValidationRH)
+                                            @Html.DisplayFor(modelItem => item.ValidationN2)
                                         </p>
                                     }
+                                    else
+                                    {
+                                        <p class="p-2 mb-2 bg-light text-dark">
+                                            @Html.DisplayFor(modelItem => item.ValidationN2)
+                                        </p>
+                                    }
+
 
 
                                 </td>
