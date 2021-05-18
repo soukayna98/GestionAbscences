@@ -192,6 +192,12 @@ namespace GestionAbscences.Controllers
              {
             int uid = int.Parse(Session["modifierID"].ToString());
             demandeconge e = db.demandeconge.Find(uid);
+
+            DateTime debut = Convert.ToDateTime(Request["dateDebut"]);
+            DateTime fin = Convert.ToDateTime(Request["dateFin"]);
+            TimeSpan dateSpan = fin - debut;
+
+            int idT = e.IdtypeConge;
             string button = Request["modifier"];
             string dateDebut = Request["dateDebut"] + " " + Request["timeDebut"];
             string dateFin = Request["dateFin"] + " " + Request["timeFin"];
@@ -199,6 +205,8 @@ namespace GestionAbscences.Controllers
             switch (button)
             {
                 case "valide":
+
+
                     e.DateDebut = Convert.ToDateTime(dateDebut);
                     e.DateFin = Convert.ToDateTime(dateFin);
                     e.DateDC = dc;
@@ -254,6 +262,7 @@ namespace GestionAbscences.Controllers
 
                 employe e = db.employe.Find(uid);
 
+               
                 if (e.password == obj.OldPassword)
                 {
                     e.password = obj.NewPassword;

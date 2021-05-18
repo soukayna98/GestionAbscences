@@ -82,14 +82,14 @@ namespace GestionAbscences.Areas.RH.Controllers
             //  Session["dur1"] = duM;
             switch (button)
             {
-                case "Annulé":
+                case "Retour":
+                   
+                    return RedirectToAction("Index");
+                case "annule":
                     e.ValdationRH = "refuse";
                     e.employe.nbjoursR = res.ToString();
                     db.Entry(e).State = EntityState.Modified;
                     db.SaveChanges();
-                    return RedirectToAction("Index");
-                case "Retour":
-
                     return RedirectToAction("Index");
 
                 default:

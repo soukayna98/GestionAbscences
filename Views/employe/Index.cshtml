@@ -96,17 +96,21 @@
 
                                             <div class="form-radio-item">
 
-                                                @if (t1 > 0|| t4 > 0)
-                                                {
-                                                    <input type="radio" name="typeCongeIdTypeconge" id="1 ere tranche" value="1 ere tranche" disabled>
-                                                    <label style="color:gray;" for="1ère tranche">1 ere tranche</label>
-                                                }
-
-                                                else
+                                                @if (t1 == 0 && t4 == 0)
                                                 {
                                                     <input type="radio" name="typeCongeIdTypeconge" id="1 ere tranche" value="1 ere tranche">
-                                                    <label  for="1ère tranche">1 ere tranche</label>
+                                                    <label for="1 ere tranche">1 ere tranche</label>
+
+
+
                                                 }
+
+                                                @if (t1 > 0 || t4 > 0)
+                                                {
+                                                    <input type="radio" name="typeCongeIdTypeconge" id="1 ere tranche" value="1 ere tranche" disabled>
+                                                    <label style="color:gray;" for="1 ere tranche">1 ere tranche</label>
+                                                }
+
 
                                                 <span class="check"></span>
                                             </div>
