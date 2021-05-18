@@ -26,9 +26,127 @@ namespace GestionAbscences.Areas.Admin.Controllers
         // GET: Admin/Demande
         public ActionResult Index()
         {
+            string w = Session["matricule"].ToString();
+            //  Session["tranche1"] = ""; Session["test1"] = ""; Session["tranche2"] = ""; Session["test2"] = ""; Session["rel"] = ""; Session["test3"] = "";
+
+            int a = 0;
+            int b = 0;
+            int c = 0;
+            int j = 0;
+            int e = 0;
+            int f = 0;
+
+            //var employes = demandeService.ReadAll();
+            var employes = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == w);
+
+            // 1tranche
+            foreach (var item in employes)
+            {
+
+                if (item.IdtypeConge == 1 && (item.ValdationRH.Equals("En cours") || item.ValdationRH.Equals("accepte")) && (item.ValidationN1.Equals("En cours") || item.ValidationN1.Equals("accepte")) && (item.ValidationN2.Equals("En cours") || item.ValidationN2.Equals("accepte")))
+                {
+                    a++;
+                    Session["tranche1"] = a;
+
+                }
+
+                else
+                {
+                    Session["tranche1"] = a;
+
+                }
+
+
+
+            }
+            foreach (var item in employes)
+            {
+                if (item.IdtypeConge == 1 && (item.ValdationRH.Equals("accepte")))
+                {
+
+                    b++;
+                    Session["test1"] = b;
+                }
+                else
+                {
+
+                    Session["test1"] = b;
+                }
+
+            }
+
+            //2 tranche
+
+            foreach (var item in employes)
+            {
+                if (item.IdtypeConge == 2 && (item.ValdationRH.Equals("En cours") || item.ValdationRH.Equals("accepte")) && (item.ValidationN1.Equals("En cours") || item.ValidationN1.Equals("accepte")) && (item.ValidationN2.Equals("En cours") || item.ValidationN2.Equals("accepte")))
+                {
+                    c++;
+                    Session["tranche2"] = c;
+
+                }
+
+                else
+                {
+                    Session["tranche2"] = c;
+
+                }
+
+
+            }
+
+            foreach (var item in employes)
+            {
+                if (item.IdtypeConge == 2 && item.ValdationRH.Equals("accepte"))
+                {
+                    j++;
+                    Session["test2"] = j;
+
+                }
+                else
+                {
+                    Session["test2"] = j;
+                }
+
+            }
+
+            //reli
+
+            foreach (var item in employes)
+            {
+
+                if (item.IdtypeConge == 3 && (item.ValdationRH.Equals("En cours") || item.ValdationRH.Equals("accepte")) && (item.ValidationN1.Equals("En cours") || item.ValidationN1.Equals("accepte")) && (item.ValidationN2.Equals("En cours") || item.ValidationN2.Equals("accepte")))
+                {
+                    e++;
+                    Session["rel"] = e;
+
+                }
+                else
+                {
+                    Session["rel"] = e;
+                }
+
+
+
+
+            }
+            foreach (var item in employes)
+            {
+                if (item.IdtypeConge == 3 && item.ValdationRH.Equals("accepte"))
+                {
+                    f++;
+                    Session["test3"] = f;
+                }
+                else
+                {
+
+                    Session["test3"] = f;
+                }
+            }
+
+
             return View();
         }
-
         public ActionResult historique()
         {
             

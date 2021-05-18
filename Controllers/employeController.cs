@@ -23,76 +23,127 @@ namespace GestionAbscences.Controllers
         public ActionResult Index()
         {
             string w = Session["matricule"].ToString();
-          //  Session["tranche1"] = ""; Session["test1"] = ""; Session["tranche2"] = ""; Session["test2"] = ""; Session["rel"] = ""; Session["test3"] = "";
+            //  Session["tranche1"] = ""; Session["test1"] = ""; Session["tranche2"] = ""; Session["test2"] = ""; Session["rel"] = ""; Session["test3"] = "";
 
+            int a = 0;
+            int b = 0;
+            int c = 0;
+            int j = 0;
+            int e = 0;
+            int f = 0;
 
             //var employes = demandeService.ReadAll();
             var employes = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == w);
 
+            // 1tranche
             foreach (var item in employes)
             {
 
                 if (item.IdtypeConge == 1 && (item.ValdationRH.Equals("En cours") || item.ValdationRH.Equals("accepte")) && (item.ValidationN1.Equals("En cours") || item.ValidationN1.Equals("accepte")) && (item.ValidationN2.Equals("En cours") || item.ValidationN2.Equals("accepte")))
                 {
-                    Session["tranche1"] = "oui";
+                    a++;
+                    Session["tranche1"] = a;
 
                 }
-                else if ((item.typeconge.designation.Equals("1ere tranche")) && (item.ValdationRH.Equals("accepte")))
+              
+                else
+                {
+                    Session["tranche1"] =a;
+                   
+                }
+
+
+                
+            }
+            foreach (var item in employes)
+            {
+                if (item.IdtypeConge == 1 && (item.ValdationRH.Equals("accepte")))
                 {
 
-                    Session["test1"] = "oui";
+                    b++;
+                    Session["test1"] = b;
                 }
                 else
                 {
-                    Session["tranche1"] = "non";
-                    Session["test1"] = "non";
+                    
+                    Session["test1"] = a;
                 }
+
             }
+
+            //2 tranche
 
             foreach (var item in employes)
             {
                 if (item.IdtypeConge == 2 && (item.ValdationRH.Equals("En cours") || item.ValdationRH.Equals("accepte")) && (item.ValidationN1.Equals("En cours") || item.ValidationN1.Equals("accepte")) && (item.ValidationN2.Equals("En cours") || item.ValidationN2.Equals("accepte")))
                 {
-                    Session["tranche2"] = "oui";
+                    c++;
+                    Session["tranche2"] = c;
 
                 }
-                else if (item.IdtypeConge == 2 && item.ValdationRH.Equals("accepte"))
+                
+                else
                 {
-                    Session["test2"] = "oui";
+                    Session["tranche2"] = c;
+                   
                 }
-                else 
+               
+
+            }
+
+            foreach (var item in employes)
+            {
+                if (item.IdtypeConge == 2 && item.ValdationRH.Equals("accepte"))
                 {
-                    Session["tranche2"] = "non";
-                    Session["test2"] = "non";
+                    j++;
+                    Session["test2"] = j;
+
+                }
+                else
+                {
+                    Session["test2"] = j;
                 }
 
             }
+
+            //reli
+
             foreach (var item in employes)
             {
                  
                 if (item.IdtypeConge == 3 && (item.ValdationRH.Equals("En cours") || item.ValdationRH.Equals("accepte")) && (item.ValidationN1.Equals("En cours") || item.ValidationN1.Equals("accepte")) && (item.ValidationN2.Equals("En cours") || item.ValidationN2.Equals("accepte")))
                 {
-                    Session["rel"] = "oui";
+                    e++;
+                    Session["rel"] = e;
 
                 }
-                else if (item.IdtypeConge == 3 && item.ValdationRH.Equals("accepte"))
+                else
                 {
-                    Session["test3"] = "oui";
+                    Session["rel"] = e;
                 }
 
-                else 
-                {
-                    Session["rel"] = "non";
-                    Session["test3"] = "non";
-                }
+                
 
            
             }
+            foreach (var item in employes)
+            {
+                if (item.IdtypeConge == 3 && item.ValdationRH.Equals("accepte"))
+                {
+                    f++;
+                    Session["test3"] = f;
+                }
+                else
+                {
+                    
+                    Session["test3"] = f;
+                }
+            }
 
 
-            return View();
+                return View();
         }
-        [HttpPost]
+       /* [HttpPost]
         public FileResult Export()
         {
             GestionAbscencesEntities5 entities = new GestionAbscencesEntities5();
@@ -126,7 +177,7 @@ namespace GestionAbscences.Controllers
                     return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
                 }
             }
-        }
+        }*/
 
 
         public ActionResult modifier(int? id)
@@ -237,7 +288,7 @@ namespace GestionAbscences.Controllers
             string dateFin = Request["dateFin"] + " " + Request["timeFin"];
 
             string typeCongeIdTypeconge = Request.Form["typeCongeIdTypeconge"];
-            DateTime dc = DateTime.Now;
+           
 
             string justification = Request["justification"];
 
@@ -274,32 +325,40 @@ namespace GestionAbscences.Controllers
                 TimeSpan t112 = TimeSpan.FromHours(36);
 
 
+           
+            DateTime dc = DateTime.Now;
+            
 
-         
-                if (Request["dateDebut"].Equals("") || Request["dateFin"].Equals("") || typeCongeIdTypeconge.Equals(""))
+            if (Request["dateDebut"].Equals("") || Request["dateFin"].Equals("") || typeCongeIdTypeconge.Equals(""))
                 {
                     Session["demande"] = "Remlpir tout les champs svp !";
-                    return RedirectToAction("Index", "Default");
+                    return RedirectToAction("Index", "employe");
                 }
-                else if ((typeCongeIdTypeconge.Equals("Mariage") || typeCongeIdTypeconge.Equals("Naissance") || typeCongeIdTypeconge.Equals("Décès")) && justification.Equals(""))
+            DateTime debut = Convert.ToDateTime(Request["dateDebut"]);
+            DateTime fin = Convert.ToDateTime(Request["dateFin"]);
+            TimeSpan dateSpan = fin - debut;
+                if ((typeCongeIdTypeconge.Equals("Mariage") || typeCongeIdTypeconge.Equals("Naissance") || typeCongeIdTypeconge.Equals("Décès")) && justification.Equals(""))
                 {
-                    Session["demande"] = "Remlir la  justification svp !";
-                    return RedirectToAction("Index", "Default");
+                    Session["demande"] = "Remlir votre observation svp !";
+                    return RedirectToAction("Index", "employe");
                 }
+           
+
+                else if((debut < dc) || (fin < dc) || (fin < debut) )
+            {
+                Session["demande"] = "vérifier les dates svp!";
+                return RedirectToAction("Index", "employe");
+            }
                 else
                 {
-                    DateTime debut = Convert.ToDateTime(Request["dateDebut"]);
-                    DateTime fin = Convert.ToDateTime(Request["dateFin"]);
-                    TimeSpan dateSpan = fin - debut;
+                   
                     //  int reste = Convert.ToInt32(dateSpan);
 
-                    if (typeCongeIdTypeconge.Equals("reliquat") && dateSpan > t0 && dateSpan < t7)
+                    if (typeCongeIdTypeconge.Equals("reliquat") && dateSpan > t0 && dateSpan <= tR)
                     {
 
                         demande.IdtypeConge = 3;
-                        /* e.nbjoursR = e.nbjoursR - reste;
-                         db.Entry(e).State = EntityState.Modified;
-                         db.SaveChanges();*/
+                      
                     }
                     else if (typeCongeIdTypeconge.Equals("1 ere tranche") && dateSpan >= t10 && dateSpan <= t) //obj <JR ,obj >=10
                     {
@@ -329,9 +388,7 @@ namespace GestionAbscences.Controllers
                     else if (typeCongeIdTypeconge.Equals("2 journée") && dateSpan == t2)
                     {
                         demande.IdtypeConge = 10;
-                      //  e.nbjoursR = e.nbjoursR - 2;
-                      //  db.Entry(e).State = EntityState.Modified;
-                      //  db.SaveChanges();
+                    
                     }
                     else if (typeCongeIdTypeconge.Equals("Mariage") && !(justification.Equals("")))
                     {
@@ -369,7 +426,7 @@ namespace GestionAbscences.Controllers
                     else
                     {
                         Session["demande"] = "Vérifier vos données svp !";
-                        return RedirectToAction("Index", "Default");
+                        return RedirectToAction("Index", "employe");
                     }
 
 
