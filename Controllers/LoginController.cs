@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace GestionAbscences.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : BaseController
     {
 
         public GestionAbscencesEntities5 db = new GestionAbscencesEntities5();
