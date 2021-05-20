@@ -14,17 +14,10 @@ namespace GestionAbscences.Data
     
     public partial class supervisionher
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public supervisionher()
-        {
-            this.entitesuper = new HashSet<entitesuper>();
-        }
-    
         public int idSup { get; set; }
         public string NomComplet { get; set; }
         public string Designation { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<entitesuper> entitesuper { get; set; }
+        public virtual entitesuper entitesuper { get; set; }
     }
 }

@@ -1,0 +1,43 @@
+﻿@model GestionAbscences.Data.employehasentite
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>employehasentite</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.employe.NomComplet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employe.NomComplet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.entite.Designation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.entite.Designation)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

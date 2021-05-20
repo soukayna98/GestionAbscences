@@ -8,109 +8,118 @@ using System.Web;
 using System.Web.Mvc;
 using GestionAbscences.Data;
 
-namespace GestionAbscences.Areas.RH.Controllers
+namespace GestionAbscences.Areas.Admin.Controllers
 {
-    public class typecongesController : Controller
+    public class employehasentitesController : Controller
     {
         private GestionAbscencesEntities7 db = new GestionAbscencesEntities7();
 
-        // GET: RH/typeconges
+        // GET: Admin/employehasentites
         public ActionResult Index()
         {
-            return View(db.typeconge.ToList());
+            var employehasentite = db.employehasentite.Include(e => e.employe).Include(e => e.entite);
+            return View(employehasentite.ToList());
         }
 
-        // GET: RH/typeconges/Details/5
+        // GET: Admin/employehasentites/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            typeconge typeconge = db.typeconge.Find(id);
-            if (typeconge == null)
+            employehasentite employehasentite = db.employehasentite.Find(id);
+            if (employehasentite == null)
             {
                 return HttpNotFound();
             }
-            return View(typeconge);
+            return View(employehasentite);
         }
 
-        // GET: RH/typeconges/Create
+        // GET: Admin/employehasentites/Create
         public ActionResult Create()
         {
+            ViewBag.IdEmploye = new SelectList(db.employe, "idEmploye", "NomComplet");
+            ViewBag.IdEntite = new SelectList(db.entite, "idEntite", "Designation");
             return View();
         }
 
-        // POST: RH/typeconges/Create
+        // POST: Admin/employehasentites/Create
         // Afin de déjouer les attaques par survalidation, activez les propriétés spécifiques auxquelles vous voulez établir une liaison. Pour 
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idtypeConge,designation,dureeJ")] typeconge typeconge)
+        public ActionResult Create([Bind(Include = "IdEmploye,IdEntite,date")] employehasentite employehasentite)
         {
             if (ModelState.IsValid)
             {
-                db.typeconge.Add(typeconge);
+                db.employehasentite.Add(employehasentite);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(typeconge);
+            ViewBag.IdEmploye = new SelectList(db.employe, "idEmploye", "NomComplet", employehasentite.IdEmploye);
+            ViewBag.IdEntite = new SelectList(db.entite, "idEntite", "Designation", employehasentite.IdEntite);
+            return View(employehasentite);
         }
 
-        // GET: RH/typeconges/Edit/5
+        // GET: Admin/employehasentites/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            typeconge typeconge = db.typeconge.Find(id);
-            if (typeconge == null)
+            employehasentite employehasentite = db.employehasentite.Find(id);
+            if (employehasentite == null)
             {
                 return HttpNotFound();
             }
-            return View(typeconge);
+            ViewBag.IdEmploye = new SelectList(db.employe, "idEmploye", "NomComplet", employehasentite.IdEmploye);
+            ViewBag.IdEntite = new SelectList(db.entite, "idEntite", "Designation", employehasentite.IdEntite);
+            return View(employehasentite);
         }
 
-        // POST: RH/typeconges/Edit/5
+        // POST: Admin/employehasentites/Edit/5
         // Afin de déjouer les attaques par survalidation, activez les propriétés spécifiques auxquelles vous voulez établir une liaison. Pour 
         // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idtypeConge,designation,dureeJ")] typeconge typeconge)
+        public ActionResult Edit([Bind(Include = "IdEmploye,IdEntite,date")] employehasentite employehasentite)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(typeconge).State = EntityState.Modified;
+                db.Entry(employehasentite).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(typeconge);
+            ViewBag.IdEmploye = new SelectList(db.employe, "idEmploye", "NomComplet", employehasentite.IdEmploye);
+            ViewBag.IdEntite = new SelectList(db.entite, "idEntite", "Designation", employehasentite.IdEntite);
+            return View(employehasentite);
         }
 
-        // GET: RH/typeconges/Delete/5
+        // GET: Admin/employehasentites/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            typeconge typeconge = db.typeconge.Find(id);
-            if (typeconge == null)
+            employehasentite employehasentite = db.employehasentite.Find(id);
+            if (employehasentite == null)
             {
                 return HttpNotFound();
             }
-            return View(typeconge);
+            return View(employehasentite);
         }
 
-        // POST: RH/typeconges/Delete/5
+        // POST: Admin/employehasentites/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            typeconge typeconge = db.typeconge.Find(id);
-            db.typeconge.Remove(typeconge);
+            employehasentite employehasentite = db.employehasentite.Find(id);
+            db.employehasentite.Remove(employehasentite);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

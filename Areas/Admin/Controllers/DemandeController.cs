@@ -19,7 +19,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
 
     public class DemandeController : Controller
     {
-        private GestionAbscencesEntities5 db = new GestionAbscencesEntities5();
+        private GestionAbscencesEntities7 db = new GestionAbscencesEntities7();
         private readonly DemandeService demandeService;
 
 
@@ -164,7 +164,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
         [HttpPost]
         public FileResult Export()
         {
-            GestionAbscencesEntities5 entities = new GestionAbscencesEntities5();
+            GestionAbscencesEntities7 entities = new GestionAbscencesEntities7();
             string x = Session["matricule"].ToString();
             DataTable dt = new DataTable("Grid");
             dt.Columns.AddRange(new DataColumn[8] { new  DataColumn("Date creation"),

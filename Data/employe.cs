@@ -18,7 +18,6 @@ namespace GestionAbscences.Data
         public employe()
         {
             this.demandeconge = new HashSet<demandeconge>();
-            this.employehasentite = new HashSet<employehasentite>();
         }
     
         public int idEmploye { get; set; }
@@ -34,10 +33,10 @@ namespace GestionAbscences.Data
         public string role { get; set; }
         public Nullable<double> soldeConge { get; set; }
         public string nbjoursA { get; set; }
+        public string sexe { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<demandeconge> demandeconge { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<employehasentite> employehasentite { get; set; }
+        public virtual employehasentite employehasentite { get; set; }
     }
 }

@@ -1,10 +1,10 @@
-﻿@model IEnumerable<GestionAbscences.Data.typeconge>
+﻿@model IEnumerable<GestionAbscences.Data.employehasentite>
 @using GridMvc.Html
 @{
-    ViewBag.Title = "Type de Congé";
+    ViewBag.Title = "Employe-Entite";
 }
 
-<h2>Liste des Types de congé </h2>
+<h2>Liste  </h2>
 
 <p>
     @Html.ActionLink("Ajouter", "Create")
@@ -24,7 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title> Liste des Types de congé </title>
+    <title> Employe Entite </title>
 
     <link href="css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
@@ -36,7 +36,7 @@
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table mr-1"></i>
-            Type de Congé
+            Employe-Entite @Session["des"]
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -47,10 +47,14 @@
                     <thead>
                         <tr class="table-success">
                             <th style="text-align:center;">
-                                Designation
+                               Date
                             </th>
                             <th style="text-align:center;">
-                                Durée
+                               Matricule
+                            </th>
+                           
+                            <th style="text-align:center;">
+                                Designation
                             </th>
                             <th></th>
                         </tr>
@@ -64,15 +68,19 @@
                         {
                             <tr>
                                 <td style="text-align:center;">
-                                    @Html.DisplayFor(modelItem => item.designation)
+                                    @Html.DisplayFor(modelItem => item.date)
                                 </td>
                                 <td style="text-align:center;">
-                                    @Html.DisplayFor(modelItem => item.dureeJ)
+                                    @Html.DisplayFor(modelItem => item.employe.matricule)
                                 </td>
+                               
                                 <td style="text-align:center;">
-                                    @Html.ActionLink("Modifier", "Edit", new { id = item.idtypeConge }) |
-
-                                    @Html.ActionLink("Supprimer", "Delete", new { id = item.idtypeConge })
+                                    @Html.DisplayFor(modelItem => item.entite.Designation)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                   
+                                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
                                 </td>
                             </tr>
                         }

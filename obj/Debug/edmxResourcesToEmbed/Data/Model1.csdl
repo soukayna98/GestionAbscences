@@ -34,23 +34,44 @@
     <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="soldeConge" Type="Double" />
     <Property Name="nbjoursA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sexe" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="demandeconge" Relationship="Self.fk_DemandeConge_Employe" FromRole="employe" ToRole="demandeconge" />
     <NavigationProperty Name="employehasentite" Relationship="Self.fk_employehasentite_Employe" FromRole="employe" ToRole="employehasentite" />
+  </EntityType>
+  <EntityType Name="employehasentite">
+    <Key>
+      <PropertyRef Name="IdEmploye" />
+    </Key>
+    <Property Name="IdEmploye" Type="Int32" Nullable="false" />
+    <Property Name="IdEntite" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="employe" Relationship="Self.fk_employehasentite_Employe" FromRole="employehasentite" ToRole="employe" />
+    <NavigationProperty Name="entite" Relationship="Self.fk_employehasentite_Entite" FromRole="employehasentite" ToRole="entite" />
   </EntityType>
   <EntityType Name="entite">
     <Key>
       <PropertyRef Name="idEntite" />
     </Key>
-    <Property Name="idEntite" Type="Int32" Nullable="false" />
+    <Property Name="idEntite" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Designation" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="employehasentite" Relationship="Self.fk_employehasentite_Entite" FromRole="entite" ToRole="employehasentite" />
     <NavigationProperty Name="entitesuper" Relationship="Self.fk_entitesuper_Entite" FromRole="entite" ToRole="entitesuper" />
+  </EntityType>
+  <EntityType Name="entitesuper">
+    <Key>
+      <PropertyRef Name="IdSup" />
+    </Key>
+    <Property Name="IdEntite" Type="Int32" Nullable="false" />
+    <Property Name="IdSup" Type="Int32" Nullable="false" />
+    <Property Name="niveau" Type="Int32" />
+    <NavigationProperty Name="entite" Relationship="Self.fk_entitesuper_Entite" FromRole="entitesuper" ToRole="entite" />
+    <NavigationProperty Name="supervisionher" Relationship="Self.fk_entitesuper_SupervisionHer" FromRole="entitesuper" ToRole="supervisionher" />
   </EntityType>
   <EntityType Name="supervisionher">
     <Key>
       <PropertyRef Name="idSup" />
     </Key>
-    <Property Name="idSup" Type="Int32" Nullable="false" />
+    <Property Name="idSup" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="NomComplet" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Designation" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="entitesuper" Relationship="Self.fk_entitesuper_SupervisionHer" FromRole="supervisionher" ToRole="entitesuper" />
@@ -63,28 +84,6 @@
     <Property Name="designation" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="dureeJ" Type="Double" />
     <NavigationProperty Name="demandeconge" Relationship="Self.fk_DemandeConge_typeConge" FromRole="typeconge" ToRole="demandeconge" />
-  </EntityType>
-  <EntityType Name="employehasentite">
-    <Key>
-      <PropertyRef Name="IdEmploye" />
-      <PropertyRef Name="IdEntite" />
-    </Key>
-    <Property Name="IdEmploye" Type="Int32" Nullable="false" />
-    <Property Name="IdEntite" Type="Int32" Nullable="false" />
-    <Property Name="date" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="employe" Relationship="Self.fk_employehasentite_Employe" FromRole="employehasentite" ToRole="employe" />
-    <NavigationProperty Name="entite" Relationship="Self.fk_employehasentite_Entite" FromRole="employehasentite" ToRole="entite" />
-  </EntityType>
-  <EntityType Name="entitesuper">
-    <Key>
-      <PropertyRef Name="IdEntite" />
-      <PropertyRef Name="IdSup" />
-    </Key>
-    <Property Name="IdEntite" Type="Int32" Nullable="false" />
-    <Property Name="IdSup" Type="Int32" Nullable="false" />
-    <Property Name="niveau" Type="Int32" />
-    <NavigationProperty Name="entite" Relationship="Self.fk_entitesuper_Entite" FromRole="entitesuper" ToRole="entite" />
-    <NavigationProperty Name="supervisionher" Relationship="Self.fk_entitesuper_SupervisionHer" FromRole="entitesuper" ToRole="supervisionher" />
   </EntityType>
   <Association Name="fk_DemandeConge_Employe">
     <End Role="employe" Type="Self.employe" Multiplicity="1" />
@@ -112,7 +111,7 @@
   </Association>
   <Association Name="fk_employehasentite_Employe">
     <End Role="employe" Type="Self.employe" Multiplicity="1" />
-    <End Role="employehasentite" Type="Self.employehasentite" Multiplicity="*" />
+    <End Role="employehasentite" Type="Self.employehasentite" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="employe">
         <PropertyRef Name="idEmploye" />
@@ -148,7 +147,7 @@
   </Association>
   <Association Name="fk_entitesuper_SupervisionHer">
     <End Role="supervisionher" Type="Self.supervisionher" Multiplicity="1" />
-    <End Role="entitesuper" Type="Self.entitesuper" Multiplicity="*" />
+    <End Role="entitesuper" Type="Self.entitesuper" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="supervisionher">
         <PropertyRef Name="idSup" />
@@ -158,14 +157,14 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="GestionAbscencesEntities5" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="GestionAbscencesEntities7" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="demandeconge" EntityType="Self.demandeconge" />
     <EntitySet Name="employe" EntityType="Self.employe" />
+    <EntitySet Name="employehasentite" EntityType="Self.employehasentite" />
     <EntitySet Name="entite" EntityType="Self.entite" />
+    <EntitySet Name="entitesuper" EntityType="Self.entitesuper" />
     <EntitySet Name="supervisionher" EntityType="Self.supervisionher" />
     <EntitySet Name="typeconge" EntityType="Self.typeconge" />
-    <EntitySet Name="employehasentite" EntityType="Self.employehasentite" />
-    <EntitySet Name="entitesuper" EntityType="Self.entitesuper" />
     <AssociationSet Name="fk_DemandeConge_Employe" Association="Self.fk_DemandeConge_Employe">
       <End Role="employe" EntitySet="employe" />
       <End Role="demandeconge" EntitySet="demandeconge" />

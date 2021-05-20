@@ -15,7 +15,7 @@ namespace GestionAbscences.Areas.RH.Controllers
 {
     public class AnnulerController : Controller
     {
-        private GestionAbscencesEntities5 db = new GestionAbscencesEntities5();
+        private GestionAbscencesEntities7 db = new GestionAbscencesEntities7();
         private readonly DemandeService demandeService;
 
         public AnnulerController()
@@ -110,7 +110,7 @@ namespace GestionAbscences.Areas.RH.Controllers
         [HttpPost]
         public FileResult Export()
         {
-            GestionAbscencesEntities5 entities = new GestionAbscencesEntities5();
+            GestionAbscencesEntities7 entities = new GestionAbscencesEntities7();
 
             DataTable dt = new DataTable("Grid");
             dt.Columns.AddRange(new DataColumn[8] { new  DataColumn("Date creation"),

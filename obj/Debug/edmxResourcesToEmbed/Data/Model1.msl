@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="GestionAbscencesModelStoreContainer" CdmEntityContainer="GestionAbscencesEntities5">
+  <EntityContainerMapping StorageEntityContainer="GestionAbscencesModelStoreContainer" CdmEntityContainer="GestionAbscencesEntities7">
     <EntitySetMapping Name="demandeconge">
       <EntityTypeMapping TypeName="GestionAbscencesModel.demandeconge">
         <MappingFragment StoreEntitySet="demandeconge">
@@ -33,6 +33,16 @@
           <ScalarProperty Name="role" ColumnName="role" />
           <ScalarProperty Name="soldeConge" ColumnName="soldeConge" />
           <ScalarProperty Name="nbjoursA" ColumnName="nbjoursA" />
+          <ScalarProperty Name="sexe" ColumnName="sexe" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="employehasentite">
+      <EntityTypeMapping TypeName="GestionAbscencesModel.employehasentite">
+        <MappingFragment StoreEntitySet="employehasentite">
+          <ScalarProperty Name="IdEmploye" ColumnName="IdEmploye" />
+          <ScalarProperty Name="IdEntite" ColumnName="IdEntite" />
+          <ScalarProperty Name="date" ColumnName="date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -41,6 +51,15 @@
         <MappingFragment StoreEntitySet="entite">
           <ScalarProperty Name="idEntite" ColumnName="idEntite" />
           <ScalarProperty Name="Designation" ColumnName="Designation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="entitesuper">
+      <EntityTypeMapping TypeName="GestionAbscencesModel.entitesuper">
+        <MappingFragment StoreEntitySet="entitesuper">
+          <ScalarProperty Name="IdEntite" ColumnName="IdEntite" />
+          <ScalarProperty Name="IdSup" ColumnName="IdSup" />
+          <ScalarProperty Name="niveau" ColumnName="niveau" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -59,24 +78,6 @@
           <ScalarProperty Name="idtypeConge" ColumnName="idtypeConge" />
           <ScalarProperty Name="designation" ColumnName="designation" />
           <ScalarProperty Name="dureeJ" ColumnName="dureeJ" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="employehasentite">
-      <EntityTypeMapping TypeName="GestionAbscencesModel.employehasentite">
-        <MappingFragment StoreEntitySet="employehasentite">
-          <ScalarProperty Name="IdEmploye" ColumnName="IdEmploye" />
-          <ScalarProperty Name="IdEntite" ColumnName="IdEntite" />
-          <ScalarProperty Name="date" ColumnName="date" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="entitesuper">
-      <EntityTypeMapping TypeName="GestionAbscencesModel.entitesuper">
-        <MappingFragment StoreEntitySet="entitesuper">
-          <ScalarProperty Name="IdEntite" ColumnName="IdEntite" />
-          <ScalarProperty Name="IdSup" ColumnName="IdSup" />
-          <ScalarProperty Name="niveau" ColumnName="niveau" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

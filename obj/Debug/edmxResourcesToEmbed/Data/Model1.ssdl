@@ -32,13 +32,11 @@
     <Property Name="role" Type="varchar" MaxLength="50" />
     <Property Name="soldeConge" Type="float" />
     <Property Name="nbjoursA" Type="varchar" MaxLength="50" />
+    <Property Name="sexe" Type="varchar" MaxLength="50" />
   </EntityType>
-  <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'GestionAbscences.dbo.employehasentite' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
   <EntityType Name="employehasentite">
     <Key>
       <PropertyRef Name="IdEmploye" />
-      <PropertyRef Name="IdEntite" />
     </Key>
     <Property Name="IdEmploye" Type="int" Nullable="false" />
     <Property Name="IdEntite" Type="int" Nullable="false" />
@@ -48,14 +46,11 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.employehasentite' n'a pas
     <Key>
       <PropertyRef Name="idEntite" />
     </Key>
-    <Property Name="idEntite" Type="int" Nullable="false" />
+    <Property Name="idEntite" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Designation" Type="varchar" MaxLength="45" Nullable="false" />
   </EntityType>
-  <!--Erreurs détectées durant la génération :
-avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
   <EntityType Name="entitesuper">
     <Key>
-      <PropertyRef Name="IdEntite" />
       <PropertyRef Name="IdSup" />
     </Key>
     <Property Name="IdEntite" Type="int" Nullable="false" />
@@ -66,7 +61,7 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
     <Key>
       <PropertyRef Name="idSup" />
     </Key>
-    <Property Name="idSup" Type="int" Nullable="false" />
+    <Property Name="idSup" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="NomComplet" Type="varchar" MaxLength="45" Nullable="false" />
     <Property Name="Designation" Type="varchar" MaxLength="45" Nullable="false" />
   </EntityType>
@@ -104,7 +99,7 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
   </Association>
   <Association Name="fk_employehasentite_Employe">
     <End Role="employe" Type="Self.employe" Multiplicity="1" />
-    <End Role="employehasentite" Type="Self.employehasentite" Multiplicity="*" />
+    <End Role="employehasentite" Type="Self.employehasentite" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="employe">
         <PropertyRef Name="idEmploye" />
@@ -140,7 +135,7 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
   </Association>
   <Association Name="fk_entitesuper_SupervisionHer">
     <End Role="supervisionher" Type="Self.supervisionher" Multiplicity="1" />
-    <End Role="entitesuper" Type="Self.entitesuper" Multiplicity="*" />
+    <End Role="entitesuper" Type="Self.entitesuper" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="supervisionher">
         <PropertyRef Name="idSup" />
@@ -153,23 +148,11 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
   <EntityContainer Name="GestionAbscencesModelStoreContainer">
     <EntitySet Name="demandeconge" EntityType="Self.demandeconge" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="employe" EntityType="Self.employe" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="employehasentite" EntityType="Self.employehasentite" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="entite" EntityType="Self.entite" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="entitesuper" EntityType="Self.entitesuper" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="supervisionher" EntityType="Self.supervisionher" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="typeconge" EntityType="Self.typeconge" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="employehasentite" EntityType="Self.employehasentite" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [employehasentite].[IdEmploye] AS [IdEmploye], 
-    [employehasentite].[IdEntite] AS [IdEntite], 
-    [employehasentite].[date] AS [date]
-    FROM [dbo].[employehasentite] AS [employehasentite]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="entitesuper" EntityType="Self.entitesuper" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [entitesuper].[IdEntite] AS [IdEntite], 
-    [entitesuper].[IdSup] AS [IdSup], 
-    [entitesuper].[niveau] AS [niveau]
-    FROM [dbo].[entitesuper] AS [entitesuper]</DefiningQuery>
-    </EntitySet>
     <AssociationSet Name="fk_DemandeConge_Employe" Association="Self.fk_DemandeConge_Employe">
       <End Role="employe" EntitySet="employe" />
       <End Role="demandeconge" EntitySet="demandeconge" />

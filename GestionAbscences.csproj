@@ -164,8 +164,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\Controllers\DemandeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\employehasentitesController.cs" />
     <Compile Include="Areas\RH\Controllers\AnnulerController.cs" />
     <Compile Include="Areas\RH\Controllers\EmployeController.cs" />
+    <Compile Include="Areas\RH\Controllers\employehasentitesController.cs" />
+    <Compile Include="Areas\RH\Controllers\entitesController.cs" />
     <Compile Include="Areas\RH\Controllers\typecongesController.cs" />
     <Compile Include="Areas\RH\RHAreaRegistration.cs" />
     <Compile Include="Areas\RH\Controllers\DefaultController.cs" />
@@ -174,9 +177,7 @@
     <Compile Include="Areas\AdminN2\Controllers\DefaultController.cs" />
     <Compile Include="Areas\AdminN2\Controllers\HistoriqueController.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\DefaultController.cs" />
-    <Compile Include="Areas\Admin\Controllers\EmployeController.cs" />
     <Compile Include="Areas\Admin\Controllers\HistoriqueController.cs" />
     <Compile Include="Areas\Admin\Models\ChangePasswordModel.cs" />
     <Compile Include="Areas\Admin\Models\DemandeModel.cs" />
@@ -428,7 +429,6 @@
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Default\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_offlineLayout.cshtml" />
     <Content Include="Content\cont2\css\style.css.map" />
     <Content Include="Content\cont2\fonts\material-icon\fonts\Material-Design-Iconic-Font.eot" />
@@ -509,18 +509,7 @@
     <Content Include="Content\cont2\scss\style.scss" />
     <Content Include="Areas\Admin\Views\Historique\historique.cshtml" />
     <Content Include="Areas\Admin\Views\Historique\validation.cshtml" />
-    <Content Include="Areas\Admin\Views\Employe\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Employe\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Employe\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Employe\Delete.cshtml" />
     <Content Include="App_Browsers\qt.browser" />
-    <EntityDeploy Include="Data\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Data\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\AdminN2\Views\_ViewStart.cshtml" />
     <Content Include="Areas\AdminN2\Views\Default\Index.cshtml" />
     <Content Include="Areas\AdminN2\Views\Historique\historique.cshtml" />
@@ -550,6 +539,28 @@
     <Content Include="Areas\Admin\Views\Demande\historique.cshtml" />
     <Content Include="Areas\Admin\Views\Demande\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Demande\modifier.cshtml" />
+    <Content Include="Areas\RH\Views\entites\Create.cshtml" />
+    <Content Include="Areas\RH\Views\entites\Delete.cshtml" />
+    <Content Include="Areas\RH\Views\entites\Details.cshtml" />
+    <Content Include="Areas\RH\Views\entites\Edit.cshtml" />
+    <Content Include="Areas\RH\Views\entites\Index.cshtml" />
+    <Content Include="Areas\RH\Views\employehasentites\Create.cshtml" />
+    <Content Include="Areas\RH\Views\employehasentites\Delete.cshtml" />
+    <Content Include="Areas\RH\Views\employehasentites\Details.cshtml" />
+    <Content Include="Areas\RH\Views\employehasentites\Edit.cshtml" />
+    <Content Include="Areas\RH\Views\employehasentites\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\employehasentites\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\employehasentites\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\employehasentites\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\employehasentites\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\employehasentites\Index.cshtml" />
+    <EntityDeploy Include="Data\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Data\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
     <None Include="Dockerfile" />
     <None Include=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>
