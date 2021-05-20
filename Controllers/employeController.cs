@@ -11,6 +11,7 @@ using System.Net;
 using System.Data;
 using System.IO;
 
+
 namespace GestionAbscences.Controllers
 {
     public class employeController : BaseController
@@ -390,6 +391,7 @@ namespace GestionAbscences.Controllers
 
 
             var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == x);
+            
 
             return View(demandeConge.ToList());
 

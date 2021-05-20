@@ -118,118 +118,116 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="1.5journée" xml:space="preserve">
-    <value>1.5 days</value>
+    <value>1.5 يوم </value>
   </data>
   <data name="1/2journée" xml:space="preserve">
-    <value>1/2 day</value>
+    <value>1/2 يوم</value>
   </data>
   <data name="1eretranche" xml:space="preserve">
-    <value>1st tranche</value>
+    <value>الشطر الاول</value>
   </data>
   <data name="1journée" xml:space="preserve">
-    <value>1 day</value>
+    <value>1 يوم</value>
   </data>
   <data name="2 journée" xml:space="preserve">
-    <value>2 days</value>
+    <value>2 يوم</value>
   </data>
   <data name="2èmetranche" xml:space="preserve">
-    <value>2nd tranche</value>
+    <value>الشطر الثاني</value>
   </data>
   <data name="Addons" xml:space="preserve">
-    <value>Addons</value>
+    <value>إضافات</value>
   </data>
   <data name="Affectation" xml:space="preserve">
-    <value>Assignment</value>
+    <value>تكليف</value>
   </data>
   <data name="Arabic" xml:space="preserve">
-    <value>Arabic</value>
+    <value>العربية</value>
   </data>
   <data name="AU" xml:space="preserve">
-    <value>TO</value>
+    <value>الى</value>
   </data>
   <data name="Authentification" xml:space="preserve">
-    <value>Authentication</value>
+    <value>المصادقة</value>
   </data>
   <data name="changerlemotdepasse" xml:space="preserve">
-    <value>change password</value>
-  </data>
-  <data name="CHOIXDECONGÉ" xml:space="preserve">
-    <value>CHOICE OF LEAVE</value>
+    <value>تغيير كلمة المرور</value>
   </data>
   <data name="clientdashboard" xml:space="preserve">
-    <value>client dashboard</value>
+    <value>لوحة تحكم العميل</value>
   </data>
   <data name="Core" xml:space="preserve">
-    <value>Core</value>
+    <value>النواة</value>
   </data>
   <data name="Dashboard" xml:space="preserve">
-    <value>Dashboard</value>
+    <value>لوحة القيادة</value>
   </data>
   <data name="DatecreationDC" xml:space="preserve">
-    <value>Date of creation DC</value>
+    <value>تاريخ الإنشاء DC</value>
   </data>
   <data name="Debut" xml:space="preserve">
-    <value>Start</value>
+    <value>بداية</value>
   </data>
   <data name="DemandeDeCongé" xml:space="preserve">
-    <value>Leave Request</value>
+    <value>طلب إجازة</value>
   </data>
   <data name="Designation" xml:space="preserve">
-    <value>Designation</value>
+    <value>تعيين</value>
   </data>
   <data name="dir" xml:space="preserve">
-    <value>ltr</value>
+    <value>rtl</value>
   </data>
   <data name="DU" xml:space="preserve">
-    <value>FROM</value>
+    <value>من عند</value>
   </data>
   <data name="DuréedeCongé" xml:space="preserve">
-    <value>Length of Leave</value>
+    <value>طول الإجازة</value>
   </data>
   <data name="Décès" xml:space="preserve">
-    <value>Deaths</value>
+    <value>حالات الوفاة</value>
   </data>
   <data name="Employé" xml:space="preserve">
-    <value>Employee</value>
+    <value>الموظف</value>
   </data>
   <data name="English" xml:space="preserve">
-    <value>English</value>
+    <value>الإنجليزية</value>
   </data>
   <data name="EXCEPTIONNEL/CR" xml:space="preserve">
-    <value>EXCEPTIONAL/CR</value>
+    <value>استثنائي / CR</value>
   </data>
   <data name="EXCEPTIONNELA.SOLDE" xml:space="preserve">
-    <value>EXCEPTIONAL A.BALANCE</value>
+    <value> استثنائي مع
+ سعر</value>
   </data>
   <data name="Fin" xml:space="preserve">
-    <value>End</value>
+    <value>نهاية</value>
   </data>
   <data name="Frensh" xml:space="preserve">
-    <value>Frensh</value>
+    <value>الفرنسية</value>
   </data>
   <data name="H.S" xml:space="preserve">
     <value>H.S</value>
   </data>
   <data name="Heures" xml:space="preserve">
-    <value>Hours</value>
+    <value>ساعات</value>
   </data>
   <data name="Historique" xml:space="preserve">
-    <value>History</value>
+    <value>سجل</value>
   </data>
   <data name="HistoriquedesDemandedeConge" xml:space="preserve">
-    <value>Leave Request History</value>
+    <value>سجل طلب الإجازة</value>
   </data>
   <data name="Historiquedesdemandesdecongesde" xml:space="preserve">
-    <value>History of leave requests from</value>
+    <value>سجل طلب الإجازة</value>
   </data>
   <data name="Identifiant" xml:space="preserve">
-    <value>Identifier</value>
+    <value>المعرف</value>
   </data>
   <data name="Imprimertitre" xml:space="preserve">
-    <value>Print title</value>
+    <value>طباعة</value>
   </data>
   <data name="Interface" xml:space="preserve">
-    <value>Interface</value>
+    <value>واجهه المستخدم</value>
   </data>
   <data name="J.F" xml:space="preserve">
     <value>J.F</value>
@@ -238,99 +236,99 @@
     <value>J.R</value>
   </data>
   <data name="Jours" xml:space="preserve">
-    <value>days</value>
+    <value>أيام</value>
   </data>
   <data name="Layouts" xml:space="preserve">
-    <value>Layouts</value>
+    <value>التخطيطات</value>
   </data>
   <data name="LightSidenav" xml:space="preserve">
-    <value>Light Sidenav</value>
+    <value>جانب خفيف</value>
   </data>
   <data name="Login" xml:space="preserve">
-    <value>Login</value>
+    <value>تسجيل الدخول</value>
   </data>
   <data name="Mariage" xml:space="preserve">
-    <value>Wedding</value>
+    <value>قران</value>
   </data>
   <data name="Matricule" xml:space="preserve">
-    <value>Personnel number</value>
+    <value>رقم التسجيل</value>
   </data>
   <data name="Mle" xml:space="preserve">
     <value>Mle</value>
   </data>
   <data name="Modifier" xml:space="preserve">
-    <value>Edit</value>
+    <value>مغير</value>
   </data>
   <data name="Naissance" xml:space="preserve">
-    <value>Birth</value>
+    <value>ولادة</value>
   </data>
   <data name="Nom&amp;Prenom" xml:space="preserve">
-    <value>Name &amp; Surname</value>
+    <value>اسم ولقب</value>
   </data>
   <data name="Nombredejourdecongesde" xml:space="preserve">
-    <value>Number of days of leave of</value>
+    <value>عدد أيام الإجازة</value>
   </data>
   <data name="NombredejourRestants" xml:space="preserve">
-    <value>Number of days remaining</value>
+    <value>عدد الأيام المتبقية</value>
   </data>
   <data name="Nombredejoursquireste" xml:space="preserve">
-    <value>Number of days remaining</value>
+    <value>عدد الأيام المتبقية</value>
   </data>
   <data name="Nombredejourtotal" xml:space="preserve">
-    <value>Total number of days</value>
+    <value>إجمالي عدد الأيام</value>
   </data>
   <data name="Nomcomplet" xml:space="preserve">
-    <value>Full name</value>
+    <value>الاسم الكامل</value>
   </data>
   <data name="Observation" xml:space="preserve">
-    <value>Observation</value>
+    <value>ملاحظة</value>
   </data>
   <data name="Pages" xml:space="preserve">
-    <value>Pages</value>
+    <value>الصفحات</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Password</value>
+    <value>كلمه السر</value>
   </data>
   <data name="Profil" xml:space="preserve">
-    <value>Profil</value>
+    <value>الملف الشخصي</value>
   </data>
   <data name="RECUPERATION" xml:space="preserve">
-    <value>RECOVERY</value>
+    <value>استعادة</value>
   </data>
   <data name="REGULIER" xml:space="preserve">
-    <value>REGULAR</value>
+    <value>عادي</value>
   </data>
   <data name="Reliquat" xml:space="preserve">
-    <value>Residual</value>
+    <value>بقية</value>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>Reset</value>
+    <value>إعادة ضبط</value>
   </data>
   <data name="SANSSOLDE" xml:space="preserve">
-    <value>WITHOUT BALANCE</value>
+    <value>بدون دفع</value>
   </data>
   <data name="SeConnecté" xml:space="preserve">
-    <value>Login</value>
+    <value>تسجيل الدخول</value>
   </data>
   <data name="SeDeconnecté" xml:space="preserve">
-    <value>Logout</value>
+    <value>تسجيل خروج</value>
   </data>
   <data name="StaticNavigation" xml:space="preserve">
-    <value>Static Navigation</value>
+    <value>التنقل الثابت</value>
   </data>
   <data name="ValidationN+1" xml:space="preserve">
-    <value>Validation N+1</value>
+    <value>اثبات N+1</value>
   </data>
   <data name="ValidationN+2" xml:space="preserve">
-    <value>Validation N+2</value>
+    <value>اثبات N+2</value>
   </data>
   <data name="ValidationRH" xml:space="preserve">
-    <value>Validation RH</value>
+    <value>اثبات RH</value>
   </data>
   <data name="Valider" xml:space="preserve">
-    <value>Validate</value>
+    <value>اثبات</value>
   </data>
   <data name="Votredemandeestencoursdetraitement" xml:space="preserve">
-    <value>Your request is being processed.</value>
+    <value>طلبك في قيد المعالجة</value>
   </data>
 </root>

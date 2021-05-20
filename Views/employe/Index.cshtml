@@ -1,5 +1,5 @@
 ﻿@model GestionAbscences.Data.employe
-<title> Demande de Conge </title>
+<title>   @GestionAbscences.Langagues.Resource1.DemandeDeCongé </title>
 
 
 
@@ -17,7 +17,7 @@
         <div class="col-lg-12">
             <div class="card shadow-lg border-0 rounded-lg mt-0 " style="margin-right:2px; margin-left:60px;">
 
-                <div class="card-header " style="background-color:#EFEFEF; "><h3 class="text-center font-weight-normal ">DEMANDE DE CONGE <h5 class="text-center font-weight-normal ">(Nombre de jours qui reste : @Session["nbjoursR"].ToString())</h5> </h3></div>
+                <div class="card-header " style="background-color:#EFEFEF; "><h3 class="text-center font-weight-normal ">  @GestionAbscences.Langagues.Resource1.DemandeDeCongé <h5 class="text-center font-weight-normal ">(  @GestionAbscences.Langagues.Resource1.Nombredejoursquireste : @Session["nbjoursR"].ToString())</h5> </h3></div>
 
 
 
@@ -43,7 +43,7 @@
 
                                     <div class="form-radio">
                                         <div class="label-flex">
-                                            <label for="regulier">1.REGULIER</label>
+                                            <label for="regulier">1.@GestionAbscences.Langagues.Resource1.REGULIER</label>
                                         </div>
                                         <div class="form-radio-group">
                                             <div class="form-radio-item">
@@ -73,21 +73,21 @@
                                                     if (t3 > 0 || t6 > 0)
                                                     {
                                                         <input type="radio" name="typeCongeIdTypeconge" id="reliquat" value="reliquat" disabled>
-                                                        <label style="color:gray;" for="reliquat">Reliquat</label>
+                                                        <label style="color:gray;" for="reliquat">  @GestionAbscences.Langagues.Resource1.Reliquat</label>
 
                                                     }
 
                                                     else
                                                     {
                                                         <input type="radio" name="typeCongeIdTypeconge" id="reliquat" value="reliquat">
-                                                        <label for="reliquat">Reliquat</label>
+                                                        <label for="reliquat">  @GestionAbscences.Langagues.Resource1.Reliquat</label>
                                                     }
 
                                                 }
                                                 else
                                                 {
                                                     <input type="radio" name="typeCongeIdTypeconge" id="reliquat" value="reliquat" disabled>
-                                                    <label style="color:gray;" for="reliquat">Reliquat</label>
+                                                    <label style="color:gray;" for="reliquat">  @GestionAbscences.Langagues.Resource1.Reliquat</label>
                                                 }
 
 
@@ -101,7 +101,7 @@
                                                 @if (t1 == 0 && t4 == 0)
                                                 {
                                                     <input type="radio" name="typeCongeIdTypeconge" id="1 ere tranche" value="1 ere tranche">
-                                                    <label for="1 ere tranche">1ere tranche</label>
+                                                    <label for="1 ere tranche">  @GestionAbscences.Langagues.Resource1._1eretranche</label>
 
 
 
@@ -110,7 +110,7 @@
                                                 @if (t1 > 0 || t4 > 0)
                                                 {
                                                     <input type="radio" name="typeCongeIdTypeconge" id="1 ere tranche" value="1 ere tranche" disabled>
-                                                    <label style="color:gray;" for="1 ere tranche">1 ere tranche</label>
+                                                    <label style="color:gray;" for="1 ere tranche">  @GestionAbscences.Langagues.Resource1._1eretranche</label>
                                                 }
 
 
@@ -123,21 +123,21 @@
                                                     if (t2 > 0 || t5 > 0)
                                                     {
                                                         <input type="radio" name="typeCongeIdTypeconge" id="2 eme tranche" value="2 eme tranche" disabled>
-                                                        <label style="color:gray;" for="2 eme tranche">2ème tranche</label>
+                                                        <label style="color:gray;" for="2 eme tranche">@GestionAbscences.Langagues.Resource1._2èmetranche</label>
 
                                                     }
 
                                                     else
                                                     {
                                                         <input type="radio" name="typeCongeIdTypeconge" id="2 eme tranche" value="2 eme tranche">
-                                                        <label for="2 eme tranche">2ème tranche</label>
+                                                        <label for="2 eme tranche">@GestionAbscences.Langagues.Resource1._2èmetranche</label>
                                                     }
 
                                                 }
                                                 else
                                                 {
                                                     <input type="radio" name="typeCongeIdTypeconge" id="2 eme tranche" value="2 eme tranche" disabled>
-                                                    <label style="color:gray;" for="2 eme tranche">2ème tranche</label>
+                                                    <label style="color:gray;" for="2 eme tranche">  @GestionAbscences.Langagues.Resource1._2èmetranche</label>
                                                 }
 
 
@@ -153,70 +153,70 @@
                                 </div>
 
                                 <div class="label-flex">
-                                    <label for="Exceptionnel/cr">2.EXCEPTIONNEL/CR</label>
+                                    <label for="Exceptionnel/cr">2.@GestionAbscences.Langagues.Resource1.EXCEPTIONNEL_CR</label>
                                 </div>
                                 <div class="form-radio-group">
                                     <div class="form-radio-item">
                                         <input type="radio" name="typeCongeIdTypeconge" id="1/2 journée" value="1/2 journée">
-                                        <label for="1/2 journée">1/2 journée</label>
+                                        <label for="1/2 journée">@GestionAbscences.Langagues.Resource1._1_2journée</label>
                                         <span class="check"></span>
                                     </div>
                                     <div class="form-radio-item">
                                         <input type="radio" name="typeCongeIdTypeconge" id="1 journée" value="1 journée">
-                                        <label for="1 journée">1 journée</label>
+                                        <label for="1 journée">  @GestionAbscences.Langagues.Resource1._1journée</label>
                                         <span class="check"></span>
                                     </div>
                                     <div class="form-radio-item">
                                         <input type="radio" name="typeCongeIdTypeconge" id="1.5 journée" value="1.5 journée">
-                                        <label for="1.5 journée">1.5 journée</label>
+                                        <label for="1.5 journée">@GestionAbscences.Langagues.Resource1._1_5journée</label>
                                         <span class="check"></span>
                                     </div>
                                     <div class="form-radio-item">
                                         <input type="radio" name="typeCongeIdTypeconge" id="2 journée" value="2 journée">
-                                        <label for="2 journée">2 journée</label>
+                                        <label for="2 journée">@GestionAbscences.Langagues.Resource1._2_journée</label>
                                         <span class="check"></span>
                                     </div>
                                 </div>
 
 
                                 <div class="label-flex">
-                                    <label for="EXCEPTIONNEL A.SOLDE">3.EXCEPTIONNEL A.SOLDE</label>
+                                    <label for="EXCEPTIONNEL A.SOLDE">3.@GestionAbscences.Langagues.Resource1.EXCEPTIONNELA_SOLDE</label>
                                 </div>
                                 <div class="form-radio-group">
                                     <div class="form-radio-item">
                                         <input type="radio" name="typeCongeIdTypeconge" id="Mariage" value="Mariage">
-                                        <label for="Mariage">Mariage</label>
+                                        <label for="Mariage">  @GestionAbscences.Langagues.Resource1.Mariage</label>
                                         <span class="check"></span>
                                     </div>
                                     <div class="form-radio-item">
                                         <input type="radio" name="typeCongeIdTypeconge" id="Naissance" value="Naissance">
-                                        <label for="Naissance">Naissance</label>
+                                        <label for="Naissance">  @GestionAbscences.Langagues.Resource1.Naissance</label>
                                         <span class="check"></span>
                                     </div>
                                     <div class="form-radio-item">
                                         <input type="radio" name="typeCongeIdTypeconge" id="Décès" value="Décès">
-                                        <label for="Décès">Décès</label>
+                                        <label for="Décès">  @GestionAbscences.Langagues.Resource1.Décès</label>
                                         <span class="check"></span>
                                     </div>
                                 </div>
                                 <div class="label-flex">
-                                    <label for="RECUPERATION">4.RECUPERATION</label>
+                                    <label for="RECUPERATION">4.@GestionAbscences.Langagues.Resource1.RECUPERATION</label>
                                 </div>
 
                                 <div class="form-radio-group">
                                     <div class="form-radio-item">
                                         <input type="radio" name="typeCongeIdTypeconge" id="H.S" value="H.S">
-                                        <label for="H.S">H.S</label>
+                                        <label for="H.S">  @GestionAbscences.Langagues.Resource1.H_S</label>
                                         <span class="check"></span>
                                     </div>
                                     <div class="form-radio-item">
                                         <input type="radio" name="typeCongeIdTypeconge" id="J.R" value="J.R">
-                                        <label for="J.R">J.R</label>
+                                        <label for="J.R">  @GestionAbscences.Langagues.Resource1.J_R</label>
                                         <span class="check"></span>
                                     </div>
                                     <div class="form-radio-item">
                                         <input type="radio" name="typeCongeIdTypeconge" id="J.F" value="J.F">
-                                        <label for="J.F">J.F</label>
+                                        <label for="J.F">  @GestionAbscences.Langagues.Resource1.J_F</label>
                                         <span class="check"></span>
                                     </div>
                                 </div>
@@ -228,7 +228,7 @@
                                 <div class="form-input">
 
 
-                                    <label for="chequeno">DU</label>
+                                    <label for="chequeno">  @GestionAbscences.Langagues.Resource1.DU</label>
                                     <div class="row align-items-start">
                                         <div class="col">
                                             <input type="DATE" name="date1" id="date1" style="padding:2px;" />
@@ -242,7 +242,7 @@
                                 </div>
 
                                 <div class="label-flex">
-                                    <label for="regulier">5.SANS SOLDE</label>
+                                    <label for="regulier">5.  @GestionAbscences.Langagues.Resource1.SANSSOLDE</label>
                                 </div>
 
                                 <div class="form-radio-group">
@@ -250,7 +250,7 @@
                                         <div class="col">
                                             <div class="form-radio-item">
                                                 <input type="radio" name="typeCongeIdTypeconge" id="heures" value="heures">
-                                                <label for="heures">Heures</label>
+                                                <label for="heures">  @GestionAbscences.Langagues.Resource1.Heures</label>
                                                 <input type="text" id="heureSansSolde" name="heureSansSolde" style="padding:2px;">
                                                 <span class="check"></span>
                                             </div>
@@ -258,7 +258,7 @@
                                         <div class="col">
                                             <div class="form-radio-item">
                                                 <input type="radio" name="typeCongeIdTypeconge" id="jour" value="jours">
-                                                <label for="jour">Jours</label>
+                                                <label for="jour">  @GestionAbscences.Langagues.Resource1.Jours</label>
                                                 <input type="date" name="jourSansSolde" id="jourSansSolde" style="padding:2px;" />
                                                 <span class="check"></span>
                                             </div>
@@ -281,7 +281,7 @@
                                     <div class="form-input">
                                         <div class="row align-items-start">
                                             <div class="col">
-                                                <label for="nomComplet">Nom & Prenom</label>
+                                                <label for="nomComplet">  @GestionAbscences.Langagues.Resource1.Nom_Prenom</label>
                                                 <input type="text" name="nomComplet" id="nomComplet" value="@Session["userName"]" style="padding:2px; " />
                                                 @Html.ValidationMessageFor(model => model.NomComplet, "", new { @class = "text-danger" })
                                             </div>
@@ -291,13 +291,13 @@
                                         <div class="row align-items-start">
 
                                             <div class="col">
-                                                <label for="matricule">Matricule</label>
+                                                <label for="matricule">  @GestionAbscences.Langagues.Resource1.Matricule</label>
                                                 <input type="text" name="matricule" id="matricule" value="@Session["matricule"]" style="padding:2px;" />
                                                 @Html.ValidationMessageFor(model => model.idEmploye, "", new { @class = "text-danger" })
                                             </div>
 
                                             <div class="col">
-                                                <label for="affectation">Affectation</label>
+                                                <label for="affectation">  @GestionAbscences.Langagues.Resource1.Affectation</label>
                                                 <input type="text" name="affectation" id="affectation" value="@Session["affectation"]" style="padding:2px;" />
                                                 @Html.ValidationMessageFor(model => model.affectation, "", new { @class = "text-danger" })
 
@@ -306,9 +306,9 @@
                                     </div>
                                     <div class="form-input ">
 
-                                        <label for="DATE FIN">Durée de Congé</label>
+                                        <label for="DATE FIN">  @GestionAbscences.Langagues.Resource1.DuréedeCongé</label>
 
-                                        <label for="chequeno">DU</label>
+                                        <label for="chequeno">  @GestionAbscences.Langagues.Resource1.DU</label>
                                         <div class="row align-items-start">
                                             <div class="col">
                                                 <input type="DATE" name="dateDebut" id="dateDebut" style="padding:2px;" />
@@ -322,7 +322,7 @@
                                     </div>
 
                                     <div class="form-input ">
-                                        <label for="chequeno">AU</label>
+                                        <label for="chequeno">  @GestionAbscences.Langagues.Resource1.AU</label>
                                         <div class="row align-items-start">
                                             <div class="col">
                                                 <input type="DATE" name="dateFin" id="dateFin" style="padding:2px;" />
@@ -337,7 +337,7 @@
                                     </div>
                                     <div>
                                         <div class="form-group shadow-textarea">
-                                            <label for="justification">Observation</label>
+                                            <label for="justification">  @GestionAbscences.Langagues.Resource1.Observation</label>
                                             <textarea class="form-control z-depth-1" name="justification" id="justification" rows="4" placeholder="votre observation"></textarea>
                                         </div>
                                     </div>
@@ -347,9 +347,9 @@
                                         <div class="row align-items-start">
                                             <div class="col">
                                                 @*<input type="submit" value="Envoyer" class=" btn btn-lg btn-success " id="submit" name="submit" />*@
-                                                <button type="submit" style="padding-left:60px; padding-right:60px;" class="btn btn-primary btn-primary  btn-lg bt" id="submit" name="submit"> Valider </button>
+                                                <button type="submit" style="padding-left:60px; padding-right:60px;" class="btn btn-primary btn-primary  btn-lg bt" id="submit" name="submit">   @GestionAbscences.Langagues.Resource1.Valider </button>
                                             </div> <div class="col">
-                                                <button type="reset" style="padding-left:60px; padding-right:60px;" class="btn btn-primary btn-danger btn-lg" name="reset"> Reset </button>
+                                                 <button type="reset" style="padding-left:60px; padding-right:60px;" class="btn btn-primary btn-danger btn-lg" name="reset">   @GestionAbscences.Langagues.Resource1.Reset </button>
                                             </div>
                                         </div>
 

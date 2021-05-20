@@ -13,7 +13,7 @@ namespace GestionAbscences.Controllers
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             if(Session["Lang"] != null)
-            Thread.CurrentThread.CurrentCulture = new CultureInfo(Session["Lang"].ToString());
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(Session["Lang"].ToString());
 
         }
     }

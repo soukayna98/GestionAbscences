@@ -133,11 +133,11 @@ namespace GestionAbscences.Langagues {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à English.
+        ///   Recherche une chaîne localisée semblable à Arabic.
         /// </summary>
-        public static string Anglais {
+        public static string Arabic {
             get {
-                return ResourceManager.GetString("Anglais", resourceCulture);
+                return ResourceManager.GetString("Arabic", resourceCulture);
             }
         }
         
@@ -165,6 +165,24 @@ namespace GestionAbscences.Langagues {
         public static string changerlemotdepasse {
             get {
                 return ResourceManager.GetString("changerlemotdepasse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à CHOICE OF LEAVE.
+        /// </summary>
+        public static string CHOIXDECONGÉ {
+            get {
+                return ResourceManager.GetString("CHOIXDECONGÉ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à client dashboard.
+        /// </summary>
+        public static string clientdashboard {
+            get {
+                return ResourceManager.GetString("clientdashboard", resourceCulture);
             }
         }
         
@@ -232,6 +250,15 @@ namespace GestionAbscences.Langagues {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à ltr.
+        /// </summary>
+        public static string dir {
+            get {
+                return ResourceManager.GetString("dir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à FROM.
         /// </summary>
         public static string DU {
@@ -255,6 +282,15 @@ namespace GestionAbscences.Langagues {
         public static string Employé {
             get {
                 return ResourceManager.GetString("Employé", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à English.
+        /// </summary>
+        public static string English {
+            get {
+                return ResourceManager.GetString("English", resourceCulture);
             }
         }
         
@@ -288,9 +324,9 @@ namespace GestionAbscences.Langagues {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Frensh.
         /// </summary>
-        public static string Français {
+        public static string Frensh {
             get {
-                return ResourceManager.GetString("Français", resourceCulture);
+                return ResourceManager.GetString("Frensh", resourceCulture);
             }
         }
         
@@ -322,20 +358,20 @@ namespace GestionAbscences.Langagues {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à History of leave requests from.
+        ///   Recherche une chaîne localisée semblable à Leave Request History.
         /// </summary>
-        public static string Historiquedes_demandesdecongesde {
+        public static string HistoriquedesDemandedeConge {
             get {
-                return ResourceManager.GetString("Historiquedes demandesdecongesde", resourceCulture);
+                return ResourceManager.GetString("HistoriquedesDemandedeConge", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Leave Request History.
+        ///   Recherche une chaîne localisée semblable à History of leave requests from.
         /// </summary>
-        public static string HistoriquedesDemande_deConge {
+        public static string Historiquedesdemandesdecongesde {
             get {
-                return ResourceManager.GetString("HistoriquedesDemande deConge", resourceCulture);
+                return ResourceManager.GetString("Historiquedesdemandesdecongesde", resourceCulture);
             }
         }
         
@@ -477,9 +513,9 @@ namespace GestionAbscences.Langagues {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Number of days of leave of.
         /// </summary>
-        public static string Nombredejourde_congesde {
+        public static string Nombredejourdecongesde {
             get {
-                return ResourceManager.GetString("Nombredejourde congesde", resourceCulture);
+                return ResourceManager.GetString("Nombredejourdecongesde", resourceCulture);
             }
         }
         
@@ -660,6 +696,15 @@ namespace GestionAbscences.Langagues {
         public static string Valider {
             get {
                 return ResourceManager.GetString("Valider", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Your request is being processed..
+        /// </summary>
+        public static string Votredemandeestencoursdetraitement {
+            get {
+                return ResourceManager.GetString("Votredemandeestencoursdetraitement", resourceCulture);
             }
         }
     }

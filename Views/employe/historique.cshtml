@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title> Historique des Demande de Conge </title>
+    <title>   @GestionAbscences.Langagues.Resource1.HistoriquedesDemandedeConge </title>
 
     <link href="css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
@@ -36,7 +36,7 @@
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table mr-1"></i>
-                Nombre de jour de conges de @Session["userName"]
+                @GestionAbscences.Langagues.Resource1.Nombredejourdecongesde @Session["userName"]
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -44,11 +44,11 @@
 
                         <tr>
                             <td style=" text-align:center;font-weight:bold;">
-                                Nombre de jour total
+                                @GestionAbscences.Langagues.Resource1.Nombredejourtotal
                             </td>
 
                             <td style=" text-align:center;font-weight:bold;">
-                                Nombre de jour Restants
+                                @GestionAbscences.Langagues.Resource1.NombredejourRestants
                             </td>
                         </tr>
                         <tr>
@@ -76,7 +76,7 @@
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table mr-1"></i>
-                Historique des demandes de conges de @Session["userName"]
+                @GestionAbscences.Langagues.Resource1.Historiquedesdemandesdecongesde @Session["userName"]
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -91,44 +91,45 @@
                             <tr class="table-success">
                                 <th>
                                     @*Html.DisplayNameFor(model => model.DateDC)*@
-                                    Date creation DC
+                                    @GestionAbscences.Langagues.Resource1.DatecreationDC
                                 </th>
                                 <th>
                                     @*Html.DisplayNameFor(model => model.employe.matricule)*@
-                                    Matricule
+                                    @GestionAbscences.Langagues.Resource1.Matricule
                                 </th>
                                 <th>
                                     @*Html.DisplayNameFor(model => model.employe.NomComplet)*@
-                                    Nom complet
+                                    @GestionAbscences.Langagues.Resource1.Nomcomplet
                                 </th>
                                 <th>
                                     @*Html.DisplayNameFor(model => model.typeconge.designation)*@
-                                    Designation
+                                    @GestionAbscences.Langagues.Resource1.Designation
                                 </th>
                                 <th>
                                     @*Html.DisplayNameFor(model => model.DateDebut)*@
 
-                                    Debut
+                                    @GestionAbscences.Langagues.Resource1.Debut
 
                                 </th>
 
                                 <th>
                                     @*Html.DisplayNameFor(model => model.DateFin)*@
-                                    Fin
+                                    @GestionAbscences.Langagues.Resource1.Fin
                                 </th>
 
                                 <th>
                                     @*Html.DisplayNameFor(model => model.ValidationN1)*@
-                                    Validation N+1
+                                    @GestionAbscences.Langagues.Resource1.ValidationN_1
                                 </th>
                                 <th>
                                     @*Html.DisplayNameFor(model => model.ValidationN2)*@
-                                    Validation N+2
+                                    @GestionAbscences.Langagues.Resource1.ValidationN_2
                                 </th>
                                 <th>
                                     @*Html.DisplayNameFor(model => model.ValidationN2)*@
-                                    Validation RH
+                                    @GestionAbscences.Langagues.Resource1.ValidationRH
                                 </th>
+                                <th></th>
                             </tr>
 
                         </thead>
@@ -275,8 +276,8 @@
 
                                         else
                                         {
-                                            @Html.ActionLink("Imprimer titre", "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
-                                            @Html.ActionLink("Modifier", "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                            @Html.ActionLink(@GestionAbscences.Langagues.Resource1.Imprimertitre, "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                            @Html.ActionLink(@GestionAbscences.Langagues.Resource1.Modifier, "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
                                         }
 
                                     </td>

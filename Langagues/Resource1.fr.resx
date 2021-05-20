@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="1.5journée" xml:space="preserve">
-    <value>1.5journée</value>
+    <value>1.5 journée</value>
   </data>
   <data name="1/2journée" xml:space="preserve">
-    <value>1/2journée</value>
+    <value>1/2 journée</value>
   </data>
   <data name="1eretranche" xml:space="preserve">
-    <value>1eretranche</value>
+    <value>1ere tranche</value>
   </data>
   <data name="1journée" xml:space="preserve">
     <value>1 journée</value>
@@ -141,8 +141,8 @@
   <data name="Affectation" xml:space="preserve">
     <value>Affectation</value>
   </data>
-  <data name="Anglais" xml:space="preserve">
-    <value>Anglais</value>
+  <data name="Arabic" xml:space="preserve">
+    <value>Arabe</value>
   </data>
   <data name="AU" xml:space="preserve">
     <value>AU</value>
@@ -151,7 +151,13 @@
     <value>Authentification</value>
   </data>
   <data name="changerlemotdepasse" xml:space="preserve">
-    <value>changerlemotdepasse</value>
+    <value>changer le mot de passe</value>
+  </data>
+  <data name="choixdecongé" xml:space="preserve">
+    <value>choix de congé</value>
+  </data>
+  <data name="clientdashboard" xml:space="preserve">
+    <value>tableau de bord des clients</value>
   </data>
   <data name="Core" xml:space="preserve">
     <value>Core</value>
@@ -171,6 +177,9 @@
   <data name="Designation" xml:space="preserve">
     <value>Designation</value>
   </data>
+  <data name="dir" xml:space="preserve">
+    <value>ltr</value>
+  </data>
   <data name="DU" xml:space="preserve">
     <value>DU</value>
   </data>
@@ -183,6 +192,9 @@
   <data name="Employé" xml:space="preserve">
     <value>Employé</value>
   </data>
+  <data name="English" xml:space="preserve">
+    <value>Anglais</value>
+  </data>
   <data name="EXCEPTIONNEL/CR" xml:space="preserve">
     <value>EXCEPTIONNEL/CR</value>
   </data>
@@ -192,7 +204,7 @@
   <data name="Fin" xml:space="preserve">
     <value>Fin</value>
   </data>
-  <data name="Français" xml:space="preserve">
+  <data name="Frensh" xml:space="preserve">
     <value>Français</value>
   </data>
   <data name="H.S" xml:space="preserve">
@@ -205,7 +217,7 @@
     <value>Historique</value>
   </data>
   <data name="HistoriquedesDemandedeConge" xml:space="preserve">
-    <value>Historique des Demande de Conge</value>
+    <value>Historique des Demandes de Conge</value>
   </data>
   <data name="Historiquedesdemandesdecongesde" xml:space="preserve">
     <value>Historique des demandes de conges de</value>
@@ -265,7 +277,7 @@
     <value>Nombre de jours qui reste</value>
   </data>
   <data name="Nombredejourtotal" xml:space="preserve">
-    <value>Nombre de jourtotal</value>
+    <value>Nombre de jour total</value>
   </data>
   <data name="Nomcomplet" xml:space="preserve">
     <value>Nom complet</value>
@@ -295,7 +307,7 @@
     <value>Reset</value>
   </data>
   <data name="SANSSOLDE" xml:space="preserve">
-    <value>SANSSOLDE</value>
+    <value>SANS SOLDE</value>
   </data>
   <data name="SeConnecté" xml:space="preserve">
     <value>Se Connecté</value>
@@ -317,5 +329,8 @@
   </data>
   <data name="Valider" xml:space="preserve">
     <value>Valider</value>
+  </data>
+  <data name="Votredemandeestencoursdetraitement" xml:space="preserve">
+    <value>Votre demande est en cours de traitement.</value>
   </data>
 </root>
