@@ -11,15 +11,136 @@ using System.Net;
 using System.Data;
 using System.IO;
 
+
 namespace GestionAbscences.Controllers
 {
-    public class employeController : Controller
+    public class employeController : BaseController
     {
         private GestionAbscencesEntities5 db = new GestionAbscencesEntities5();
 
         // GET: employe
         public ActionResult Index()
         {
+            string w = Session["matricule"].ToString();
+            //  Session["tranche1"] = ""; Session["test1"] = ""; Session["tranche2"] = ""; Session["test2"] = ""; Session["rel"] = ""; Session["test3"] = "";
+
+            int a = 0;
+            int b = 0;
+            int c = 0;
+            int j = 0;
+            int e = 0;
+            int f = 0;
+
+            //var employes = demandeService.ReadAll();
+            var employes = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == w);
+
+            // 1tranche
+            foreach (var item in employes)
+            {
+
+                if (item.IdtypeConge == 1 && (item.ValidationRH.Equals("En cours") || item.ValidationRH.Equals("accepte")) 
+                    && (item.ValidationN1.Equals("En cours") || item.ValidationN1.Equals("accepte"))
+                    && (item.ValidationN2.Equals("En cours") || item.ValidationN2.Equals("accepte")))
+                {
+                    a++;
+                    Session["tranche1"] = a;
+
+                }
+
+                else
+                {
+                    Session["tranche1"] = a;
+
+                }
+
+
+
+            }
+            foreach (var item in employes)
+            {
+                if (item.IdtypeConge == 1 && (item.ValidationRH.Equals("accepte")))
+                {
+
+                    b++;
+                    Session["test1"] = b;
+                }
+                else
+                {
+
+                    Session["test1"] = a;
+                }
+
+            }
+
+            //2 tranche
+
+            foreach (var item in employes)
+            {
+                if (item.IdtypeConge == 2 && (item.ValidationRH.Equals("En cours") || item.ValidationRH.Equals("accepte")) && (item.ValidationN1.Equals("En cours") || item.ValidationN1.Equals("accepte")) && (item.ValidationN2.Equals("En cours") || item.ValidationN2.Equals("accepte")))
+                {
+                    c++;
+                    Session["tranche2"] = c;
+
+                }
+
+                else
+                {
+                    Session["tranche2"] = c;
+
+                }
+
+
+            }
+
+            foreach (var item in employes)
+            {
+                if (item.IdtypeConge == 2 && item.ValidationRH.Equals("accepte"))
+                {
+                    j++;
+                    Session["test2"] = j;
+
+                }
+                else
+                {
+                    Session["test2"] = j;
+                }
+
+            }
+
+            //reli
+
+            foreach (var item in employes)
+            {
+
+                if (item.IdtypeConge == 3 && (item.ValidationRH.Equals("En cours") || item.ValidationRH.Equals("accepte")) && (item.ValidationN1.Equals("En cours") || item.ValidationN1.Equals("accepte")) && (item.ValidationN2.Equals("En cours") || item.ValidationN2.Equals("accepte")))
+                {
+                    e++;
+                    Session["rel"] = e;
+
+                }
+                else
+                {
+                    Session["rel"] = e;
+                }
+
+
+
+
+            }
+            foreach (var item in employes)
+            {
+                if (item.IdtypeConge == 3 && item.ValidationRH.Equals("accepte"))
+                {
+                    f++;
+                    Session["test3"] = f;
+                }
+                else
+                {
+
+                    Session["test3"] = f;
+                }
+            }
+
 
             return View();
         }
@@ -270,6 +391,7 @@ namespace GestionAbscences.Controllers
 
 
             var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == x);
+            
 
             return View(demandeConge.ToList());
 
@@ -351,40 +473,42 @@ namespace GestionAbscences.Controllers
 
         }
 
-       /* public FileResult Export()
-        {
-            GestionAbscencesEntities5 entities = new GestionAbscencesEntities5();
-            string x = Session["matricule"].ToString();
-            DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[8] { new  DataColumn("Date creation"),
-                                            new DataColumn("Nom complet"),
-                                           new  DataColumn("Matricule"),
-                                            new DataColumn("Début"),
-                                            new DataColumn("Fin"),
-                                            new DataColumn("Validation N+1"),
-                                            new DataColumn("Validation N+2"),
-                                            new DataColumn("Validation RH") });
+        /* public FileResult Export()
+         {
+             GestionAbscencesEntities5 entities = new GestionAbscencesEntities5();
+             string x = Session["matricule"].ToString();
+             DataTable dt = new DataTable("Grid");
+             dt.Columns.AddRange(new DataColumn[8] { new  DataColumn("Date creation"),
+                                             new DataColumn("Nom complet"),
+                                            new  DataColumn("Matricule"),
+                                             new DataColumn("Début"),
+                                             new DataColumn("Fin"),
+                                             new DataColumn("Validation N+1"),
+                                             new DataColumn("Validation N+2"),
+                                             new DataColumn("Validation RH") });
 
-            // var demande = from demandeconge in entities.demandeconge.Take(100)
-            //         select demandeconge where 
+             // var demande = from demandeconge in entities.demandeconge.Take(100)
+             //         select demandeconge where 
 
-            var demande = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == x);
+             var demande = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == x);
 
-            foreach (var d in demande)
-            {
-                dt.Rows.Add(d.DateDC, d.employe.matricule, d.employe.NomComplet, d.DateDebut, d.DateFin, d.ValidationN1, d.ValidationN2, d.ValdationRH);
-            }
+             foreach (var d in demande)
+             {
+                 dt.Rows.Add(d.DateDC, d.employe.matricule, d.employe.NomComplet, d.DateDebut, d.DateFin, d.ValidationN1, d.ValidationN2, d.ValdationRH);
+             }
 
-            using (XLWorkbook wb = new XLWorkbook())
-            {
-                wb.Worksheets.Add(dt);
-                using (MemoryStream stream = new MemoryStream())
-                {
-                    wb.SaveAs(stream);
-                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
-                }
-            }
-        }*/
+             using (XLWorkbook wb = new XLWorkbook())
+             {
+                 wb.Worksheets.Add(dt);
+                 using (MemoryStream stream = new MemoryStream())
+                 {
+                     wb.SaveAs(stream);
+                     return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
+                 }
+             }
+         }*/
+
+      
     }
 }
 

@@ -7,49 +7,7 @@
 </script>
 </br>
 
-<script>
 
-    function fnExcelReport() {
-        var tab_text = "<table border='2px'>";
-        var tab_text = tab_text + "<tr bgcolor='#eeeeee' height='50'><th colspan='12' style='text-align:center; font-size:20px;'>COMPLETED TRIPS</th></tr><tr bgcolor='#bf997e' height='50' color='#FFFFFF'>";
-
-        var i = 0;
-        tab = document.getElementById('completed_trips_prov'); // id of table
-
-
-        for (i = 0; i < tab.rows.length; i++) {
-            tab_text = tab_text + tab.rows[i].innerHTML + "</tr>";
-            //tab_text=tab_text+"</tr>";
-        }
-
-        tab_text = tab_text + "</table>";
-        tab_text = tab_text.replace(/<a[^>]*>|<\/a>/g, "");//remove if u want links in your table
-        tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
-        tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
-
-        var ua = window.navigator.userAgent;
-        var msie = ua.indexOf("MSIE ");
-
-        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
-        {
-            txtArea1.document.open("txt/html", "replace");
-            txtArea1.document.write(tab_text);
-            txtArea1.document.close();
-            txtArea1.focus();
-            sa = txtArea1.document.execCommand("SaveAs", true, "Say T.xls");
-        }
-        else                 //other browser not tested on IE 11
-            sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
-
-
-        return (sa);
-    }
-
-
-</script>
-
-<li class="button"><a href="javascript:;" onclick="fnExcelReport();" style="background-color: #4cae4c;">Export EXCEL</a></li>
-<br>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -59,22 +17,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title> Historique des Demande de Conge </title>
+    <title>   @GestionAbscences.Langagues.Resource1.HistoriquedesDemandedeConge </title>
 
     <link href="css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+
+   
+
 </head>
 
 <body>
 
     <div class="sb-nav-fixed">
 
-
+        <div class="btn btn-primary" onclick="fnExcelReport();">Export EXCEL</div>
+        </br></br>
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table mr-1"></i>
-                Nombre de jour de conges de @Session["userName"]
+                @GestionAbscences.Langagues.Resource1.Nombredejourdecongesde @Session["userName"]
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -82,11 +44,11 @@
 
                         <tr>
                             <td style=" text-align:center;font-weight:bold;">
-                                Nombre de jour total
+                                @GestionAbscences.Langagues.Resource1.Nombredejourtotal
                             </td>
 
                             <td style=" text-align:center;font-weight:bold;">
-                                Nombre de jour Restants
+                                @GestionAbscences.Langagues.Resource1.NombredejourRestants
                             </td>
                         </tr>
                         <tr>
@@ -114,53 +76,60 @@
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table mr-1"></i>
-                Historique des demandes de conges de @Session["userName"]
+                @GestionAbscences.Langagues.Resource1.Historiquedesdemandesdecongesde @Session["userName"]
             </div>
             <div class="card-body">
                 <div class="table-responsive">
+
+                  
+
+
+
+
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr class="table-success">
                                 <th>
                                     @*Html.DisplayNameFor(model => model.DateDC)*@
-                                    Date creation DC
+                                    @GestionAbscences.Langagues.Resource1.DatecreationDC
                                 </th>
                                 <th>
                                     @*Html.DisplayNameFor(model => model.employe.matricule)*@
-                                    Matricule
+                                    @GestionAbscences.Langagues.Resource1.Matricule
                                 </th>
                                 <th>
                                     @*Html.DisplayNameFor(model => model.employe.NomComplet)*@
-                                    Nom complet
+                                    @GestionAbscences.Langagues.Resource1.Nomcomplet
                                 </th>
                                 <th>
                                     @*Html.DisplayNameFor(model => model.typeconge.designation)*@
-                                    Designation
+                                    @GestionAbscences.Langagues.Resource1.Designation
                                 </th>
                                 <th>
                                     @*Html.DisplayNameFor(model => model.DateDebut)*@
 
-                                    Debut
+                                    @GestionAbscences.Langagues.Resource1.Debut
 
                                 </th>
 
                                 <th>
                                     @*Html.DisplayNameFor(model => model.DateFin)*@
-                                    Fin
+                                    @GestionAbscences.Langagues.Resource1.Fin
                                 </th>
 
                                 <th>
                                     @*Html.DisplayNameFor(model => model.ValidationN1)*@
-                                    Validation N+1
+                                    @GestionAbscences.Langagues.Resource1.ValidationN_1
                                 </th>
                                 <th>
                                     @*Html.DisplayNameFor(model => model.ValidationN2)*@
-                                    Validation N+2
+                                    @GestionAbscences.Langagues.Resource1.ValidationN_2
                                 </th>
                                 <th>
                                     @*Html.DisplayNameFor(model => model.ValidationN2)*@
-                                    Validation RH
+                                    @GestionAbscences.Langagues.Resource1.ValidationRH
                                 </th>
+                                <th></th>
                             </tr>
 
                         </thead>
@@ -187,10 +156,10 @@
                                         @Html.DisplayFor(modelItem => item.typeconge.designation)
                                     </td>
 
-                                    <td>
+                                    <td id="dated">
                                         @Html.DisplayFor(modelItem => item.DateDebut)
                                     </td>
-                                    <td>
+                                    <td id="datef">
                                         @Html.DisplayFor(modelItem => item.DateFin)
                                     </td>
 
@@ -296,19 +265,19 @@
                                         {
                                             @Html.ActionLink("Imprimer titre", "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled " })
                                             @Html.ActionLink("Modifier", "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })}
-                                       
-                                        
+
+
                                         else if (item.ValidationN1.Equals("refuse") || (item.ValidationN2.Equals("refuse")) || (item.ValidationRH.Equals("refuse")))
                                         {
                                             @Html.ActionLink("Modifier", "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled " })
                                             @Html.ActionLink("Imprimer titre", "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
                                         }
 
-                                       
+
                                         else
                                         {
-                                            @Html.ActionLink("Imprimer titre", "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
-                                            @Html.ActionLink("Modifier", "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                            @Html.ActionLink(@GestionAbscences.Langagues.Resource1.Imprimertitre, "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                            @Html.ActionLink(@GestionAbscences.Langagues.Resource1.Modifier, "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
                                         }
 
                                     </td>
@@ -331,6 +300,39 @@
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <script src="assets/demo/datatables-demo.js"></script>
+
+    <script>
+        function fnExcelReport() {
+            var tab_text = "<table border='2px'>";
+            var tab_text = tab_text + "<tr bgcolor='#eeeeee' height='50'><th colspan='12' style='text-align:center; font-size:20px;'>Historique</th></tr><tr bgcolor='#bf997e' height='50' color='#FFFFFF'>";
+            var i = 0;
+            tab = document.getElementById('example'); // id of table
+            for (i = 0; i < tab.rows.length; i++) {
+                var row = tab.rows[i];
+                var numberOfCells = row.cells.length;
+                row.deleteCell(numberOfCells - 1);
+                tab_text = tab_text + tab.rows[i].innerHTML + "</tr>";
+            }
+            tab_text = tab_text + "</table>";
+            tab_text = tab_text.replace(/<a[^>]*>|<\/a>/g, "");//remove if u want links in your table
+            tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
+            tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+            var ua = window.navigator.userAgent;
+            var msie = ua.indexOf("MSIE ");
+            if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+            {
+                txtArea1.document.open("txt/html", "replace");
+                txtArea1.document.write(tab_text);
+                txtArea1.document.close();
+                txtArea1.focus();
+                sa = txtArea1.document.execCommand("SaveAs", true, "Say T.xls");
+            }
+            else                 //other browser not tested on IE 11
+                sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+            return (sa);
+        }
+    </script>
+
 
 
 </body>
