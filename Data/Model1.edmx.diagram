@@ -4,10 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6d4e9f97a22d4d8b82cea42515f677af" Name="Diagram1">
-        <EntityTypeShape EntityType="GestionAbscencesModel.demandeconge" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+      <Diagram DiagramId="dc89f091e62245dcb5baea0f817552e3" Name="Diagram1">
+        <EntityTypeShape EntityType="GestionAbscencesModel.demandeconge" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="GestionAbscencesModel.employe" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionAbscencesModel.employehasentite" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAbscencesModel.employehasentite" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="GestionAbscencesModel.entite" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="GestionAbscencesModel.entitesuper" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GestionAbscencesModel.supervisionher" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />

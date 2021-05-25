@@ -19,7 +19,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
 
     public class DemandeController : Controller
     {
-        private GestionAbscencesEntities7 db = new GestionAbscencesEntities7();
+        private GestionAbscencesEntities9 db = new GestionAbscencesEntities9();
         private readonly DemandeService demandeService;
 
 
@@ -161,7 +161,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
         }
 
     
-        [HttpPost]
+     /*   [HttpPost]
         public FileResult Export()
         {
             GestionAbscencesEntities7 entities = new GestionAbscencesEntities7();
@@ -195,7 +195,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
                     return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
                 }
             }
-        }
+        }*/
 
         [HttpPost]
         public ActionResult Dashboard1()

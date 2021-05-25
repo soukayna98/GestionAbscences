@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="GestionAbscencesModelStoreContainer" CdmEntityContainer="GestionAbscencesEntities7">
+  <EntityContainerMapping StorageEntityContainer="GestionAbscencesModelStoreContainer" CdmEntityContainer="GestionAbscencesEntities9">
     <EntitySetMapping Name="demandeconge">
       <EntityTypeMapping TypeName="GestionAbscencesModel.demandeconge">
         <MappingFragment StoreEntitySet="demandeconge">
@@ -14,6 +14,7 @@
           <ScalarProperty Name="IdtypeConge" ColumnName="IdtypeConge" />
           <ScalarProperty Name="justification" ColumnName="justification" />
           <ScalarProperty Name="ValdationRH" ColumnName="ValdationRH" />
+          <ScalarProperty Name="annulation" ColumnName="annulation" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -43,6 +44,7 @@
           <ScalarProperty Name="IdEmploye" ColumnName="IdEmploye" />
           <ScalarProperty Name="IdEntite" ColumnName="IdEntite" />
           <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

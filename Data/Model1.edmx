@@ -19,6 +19,7 @@
           <Property Name="IdtypeConge" Type="int" Nullable="false" />
           <Property Name="justification" Type="varchar(max)" />
           <Property Name="ValdationRH" Type="varchar" MaxLength="50" />
+          <Property Name="annulation" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="employe">
           <Key>
@@ -41,11 +42,12 @@
         </EntityType>
         <EntityType Name="employehasentite">
           <Key>
-            <PropertyRef Name="IdEmploye" />
+            <PropertyRef Name="id" />
           </Key>
           <Property Name="IdEmploye" Type="int" Nullable="false" />
           <Property Name="IdEntite" Type="int" Nullable="false" />
           <Property Name="date" Type="datetime" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="entite">
           <Key>
@@ -76,7 +78,7 @@
           </Key>
           <Property Name="idtypeConge" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="designation" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="dureeJ" Type="float" />
+          <Property Name="dureeJ" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="fk_DemandeConge_Employe">
           <End Role="employe" Type="Self.employe" Multiplicity="1" />
@@ -104,7 +106,7 @@
         </Association>
         <Association Name="fk_employehasentite_Employe">
           <End Role="employe" Type="Self.employe" Multiplicity="1" />
-          <End Role="employehasentite" Type="Self.employehasentite" Multiplicity="0..1" />
+          <End Role="employehasentite" Type="Self.employehasentite" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="employe">
               <PropertyRef Name="idEmploye" />
@@ -202,6 +204,7 @@
           <Property Name="IdtypeConge" Type="Int32" Nullable="false" />
           <Property Name="justification" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ValdationRH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="annulation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="employe" Relationship="Self.fk_DemandeConge_Employe" FromRole="demandeconge" ToRole="employe" />
           <NavigationProperty Name="typeconge" Relationship="Self.fk_DemandeConge_typeConge" FromRole="demandeconge" ToRole="typeconge" />
         </EntityType>
@@ -228,11 +231,12 @@
         </EntityType>
         <EntityType Name="employehasentite">
           <Key>
-            <PropertyRef Name="IdEmploye" />
+            <PropertyRef Name="id" />
           </Key>
           <Property Name="IdEmploye" Type="Int32" Nullable="false" />
           <Property Name="IdEntite" Type="Int32" Nullable="false" />
           <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="employe" Relationship="Self.fk_employehasentite_Employe" FromRole="employehasentite" ToRole="employe" />
           <NavigationProperty Name="entite" Relationship="Self.fk_employehasentite_Entite" FromRole="employehasentite" ToRole="entite" />
         </EntityType>
@@ -270,7 +274,7 @@
           </Key>
           <Property Name="idtypeConge" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="designation" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="dureeJ" Type="Double" />
+          <Property Name="dureeJ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="demandeconge" Relationship="Self.fk_DemandeConge_typeConge" FromRole="typeconge" ToRole="demandeconge" />
         </EntityType>
         <Association Name="fk_DemandeConge_Employe">
@@ -299,7 +303,7 @@
         </Association>
         <Association Name="fk_employehasentite_Employe">
           <End Role="employe" Type="Self.employe" Multiplicity="1" />
-          <End Role="employehasentite" Type="Self.employehasentite" Multiplicity="0..1" />
+          <End Role="employehasentite" Type="Self.employehasentite" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="employe">
               <PropertyRef Name="idEmploye" />
@@ -345,7 +349,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="GestionAbscencesEntities7" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="GestionAbscencesEntities9" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="demandeconge" EntityType="Self.demandeconge" />
           <EntitySet Name="employe" EntityType="Self.employe" />
           <EntitySet Name="employehasentite" EntityType="Self.employehasentite" />
@@ -383,7 +387,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="GestionAbscencesModelStoreContainer" CdmEntityContainer="GestionAbscencesEntities7">
+        <EntityContainerMapping StorageEntityContainer="GestionAbscencesModelStoreContainer" CdmEntityContainer="GestionAbscencesEntities9">
           <EntitySetMapping Name="demandeconge">
             <EntityTypeMapping TypeName="GestionAbscencesModel.demandeconge">
               <MappingFragment StoreEntitySet="demandeconge">
@@ -397,6 +401,7 @@
                 <ScalarProperty Name="IdtypeConge" ColumnName="IdtypeConge" />
                 <ScalarProperty Name="justification" ColumnName="justification" />
                 <ScalarProperty Name="ValdationRH" ColumnName="ValdationRH" />
+                <ScalarProperty Name="annulation" ColumnName="annulation" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -426,6 +431,7 @@
                 <ScalarProperty Name="IdEmploye" ColumnName="IdEmploye" />
                 <ScalarProperty Name="IdEntite" ColumnName="IdEntite" />
                 <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -14,6 +14,7 @@
     <Property Name="IdtypeConge" Type="Int32" Nullable="false" />
     <Property Name="justification" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="ValdationRH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="annulation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="employe" Relationship="Self.fk_DemandeConge_Employe" FromRole="demandeconge" ToRole="employe" />
     <NavigationProperty Name="typeconge" Relationship="Self.fk_DemandeConge_typeConge" FromRole="demandeconge" ToRole="typeconge" />
   </EntityType>
@@ -40,11 +41,12 @@
   </EntityType>
   <EntityType Name="employehasentite">
     <Key>
-      <PropertyRef Name="IdEmploye" />
+      <PropertyRef Name="id" />
     </Key>
     <Property Name="IdEmploye" Type="Int32" Nullable="false" />
     <Property Name="IdEntite" Type="Int32" Nullable="false" />
     <Property Name="date" Type="DateTime" Precision="3" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="employe" Relationship="Self.fk_employehasentite_Employe" FromRole="employehasentite" ToRole="employe" />
     <NavigationProperty Name="entite" Relationship="Self.fk_employehasentite_Entite" FromRole="employehasentite" ToRole="entite" />
   </EntityType>
@@ -82,7 +84,7 @@
     </Key>
     <Property Name="idtypeConge" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="designation" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="dureeJ" Type="Double" />
+    <Property Name="dureeJ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="demandeconge" Relationship="Self.fk_DemandeConge_typeConge" FromRole="typeconge" ToRole="demandeconge" />
   </EntityType>
   <Association Name="fk_DemandeConge_Employe">
@@ -111,7 +113,7 @@
   </Association>
   <Association Name="fk_employehasentite_Employe">
     <End Role="employe" Type="Self.employe" Multiplicity="1" />
-    <End Role="employehasentite" Type="Self.employehasentite" Multiplicity="0..1" />
+    <End Role="employehasentite" Type="Self.employehasentite" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="employe">
         <PropertyRef Name="idEmploye" />
@@ -157,7 +159,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="GestionAbscencesEntities7" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="GestionAbscencesEntities9" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="demandeconge" EntityType="Self.demandeconge" />
     <EntitySet Name="employe" EntityType="Self.employe" />
     <EntitySet Name="employehasentite" EntityType="Self.employehasentite" />

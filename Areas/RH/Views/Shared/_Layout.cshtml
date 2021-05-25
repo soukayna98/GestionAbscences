@@ -66,15 +66,16 @@
                             </nav>
                         </div>
                         <div class="sb-sidenav-menu-heading">Addons</div>
-                        <a class="nav-link" href="@Url.Action("Index","Employe")">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                            Employes
-                        </a>
+                        @* <a class="nav-link" href="@Url.Action("Index","Employe")">
+            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+            Employes
+        </a>
+                        *@
 
-                        <a class="nav-link" href="@Url.Action("Index","typeconges")">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Type de congé
-                        </a>
+                    <a class="nav-link" href="@Url.Action("Index","typeconges")">
+                        <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                        Paramètre de type de congé
+                    </a>
 
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -89,13 +90,14 @@
                         </div>
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayout" aria-expanded="false" aria-controls="collapseLayout">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                           Entite
+                            Employes
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <div class="collapse" id="collapseLayout" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="@Url.Action("Index","entites")">Consulter</a>
-                                <a class="nav-link" href="@Url.Action("Index","employehasentites")">Employe-Entite</a>
+                                <a class="nav-link" href="@Url.Action("Index","Employe")">Consulter</a>
+                                <a class="nav-link" href="@Url.Action("Index","entites")">Entiter</a>
+                                <a class="nav-link" href="@Url.Action("Index","employehasentites")">Affectation</a>
 
                             </nav>
                         </div>

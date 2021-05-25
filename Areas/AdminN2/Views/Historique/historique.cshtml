@@ -23,10 +23,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 <br>
-@using (Html.BeginForm("Export", "Historique", FormMethod.Post))
-{
-    <input type="submit" class="btn btn-primary" value="Export To Excel" />
-}
+
+<br>
+<div class="btn btn-primary" onclick="fnExcelReport();">Export EXCEL</div>
+
 <br>
 
 <body class="sb-nav-fixed">
@@ -223,6 +223,50 @@
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <script src="assets/demo/datatables-demo.js"></script>
+    <script>
 
+        function fnExcelReport() {
+            var tab_text = "<table border='2px'>";
+            var tab_text = tab_text + "<tr bgcolor='#eeeeee' height='50'><th colspan='12' style='text-align:center; font-size:20px;'>Historique</th></tr><tr bgcolor='#bf997e' height='50' color='#FFFFFF'>";
+
+            var i = 0;
+            tab = document.getElementById('example'); // id of table
+
+
+
+
+            for (i = 0; i < tab.rows.length; i++) {
+                var row = tab.rows[i];
+                var numberOfCells = row.cells.length;
+                row.deleteCell(numberOfCells - 1);
+                tab_text = tab_text + tab.rows[i].innerHTML + "</tr>";
+
+            }
+
+            tab_text = tab_text + "</table>";
+            tab_text = tab_text.replace(/<a[^>]*>|<\/a>/g, "");//remove if u want links in your table
+            tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
+            tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+
+            var ua = window.navigator.userAgent;
+            var msie = ua.indexOf("MSIE ");
+
+            if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+            {
+                txtArea1.document.open("txt/html", "replace");
+                txtArea1.document.write(tab_text);
+                txtArea1.document.close();
+                txtArea1.focus();
+                sa = txtArea1.document.execCommand("SaveAs", true, "Say T.xls");
+            }
+            else                 //other browser not tested on IE 11
+                sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+
+
+            return (sa);
+        }
+
+
+    </script>
 </body>
 </html>

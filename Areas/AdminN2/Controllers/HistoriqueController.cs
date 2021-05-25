@@ -16,7 +16,7 @@ namespace GestionAbscences.Areas.AdminN2.Controllers
 {
     public class HistoriqueController : Controller
     {
-        private GestionAbscencesEntities7 db = new GestionAbscencesEntities7();
+        private GestionAbscencesEntities9 db = new GestionAbscencesEntities9();
         private readonly DemandeService demandeService;
 
         public HistoriqueController()
@@ -50,7 +50,7 @@ namespace GestionAbscences.Areas.AdminN2.Controllers
                   });
               }
               return View(employesList);
-          }*/
+          }
         [HttpPost]
         public FileResult Export()
         {
@@ -82,7 +82,7 @@ namespace GestionAbscences.Areas.AdminN2.Controllers
                     return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
                 }
             }
-        }
+        }*/
         public ActionResult historique()
         {
             var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "En cours");

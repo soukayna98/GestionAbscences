@@ -13,7 +13,7 @@ namespace GestionAbscences.Areas.RH.Controllers
 {
     public class EmployeController : Controller
     {
-        private GestionAbscencesEntities7  db = new GestionAbscencesEntities7();
+        private GestionAbscencesEntities9  db = new GestionAbscencesEntities9();
 
         private readonly EmployeService employeService;
         // GET: RH/Employe

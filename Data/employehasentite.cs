@@ -17,6 +17,7 @@ namespace GestionAbscences.Data
         public int IdEmploye { get; set; }
         public int IdEntite { get; set; }
         public Nullable<System.DateTime> date { get; set; }
+        public int id { get; set; }
     
         public virtual employe employe { get; set; }
         public virtual entite entite { get; set; }

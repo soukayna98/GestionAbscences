@@ -17,7 +17,7 @@ namespace GestionAbscences.Controllers
 {
     public class employeController : Controller
     {
-         private GestionAbscencesEntities7 db = new GestionAbscencesEntities7();
+         private GestionAbscencesEntities9 db = new GestionAbscencesEntities9();
 
         // GET: employe
         public ActionResult Index()

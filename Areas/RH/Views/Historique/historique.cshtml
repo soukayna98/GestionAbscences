@@ -29,6 +29,35 @@
     <br>
     <div class="btn btn-primary" onclick="fnExcelReport();">Export EXCEL</div>
     <br>
+    
+    @*
+        @using (Html.BeginForm("historique1", "Historique"))
+        {
+            @Html.AntiForgeryToken()
+
+
+            <div class="form-group">
+                <div class="row align-items-start">
+                    <div class="col-2" style="padding-left:60px; font-weight:bold;">
+                        Du
+                    </div>
+                    <div class="col-3">
+                        <input type="date" name="debut" id="debut" style="padding:2px;" />
+                    </div>
+
+                    <div class="col-2" style="padding-left:60px; font-weight:bold;">
+                        Au
+                    </div>
+                    <div class="col-3">
+                        <input type="date" name="fin" id="fin" style="padding:2px;" />
+                    </div>
+                    <button class="btn btn-info">
+                        Rechercher
+                    </button>
+                </div>
+            </div>
+        }
+    *@
 
 
     <div class="card mb-4">
@@ -38,7 +67,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="example" width="100%" cellspacing="0">
 
                     <thead>
                         <tr class="table-success">
