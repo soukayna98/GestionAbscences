@@ -86,7 +86,10 @@ namespace GestionAbscences.Areas.RH.Controllers
                    
                     return RedirectToAction("Index");
                 case "annule":
-                    e.ValdationRH = "refuse";
+                    e.ValdationRH = "En cours";
+                    e.ValidationN1 = "En cours";
+                    e.ValidationN2 = "En cours";
+                    e.annulation = "oui";
                     e.employe.nbjoursR = res.ToString();
                     db.Entry(e).State = EntityState.Modified;
                     db.SaveChanges();

@@ -20,18 +20,53 @@
     <title>Admin / Employe</title>
     <link href="css/styles.css" rel="stylesheet" />
     <script src="~/Content/FileSaver.js"></script>
-   
+
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
 </head>
+@using (Html.BeginForm("choixVal", "Historique", FormMethod.Post))
+
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
 <body class="sb-nav-fixed">
 
     <br>
     <div class="btn btn-primary" onclick="fnExcelReport();">Export EXCEL</div>
+
+
+
+
+
+
+    <div class="offset-9 col-3">
+
+        @Html.DropDownList("validation", new List<SelectListItem>
+    { new SelectListItem {Text="Tous" , Value ="1"},
+    new SelectListItem {Text="Validation N+1:En cours" , Value ="2"},
+    new SelectListItem {Text="Validation N+1:Accepté" , Value ="3"},
+    new SelectListItem {Text="Validation N+1:Refusé" , Value ="4"},
+    new SelectListItem {Text="Validation N+2:En cours" , Value ="5"},
+    new SelectListItem {Text="Validation N+2:Accepté" , Value ="6"},
+    new SelectListItem {Text="Validation N+2:Refusé" , Value ="7"},
+    new SelectListItem {Text="Validation RH:En cours" , Value ="8" , Selected=true },
+    new SelectListItem {Text="Validation RH:Accepté" , Value ="9"},
+    new SelectListItem {Text="Validation RH:Refusé" , Value ="10"} })
+
+        <button class="btn btn-info">
+            Rechercher
+        </button>
+    </div>
     <br>
-    
-    @*
-        @using (Html.BeginForm("historique1", "Historique"))
+
+
+
+
+
+
+
+
+    @*     @using (Html.BeginForm("historique1", "Historique"))
         {
             @Html.AntiForgeryToken()
 
@@ -110,6 +145,9 @@
                             <th>
                                 @*Html.DisplayNameFor(model => model.ValidationN2)*@
                                 Validation RH
+                            </th>
+                            <th>
+
                             </th>
 
 
@@ -304,5 +342,7 @@
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <script src="assets/demo/datatables-demo.js"></script>
 
+
 </body>
+}
 </html>

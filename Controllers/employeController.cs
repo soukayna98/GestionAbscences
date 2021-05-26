@@ -381,22 +381,22 @@ namespace GestionAbscences.Controllers
                     }
                     else if (typeCongeIdTypeconge.Equals("1/2 journée") && dateSpan <= t12)
                     {
-                        demande.IdtypeConge = 7;
+                        demande.IdtypeConge = 11;
 
                     }
                     else if (typeCongeIdTypeconge.Equals("1 journée") && dateSpan == t1)
                     {
-                        demande.IdtypeConge = 8;
+                        demande.IdtypeConge = 12;
 
                     }
                     else if (typeCongeIdTypeconge.Equals("1.5 journée") && dateSpan <= t112)
                     {
-                        demande.IdtypeConge = 9;
+                        demande.IdtypeConge = 13;
 
                     }
                     else if (typeCongeIdTypeconge.Equals("2 journée") && dateSpan == t2)
                     {
-                        demande.IdtypeConge = 10;
+                        demande.IdtypeConge = 14;
                     
                     }
                     else if (typeCongeIdTypeconge.Equals("Mariage") && !(justification.Equals("")))
@@ -406,7 +406,7 @@ namespace GestionAbscences.Controllers
                     }
                     else if (typeCongeIdTypeconge.Equals("Naissance") && !(justification.Equals("")))
                     {
-                        demande.IdtypeConge = 5;
+                        demande.IdtypeConge = 22;
                     }
                     else if (typeCongeIdTypeconge.Equals("Décès") && !(justification.Equals("")))
                     {
@@ -465,6 +465,7 @@ namespace GestionAbscences.Controllers
             demande.DateFin = Convert.ToDateTime(dateFin);
             demande.DateDC = dc;
             demande.justification = justification;
+            demande.annulation = "non";
 
            
            

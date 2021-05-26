@@ -68,14 +68,17 @@ namespace GestionAbscences.Areas.RH.Controllers
 
 
 
-
+      
         public ActionResult historique()
         {
+
             var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where((p => p.ValidationN2 == "accepte" && p.ValidationN1 != "refuse"));
-
             return View(demandeConge.ToList());
-        }
 
+
+        }
+        
+       
         [HttpPost]
         public ActionResult historique1()
         {
@@ -115,6 +118,67 @@ namespace GestionAbscences.Areas.RH.Controllers
 
 
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult choixVal()
+        {
+            string val = Request["validation"].ToString();
+            
+            if(val.Equals("1"))
+                {
+                var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge);
+                return View(demandeConge.ToList());
+               }
+            else if (val.Equals("2"))
+            {
+                var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1== "En cours");
+                return View(demandeConge.ToList());
+            }
+            else if (val.Equals("3"))
+            {
+                var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "accepte");
+                return View(demandeConge.ToList());
+            }
+            else if (val.Equals("4"))
+            {
+                var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "refuse");
+                return View(demandeConge.ToList());
+            }
+            else if (val.Equals("5"))
+            {
+                var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "En cours");
+                return View(demandeConge.ToList());
+            }
+            else if (val.Equals("6"))
+            {
+                var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "accepte");
+                return View(demandeConge.ToList());
+            }
+            else if (val.Equals("7"))
+            {
+                var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "refuse");
+                return View(demandeConge.ToList());
+            }
+            else if (val.Equals("8"))
+            {
+                var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValdationRH == "En cours");
+                return View(demandeConge.ToList());
+            }
+            else if (val.Equals("9"))
+            {
+                var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValdationRH == "accepte");
+                return View(demandeConge.ToList());
+            }
+            else if (val.Equals("10"))
+            {
+                var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValdationRH == "refuse");
+                return View(demandeConge.ToList());
+            }
+
+
+            return RedirectToAction("historique");
         }
         public ActionResult validation(int? id)
         {
