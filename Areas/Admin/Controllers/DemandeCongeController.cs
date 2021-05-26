@@ -1,4 +1,5 @@
-﻿using GestionAbscences.Data;
+﻿using GestionAbscences.Controllers;
+using GestionAbscences.Data;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,7 +9,7 @@ using System.Web.Mvc;
 
 namespace GestionAbscences.Areas.Admin.Controllers
 {
-    public class DemandeCongeController : Controller
+    public class DemandeCongeController : BaseController
     {
         // GET: Admin/DemandeConge
         private GestionAbscencesEntities5 db = new GestionAbscencesEntities5();

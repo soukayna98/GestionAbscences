@@ -1,4 +1,5 @@
 ﻿using GestionAbscences.Areas.Admin.Models;
+using GestionAbscences.Controllers;
 using GestionAbscences.Data;
 using GestionAbscences.Services;
 using System;
@@ -11,7 +12,7 @@ using System.Web.Mvc;
 
 namespace GestionAbscences.Areas.RH.Controllers
 {
-    public class HistoriqueController : Controller
+    public class HistoriqueController : BaseController
     {
         private readonly DemandeService demandeService;
         private GestionAbscencesEntities5 db = new GestionAbscencesEntities5();
