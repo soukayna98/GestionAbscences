@@ -1,4 +1,5 @@
-﻿using GestionAbscences.Data;
+﻿using GestionAbscences.Controllers;
+using GestionAbscences.Data;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,7 +10,7 @@ using System.Web.Mvc;
 
 namespace GestionAbscences.Areas.RH.Controllers
 {
-    public class typecongesController : Controller
+    public class typecongesController : BaseController
     {
         // GET: RH/typeconges
         private GestionAbscencesEntities5 db = new GestionAbscencesEntities5();

@@ -135,11 +135,17 @@
   <data name="2èmetranche" xml:space="preserve">
     <value>2ème tranche</value>
   </data>
+  <data name="Accepter" xml:space="preserve">
+    <value>Accepter</value>
+  </data>
   <data name="Addons" xml:space="preserve">
     <value>Addons</value>
   </data>
   <data name="Affectation" xml:space="preserve">
     <value>Affectation</value>
+  </data>
+  <data name="Annuler" xml:space="preserve">
+    <value>Annuler</value>
   </data>
   <data name="Arabic" xml:space="preserve">
     <value>Arabe</value>
@@ -156,11 +162,17 @@
   <data name="choixdecongé" xml:space="preserve">
     <value>choix de congé</value>
   </data>
+  <data name="Classe" xml:space="preserve">
+    <value>Classe</value>
+  </data>
   <data name="clientdashboard" xml:space="preserve">
     <value>tableau de bord des clients</value>
   </data>
   <data name="Core" xml:space="preserve">
     <value>Core</value>
+  </data>
+  <data name="Create New" xml:space="preserve">
+    <value>Créer un nouveau</value>
   </data>
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
@@ -188,6 +200,9 @@
   </data>
   <data name="Décès" xml:space="preserve">
     <value>Décès</value>
+  </data>
+  <data name="Employe DataTable" xml:space="preserve">
+    <value>Tableau de données des employés</value>
   </data>
   <data name="Employé" xml:space="preserve">
     <value>Employé</value>
@@ -297,6 +312,9 @@
   <data name="RECUPERATION" xml:space="preserve">
     <value>RECUPERATION</value>
   </data>
+  <data name="Refuser" xml:space="preserve">
+    <value>Refuser</value>
+  </data>
   <data name="REGULIER" xml:space="preserve">
     <value>REGULIER</value>
   </data>
@@ -318,6 +336,9 @@
   <data name="StaticNavigation" xml:space="preserve">
     <value>Static Navigation</value>
   </data>
+  <data name="Type de congé" xml:space="preserve">
+    <value>Type de congé</value>
+  </data>
   <data name="ValidationN+1" xml:space="preserve">
     <value>Validation N+1</value>
   </data>
@@ -329,6 +350,9 @@
   </data>
   <data name="Valider" xml:space="preserve">
     <value>Valider</value>
+  </data>
+  <data name="votre décision" xml:space="preserve">
+    <value>votre décision</value>
   </data>
   <data name="Votredemandeestencoursdetraitement" xml:space="preserve">
     <value>Votre demande est en cours de traitement.</value>

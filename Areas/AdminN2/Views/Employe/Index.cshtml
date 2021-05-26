@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GestionAbscences.Areas.AdminN2.Models.EmployeModel>
+﻿@model IEnumerable<GestionAbscences.Data.employe>
 
 @{
     ViewBag.Title = "Index";
@@ -8,7 +8,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink(@GestionAbscences.Langagues.Resource1.Create_New, "Create")
 </p>
 
 <!DOCTYPE html>
@@ -19,7 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title> Liste des Employes </title>
+    <title>  @GestionAbscences.Langagues.Resource1.Liste_des_Employés </title>
 
     <link href="css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
@@ -31,7 +31,7 @@
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table mr-1"></i>
-            Employe DataTable
+            @GestionAbscences.Langagues.Resource1.Employe_DataTable
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -42,25 +42,39 @@
                     <thead>
                         <tr class="table-success">
                             <th>
-                                @Html.DisplayNameFor(model => model.Id)
+                                @*@Html.DisplayNameFor(model => model.Id)*@
+                                @GestionAbscences.Langagues.Resource1.Matricule
                             </th>
                             @* <th>
                                     @Html.DisplayNameFor(model => model.matricule)
                                 </th>*@
                             <th>
-                                @Html.DisplayNameFor(model => model.Nom)
+                                @*@Html.DisplayNameFor(model => model.Nom)*@
+                                @GestionAbscences.Langagues.Resource1.Nomcomplet
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Classe)
+                                @* @Html.DisplayNameFor(model => model.Classe)*@
+                                @GestionAbscences.Langagues.Resource1.Classe
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.DateD)
+                                @* @Html.DisplayNameFor(model => model.DateD)*@
+                                @GestionAbscences.Langagues.Resource1.Debut
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.DateF)
+                                @* @Html.DisplayNameFor(model => model.DateF)*@
+                                @GestionAbscences.Langagues.Resource1.Fin
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.nbJ)
+                                @*@Html.DisplayNameFor(model => model.nbJ)*@
+                                @GestionAbscences.Langagues.Resource1.Nombredejourtotal
+                            </th>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.nbJ)*@
+                                @GestionAbscences.Langagues.Resource1.NombredejourRestants
+                            </th>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.nbJ)*@
+                                @GestionAbscences.Langagues.Resource1.Affectation
                             </th>
                             <th></th>
                         </tr>
@@ -73,30 +87,34 @@
                         @foreach (var item in Model)
                         {
                             <tr>
+
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Id)
+                                    @Html.DisplayFor(modelItem => item.matricule)
                                 </td>
-                                @*  <td>
-                                        @Html.DisplayFor(modelItem => item.matricule)
-                                    </td>*@
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Nom)
+                                    @Html.DisplayFor(modelItem => item.NomComplet)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Classe)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.DateD)
+                                    @Html.DisplayFor(modelItem => item.DateDebut)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.DateF)
+                                    @Html.DisplayFor(modelItem => item.DateFin)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.nbJ)
+                                    @Html.DisplayFor(modelItem => item.nbjours)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.nbjoursR)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.affectation)
                                 </td>
                                 <td>
                                     @* <a href="@Url.Action("Delete", new {item.Id })" class="btn btn-danger">Delete</a>*@
-                                    <a href="@Url.Action("Edit", new {item.Id })" class="btn btn-warning">Edit</a>
+                                    <a href="@Url.Action("Edit", new {item.idEmploye })" class="btn btn-warning">Edit</a>
 
                                     @* @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
                                     @* @Html.ActionLink("Details", "Details", new { id = item.Id }) |*@

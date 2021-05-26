@@ -135,11 +135,17 @@
   <data name="2èmetranche" xml:space="preserve">
     <value>2nd tranche</value>
   </data>
+  <data name="Accepter" xml:space="preserve">
+    <value>Accept</value>
+  </data>
   <data name="Addons" xml:space="preserve">
     <value>Addons</value>
   </data>
   <data name="Affectation" xml:space="preserve">
     <value>Assignment</value>
+  </data>
+  <data name="Annuler" xml:space="preserve">
+    <value>cancel</value>
   </data>
   <data name="Arabic" xml:space="preserve">
     <value>Arabic</value>
@@ -156,11 +162,17 @@
   <data name="CHOIXDECONGÉ" xml:space="preserve">
     <value>CHOICE OF LEAVE</value>
   </data>
+  <data name="Classe" xml:space="preserve">
+    <value>Class</value>
+  </data>
   <data name="clientdashboard" xml:space="preserve">
     <value>client dashboard</value>
   </data>
   <data name="Core" xml:space="preserve">
     <value>Core</value>
+  </data>
+  <data name="Create New" xml:space="preserve">
+    <value>Create New</value>
   </data>
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
@@ -188,6 +200,9 @@
   </data>
   <data name="Décès" xml:space="preserve">
     <value>Deaths</value>
+  </data>
+  <data name="Employe DataTable" xml:space="preserve">
+    <value>Employe DataTable</value>
   </data>
   <data name="Employé" xml:space="preserve">
     <value>Employee</value>
@@ -246,6 +261,9 @@
   <data name="LightSidenav" xml:space="preserve">
     <value>Light Sidenav</value>
   </data>
+  <data name="Liste des Employés" xml:space="preserve">
+    <value>List of Employees</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
   </data>
@@ -297,6 +315,9 @@
   <data name="RECUPERATION" xml:space="preserve">
     <value>RECOVERY</value>
   </data>
+  <data name="Refuser" xml:space="preserve">
+    <value>Refuse</value>
+  </data>
   <data name="REGULIER" xml:space="preserve">
     <value>REGULAR</value>
   </data>
@@ -318,6 +339,9 @@
   <data name="StaticNavigation" xml:space="preserve">
     <value>Static Navigation</value>
   </data>
+  <data name="Type de congé" xml:space="preserve">
+    <value>Type of leave</value>
+  </data>
   <data name="ValidationN+1" xml:space="preserve">
     <value>Validation N+1</value>
   </data>
@@ -329,6 +353,9 @@
   </data>
   <data name="Valider" xml:space="preserve">
     <value>Validate</value>
+  </data>
+  <data name="votre décision" xml:space="preserve">
+    <value>your decision</value>
   </data>
   <data name="Votredemandeestencoursdetraitement" xml:space="preserve">
     <value>Your request is being processed.</value>

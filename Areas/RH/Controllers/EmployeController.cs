@@ -1,4 +1,5 @@
-﻿using GestionAbscences.Data;
+﻿using GestionAbscences.Controllers;
+using GestionAbscences.Data;
 using GestionAbscences.Services;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Web.Mvc;
 
 namespace GestionAbscences.Areas.RH.Controllers
 {
-    public class EmployeController : Controller
+    public class EmployeController : BaseController
     {
         // GET: RH/Employe
         private GestionAbscencesEntities5 db = new GestionAbscencesEntities5();

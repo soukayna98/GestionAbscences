@@ -8,10 +8,11 @@ using System.Data.Entity;
 using GestionAbscences.Services;
 using GestionAbscences.Areas.Admin.Models;
 using System.Net;
+using GestionAbscences.Controllers;
 
 namespace GestionAbscences.Areas.Admin.Controllers
 {
-    public class HistoriqueController : Controller
+    public class HistoriqueController : BaseController
     {
 
         private readonly DemandeService demandeService;

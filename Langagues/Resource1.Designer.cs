@@ -115,6 +115,15 @@ namespace GestionAbscences.Langagues {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Accept.
+        /// </summary>
+        public static string Accepter {
+            get {
+                return ResourceManager.GetString("Accepter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Addons.
         /// </summary>
         public static string Addons {
@@ -129,6 +138,15 @@ namespace GestionAbscences.Langagues {
         public static string Affectation {
             get {
                 return ResourceManager.GetString("Affectation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à cancel.
+        /// </summary>
+        public static string Annuler {
+            get {
+                return ResourceManager.GetString("Annuler", resourceCulture);
             }
         }
         
@@ -178,6 +196,15 @@ namespace GestionAbscences.Langagues {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Class.
+        /// </summary>
+        public static string Classe {
+            get {
+                return ResourceManager.GetString("Classe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à client dashboard.
         /// </summary>
         public static string clientdashboard {
@@ -192,6 +219,15 @@ namespace GestionAbscences.Langagues {
         public static string Core {
             get {
                 return ResourceManager.GetString("Core", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Create New.
+        /// </summary>
+        public static string Create_New {
+            get {
+                return ResourceManager.GetString("Create New", resourceCulture);
             }
         }
         
@@ -282,6 +318,15 @@ namespace GestionAbscences.Langagues {
         public static string Employé {
             get {
                 return ResourceManager.GetString("Employé", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Employe DataTable.
+        /// </summary>
+        public static string Employe_DataTable {
+            get {
+                return ResourceManager.GetString("Employe DataTable", resourceCulture);
             }
         }
         
@@ -448,6 +493,15 @@ namespace GestionAbscences.Langagues {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à List of Employees.
+        /// </summary>
+        public static string Liste_des_Employés {
+            get {
+                return ResourceManager.GetString("Liste des Employés", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Login.
         /// </summary>
         public static string Login {
@@ -601,6 +655,15 @@ namespace GestionAbscences.Langagues {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Refuse.
+        /// </summary>
+        public static string Refuser {
+            get {
+                return ResourceManager.GetString("Refuser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à REGULAR.
         /// </summary>
         public static string REGULIER {
@@ -664,6 +727,15 @@ namespace GestionAbscences.Langagues {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Type of leave.
+        /// </summary>
+        public static string Type_de_congé {
+            get {
+                return ResourceManager.GetString("Type de congé", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Validation N+1.
         /// </summary>
         public static string ValidationN_1 {
@@ -696,6 +768,15 @@ namespace GestionAbscences.Langagues {
         public static string Valider {
             get {
                 return ResourceManager.GetString("Valider", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à your decision.
+        /// </summary>
+        public static string votre_décision {
+            get {
+                return ResourceManager.GetString("votre décision", resourceCulture);
             }
         }
         

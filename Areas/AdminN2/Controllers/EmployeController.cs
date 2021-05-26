@@ -1,4 +1,5 @@
 ﻿using GestionAbscences.Areas.AdminN2.Models;
+using GestionAbscences.Controllers;
 using GestionAbscences.Services;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Web.Mvc;
 
 namespace GestionAbscences.Areas.AdminN2.Controllers
 {
-    public class EmployeController : Controller
+    public class EmployeController : BaseController
     {
         private readonly EmployeService employeService;
 
