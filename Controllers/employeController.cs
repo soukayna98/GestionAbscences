@@ -13,11 +13,22 @@ using System.IO;
 using System.Data;
 using ClosedXML.Excel;
 
+using System.Web.UI.WebControls;
+
+
 namespace GestionAbscences.Controllers
 {
     public class employeController : Controller
     {
          private GestionAbscencesEntities9 db = new GestionAbscencesEntities9();
+
+      /*  public JsonResult GetTypetList(int Id_filiere)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            List<typeConge> TypeList = db.typeconge.Where(x => x.idtypeConge == Id_filiere).ToList();
+            return Json(TypeList, JsonRequestBehavior.AllowGet);
+        }
+      */
 
         // GET: employe
         public ActionResult Index()
@@ -143,43 +154,7 @@ namespace GestionAbscences.Controllers
 
                 return View();
         }
-       /* [HttpPost]
-        public FileResult Export()
-        {
-            GestionAbscencesEntities5 entities = new GestionAbscencesEntities5();
-            string x = Session["matricule"].ToString();
-            DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[8] { new  DataColumn("Date creation"),
-                                            new DataColumn("Nom complet"),
-                                           new  DataColumn("Matricule"),
-                                            new DataColumn("Début"),
-                                            new DataColumn("Fin"),
-                                            new DataColumn("Validation N+1"),
-                                            new DataColumn("Validation N+2"),
-                                            new DataColumn("Validation RH") });
-
-         // var demande = from demandeconge in entities.demandeconge.Take(100)
-               //         select demandeconge where 
-
-            var demande =  db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.employe.matricule == x);
-
-            foreach (var d in demande)
-            {
-                dt.Rows.Add(d.DateDC, d.employe.matricule, d.employe.NomComplet, d.DateDebut, d.DateFin, d.ValidationN1, d.ValidationN2, d.ValdationRH);
-            }
-
-            using (XLWorkbook wb = new XLWorkbook())
-            {
-                wb.Worksheets.Add(dt);
-                using (MemoryStream stream = new MemoryStream())
-                {
-                    wb.SaveAs(stream);
-                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
-                }
-            }
-        }*/
-
-
+       
         public ActionResult modifier(int? id)
         {
             demandeconge demandeconge = db.demandeconge.Find(id);
@@ -291,146 +266,220 @@ namespace GestionAbscences.Controllers
         [HttpPost]
         public ActionResult Dashboard1()
         {
+            //donnée from index (view)
             int uid = int.Parse(Session["idEmploye"].ToString());
+            employe e = db.employe.Find(uid);
             demandeconge demande = new demandeconge();
             string dateDebut = Request["dateDebut"] + " " + Request["timeDebut"];
             string dateFin = Request["dateFin"] + " " + Request["timeFin"];
-
+            string operation = Request["operation"].ToString();
+            string marriage = Request["marriage1"].ToString();
+            string deces = Request["deces1"].ToString();
             string typeCongeIdTypeconge = Request.Form["typeCongeIdTypeconge"];
-           
-
             string justification = Request["justification"];
-
-
-          
-            employe e = db.employe.Find(uid);
-            Session["affectatio"] = e.affectation;
-            Session["nbjour"] = e.nbjours.ToString();
-            Session["nbjourR"] = e.nbjoursR.ToString();
-            Session["userNam"] = e.NomComplet;
-            Session["matricul"] = e.matricule;
-
-     
-
-            var x = db.demandeconge.Where(p => p.IdEmploye == uid && p.IdtypeConge == 1);
-            
-
-
-                double jours = Convert.ToDouble(Session["nbjours"].ToString()) - 1;
-                double joursR = Convert.ToDouble(Session["nbjoursR"].ToString()) - 1;
-
-                TimeSpan t = TimeSpan.FromDays(jours); //jurs: nbjours
-                TimeSpan tR = TimeSpan.FromDays(joursR); //jurs: nbjoursR
-                TimeSpan t0 = TimeSpan.FromDays(0);//0
-                TimeSpan t10 = TimeSpan.FromDays(9);//10
-                TimeSpan t7 = TimeSpan.FromDays(6);//7
-                                                   //pour 1j
-                TimeSpan t1 = TimeSpan.FromDays(1);//1
-                                                   //pour 2j
-                TimeSpan t2 = TimeSpan.FromDays(2);//2
-                                                   //pour la demi journée
-                TimeSpan t12 = TimeSpan.FromHours(12);
-                //pour la jour et demi
-                TimeSpan t112 = TimeSpan.FromHours(36);
-
-
-           
             DateTime dc = DateTime.Now;
-            
 
-            if (Request["dateDebut"].Equals("") || Request["dateFin"].Equals("") || typeCongeIdTypeconge.Equals(""))
+            //condition de date
+
+            double jours = Convert.ToDouble(Session["nbjours"].ToString()) - 1;
+            double joursR = Convert.ToDouble(Session["nbjoursR"].ToString()) - 1;
+            TimeSpan t = TimeSpan.FromDays(jours); //jurs: nbjours
+            TimeSpan tR = TimeSpan.FromDays(joursR); //jurs: nbjoursR
+            TimeSpan t0 = TimeSpan.FromDays(0);//0
+            TimeSpan t10 = TimeSpan.FromDays(9);//10
+            TimeSpan t7 = TimeSpan.FromDays(6);//7
+            TimeSpan t1 = TimeSpan.FromDays(1);//1
+            TimeSpan t2 = TimeSpan.FromDays(2);//2
+            TimeSpan t12 = TimeSpan.FromHours(12);//pour la demi journée
+            TimeSpan t112 = TimeSpan.FromHours(36);  //pour la jour et demi
+
+
+            if (Request["dateDebut"].Equals("")  || typeCongeIdTypeconge.Equals(""))
+            {
+                Session["demande"] = "Remlpir tout les champs svp !";
+                return RedirectToAction("Index", "employe");
+            }
+            //date debut 
+            DateTime debut = Convert.ToDateTime(Request["dateDebut"]);
+
+            if (typeCongeIdTypeconge.Equals("Opération chirurgicale") || typeCongeIdTypeconge.Equals("Décès") || typeCongeIdTypeconge.Equals("Mariage"))
+            {
+                if (debut < dc)
+                {
+                    Session["demande"] = "vérifier les dates svp!";
+                    return RedirectToAction("Index", "employe");
+                }
+                else if (typeCongeIdTypeconge.Equals("Mariage") && !(marriage.Equals("")))
+                {
+
+                    if (marriage.Equals("1"))
+                    {
+                        var df = debut.AddDays(4);
+                        demande.DateFin = Convert.ToDateTime(df);
+                        demande.IdtypeConge = 4;
+                    }
+                    if (marriage.Equals("2"))
+                    {
+                        var df = debut.AddDays(2);
+                        demande.DateFin = Convert.ToDateTime(df);
+                        demande.IdtypeConge = 5;
+                    }
+                }
+
+                else if (typeCongeIdTypeconge.Equals("Décès") && !(deces.Equals("")))
+                {
+                    if (deces.Equals("1"))
+                    {
+                        var df = debut.AddDays(3);
+                        demande.DateFin = Convert.ToDateTime(df);
+                        demande.IdtypeConge = 6;
+                    }
+                    if (deces.Equals("2"))
+                    {
+                        var df = debut.AddDays(3);
+                        demande.DateFin = Convert.ToDateTime(df);
+                        demande.IdtypeConge = 7;
+                    }
+                    if (deces.Equals("3"))
+                    {
+                        var df = debut.AddDays(3);
+                        demande.DateFin = Convert.ToDateTime(df);
+                        demande.IdtypeConge = 8;
+                    }
+                    if (deces.Equals("4"))
+                    {
+                        var df = debut.AddDays(2);
+                        demande.DateFin = Convert.ToDateTime(df);
+                        demande.IdtypeConge = 9;
+                    }
+                    if (deces.Equals("5"))
+                    {
+                        var df = debut.AddDays(2);
+                        demande.DateFin = Convert.ToDateTime(df);
+                        demande.IdtypeConge = 10;
+                    }
+                }
+                else if (typeCongeIdTypeconge.Equals("Opération chirurgicale") && !(operation.Equals("")))
+                {
+                    if (operation.Equals("1"))
+                    {
+
+
+                        var df = debut.AddDays(2);
+                        demande.DateFin = Convert.ToDateTime(df);
+                        demande.IdtypeConge = 20;
+                    }
+                    if (operation.Equals("2"))
+                    {
+                        var df = debut.AddDays(2);
+                        demande.DateFin = Convert.ToDateTime(df);
+                        demande.IdtypeConge = 21;
+                    }
+
+                }
+
+
+
+            }
+            else
+            {
+                if (Request["dateDebut"].Equals("") || Request["dateFin"].Equals("") || typeCongeIdTypeconge.Equals(""))
                 {
                     Session["demande"] = "Remlpir tout les champs svp !";
                     return RedirectToAction("Index", "employe");
                 }
-            DateTime debut = Convert.ToDateTime(Request["dateDebut"]);
-            DateTime fin = Convert.ToDateTime(Request["dateFin"]);
-            TimeSpan dateSpan = fin - debut;
-                if ((typeCongeIdTypeconge.Equals("Mariage") || typeCongeIdTypeconge.Equals("Naissance") || typeCongeIdTypeconge.Equals("Décès")) && justification.Equals(""))
+                DateTime fin = Convert.ToDateTime(Request["dateFin"]);
+                TimeSpan dateSpan = fin - debut;
+
+                if ((debut < dc) || (fin < dc) || (fin < debut))
                 {
-                    Session["demande"] = "Remlir votre observation svp !";
+                    Session["demande"] = "vérifier les dates svp!";
                     return RedirectToAction("Index", "employe");
                 }
-           
 
-                else if((debut < dc) || (fin < dc) || (fin < debut) )
-            {
-                Session["demande"] = "vérifier les dates svp!";
-                return RedirectToAction("Index", "employe");
-            }
                 else
                 {
-                   
-                    //  int reste = Convert.ToInt32(dateSpan);
+
 
                     if (typeCongeIdTypeconge.Equals("reliquat") && dateSpan > t0 && dateSpan <= tR)
                     {
 
                         demande.IdtypeConge = 3;
-                      
+                        demande.DateFin = Convert.ToDateTime(dateFin);
+
                     }
                     else if (typeCongeIdTypeconge.Equals("1 ere tranche") && dateSpan >= t10 && dateSpan <= t) //obj <JR ,obj >=10
                     {
                         demande.IdtypeConge = 1;
+                        demande.DateFin = Convert.ToDateTime(dateFin);
 
                     }
                     else if (typeCongeIdTypeconge.Equals("2 eme tranche") && dateSpan >= t7 && dateSpan <= tR)//obj <7(t7) , obj <=jR
                     {
                         demande.IdtypeConge = 2;
+                        demande.DateFin = Convert.ToDateTime(dateFin);
 
                     }
                     else if (typeCongeIdTypeconge.Equals("1/2 journée") && dateSpan <= t12)
                     {
+
+                        demande.DateFin = Convert.ToDateTime(dateFin);
                         demande.IdtypeConge = 11;
 
                     }
                     else if (typeCongeIdTypeconge.Equals("1 journée") && dateSpan == t1)
                     {
+                        demande.DateFin = Convert.ToDateTime(dateFin);
                         demande.IdtypeConge = 12;
 
                     }
                     else if (typeCongeIdTypeconge.Equals("1.5 journée") && dateSpan <= t112)
                     {
+                        demande.DateFin = Convert.ToDateTime(dateFin);
                         demande.IdtypeConge = 13;
 
                     }
                     else if (typeCongeIdTypeconge.Equals("2 journée") && dateSpan == t2)
                     {
+                        demande.DateFin = Convert.ToDateTime(dateFin);
                         demande.IdtypeConge = 14;
-                    
-                    }
-                    else if (typeCongeIdTypeconge.Equals("Mariage") && !(justification.Equals("")))
-                    {
 
-                        demande.IdtypeConge = 4;
                     }
                     else if (typeCongeIdTypeconge.Equals("Naissance") && !(justification.Equals("")))
                     {
+                        var df = debut.AddDays(3);
+                        demande.DateFin = Convert.ToDateTime(df);
                         demande.IdtypeConge = 22;
                     }
-                    else if (typeCongeIdTypeconge.Equals("Décès") && !(justification.Equals("")))
-                    {
-                        demande.IdtypeConge = 6;
-                    }
+
+
+
+
                     else if (typeCongeIdTypeconge.Equals("H.S"))
                     {
-                        demande.IdtypeConge = 11;
+                        demande.IdtypeConge = 23;
+                        demande.DateFin = Convert.ToDateTime(dateFin);
                     }
                     else if (typeCongeIdTypeconge.Equals("J.R"))
                     {
-                        demande.IdtypeConge = 14;
+                        demande.IdtypeConge = 24;
+                        demande.DateFin = Convert.ToDateTime(dateFin);
                     }
                     else if (typeCongeIdTypeconge.Equals("J.F"))
                     {
-                        demande.IdtypeConge = 13;
+                        demande.IdtypeConge = 25;
+                        demande.DateFin = Convert.ToDateTime(dateFin);
                     }
                     else if (typeCongeIdTypeconge.Equals("heures"))
                     {
-                        demande.IdtypeConge = 12;
+                        demande.IdtypeConge = 26;
+                        demande.DateFin = Convert.ToDateTime(dateFin);
                     }
                     else if (typeCongeIdTypeconge.Equals("jours"))
                     {
-                        demande.IdtypeConge = 15;
+                        demande.IdtypeConge = 27;
+                        demande.DateFin = Convert.ToDateTime(dateFin);
+
                     }
                     else
                     {
@@ -439,22 +488,22 @@ namespace GestionAbscences.Controllers
                     }
 
 
-                
 
+
+
+                }
+
+
+
+
+
+
+                
 
             }
 
 
-           
 
-          //  DateTime timeD = Convert.ToDateTime(Request["timeDebut"]);
-          //  DateTime timeF = Convert.ToDateTime(Request["timeFin"]);
-
-            //le nb de jour choisi dans le form
-           
-          //  TimeSpan timeSpan = timeF - timeD;
-
-            
             demande.ValidationN1 = "En cours";
             demande.ValidationN2 = "En cours";
             demande.ValdationRH = "En cours";
@@ -462,18 +511,21 @@ namespace GestionAbscences.Controllers
             demande.IdEmploye = uid;
 
             demande.DateDebut = Convert.ToDateTime(dateDebut);
-            demande.DateFin = Convert.ToDateTime(dateFin);
+
             demande.DateDC = dc;
             demande.justification = justification;
             demande.annulation = "non";
 
-           
-           
-           
+
+
+
 
             db.demandeconge.Add(demande);
 
             db.SaveChanges();
+
+
+
 
             return RedirectToAction("historique", "employe");
 

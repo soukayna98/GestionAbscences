@@ -49,24 +49,14 @@ namespace GestionAbscences.Areas.RH.Controllers
                 }
 
 
-                if (item.idtypeConge == 7)
-                {
-                    ViewBag.t7 = item.dureeJ;
-                }
-                if (item.idtypeConge == 8)
-                {
-                    ViewBag.t8 = item.dureeJ;
-                }
+               
                 if (item.idtypeConge == 9)
                 {
                     ViewBag.t9 = item.dureeJ;
                 }
 
 
-                if (item.idtypeConge == 10)
-                {
-                    ViewBag.t10 = item.dureeJ;
-                }
+                
                 if (item.idtypeConge == 11)
                 {
                     ViewBag.t11 = item.dureeJ;
@@ -91,6 +81,18 @@ namespace GestionAbscences.Areas.RH.Controllers
                 }
 
                 /*
+                 *  if (item.idtypeConge == 7)
+                {
+                    ViewBag.t7 = item.dureeJ;
+                }
+                if (item.idtypeConge == 8)
+                {
+                    ViewBag.t8 = item.dureeJ;
+                }
+                 * if (item.idtypeConge == 10)
+                {
+                    ViewBag.t10 = item.dureeJ;
+                }
                 if (item.idtypeConge == 16)
                 {
                     ViewBag.t16 = item.dureeJ;
@@ -108,16 +110,17 @@ namespace GestionAbscences.Areas.RH.Controllers
                 {
                     ViewBag.t19 = item.dureeJ;
                 }
+                 if (item.idtypeConge == 21)
+                {
+                    ViewBag.t21 = item.dureeJ;
+                }
 
                 */
                 if (item.idtypeConge == 20)
                 {
                     ViewBag.t20 = item.dureeJ;
                 }
-                if (item.idtypeConge == 21)
-                {
-                    ViewBag.t21 = item.dureeJ;
-                }
+               
 
                 if (item.idtypeConge == 22)
                 {
@@ -167,26 +170,13 @@ namespace GestionAbscences.Areas.RH.Controllers
             db.Entry(a6).State = EntityState.Modified;
             db.SaveChanges();
             //
-            typeconge a7 = db.typeconge.Find(7);
-            a7.dureeJ = Request["x7"];
-            db.Entry(a7).State = EntityState.Modified;
-            db.SaveChanges();
-            //
-            typeconge a8 = db.typeconge.Find(8);
-            a8.dureeJ = Request["x8"];
-            db.Entry(a8).State = EntityState.Modified;
-            db.SaveChanges();
-            //
+           
             typeconge a9 = db.typeconge.Find(9);
             a9.dureeJ = Request["x9"];
             db.Entry(a9).State = EntityState.Modified;
             db.SaveChanges();
             //
-            typeconge a10 = db.typeconge.Find(10);
-            a10.dureeJ = Request["x10"];
-            db.Entry(a10).State = EntityState.Modified;
-            db.SaveChanges();
-            //
+           
             typeconge a11 = db.typeconge.Find(11);
             a11.dureeJ = Request["x11"];
             db.Entry(a11).State = EntityState.Modified;
@@ -231,17 +221,18 @@ namespace GestionAbscences.Areas.RH.Controllers
             a19.dureeJ = Request["x19"];
             db.Entry(a19).State = EntityState.Modified;
             db.SaveChanges();
+              typeconge a21 = db.typeconge.Find(21);
+            a21.dureeJ = Request["x21"];
+            db.Entry(a21).State = EntityState.Modified;
+            db.SaveChanges();
+            //
             */
             typeconge a20 = db.typeconge.Find(20);
             a20.dureeJ = Request["x20"];
             db.Entry(a20).State = EntityState.Modified;
             db.SaveChanges();
             //
-            typeconge a21 = db.typeconge.Find(21);
-            a21.dureeJ = Request["x21"];
-            db.Entry(a21).State = EntityState.Modified;
-            db.SaveChanges();
-            //
+          
             typeconge a22 = db.typeconge.Find(22);
             a22.dureeJ = Request["x22"];
             db.Entry(a22).State = EntityState.Modified;
