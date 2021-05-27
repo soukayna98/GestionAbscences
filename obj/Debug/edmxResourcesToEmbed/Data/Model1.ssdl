@@ -14,6 +14,7 @@
     <Property Name="IdtypeConge" Type="int" Nullable="false" />
     <Property Name="justification" Type="varchar(max)" />
     <Property Name="ValidationRH" Type="varchar" MaxLength="10" />
+    <Property Name="Annulation" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="employe">
     <Key>
@@ -32,6 +33,9 @@
     <Property Name="role" Type="varchar" MaxLength="50" />
     <Property Name="soldeConge" Type="float" />
     <Property Name="nbjoursA" Type="float" />
+    <Property Name="Sexe" Type="varchar" MaxLength="50" />
+    <Property Name="Cause" Type="varchar(max)" />
+    <Property Name="Observetion" Type="varchar(max)" />
   </EntityType>
   <!--Erreurs détectées durant la génération :
 avertissement 6002: La table/vue 'GestionAbscences.dbo.employehasentite' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
@@ -76,7 +80,7 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
     </Key>
     <Property Name="idtypeConge" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="designation" Type="varchar" MaxLength="45" Nullable="false" />
-    <Property Name="dureeJ" Type="int" Nullable="false" />
+    <Property Name="dureeJ" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <Association Name="fk_DemandeConge_Employe">
     <End Role="employe" Type="Self.employe" Multiplicity="1" />
@@ -150,6 +154,10 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="getemprecordssp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="start" Type="datetime" Mode="In" />
+    <Parameter Name="end" Type="datetime" Mode="In" />
+  </Function>
   <EntityContainer Name="GestionAbscencesModelStoreContainer">
     <EntitySet Name="demandeconge" EntityType="Self.demandeconge" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="employe" EntityType="Self.employe" Schema="dbo" store:Type="Tables" />

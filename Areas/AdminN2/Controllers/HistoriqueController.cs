@@ -16,7 +16,7 @@ namespace GestionAbscences.Areas.AdminN2.Controllers
     {
         // GET: AdminN2/Historique
         private readonly DemandeService demandeService;
-        private GestionAbscencesEntities5 db = new GestionAbscencesEntities5();
+        private GestionAbscencesEntities6 db = new GestionAbscencesEntities6();
 
 
         public HistoriqueController()
@@ -68,15 +68,13 @@ namespace GestionAbscences.Areas.AdminN2.Controllers
 
             return View(demandeConge.ToList());
         }
-        /*   public ActionResult historique()
-           {
-               var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge);
 
-               return View(demandeConge.ToList());
-           }*/
-        //"Edit", "Edit", new { id = item.IdDemandeConge }
-        //get infos
+        [HttpPost]
+        public ActionResult historiques(DateTime start, DateTime end)
+        {
 
+            return View(db.Getfunctionemp(start, end));
+        }
         public ActionResult Validation(int? id)
         {
             if (id == null)

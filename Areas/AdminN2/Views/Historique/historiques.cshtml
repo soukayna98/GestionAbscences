@@ -26,6 +26,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 </br>
+
+@using (Html.BeginForm("historiques", "Historique", FormMethod.Post))
+{
+    <span> Start Date: </span><input type="date" name="start" />
+    <span> End Date: </span><input type="date" name="end" />
+    <input type="submit" value="get record"/>
+}
 <body class="sb-nav-fixed">
 
 
@@ -206,7 +213,7 @@
 
 
                                 </td>
-                              
+
 
                             </tr>
                         }

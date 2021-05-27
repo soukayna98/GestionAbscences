@@ -14,7 +14,7 @@ namespace GestionAbscences.Areas.RH.Controllers
     public class AnnulerController : BaseController
     {
         // GET: RH/Annuler
-        private GestionAbscencesEntities5 db = new GestionAbscencesEntities5();
+        private GestionAbscencesEntities6 db = new GestionAbscencesEntities6();
         private readonly DemandeService demandeService;
 
         public AnnulerController()
@@ -81,14 +81,17 @@ namespace GestionAbscences.Areas.RH.Controllers
             //  Session["dur1"] = duM;
             switch (button)
             {
-                case "Annulé":
-                    e.ValidationRH = "refuse";
+                case "Retour":
+
+                    return RedirectToAction("Index");
+                case "annule":
+                    e.ValidationRH = "En cours";
+                    e.ValidationN1 = "En cours";
+                    e.ValidationN2 = "En cours";
+                  //  e.annulation = "oui";
                     e.employe.nbjoursR = Convert.ToInt32(res);
                     db.Entry(e).State = EntityState.Modified;
                     db.SaveChanges();
-                    return RedirectToAction("Index");
-                case "Retour":
-
                     return RedirectToAction("Index");
 
                 default:
@@ -100,4 +103,4 @@ namespace GestionAbscences.Areas.RH.Controllers
 
 
         }
-    }
+}
