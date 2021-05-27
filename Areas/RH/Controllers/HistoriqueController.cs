@@ -46,106 +46,87 @@ namespace GestionAbscences.Areas.RH.Controllers
         }
         
        
-        [HttpPost]
-        public ActionResult historique1()
-        {
-           DateTime debut =Convert.ToDateTime(Request["debut"]);
-
-            DateTime fin = Convert.ToDateTime(Request["fin"]);
-            if (!(Request["debut"].Equals(""))  && !(Request["fin"].Equals("")))
-            {
-                var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.DateDebut >= debut && p.DateFin <= fin);
-
-                return View(demandeConge.ToList());
-            }
-            else
-             if (!(Request["debut"].Equals("")) && (Request["fin"].Equals("")))
-              
-            {
-                var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => Convert.ToDateTime(p.DateDebut) == Convert.ToDateTime(Request["debut"]));
-
-                return View(demandeConge.ToList());
-            }
-            else
-             if ((Request["debut"].Equals("")) && !(Request["fin"].Equals("")))
-                
-            {
-                var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.DateFin == fin);
-
-                return View(demandeConge.ToList());
-            }
-            else
-            {
-                var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where((p => p.ValidationN2 == "accepte" && p.ValidationN1 != "refuse"));
-
-                return View(demandeConge.ToList());
-            }
-
-
-
-
-            return View();
-        }
+        
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult choixVal()
         {
-            string val = Request["validation"].ToString();
+            string d1 = Request["debut"].ToString();
+            string f1 = Request["fin"].ToString();
+           
             
-            if(val.Equals("1"))
+            string val = Request["validation"].ToString();
+
+
+            if(d1.Equals("") || f1.Equals("") || val.Equals(""))
+            {
+                ViewBag.message="Selectionner les dates et la catégorie svp !";
+                return RedirectToAction("historique");
+            }
+            else
+            {
+                DateTime debut = Convert.ToDateTime(Request["debut"]);
+
+                DateTime fin = Convert.ToDateTime(Request["fin"]);
+
+                if (val.Equals("1"))
                 {
-                var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge);
-                return View(demandeConge.ToList());
-               }
-            else if (val.Equals("2"))
-            {
-                var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1== "En cours");
-                return View(demandeConge.ToList());
-            }
-            else if (val.Equals("3"))
-            {
-                var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "accepte");
-                return View(demandeConge.ToList());
-            }
-            else if (val.Equals("4"))
-            {
-                var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "refuse");
-                return View(demandeConge.ToList());
-            }
-            else if (val.Equals("5"))
-            {
-                var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "En cours");
-                return View(demandeConge.ToList());
-            }
-            else if (val.Equals("6"))
-            {
-                var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "accepte");
-                return View(demandeConge.ToList());
-            }
-            else if (val.Equals("7"))
-            {
-                var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "refuse");
-                return View(demandeConge.ToList());
-            }
-            else if (val.Equals("8"))
-            {
-                var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValdationRH == "En cours");
-                return View(demandeConge.ToList());
-            }
-            else if (val.Equals("9"))
-            {
-                var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValdationRH == "accepte");
-                return View(demandeConge.ToList());
-            }
-            else if (val.Equals("10"))
-            {
-                var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValdationRH == "refuse");
-                return View(demandeConge.ToList());
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("2"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("3"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "accepte" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("4"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "refuse" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("5"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "En cours" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("6"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "accepte" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("7"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "refuse" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("8"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValdationRH == "En cours" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("9"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValdationRH == "accepte" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("10"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValdationRH == "refuse" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+
+
             }
 
 
             return RedirectToAction("historique");
+
         }
         public ActionResult validation(int? id)
         {

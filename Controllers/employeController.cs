@@ -293,8 +293,76 @@ namespace GestionAbscences.Controllers
             TimeSpan t12 = TimeSpan.FromHours(12);//pour la demi journée
             TimeSpan t112 = TimeSpan.FromHours(36);  //pour la jour et demi
 
+            //duree
+            var l = db.typeconge;
+            foreach (var item in l)
+            {
+                if (item.idtypeConge == 1)
+                {
+                    
+                    int x1 = int.Parse(item.dureeJ);
+                }
+                if (item.idtypeConge == 2)
+                {
+                    int x2 = int.Parse(item.dureeJ);
+                }
+                if (item.idtypeConge == 3)
+                {
+                    int x3 = int.Parse(item.dureeJ);
+                }
 
-            if (Request["dateDebut"].Equals("")  || typeCongeIdTypeconge.Equals(""))
+                if (item.idtypeConge == 4)
+                {
+                    int x4 = int.Parse(item.dureeJ);
+                }
+                if (item.idtypeConge == 5)
+                {
+                    int x5 = int.Parse(item.dureeJ);
+                }
+                if (item.idtypeConge == 6)
+                {
+                    ViewBag.t6 = Convert.ToInt32(item.dureeJ);
+                }
+
+                if (item.idtypeConge == 20)
+                {
+                    ViewBag.t20 = Convert.ToInt32(item.dureeJ);
+                }
+                if (item.idtypeConge == 21)
+                {
+                    ViewBag.t21 = Convert.ToInt32(item.dureeJ);
+                }
+                if (item.idtypeConge == 22)
+                {
+                    ViewBag.t22 = Convert.ToInt32(item.dureeJ);
+                }
+
+                if (item.idtypeConge == 9)
+                {
+                    ViewBag.t9 = Convert.ToInt32(item.dureeJ);
+                }
+
+                if (item.idtypeConge == 7)
+                {
+                    ViewBag.t7 = Convert.ToInt32(item.dureeJ);
+                }
+                if (item.idtypeConge == 8)
+                {
+                    ViewBag.t8 = Convert.ToInt32(item.dureeJ);
+                }
+
+               
+                if (item.idtypeConge == 10)
+                {
+                    ViewBag.t10 = Convert.ToInt32(item.dureeJ);
+                }
+                if (item.idtypeConge == 15)
+                {
+                    ViewBag.t15 = Convert.ToInt32(item.dureeJ);
+                }
+            }
+
+                if (Request["dateDebut"].Equals("")  || typeCongeIdTypeconge.Equals(""))
             {
                 Session["demande"] = "Remlpir tout les champs svp !";
                 return RedirectToAction("Index", "employe");
@@ -314,15 +382,33 @@ namespace GestionAbscences.Controllers
 
                     if (marriage.Equals("1"))
                     {
-                        var df = debut.AddDays(4);
-                        demande.DateFin = Convert.ToDateTime(df);
-                        demande.IdtypeConge = 4;
+                        foreach (var item in l)
+                        {
+                            if (item.idtypeConge == 4)
+                            {
+
+                                int x4 = int.Parse(item.dureeJ);
+                                var df = debut.AddDays(x4);
+                                demande.DateFin = Convert.ToDateTime(df);
+                                demande.IdtypeConge = 4;
+                            }
+                        }
+                            
+                        
                     }
                     if (marriage.Equals("2"))
                     {
-                        var df = debut.AddDays(2);
-                        demande.DateFin = Convert.ToDateTime(df);
-                        demande.IdtypeConge = 5;
+                        foreach (var item in l)
+                        {
+                            if (item.idtypeConge == 5)
+                            {
+
+                                int x5 = int.Parse(item.dureeJ);
+                                var df = debut.AddDays(x5);
+                                demande.DateFin = Convert.ToDateTime(df);
+                                demande.IdtypeConge = 5;
+                            }
+                        }
                     }
                 }
 
@@ -330,50 +416,108 @@ namespace GestionAbscences.Controllers
                 {
                     if (deces.Equals("1"))
                     {
-                        var df = debut.AddDays(3);
-                        demande.DateFin = Convert.ToDateTime(df);
-                        demande.IdtypeConge = 6;
+                        foreach (var item in l)
+                        {
+                            if (item.idtypeConge == 6)
+                            {
+
+                                int x6 = int.Parse(item.dureeJ);
+                                var df = debut.AddDays(x6);
+                                demande.DateFin = Convert.ToDateTime(df);
+                                demande.IdtypeConge = 6;
+                            }
+                        }
+                       
                     }
                     if (deces.Equals("2"))
                     {
-                        var df = debut.AddDays(3);
-                        demande.DateFin = Convert.ToDateTime(df);
-                        demande.IdtypeConge = 7;
+                        foreach (var item in l)
+                        {
+                            if (item.idtypeConge == 7)
+                            {
+
+                                int x7 = int.Parse(item.dureeJ);
+                                var df = debut.AddDays(x7);
+                                demande.DateFin = Convert.ToDateTime(df);
+                                demande.IdtypeConge = 7;
+                            }
+                        }
+                        
                     }
                     if (deces.Equals("3"))
                     {
-                        var df = debut.AddDays(3);
-                        demande.DateFin = Convert.ToDateTime(df);
-                        demande.IdtypeConge = 8;
+                        foreach (var item in l)
+                        {
+                            if (item.idtypeConge == 8)
+                            {
+
+                                int x8= int.Parse(item.dureeJ);
+                                var df = debut.AddDays(x8);
+                                demande.DateFin = Convert.ToDateTime(df);
+                                demande.IdtypeConge = 8;
+                            }
+                        }
+                       
                     }
                     if (deces.Equals("4"))
                     {
-                        var df = debut.AddDays(2);
-                        demande.DateFin = Convert.ToDateTime(df);
-                        demande.IdtypeConge = 9;
+                        foreach (var item in l)
+                        {
+                            if (item.idtypeConge == 9)
+                            {
+
+                                int x9 = int.Parse(item.dureeJ);
+                                var df = debut.AddDays(x9);
+                                demande.DateFin = Convert.ToDateTime(df);
+                                demande.IdtypeConge = 9;
+                            }
+                        }
+                       
                     }
                     if (deces.Equals("5"))
                     {
-                        var df = debut.AddDays(2);
-                        demande.DateFin = Convert.ToDateTime(df);
-                        demande.IdtypeConge = 10;
+                        foreach (var item in l)
+                        {
+                            if (item.idtypeConge == 10)
+                            {
+
+                                int x10 = int.Parse(item.dureeJ);
+                                var df = debut.AddDays(x10);
+                                demande.DateFin = Convert.ToDateTime(df);
+                                demande.IdtypeConge = 10;
+                            }
+                        }
                     }
                 }
                 else if (typeCongeIdTypeconge.Equals("Opération chirurgicale") && !(operation.Equals("")))
                 {
                     if (operation.Equals("1"))
                     {
+                        foreach (var item in l)
+                        {
+                            if (item.idtypeConge == 20)
+                            {
 
-
-                        var df = debut.AddDays(2);
-                        demande.DateFin = Convert.ToDateTime(df);
-                        demande.IdtypeConge = 20;
+                                int x20 = int.Parse(item.dureeJ);
+                                var df = debut.AddDays(x20);
+                                demande.DateFin = Convert.ToDateTime(df);
+                                demande.IdtypeConge = 20;
+                            }
+                        }
                     }
                     if (operation.Equals("2"))
                     {
-                        var df = debut.AddDays(2);
-                        demande.DateFin = Convert.ToDateTime(df);
-                        demande.IdtypeConge = 21;
+                        foreach (var item in l)
+                        {
+                            if (item.idtypeConge == 21)
+                            {
+
+                                int x21= int.Parse(item.dureeJ);
+                                var df = debut.AddDays(x21);
+                                demande.DateFin = Convert.ToDateTime(df);
+                                demande.IdtypeConge = 21;
+                            }
+                        }
                     }
 
                 }
@@ -447,9 +591,17 @@ namespace GestionAbscences.Controllers
                     }
                     else if (typeCongeIdTypeconge.Equals("Naissance") && !(justification.Equals("")))
                     {
-                        var df = debut.AddDays(3);
-                        demande.DateFin = Convert.ToDateTime(df);
-                        demande.IdtypeConge = 22;
+                        foreach (var item in l)
+                        {
+                            if (item.idtypeConge == 22)
+                            {
+
+                                int x22 = int.Parse(item.dureeJ);
+                                var df = debut.AddDays(x22);
+                                demande.DateFin = Convert.ToDateTime(df);
+                                demande.IdtypeConge = 22;
+                            }
+                        }
                     }
 
 
