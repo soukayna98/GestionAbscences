@@ -295,73 +295,7 @@ namespace GestionAbscences.Controllers
 
             //duree
             var l = db.typeconge;
-            foreach (var item in l)
-            {
-                if (item.idtypeConge == 1)
-                {
-                    
-                    int x1 = int.Parse(item.dureeJ);
-                }
-                if (item.idtypeConge == 2)
-                {
-                    int x2 = int.Parse(item.dureeJ);
-                }
-                if (item.idtypeConge == 3)
-                {
-                    int x3 = int.Parse(item.dureeJ);
-                }
-
-                if (item.idtypeConge == 4)
-                {
-                    int x4 = int.Parse(item.dureeJ);
-                }
-                if (item.idtypeConge == 5)
-                {
-                    int x5 = int.Parse(item.dureeJ);
-                }
-                if (item.idtypeConge == 6)
-                {
-                    ViewBag.t6 = Convert.ToInt32(item.dureeJ);
-                }
-
-                if (item.idtypeConge == 20)
-                {
-                    ViewBag.t20 = Convert.ToInt32(item.dureeJ);
-                }
-                if (item.idtypeConge == 21)
-                {
-                    ViewBag.t21 = Convert.ToInt32(item.dureeJ);
-                }
-                if (item.idtypeConge == 22)
-                {
-                    ViewBag.t22 = Convert.ToInt32(item.dureeJ);
-                }
-
-                if (item.idtypeConge == 9)
-                {
-                    ViewBag.t9 = Convert.ToInt32(item.dureeJ);
-                }
-
-                if (item.idtypeConge == 7)
-                {
-                    ViewBag.t7 = Convert.ToInt32(item.dureeJ);
-                }
-                if (item.idtypeConge == 8)
-                {
-                    ViewBag.t8 = Convert.ToInt32(item.dureeJ);
-                }
-
-               
-                if (item.idtypeConge == 10)
-                {
-                    ViewBag.t10 = Convert.ToInt32(item.dureeJ);
-                }
-                if (item.idtypeConge == 15)
-                {
-                    ViewBag.t15 = Convert.ToInt32(item.dureeJ);
-                }
-            }
-
+           
                 if (Request["dateDebut"].Equals("")  || typeCongeIdTypeconge.Equals(""))
             {
                 Session["demande"] = "Remlpir tout les champs svp !";
