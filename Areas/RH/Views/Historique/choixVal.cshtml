@@ -6,10 +6,8 @@
 }
 
 
-<title> RH/@GestionAbscences.Langagues.Resource1.HistoriquedesDemandedeConge </title>
 
-
-
+<title> Historique des Demandes de Conge </title>
 
 
 <!DOCTYPE html>
@@ -20,14 +18,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Admin / Employe</title>
     <link href="css/styles.css" rel="stylesheet" />
     <script src="~/Content/FileSaver.js"></script>
 
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
 </head>
-
 @using (Html.BeginForm("choixVal", "Historique", FormMethod.Post))
 
 {
@@ -37,7 +33,7 @@
 
         <br>
         <div class="btn btn-primary" onclick="fnExcelReport();">Export EXCEL</div>
-        @ViewBag.message
+
 
         <div class="form-group">
             <div class="offset-2 row align-items-start">
@@ -69,7 +65,7 @@
                 new SelectListItem {Text="Validation N+2:En cours" , Value ="5"},
                 new SelectListItem {Text="Validation N+2:Accepté" , Value ="6"},
                 new SelectListItem {Text="Validation N+2:Refusé" , Value ="7"},
-                new SelectListItem {Text="Validation RH:En cours" , Value ="8" , Selected=true },
+                new SelectListItem {Text="Validation RH:En cours" , Value ="8" },
                 new SelectListItem {Text="Validation RH:Accepté" , Value ="9"},
                 new SelectListItem {Text="Validation RH:Refusé" , Value ="10"} })
                 </div>
@@ -81,17 +77,6 @@
             </div>
         </div>
         <br>
-
-
-
-
-
-
-
-
-
-
-
 
         <div class="card mb-4">
             <div class="card-header">
@@ -106,46 +91,49 @@
                             <tr class="table-success">
                                 <th>
                                     @*Html.DisplayNameFor(model => model.DateDC)*@
-                                    @GestionAbscences.Langagues.Resource1.DatecreationDC
+                                    Date creation DC
                                 </th>
                                 <th>
                                     @*Html.DisplayNameFor(model => model.employe.matricule)*@
-                                    @GestionAbscences.Langagues.Resource1.Matricule
+                                    Matricule
                                 </th>
                                 <th>
                                     @*Html.DisplayNameFor(model => model.employe.NomComplet)*@
-                                    @GestionAbscences.Langagues.Resource1.Nomcomplet
+                                    Nom complet
                                 </th>
                                 <th>
                                     @*Html.DisplayNameFor(model => model.typeconge.designation)*@
-                                    @GestionAbscences.Langagues.Resource1.Designation
+                                    Designation
                                 </th>
                                 <th>
                                     @*Html.DisplayNameFor(model => model.DateDebut)*@
 
-                                    @GestionAbscences.Langagues.Resource1.Debut
+                                    Debut
 
                                 </th>
 
                                 <th>
                                     @*Html.DisplayNameFor(model => model.DateFin)*@
-                                    @GestionAbscences.Langagues.Resource1.Fin
+                                    Fin
                                 </th>
 
                                 <th>
                                     @*Html.DisplayNameFor(model => model.ValidationN1)*@
-                                    @GestionAbscences.Langagues.Resource1.ValidationN_1
+                                    Validation N+1
                                 </th>
                                 <th>
                                     @*Html.DisplayNameFor(model => model.ValidationN2)*@
-                                    @GestionAbscences.Langagues.Resource1.ValidationN_2
+                                    Validation N+2
                                 </th>
                                 <th>
                                     @*Html.DisplayNameFor(model => model.ValidationN2)*@
-                                    @GestionAbscences.Langagues.Resource1.ValidationRH
+                                    Validation RH
+                                </th>
+                                <th>
+
                                 </th>
 
-                                <th>Annulation</th>
+
                             </tr>
                         </thead>
 
@@ -221,15 +209,9 @@
                                                 @Html.DisplayFor(modelItem => item.ValidationN2)
                                             </p>
                                         }
-                                        else if (item.ValidationN2 == "Accepte")
-                                        {
-                                            <p class="p-2 mb-2 bg-success text-white">
-                                                @Html.DisplayFor(modelItem => item.ValidationN2)
-                                            </p>
-                                        }
                                         else
                                         {
-                                            <p class="p-2 mb-2 bg-light text-dark">
+                                            <p class="p-2 mb-2 bg-success text-white">
                                                 @Html.DisplayFor(modelItem => item.ValidationN2)
                                             </p>
                                         }
@@ -253,36 +235,43 @@
                                                 @Html.DisplayFor(modelItem => item.ValidationRH)
                                             </p>
                                         }
-                                        else if (item.ValidationRH == "Accepte")
-                                        {
-                                            <p class="p-2 mb-2 bg-success text-white">
-                                                @Html.DisplayFor(modelItem => item.ValidationN2)
-                                            </p>
-                                        }
                                         else
                                         {
-                                            <p class="p-2 mb-2 bg-light text-dark">
-                                                @Html.DisplayFor(modelItem => item.ValidationN2)
+                                            <p class="p-2 mb-2 bg-success text-white">
+                                                @Html.DisplayFor(modelItem => item.ValidationRH)
                                             </p>
                                         }
 
+
+                                    </td>
+                                    <td>
+                                        @if (item.ValidationRH.Equals("accepte"))
+
+                                        {
+                                            @Html.ActionLink("Répondre", "Validation", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink("Répondre", "Validation", new { id = item.idDemandeConge })
+                                        }
 
 
                                     </td>
 
-                                    <td>
-                                    
-                                    @Html.DisplayFor(modelItem => item.Annulation) </td>
                                 </tr>
                             }
 
                         </tbody>
 
                     </table>
+
                 </div>
+
+                <br />
+                <br />
+
             </div>
         </div>
-
         <script>
             function fnExcelReport() {
                 var tab_text = "<table border='2px'>";
@@ -315,13 +304,13 @@
             }
         </script>
 
-
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="assets/demo/datatables-demo.js"></script>
+
 
     </body>
 }

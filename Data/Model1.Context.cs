@@ -12,11 +12,13 @@ namespace GestionAbscences.Data
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
-    public partial class GestionAbscencesEntities5 : DbContext
+    public partial class GestionAbscencesEntities6 : DbContext
     {
-        public GestionAbscencesEntities5()
-            : base("name=GestionAbscencesEntities5")
+        public GestionAbscencesEntities6()
+            : base("name=GestionAbscencesEntities6")
         {
         }
     
@@ -32,5 +34,44 @@ namespace GestionAbscences.Data
         public virtual DbSet<typeconge> typeconge { get; set; }
         public virtual DbSet<employehasentite> employehasentite { get; set; }
         public virtual DbSet<entitesuper> entitesuper { get; set; }
+    
+        public virtual ObjectResult<getemprecordssp_Result> getemprecordssp(Nullable<System.DateTime> start, Nullable<System.DateTime> end)
+        {
+            var startParameter = start.HasValue ?
+                new ObjectParameter("start", start) :
+                new ObjectParameter("start", typeof(System.DateTime));
+    
+            var endParameter = end.HasValue ?
+                new ObjectParameter("end", end) :
+                new ObjectParameter("end", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getemprecordssp_Result>("getemprecordssp", startParameter, endParameter);
+        }
+    
+        public virtual ObjectResult<demandeconge> Getfunctionemp(Nullable<System.DateTime> start, Nullable<System.DateTime> end)
+        {
+            var startParameter = start.HasValue ?
+                new ObjectParameter("start", start) :
+                new ObjectParameter("start", typeof(System.DateTime));
+    
+            var endParameter = end.HasValue ?
+                new ObjectParameter("end", end) :
+                new ObjectParameter("end", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<demandeconge>("Getfunctionemp", startParameter, endParameter);
+        }
+    
+        public virtual ObjectResult<demandeconge> Getfunctionemp(Nullable<System.DateTime> start, Nullable<System.DateTime> end, MergeOption mergeOption)
+        {
+            var startParameter = start.HasValue ?
+                new ObjectParameter("start", start) :
+                new ObjectParameter("start", typeof(System.DateTime));
+    
+            var endParameter = end.HasValue ?
+                new ObjectParameter("end", end) :
+                new ObjectParameter("end", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<demandeconge>("Getfunctionemp", mergeOption, startParameter, endParameter);
+        }
     }
 }

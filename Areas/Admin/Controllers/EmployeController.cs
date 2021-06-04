@@ -14,7 +14,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
 {
     public class EmployeController : BaseController
     {
-        private GestionAbscencesEntities5 db = new GestionAbscencesEntities5();
+        private GestionAbscencesEntities6 db = new GestionAbscencesEntities6();
         private readonly EmployeService employeService;
 
         public EmployeController()

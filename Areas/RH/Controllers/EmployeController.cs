@@ -14,7 +14,7 @@ namespace GestionAbscences.Areas.RH.Controllers
     public class EmployeController : BaseController
     {
         // GET: RH/Employe
-        private GestionAbscencesEntities5 db = new GestionAbscencesEntities5();
+        private GestionAbscencesEntities6 db = new GestionAbscencesEntities6();
 
         private readonly EmployeService employeService;
         // GET: RH/Employe
@@ -33,34 +33,21 @@ namespace GestionAbscences.Areas.RH.Controllers
         [HttpPost]
         public ActionResult Create(employe data)
         {
-            if (ModelState.IsValid)
-            {
-                int creationResult = employeService.Create(new Data.employe
-                {
-                    NomComplet = data.NomComplet,
-                    matricule = data.matricule,
-                    nbjours = data.nbjours,
-                    nbjoursA = data.nbjoursA,
-                    nbjoursR = data.nbjoursR,
-                    affectation = data.affectation,
-                    role = data.role,
-                    password = data.password,
-                    soldeConge = data.soldeConge,
-                    Classe = data.Classe,
-                    DateDebut = data.DateDebut,
-                    DateFin = data.DateFin
-                });
-                if (creationResult == -2)
-                {
-                    ViewBag.Message = "nom exist";
-                    return View(data);
-                }
+            data.NomComplet = Request["NomComplet"];
+            data.matricule = Request["matricule"];
+            data.nbjours = Convert.ToInt32(Request["nbjours"]);
+           
+            data.affectation = Request["affectation"];
+            data.role = Request["role"];
+            data.password = Request["password"];
+            data.soldeConge = Convert.ToInt32(Request["soldeConge"]);
+            data.Classe = Request["Classe"];
+            data.DateDebut = Convert.ToDateTime(Request["DateDebut"]);
+            //  data.DateFin = Convert.ToDateTime(Request["DateFin"]);
 
-                return RedirectToAction("Index");
-
-            }
-
-            return View();
+            db.employe.Add(data);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Employe");
         }
 
         public ActionResult Delete(int? id)
@@ -77,8 +64,8 @@ namespace GestionAbscences.Areas.RH.Controllers
 
 
             employe e = db.employe.Find(id);
-             Session["idE"] = currentEmploye.idEmploye;
-           // Session["idE"] = e.idEmploye;
+            Session["idE"] = currentEmploye.idEmploye;
+
             if (e == null)
             {
                 return HttpNotFound();

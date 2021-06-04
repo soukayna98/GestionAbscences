@@ -10,9 +10,8 @@
 namespace GestionAbscences.Data
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class demandeconge
+    public partial class getemprecordssp_Result
     {
         public int idDemandeConge { get; set; }
         public Nullable<System.DateTime> DateDebut { get; set; }
@@ -25,8 +24,5 @@ namespace GestionAbscences.Data
         public string justification { get; set; }
         public string ValidationRH { get; set; }
         public string Annulation { get; set; }
-    
-        public virtual employe employe { get; set; }
-        public virtual typeconge typeconge { get; set; }
     }
 }
