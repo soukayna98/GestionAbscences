@@ -18,7 +18,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Admin / Employe</title>
     <link href="css/styles.css" rel="stylesheet" />
     <script src="~/Content/FileSaver.js"></script>
 
@@ -36,31 +35,50 @@
         <div class="btn btn-primary" onclick="fnExcelReport();">Export EXCEL</div>
 
 
+        <div class="form-group">
+            <div class="offset-2 row align-items-start">
+                <div class="col" style="padding-left:60px; font-weight:bold;">
+                    Du
+                </div>
+                <div class="col">
+                    <input type="date" name="debut" id="debut" style="padding:2px;" />
+                </div>
+
+                <div class="col" style="padding-left:60px; font-weight:bold;">
+                    Au
+                </div>
+                <div class="col">
+                    <input type="date" name="fin" id="fin" style="padding:2px;" />
+                </div>
+                <div class="col">
+
+                </div>
 
 
+                <div class=" col">
 
-
-        <div class="offset-9 col-3">
-
-            @Html.DropDownList("validation", new List<SelectListItem>
-    { new SelectListItem {Text="Tous" , Value ="1"},
-    new SelectListItem {Text="Validation N+1:En cours" , Value ="2"},
-    new SelectListItem {Text="Validation N+1:Accepté" , Value ="3"},
-    new SelectListItem {Text="Validation N+1:Refusé" , Value ="4"},
-    new SelectListItem {Text="Validation N+2:En cours" , Value ="5"},
-    new SelectListItem {Text="Validation N+2:Accepté" , Value ="6"},
-    new SelectListItem {Text="Validation N+2:Refusé" , Value ="7"},
-    new SelectListItem {Text="Validation RH:En cours" , Value ="8"},
-    new SelectListItem {Text="Validation RH:Accepté" , Value ="9"},
-    new SelectListItem {Text="Validation RH:Refusé" , Value ="10"} })
-
-            <button class="btn btn-info">
-                Rechercher
-            </button>
-            <br>
+                    @Html.DropDownList("validation", new List<SelectListItem>
+                { new SelectListItem {Text="Tous" , Value ="1"},
+                new SelectListItem {Text="Validation N+1:En cours" , Value ="2"},
+                new SelectListItem {Text="Validation N+1:Accepté" , Value ="3"},
+                new SelectListItem {Text="Validation N+1:Refusé" , Value ="4"},
+                new SelectListItem {Text="Validation N+2:En cours" , Value ="5"},
+                new SelectListItem {Text="Validation N+2:Accepté" , Value ="6"},
+                new SelectListItem {Text="Validation N+2:Refusé" , Value ="7"},
+                new SelectListItem {Text="Validation RH:En cours" , Value ="8" },
+                new SelectListItem {Text="Validation RH:Accepté" , Value ="9"},
+                new SelectListItem {Text="Validation RH:Refusé" , Value ="10"} })
+                </div>
+                <div class=" col">
+                    <button class="btn btn-info">
+                        Rechercher
+                    </button>
+                </div>
+            </div>
         </div>
+        <br>
 
-    <div class="card mb-4">
+        <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table mr-1"></i>
                 Historique des demandes de congés
@@ -127,128 +145,120 @@
                             {
 
 
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DateDC)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.employe.matricule)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.employe.NomComplet)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.typeconge.designation)
-                                </td>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DateDC)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.employe.matricule)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.employe.NomComplet)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.typeconge.designation)
+                                    </td>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DateDebut)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DateFin)
-                                </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DateDebut)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DateFin)
+                                    </td>
 
-                                <td>
-                                    @if (item.ValidationN1 == "refuse")
-                                    {
-
-
-                                        <p class="p-2 mb-2 bg-danger text-white">
-                                            @Html.DisplayFor(modelItem => item.ValidationN1)
-                                        </p>
-                                    }
-                                    else if (item.ValidationN1 == "En cours")
-                                    {
-                                        <p class="p-2 mb-2 bg-warning text-dark">
-                                            @Html.DisplayFor(modelItem => item.ValidationN1)
-                                        </p>
-                                    }
-                                    else
-                                    {
-                                        <p class="p-2 mb-2 bg-success text-white">
-                                            @Html.DisplayFor(modelItem => item.ValidationN1)
-                                        </p>
-                                    }
-                                </td>
-                                   <td>
-
-                                    @if (item.ValidationN2 == "refuse")
-                                    {
+                                    <td>
+                                        @if (item.ValidationN1 == "refuse")
+                                        {
 
 
-                                        <p class="p-2 mb-2 bg-danger text-white">
-                                            @Html.DisplayFor(modelItem => item.ValidationN2)
-                                        </p>
-                                    }
-                                    else if (item.ValidationN2 == "En cours")
-                                    {
-                                        <p class="p-2 mb-2 bg-warning text-dark">
-                                            @Html.DisplayFor(modelItem => item.ValidationN2)
-                                        </p>
-                                    }
-                                    else if (item.ValidationN2 == "Accepte")
-                                    {
-                                        <p class="p-2 mb-2 bg-success text-white">
-                                            @Html.DisplayFor(modelItem => item.ValidationN2)
-                                        </p>
-                                    }
-                                    else
-                                    {
-                                        <p class="p-2 mb-2 bg-light text-dark">
-                                            @Html.DisplayFor(modelItem => item.ValidationN2)
-                                        </p>
-                                    }
+                                            <p class="p-2 mb-2 bg-danger text-white">
+                                                @Html.DisplayFor(modelItem => item.ValidationN1)
+                                            </p>
+                                        }
+                                        else if (item.ValidationN1 == "En cours")
+                                        {
+                                            <p class="p-2 mb-2 bg-warning text-dark">
+                                                @Html.DisplayFor(modelItem => item.ValidationN1)
+                                            </p>
+                                        }
+                                        else
+                                        {
+                                            <p class="p-2 mb-2 bg-success text-white">
+                                                @Html.DisplayFor(modelItem => item.ValidationN1)
+                                            </p>
+                                        }
+                                    </td>
 
 
-                                </td>
-
-                                <td>
-
-                                    @if (item.ValidationRH == "refuse")
-                                    {
 
 
-                                        <p class="p-2 mb-2 bg-danger text-white">
-                                            @Html.DisplayFor(modelItem => item.ValidationRH)
-                                        </p>
-                                    }
-                                    else if (item.ValidationRH == "En cours")
-                                    {
-                                        <p class="p-2 mb-2 bg-warning text-dark">
-                                            @Html.DisplayFor(modelItem => item.ValidationRH)
-                                        </p>
-                                    }
-                                    else if (item.ValidationRH == "Accepte")
-                                    {
-                                        <p class="p-2 mb-2 bg-success text-white">
-                                            @Html.DisplayFor(modelItem => item.ValidationRH)
-                                        </p>
-                                    }
-                                    else
-                                    {
-                                        <p class="p-2 mb-2 bg-light text-dark">
-                                            @Html.DisplayFor(modelItem => item.ValidationRH)
-                                        </p>
-                                    }
+
+                                    <td>
+
+                                        @if (item.ValidationN2 == "refuse")
+                                        {
 
 
-                                </td>
-                          
-                                <td>
-                                    @if (item.ValidationRH.Equals("accepte"))
+                                            <p class="p-2 mb-2 bg-danger text-white">
+                                                @Html.DisplayFor(modelItem => item.ValidationN2)
+                                            </p>
+                                        }
+                                        else if (item.ValidationN2 == "En cours")
+                                        {
+                                            <p class="p-2 mb-2 bg-warning text-dark">
+                                                @Html.DisplayFor(modelItem => item.ValidationN2)
+                                            </p>
+                                        }
+                                        else
+                                        {
+                                            <p class="p-2 mb-2 bg-success text-white">
+                                                @Html.DisplayFor(modelItem => item.ValidationN2)
+                                            </p>
+                                        }
 
-                                    {
-                                        @Html.ActionLink("Répondre", "Validation", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
-                                    }
-                                    else
-                                    {
-                                        @Html.ActionLink("Répondre", "Validation", new { id = item.idDemandeConge })
-                                    }
+
+                                    </td>
+
+                                    <td>
+
+                                        @if (item.ValidationRH == "refuse")
+                                        {
 
 
-                                </td>
+                                            <p class="p-2 mb-2 bg-danger text-white">
+                                                @Html.DisplayFor(modelItem => item.ValidationRH)
+                                            </p>
+                                        }
+                                        else if (item.ValidationRH == "En cours")
+                                        {
+                                            <p class="p-2 mb-2 bg-warning text-dark">
+                                                @Html.DisplayFor(modelItem => item.ValidationRH)
+                                            </p>
+                                        }
+                                        else
+                                        {
+                                            <p class="p-2 mb-2 bg-success text-white">
+                                                @Html.DisplayFor(modelItem => item.ValidationRH)
+                                            </p>
+                                        }
 
-                            </tr>
+
+                                    </td>
+                                    <td>
+                                        @if (item.ValidationRH.Equals("accepte"))
+
+                                        {
+                                            @Html.ActionLink("Répondre", "Validation", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink("Répondre", "Validation", new { id = item.idDemandeConge })
+                                        }
+
+
+                                    </td>
+
+                                </tr>
                             }
 
                         </tbody>

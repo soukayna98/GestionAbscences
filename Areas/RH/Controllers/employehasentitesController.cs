@@ -14,12 +14,12 @@ namespace GestionAbscences.Areas.RH.Controllers
         private GestionAbscencesEntities6 db = new GestionAbscencesEntities6();
 
         // GET: Admin/employehasentites
-      /*  public ActionResult Index()
+       /* public ActionResult Index()
         {
             var employehasentite = db.employehasentite.Include(e => e.employe).Include(e => e.entite);
             return View(employehasentite.ToList());
-        }*/
-
+        }
+       */
         // GET: Admin/employehasentites/Details/5
         public ActionResult Details(int? id)
         {

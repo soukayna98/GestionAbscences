@@ -88,7 +88,7 @@ namespace GestionAbscences.Areas.RH.Controllers
                     e.ValidationRH = "En cours";
                     e.ValidationN1 = "En cours";
                     e.ValidationN2 = "En cours";
-                  //  e.annulation = "oui";
+                    e.Annulation = "oui";
                     e.employe.nbjoursR = Convert.ToInt32(res);
                     db.Entry(e).State = EntityState.Modified;
                     db.SaveChanges();
@@ -98,7 +98,6 @@ namespace GestionAbscences.Areas.RH.Controllers
                     return View();
 
             }
-
         }
 
 

@@ -15,7 +15,15 @@ namespace GestionAbscences.Controllers
         // GET: Default
         public ActionResult Index()
         {
+            /*if (Session["idEmploye"] != null)
+            {
+                return RedirectToAction("Index", "Default");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
 
+            }*/
             return View();
         }
     }

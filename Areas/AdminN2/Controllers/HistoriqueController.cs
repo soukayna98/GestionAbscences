@@ -72,7 +72,7 @@ namespace GestionAbscences.Areas.AdminN2.Controllers
         [HttpPost]
         public ActionResult historiques(DateTime start, DateTime end)
         {
-
+            
             return View(db.Getfunctionemp(start, end));
         }
         public ActionResult Validation(int? id)
@@ -118,9 +118,6 @@ namespace GestionAbscences.Areas.AdminN2.Controllers
 
             return View(historiqueModel);*/
         }
-
-
-
         [HttpPost]
         public ActionResult Validation()
         {
