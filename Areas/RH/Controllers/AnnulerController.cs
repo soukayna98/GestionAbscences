@@ -14,7 +14,7 @@ namespace GestionAbscences.Areas.RH.Controllers
     public class AnnulerController : BaseController
     {
         // GET: RH/Annuler
-        private GestionAbscencesEntities6 db = new GestionAbscencesEntities6();
+        private GestionAbscencesEntities7 db = new GestionAbscencesEntities7();
         private readonly DemandeService demandeService;
 
         public AnnulerController()

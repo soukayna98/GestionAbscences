@@ -4,7 +4,17 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="GestionAbscencesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="GestionAbscencesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="dc temp">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="matricule" Type="int" />
+          <Property Name="Date Debut" Type="datetime" />
+          <Property Name="Date Fin" Type="datetime" />
+          <Property Name="type congé" Type="varchar(max)" />
+        </EntityType>
         <EntityType Name="demandeconge">
           <Key>
             <PropertyRef Name="idDemandeConge" />
@@ -41,6 +51,8 @@
           <Property Name="Sexe" Type="varchar" MaxLength="50" />
           <Property Name="Cause" Type="varchar(max)" />
           <Property Name="Observetion" Type="varchar(max)" />
+          <Property Name="situation familiale" Type="varchar(max)" />
+          <Property Name="nombre enfant" Type="int" />
         </EntityType>
         <!--Erreurs détectées durant la génération :
 avertissement 6002: La table/vue 'GestionAbscences.dbo.employehasentite' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
@@ -159,11 +171,8 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="getemprecordssp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="start" Type="datetime" Mode="In" />
-          <Parameter Name="end" Type="datetime" Mode="In" />
-        </Function>
         <EntityContainer Name="GestionAbscencesModelStoreContainer">
+          <EntitySet Name="dc temp" EntityType="Self.dc temp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="demandeconge" EntityType="Self.demandeconge" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="employe" EntityType="Self.employe" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="entite" EntityType="Self.entite" Schema="dbo" store:Type="Tables" />
@@ -208,10 +217,21 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
             <End Role="entitesuper" EntitySet="entitesuper" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GestionAbscencesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="dc_temp">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="matricule" Type="Int32" />
+          <Property Name="Date_Debut" Type="DateTime" Precision="3" />
+          <Property Name="Date_Fin" Type="DateTime" Precision="3" />
+          <Property Name="type_congé" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="demandeconge">
           <Key>
             <PropertyRef Name="idDemandeConge" />
@@ -250,6 +270,8 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
           <Property Name="Sexe" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Cause" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Observetion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="situation_familiale" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="nombre_enfant" Type="Int32" />
           <NavigationProperty Name="demandeconge" Relationship="Self.fk_DemandeConge_Employe" FromRole="employe" ToRole="demandeconge" />
           <NavigationProperty Name="employehasentite" Relationship="Self.fk_employehasentite_Employe" FromRole="employe" ToRole="employehasentite" />
         </EntityType>
@@ -374,7 +396,8 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="GestionAbscencesEntities6" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="GestionAbscencesEntities7" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="dc_temp" EntityType="Self.dc_temp" />
           <EntitySet Name="demandeconge" EntityType="Self.demandeconge" />
           <EntitySet Name="employe" EntityType="Self.employe" />
           <EntitySet Name="entite" EntityType="Self.entite" />
@@ -406,34 +429,24 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
             <End Role="supervisionher" EntitySet="supervisionher" />
             <End Role="entitesuper" EntitySet="entitesuper" />
           </AssociationSet>
-          <FunctionImport Name="getemprecordssp" ReturnType="Collection(GestionAbscencesModel.getemprecordssp_Result)">
-            <Parameter Name="start" Mode="In" Type="DateTime" />
-            <Parameter Name="end" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="Getfunctionemp" EntitySet="demandeconge" ReturnType="Collection(GestionAbscencesModel.demandeconge)">
-            <Parameter Name="start" Mode="In" Type="DateTime" />
-            <Parameter Name="end" Mode="In" Type="DateTime" />
-          </FunctionImport>
         </EntityContainer>
-        <ComplexType Name="getemprecordssp_Result">
-          <Property Type="Int32" Name="idDemandeConge" Nullable="false" />
-          <Property Type="DateTime" Name="DateDebut" Nullable="true" Precision="23" />
-          <Property Type="DateTime" Name="DateFin" Nullable="true" Precision="23" />
-          <Property Type="DateTime" Name="DateDC" Nullable="true" Precision="23" />
-          <Property Type="String" Name="ValidationN1" Nullable="true" MaxLength="10" />
-          <Property Type="String" Name="ValidationN2" Nullable="true" MaxLength="10" />
-          <Property Type="Int32" Name="IdEmploye" Nullable="false" />
-          <Property Type="Int32" Name="IdtypeConge" Nullable="false" />
-          <Property Type="String" Name="justification" Nullable="true" />
-          <Property Type="String" Name="ValidationRH" Nullable="true" MaxLength="10" />
-          <Property Type="String" Name="Annulation" Nullable="true" MaxLength="50" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="GestionAbscencesModelStoreContainer" CdmEntityContainer="GestionAbscencesEntities6">
+        <EntityContainerMapping StorageEntityContainer="GestionAbscencesModelStoreContainer" CdmEntityContainer="GestionAbscencesEntities7">
+          <EntitySetMapping Name="dc_temp">
+            <EntityTypeMapping TypeName="GestionAbscencesModel.dc_temp">
+              <MappingFragment StoreEntitySet="dc temp">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="matricule" ColumnName="matricule" />
+                <ScalarProperty Name="Date_Debut" ColumnName="Date Debut" />
+                <ScalarProperty Name="Date_Fin" ColumnName="Date Fin" />
+                <ScalarProperty Name="type_congé" ColumnName="type congé" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="demandeconge">
             <EntityTypeMapping TypeName="GestionAbscencesModel.demandeconge">
               <MappingFragment StoreEntitySet="demandeconge">
@@ -470,6 +483,8 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
                 <ScalarProperty Name="Sexe" ColumnName="Sexe" />
                 <ScalarProperty Name="Cause" ColumnName="Cause" />
                 <ScalarProperty Name="Observetion" ColumnName="Observetion" />
+                <ScalarProperty Name="situation_familiale" ColumnName="situation familiale" />
+                <ScalarProperty Name="nombre_enfant" ColumnName="nombre enfant" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -517,24 +532,6 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="getemprecordssp" FunctionName="GestionAbscencesModel.Store.getemprecordssp">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="GestionAbscencesModel.getemprecordssp_Result">
-                <ScalarProperty Name="idDemandeConge" ColumnName="idDemandeConge" />
-                <ScalarProperty Name="DateDebut" ColumnName="DateDebut" />
-                <ScalarProperty Name="DateFin" ColumnName="DateFin" />
-                <ScalarProperty Name="DateDC" ColumnName="DateDC" />
-                <ScalarProperty Name="ValidationN1" ColumnName="ValidationN1" />
-                <ScalarProperty Name="ValidationN2" ColumnName="ValidationN2" />
-                <ScalarProperty Name="IdEmploye" ColumnName="IdEmploye" />
-                <ScalarProperty Name="IdtypeConge" ColumnName="IdtypeConge" />
-                <ScalarProperty Name="justification" ColumnName="justification" />
-                <ScalarProperty Name="ValidationRH" ColumnName="ValidationRH" />
-                <ScalarProperty Name="Annulation" ColumnName="Annulation" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Getfunctionemp" FunctionName="GestionAbscencesModel.Store.getemprecordssp" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

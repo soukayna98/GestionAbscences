@@ -16,7 +16,7 @@ namespace GestionAbscences.Areas.AdminN2.Controllers
     {
         // GET: AdminN2/Historique
         private readonly DemandeService demandeService;
-        private GestionAbscencesEntities6 db = new GestionAbscencesEntities6();
+        private GestionAbscencesEntities7 db = new GestionAbscencesEntities7();
 
 
         public HistoriqueController()
@@ -72,8 +72,8 @@ namespace GestionAbscences.Areas.AdminN2.Controllers
         [HttpPost]
         public ActionResult historiques(DateTime start, DateTime end)
         {
-            
-            return View(db.Getfunctionemp(start, end));
+            return View();
+            //return View(db.Getfunctionemp(start, end));
         }
         public ActionResult Validation(int? id)
         {
