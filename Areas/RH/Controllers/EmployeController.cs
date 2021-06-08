@@ -52,10 +52,12 @@ namespace GestionAbscences.Areas.RH.Controllers
 
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            
+             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+             
             var currentEmploye = employeService.ReadById(id.Value);
             if (currentEmploye == null)
             {
@@ -101,6 +103,9 @@ namespace GestionAbscences.Areas.RH.Controllers
                     return View();
 
             }
+
         }
-        }
+
+
+    }
 }

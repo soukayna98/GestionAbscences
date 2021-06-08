@@ -19,28 +19,7 @@ namespace GestionAbscences.Areas.RH.Controllers
         private readonly EmployeService employeService;
 
 
-        public ActionResult Index()
-        {
-            //les employes from DB
-            var employes = employeService.ReadAll();
-            var employesList = new List<EmployeModel>();
-            foreach (var item in employes)
-            {
-                employesList.Add(new EmployeModel
-                {
-                    Id = item.idEmploye,
-                    //matricule = item.matricule,
-                    Classe = item.Classe,
-                    DateD = (DateTime)item.DateDebut,
-                    DateF = (DateTime)item.DateFin,
-                    Nom = item.NomComplet
-
-
-                });
-            }
-            return View(employesList);
-        }
-
+       
 
         public HistoriqueController()
         {
