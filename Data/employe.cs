@@ -37,6 +37,8 @@ namespace GestionAbscences.Data
         public string Sexe { get; set; }
         public string Cause { get; set; }
         public string Observetion { get; set; }
+        public string situation_familiale { get; set; }
+        public Nullable<int> nombre_enfant { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<demandeconge> demandeconge { get; set; }

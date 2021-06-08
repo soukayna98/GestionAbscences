@@ -14,7 +14,7 @@ namespace GestionAbscences.Areas.RH.Controllers
     public class EmployeController : BaseController
     {
         // GET: RH/Employe
-        private GestionAbscencesEntities6 db = new GestionAbscencesEntities6();
+        private GestionAbscencesEntities7 db = new GestionAbscencesEntities7();
 
         private readonly EmployeService employeService;
         // GET: RH/Employe

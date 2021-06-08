@@ -12,7 +12,7 @@ namespace GestionAbscences.Controllers
     public class LoginController : BaseController
     {
 
-        public GestionAbscencesEntities6 db = new GestionAbscencesEntities6();
+        public GestionAbscencesEntities7 db = new GestionAbscencesEntities7();
 
 
         // GET: Login
@@ -84,6 +84,7 @@ namespace GestionAbscences.Controllers
             }
             else
             {
+                ViewBag.Message = "verifiez vos informations";
                 return View();
             }
 

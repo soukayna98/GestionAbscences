@@ -228,7 +228,7 @@
                                                   new SelectListItem {Text="D'un frère ou d'une soeur du salarie(2jours)" , Value ="4"},
                                                   new SelectListItem {Text="D'un frère ou d'une soeur du conjoint(2jours)" , Value ="5"},
 
-                                       }, "--Selectionner--")
+                                       }, "--Selectionner--", new { @class = "form-control" })
 
                                             </div>
                                         </div>
@@ -241,7 +241,7 @@
                                             <div class="controls">
                                                 @Html.DropDownList("marriage1", new List<SelectListItem>
                                                   { new SelectListItem {Text="Du salarie (4jours)" , Value ="1"},
-                                                  new SelectListItem {Text="D'un enfant du salarie (2jours)" , Value ="2"} }, "--Selectionner--")
+                                                  new SelectListItem {Text="D'un enfant du salarie (2jours)" , Value ="2"} }, "--Selectionner--", new { @class = "form-control" })
 
                                             </div>
                                         </div>
@@ -255,7 +255,7 @@
                                             <div class="controls">
                                                 @Html.DropDownList("operation", new List<SelectListItem>
                                                     { new SelectListItem {Text="Du conjoint (2jours)" , Value ="1"},
-                                                    new SelectListItem {Text="D'un enfant à charge (2jours)" , Value ="2"} }, "--Selectionner--")
+                                                    new SelectListItem {Text="D'un enfant à charge (2jours)" , Value ="2"} }, "--Selectionner--", new { @class = "form-control" })
 
                                             </div>
                                         </div>

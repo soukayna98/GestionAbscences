@@ -16,7 +16,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
     {
 
         private readonly DemandeService demandeService;
-        private GestionAbscencesEntities6 db = new GestionAbscencesEntities6();
+        private GestionAbscencesEntities7 db = new GestionAbscencesEntities7();
 
 
         public HistoriqueController()

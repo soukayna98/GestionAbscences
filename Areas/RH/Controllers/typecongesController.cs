@@ -13,7 +13,7 @@ namespace GestionAbscences.Areas.RH.Controllers
     public class typecongesController : BaseController
     {
         // GET: RH/typeconges
-        private GestionAbscencesEntities6 db = new GestionAbscencesEntities6();
+        private GestionAbscencesEntities7 db = new GestionAbscencesEntities7();
 
         // GET: RH/typeconges
         public ActionResult Index()

@@ -16,7 +16,7 @@ namespace GestionAbscences.Controllers
 {
     public class employeController : BaseController
     {
-        private GestionAbscencesEntities6 db = new GestionAbscencesEntities6();
+        private GestionAbscencesEntities7 db = new GestionAbscencesEntities7();
 
         // GET: employe
         public ActionResult Index()
@@ -248,7 +248,7 @@ namespace GestionAbscences.Controllers
 
                                 int x4 = int.Parse(item.dureeJ);
                                 var df = debut.AddDays(x4);
-                                demande.DateFin = Convert.ToDateTime(df);
+                                demande.DateFin = Convert.ToDateTime(df) ;
                                 demande.IdtypeConge = 4;
                             }
                         }
