@@ -20,7 +20,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Admin / Employe</title>
     <link href="css/styles.css" rel="stylesheet" />
     <script src="~/Content/FileSaver.js"></script>
 
@@ -36,33 +35,26 @@
     <body class="sb-nav-fixed">
 
         <br>
-        <div class="btn btn-primary" onclick="fnExcelReport();">Export EXCEL</div>
         @ViewBag.message
 
-        <div class="form-group">
+
+
+        <div class="form-row">
             <div class="offset-2 row align-items-start">
-                <div class="col" style="padding-left:60px; font-weight:bold;">
-                    Du
+                <div class="form-group col-md-3">
+                    <label for="inputCity">Du :</label>
+                        <input type="date" name="debut" id="debut" class="form-control" />
+                    
                 </div>
-                <div class="col">
-                    <input type="date" name="debut" id="debut" style="padding:2px;" />
-                </div>
-
-                <div class="col" style="padding-left:60px; font-weight:bold;">
-                    Au
-                </div>
-                <div class="col">
-                    <input type="date" name="fin" id="fin" style="padding:2px;" />
-                </div>
-                <div class="col">
-
+                <div class="form-group col-md-3">
+                    <label for="inputCity">Au :</label>
+                        <input type="date" name="fin" id="fin" class="form-control" />                
                 </div>
 
-
-                <div class=" col">
-
+                <div class="form-group col-md-3">
+                    <label for="inputCity">Validation :</label>
                     @Html.DropDownList("validation", new List<SelectListItem>
-                { new SelectListItem {Text="Tous" , Value ="1"},
+                { new SelectListItem {Text="Validation" , Value ="1"},
                 new SelectListItem {Text="Validation N+1:En cours" , Value ="2"},
                 new SelectListItem {Text="Validation N+1:Accepté" , Value ="3"},
                 new SelectListItem {Text="Validation N+1:Refusé" , Value ="4"},
@@ -71,15 +63,20 @@
                 new SelectListItem {Text="Validation N+2:Refusé" , Value ="7"},
                 new SelectListItem {Text="Validation RH:En cours" , Value ="8" , Selected=true },
                 new SelectListItem {Text="Validation RH:Accepté" , Value ="9"},
-                new SelectListItem {Text="Validation RH:Refusé" , Value ="10"} })
+                new SelectListItem {Text="Validation RH:Refusé" , Value ="10"} }, new { @class = "form-control" })
                 </div>
-                <div class=" col">
+                <div class="form-group col-md-3">
                     <button class="btn btn-info">
                         Rechercher
                     </button>
+                    
+
+                        <button class="btn btn-primary" onclick="fnExcelReport();">
+                            Export EXCEL
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
         <br>
 
 

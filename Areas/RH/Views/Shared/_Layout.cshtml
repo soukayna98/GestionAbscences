@@ -110,30 +110,43 @@
 
                             </nav>
                         </div>
-                        <div class="sb-sidenav-menu-heading">Addons</div>
-                        <a class="nav-link" href="@Url.Action("Index","Employe")">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                            Employes
+                        
+
+
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                           Employés
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
+                        <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="@Url.Action("Index","Employe")">Liste des employés</a>
 
-                       
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                    Demande de Congé
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
-                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="@Url.Action("historiques","Historique")">Historique</a>
+                                <a class="nav-link" href="@Url.Action("Index","entites")">Entités</a>                                
+                                <a class="nav-link" href="@Url.Action("Index","employehasentites")">Affectation</a>
 
-                                        <a class="nav-link" href="@Url.Action("historique","Historique")">Demande en attente de réponse</a>
-                                        <a class="nav-link" href="@Url.Action("Index","Annuler")">Demande accepté</a>
+                            </nav>
+                        </div>
 
-                                    </nav>
-                                </div>
 
-                           
-                       
+
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            Demande de Congé
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="@Url.Action("historiques","Historique")">Historique</a>
+
+                                <a class="nav-link" href="@Url.Action("historique","Historique")">Demande en attente de réponse</a>
+                                <a class="nav-link" href="@Url.Action("Index","Annuler")">Demande accepté</a>
+
+                            </nav>
+                        </div>
+
+
+
 
 
                         <a class="nav-link" href="@Url.Action("Index","typeconges")">
@@ -141,10 +154,9 @@
                             Type de congé
                         </a>
 
-                        <a class="nav-link" href="@Url.Action("Index","entites")">Entités</a>
-                        <a class="nav-link" href="@Url.Action("Index","employehasentites")">Affectation</a>
+                    
 
-                        
+
                     </div>
                     </div>
                 <div class="sb-sidenav-footer">
