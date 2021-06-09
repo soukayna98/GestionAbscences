@@ -70,7 +70,7 @@
                                 @Html.DisplayNameFor(model => model.nbjours)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.nbjoursR)
+                                Nombre de jours reste 
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.nbjoursA)
@@ -119,7 +119,7 @@
                                     @Html.DisplayFor(modelItem => item.nbjours)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.nbjoursR)
+                                    @Session["nbjoursR"]
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.nbjoursA)

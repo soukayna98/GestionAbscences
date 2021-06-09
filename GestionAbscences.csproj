@@ -164,7 +164,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\Controllers\DemandeController.cs" />
-    <Compile Include="Areas\Admin\Controllers\employehasentitesController.cs" />
     <Compile Include="Areas\RH\Controllers\AnnulerController.cs" />
     <Compile Include="Areas\RH\Controllers\EmployeController.cs" />
     <Compile Include="Areas\RH\Controllers\employehasentitesController.cs" />
@@ -184,10 +183,14 @@
     <Compile Include="Areas\Admin\Models\EmployeModel.cs" />
     <Compile Include="Areas\Admin\Models\HistoriqueModel.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\employeController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Data\DCTEMP.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\demandeconge.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -226,6 +229,24 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="langagues\Resource1.ar-EG.Designer.cs" />
+    <Compile Include="langagues\Resource1.ar-EG1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.ar-EG.resx</DependentUpon>
+    </Compile>
+    <Compile Include="langagues\Resource1.Designer.cs" />
+    <Compile Include="langagues\Resource1.fr.Designer.cs" />
+    <Compile Include="langagues\Resource1.fr1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.fr.resx</DependentUpon>
+    </Compile>
+    <Compile Include="langagues\Resource11.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
     <Compile Include="Models\account.cs" />
     <Compile Include="Models\ChangePasswordModel.cs" />
@@ -554,6 +575,7 @@
     <Content Include="Areas\Admin\Views\employehasentites\Details.cshtml" />
     <Content Include="Areas\Admin\Views\employehasentites\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\employehasentites\Index.cshtml" />
+    <Content Include="Areas\RH\Views\Historique\choixVal.cshtml" />
     <EntityDeploy Include="Data\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -561,7 +583,6 @@
     <Content Include="Data\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\RH\Views\Historique\choixVal.cshtml" />
     <None Include="Dockerfile" />
     <None Include=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>
@@ -593,9 +614,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="scss\layout\_authentication.scss" />
     <Content Include="scss\layout\_dashboard-default.scss" />
     <Content Include="scss\layout\_dashboard-fixed.scss" />
@@ -620,13 +638,13 @@
     <Content Include="Views\employe\demande.cshtml" />
     <Content Include="Views\employe\Imprimer.cshtml" />
     <Content Include="Views\employe\modifier.cshtml" />
-    <Content Include="Views\Shared\_GridPager.cshtml" />
-    <Content Include="Views\Shared\_Grid.cshtml" />
+    <Content Include="Views\employe\Imprimer2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\NewFolder1\" />
     <Folder Include="Content\images\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -643,6 +661,20 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="langagues\Resource1.ar-EG.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.ar-EG1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="langagues\Resource1.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.fr1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="langagues\Resource1.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource11.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

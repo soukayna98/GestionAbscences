@@ -12,7 +12,7 @@ namespace GestionAbscences.Areas.RH.Controllers
 {
     public class entitesController : Controller
     {
-        private GestionAbscencesEntities9 db = new GestionAbscencesEntities9();
+        private GestionAbscencesEntities10 db = new GestionAbscencesEntities10();
 
         // GET: RH/entites
         public ActionResult Index()

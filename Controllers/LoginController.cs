@@ -10,9 +10,9 @@ using System.Web.Mvc;
 
 namespace GestionAbscences.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : BaseController
     {
-        private GestionAbscencesEntities9 db = new GestionAbscencesEntities9();
+        private GestionAbscencesEntities10 db = new GestionAbscencesEntities10();
         // GET: Login
         public ActionResult Index()
         {
@@ -49,12 +49,14 @@ namespace GestionAbscences.Controllers
             var user = db.employe.Where(x => x.matricule == log.matricule && x.password == log.password).ToList().FirstOrDefault();
             if (user != null)
             {
+                var heure = Convert.ToDouble(user.nbHeureR);
+                var heure1 =( heure / 24);
                 Session["userName"] = user.NomComplet;
                 Session["matricule"] = user.matricule;
                 Session["idEmploye"] = user.idEmploye;
                 Session["affectation"] = user.affectation;
                 Session["nbjours"] = user.nbjours.ToString();
-               Session["nbjoursR"] = user.nbjoursR.ToString();
+                Session["nbjoursR"] = heure1;
                 Session["Classe"] = user.Classe;
                 Session["DateFin"] = user.DateFin;
                 Session["DateDebut"] = user.DateDebut;
@@ -76,7 +78,7 @@ namespace GestionAbscences.Controllers
                 }
                 else if (user.password=="supprime")
                 {
-                    Session["message"] = "Compte introuvable";
+                    ViewBag.message = "Compte introuvable";
                     return RedirectToAction("Index", "Login");
                 }
                 else
@@ -88,6 +90,7 @@ namespace GestionAbscences.Controllers
             }
             else
             {
+                ViewBag.message = "verifiez vos informations";
                 return View();
             }
 

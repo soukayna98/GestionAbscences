@@ -13,7 +13,7 @@ namespace GestionAbscences.Areas.RH.Controllers
 {
     public class EmployeController : Controller
     {
-        private GestionAbscencesEntities9  db = new GestionAbscencesEntities9();
+        private GestionAbscencesEntities10  db = new GestionAbscencesEntities10();
 
         private readonly EmployeService employeService;
         // GET: RH/Employe
@@ -70,13 +70,14 @@ namespace GestionAbscences.Areas.RH.Controllers
             data.matricule= Request["matricule"];
             data.nbjours =Convert.ToInt32( Request["nbjours"]);
             data.nbjoursA = Request["nbjoursA"];
-            data.nbjoursR = Request["nbjoursR"];
+            data.nbHeureR = Request["nbjoursR"];
             data.affectation = Request["affectation"];
             data.role = Request["role"];
             data.password = Request["password"];
             data.soldeConge = Convert.ToInt32(Request["soldeConge"]);
             data.Classe = Request["Classe"];
             data.DateDebut =Convert.ToDateTime( Request["DateDebut"]);
+            
           //  data.DateFin = Convert.ToDateTime(Request["DateFin"]);
 
             db.employe.Add(data);

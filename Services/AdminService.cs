@@ -18,12 +18,12 @@ namespace GestionAbscences.Services
     public class AdminService : IAdminService
     {
 
-        public GestionAbscencesEntities9 context { get; set; }
+        public GestionAbscencesEntities10 context { get; set; }
 
         public AdminService()
         {
 
-            context = new GestionAbscencesEntities9();
+            context = new GestionAbscencesEntities10();
         }
 
         public bool Login(int id, string Password)

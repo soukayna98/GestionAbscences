@@ -15,7 +15,7 @@ namespace GestionAbscences.Areas.RH.Controllers
 {
     public class AnnulerController : Controller
     {
-        private GestionAbscencesEntities9 db = new GestionAbscencesEntities9();
+        private GestionAbscencesEntities10 db = new GestionAbscencesEntities10();
         private readonly DemandeService demandeService;
 
         public AnnulerController()
@@ -68,18 +68,26 @@ namespace GestionAbscences.Areas.RH.Controllers
 
             DateTime dateDebut = e.DateDebut.Value;
             DateTime dateFin = e.DateFin.Value;
-            var dure = (dateFin - dateDebut).Days;
-            var dureM = (dateFin - dateDebut).TotalMinutes;
 
-            double du = Convert.ToDouble(dure) + 1;
-            double duM = Convert.ToDouble(dureM) + 1440;
-            double nb = Convert.ToDouble(e.employe.nbjoursR);
-            double nbM = Convert.ToDouble(e.employe.nbjoursR) * 24 * 60;
-            double res = nb + du;
-            double resM = nbM - duM;
-            double resJ = resM / 1440;
 
-            //  Session["dur1"] = duM;
+                var dure = (dateFin - dateDebut).Days;
+
+
+                double du = Convert.ToDouble(dure) + 1;
+                double d = du * 24;
+                double nb = Convert.ToDouble(e.employe.nbHeureR);
+               
+                double res = nb + d;
+
+           
+
+
+
+
+
+
+
+
             switch (button)
             {
                 case "Retour":
@@ -90,7 +98,7 @@ namespace GestionAbscences.Areas.RH.Controllers
                     e.ValidationN1 = "En cours";
                     e.ValidationN2 = "En cours";
                     e.annulation = "oui";
-                    e.employe.nbjoursR = res.ToString();
+                    e.employe.nbHeureR = res.ToString();
                     db.Entry(e).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -110,38 +118,6 @@ namespace GestionAbscences.Areas.RH.Controllers
 
 
     }
-      /*  [HttpPost]
-        public FileResult Export()
-        {
-            GestionAbscencesEntities7 entities = new GestionAbscencesEntities7();
-
-            DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[8] { new  DataColumn("Date creation"),
-                                            new DataColumn("Nom complet"),
-                                           new  DataColumn("Matricule"),
-                                            new DataColumn("Début"),
-                                            new DataColumn("Fin"),
-                                            new DataColumn("Validation N+1"),
-                                            new DataColumn("Validation N+2"),
-                                            new DataColumn("Validation RH") });
-
-            var demande  = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValdationRH == "accepte" && p.ValidationN2 == "accepte");
-
-            foreach (var d in demande)
-            {
-                dt.Rows.Add(d.DateDC, d.employe.matricule, d.employe.NomComplet, d.DateDebut, d.DateFin, d.ValidationN1, d.ValidationN2, d.ValdationRH);
-            }
-
-            using (XLWorkbook wb = new XLWorkbook())
-            {
-                wb.Worksheets.Add(dt);
-                using (MemoryStream stream = new MemoryStream())
-                {
-                    wb.SaveAs(stream);
-                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
-                }
-            }
-        }*/
 
     }
 }

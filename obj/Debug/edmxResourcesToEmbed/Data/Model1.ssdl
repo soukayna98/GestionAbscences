@@ -1,5 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="GestionAbscencesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DCTEMP">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="matricule" Type="varchar" MaxLength="50" />
+    <Property Name="DateDebut" Type="datetime" />
+    <Property Name="DateFin" Type="datetime" />
+    <Property Name="typeDeConge" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="demandeconge">
     <Key>
       <PropertyRef Name="idDemandeConge" />
@@ -15,6 +26,9 @@
     <Property Name="justification" Type="varchar(max)" />
     <Property Name="ValdationRH" Type="varchar" MaxLength="50" />
     <Property Name="annulation" Type="varchar" MaxLength="50" />
+    <Property Name="DateValidationN1" Type="datetime" />
+    <Property Name="DateValidationN2" Type="datetime" />
+    <Property Name="DateValidationRH" Type="datetime" />
   </EntityType>
   <EntityType Name="employe">
     <Key>
@@ -27,13 +41,15 @@
     <Property Name="DateFin" Type="datetime" />
     <Property Name="password" Type="varchar" MaxLength="40" />
     <Property Name="nbjours" Type="int" />
-    <Property Name="nbjoursR" Type="varchar" MaxLength="50" />
+    <Property Name="nbHeureR" Type="varchar" MaxLength="50" />
     <Property Name="matricule" Type="varchar" MaxLength="50" />
     <Property Name="affectation" Type="varchar" MaxLength="50" />
     <Property Name="role" Type="varchar" MaxLength="50" />
     <Property Name="soldeConge" Type="float" />
     <Property Name="nbjoursA" Type="varchar" MaxLength="50" />
     <Property Name="sexe" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
+    <Property Name="nbEnfants" Type="int" />
   </EntityType>
   <EntityType Name="employehasentite">
     <Key>
@@ -148,6 +164,7 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="GestionAbscencesModelStoreContainer">
+    <EntitySet Name="DCTEMP" EntityType="Self.DCTEMP" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="demandeconge" EntityType="Self.demandeconge" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="employe" EntityType="Self.employe" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="employehasentite" EntityType="Self.employehasentite" Schema="dbo" store:Type="Tables" />

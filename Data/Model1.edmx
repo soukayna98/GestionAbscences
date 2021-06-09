@@ -5,6 +5,17 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="GestionAbscencesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DCTEMP">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="matricule" Type="varchar" MaxLength="50" />
+          <Property Name="DateDebut" Type="datetime" />
+          <Property Name="DateFin" Type="datetime" />
+          <Property Name="typeDeConge" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="demandeconge">
           <Key>
             <PropertyRef Name="idDemandeConge" />
@@ -20,6 +31,9 @@
           <Property Name="justification" Type="varchar(max)" />
           <Property Name="ValdationRH" Type="varchar" MaxLength="50" />
           <Property Name="annulation" Type="varchar" MaxLength="50" />
+          <Property Name="DateValidationN1" Type="datetime" />
+          <Property Name="DateValidationN2" Type="datetime" />
+          <Property Name="DateValidationRH" Type="datetime" />
         </EntityType>
         <EntityType Name="employe">
           <Key>
@@ -32,13 +46,15 @@
           <Property Name="DateFin" Type="datetime" />
           <Property Name="password" Type="varchar" MaxLength="40" />
           <Property Name="nbjours" Type="int" />
-          <Property Name="nbjoursR" Type="varchar" MaxLength="50" />
+          <Property Name="nbHeureR" Type="varchar" MaxLength="50" />
           <Property Name="matricule" Type="varchar" MaxLength="50" />
           <Property Name="affectation" Type="varchar" MaxLength="50" />
           <Property Name="role" Type="varchar" MaxLength="50" />
           <Property Name="soldeConge" Type="float" />
           <Property Name="nbjoursA" Type="varchar" MaxLength="50" />
           <Property Name="sexe" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="nbEnfants" Type="int" />
         </EntityType>
         <EntityType Name="employehasentite">
           <Key>
@@ -153,6 +169,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="GestionAbscencesModelStoreContainer">
+          <EntitySet Name="DCTEMP" EntityType="Self.DCTEMP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="demandeconge" EntityType="Self.demandeconge" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="employe" EntityType="Self.employe" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="employehasentite" EntityType="Self.employehasentite" Schema="dbo" store:Type="Tables" />
@@ -190,6 +207,17 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GestionAbscencesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DCTEMP">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="matricule" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateDebut" Type="DateTime" Precision="3" />
+          <Property Name="DateFin" Type="DateTime" Precision="3" />
+          <Property Name="typeDeConge" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="demandeconge">
           <Key>
             <PropertyRef Name="idDemandeConge" />
@@ -205,6 +233,9 @@
           <Property Name="justification" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ValdationRH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="annulation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateValidationN1" Type="DateTime" Precision="3" />
+          <Property Name="DateValidationN2" Type="DateTime" Precision="3" />
+          <Property Name="DateValidationRH" Type="DateTime" Precision="3" />
           <NavigationProperty Name="employe" Relationship="Self.fk_DemandeConge_Employe" FromRole="demandeconge" ToRole="employe" />
           <NavigationProperty Name="typeconge" Relationship="Self.fk_DemandeConge_typeConge" FromRole="demandeconge" ToRole="typeconge" />
         </EntityType>
@@ -219,13 +250,15 @@
           <Property Name="DateFin" Type="DateTime" Precision="3" />
           <Property Name="password" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="nbjours" Type="Int32" />
-          <Property Name="nbjoursR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nbHeureR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="matricule" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="affectation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="soldeConge" Type="Double" />
           <Property Name="nbjoursA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="sexe" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nbEnfants" Type="Int32" />
           <NavigationProperty Name="demandeconge" Relationship="Self.fk_DemandeConge_Employe" FromRole="employe" ToRole="demandeconge" />
           <NavigationProperty Name="employehasentite" Relationship="Self.fk_employehasentite_Employe" FromRole="employe" ToRole="employehasentite" />
         </EntityType>
@@ -349,7 +382,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="GestionAbscencesEntities9" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="GestionAbscencesEntities10" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DCTEMP" EntityType="Self.DCTEMP" />
           <EntitySet Name="demandeconge" EntityType="Self.demandeconge" />
           <EntitySet Name="employe" EntityType="Self.employe" />
           <EntitySet Name="employehasentite" EntityType="Self.employehasentite" />
@@ -387,7 +421,19 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="GestionAbscencesModelStoreContainer" CdmEntityContainer="GestionAbscencesEntities9">
+        <EntityContainerMapping StorageEntityContainer="GestionAbscencesModelStoreContainer" CdmEntityContainer="GestionAbscencesEntities10">
+          <EntitySetMapping Name="DCTEMP">
+            <EntityTypeMapping TypeName="GestionAbscencesModel.DCTEMP">
+              <MappingFragment StoreEntitySet="DCTEMP">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="matricule" ColumnName="matricule" />
+                <ScalarProperty Name="DateDebut" ColumnName="DateDebut" />
+                <ScalarProperty Name="DateFin" ColumnName="DateFin" />
+                <ScalarProperty Name="typeDeConge" ColumnName="typeDeConge" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="demandeconge">
             <EntityTypeMapping TypeName="GestionAbscencesModel.demandeconge">
               <MappingFragment StoreEntitySet="demandeconge">
@@ -402,6 +448,9 @@
                 <ScalarProperty Name="justification" ColumnName="justification" />
                 <ScalarProperty Name="ValdationRH" ColumnName="ValdationRH" />
                 <ScalarProperty Name="annulation" ColumnName="annulation" />
+                <ScalarProperty Name="DateValidationN1" ColumnName="DateValidationN1" />
+                <ScalarProperty Name="DateValidationN2" ColumnName="DateValidationN2" />
+                <ScalarProperty Name="DateValidationRH" ColumnName="DateValidationRH" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -415,13 +464,15 @@
                 <ScalarProperty Name="DateFin" ColumnName="DateFin" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="nbjours" ColumnName="nbjours" />
-                <ScalarProperty Name="nbjoursR" ColumnName="nbjoursR" />
+                <ScalarProperty Name="nbHeureR" ColumnName="nbHeureR" />
                 <ScalarProperty Name="matricule" ColumnName="matricule" />
                 <ScalarProperty Name="affectation" ColumnName="affectation" />
                 <ScalarProperty Name="role" ColumnName="role" />
                 <ScalarProperty Name="soldeConge" ColumnName="soldeConge" />
                 <ScalarProperty Name="nbjoursA" ColumnName="nbjoursA" />
                 <ScalarProperty Name="sexe" ColumnName="sexe" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="nbEnfants" ColumnName="nbEnfants" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

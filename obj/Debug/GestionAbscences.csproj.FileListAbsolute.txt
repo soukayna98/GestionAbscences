@@ -177,7 +177,6 @@ C:\Users\HP\Source\Repos\GestionAbscences\bin\fr\System.Web.Razor.resources.dll
 C:\Users\HP\Source\Repos\GestionAbscences\bin\fr\System.Web.WebPages.resources.dll
 C:\Users\HP\Source\Repos\GestionAbscences\bin\fr\System.Web.WebPages.Deployment.resources.dll
 C:\Users\HP\Source\Repos\GestionAbscences\bin\fr\System.Web.WebPages.Razor.resources.dll
-C:\Users\HP\Source\Repos\GestionAbscences\obj\Debug\GestionAbscences.csprojAssemblyReference.cache
 C:\Users\HP\Source\Repos\GestionAbscences\obj\Debug\GestionAbscences.csproj.CoreCompileInputs.cache
 C:\Users\HP\Source\Repos\GestionAbscences\obj\Debug\GestionAbscences.csproj.CopyComplete
 C:\Users\HP\Source\Repos\GestionAbscences\obj\Debug\GestionAbscences.dll
@@ -290,3 +289,12 @@ C:\Users\HP\source\repos\GestionAbscences\bin\ClosedXML.pdb
 C:\Users\HP\source\repos\GestionAbscences\bin\ClosedXML.xml
 C:\Users\HP\source\repos\GestionAbscences\bin\DocumentFormat.OpenXml.xml
 C:\Users\HP\source\repos\GestionAbscences\bin\ExcelNumberFormat.xml
+C:\Users\HP\source\repos\GestionAbscences\bin\ar-EG\GestionAbscences.resources.dll
+C:\Users\HP\source\repos\GestionAbscences\bin\fr\GestionAbscences.resources.dll
+C:\Users\HP\source\repos\GestionAbscences\obj\Debug\GestionAbscences.langagues.Resource1.resources
+C:\Users\HP\source\repos\GestionAbscences\obj\Debug\GestionAbscences.langagues.Resource1.ar-EG.resources
+C:\Users\HP\source\repos\GestionAbscences\obj\Debug\GestionAbscences.langagues.Resource1.fr.resources
+C:\Users\HP\source\repos\GestionAbscences\obj\Debug\GestionAbscences.csproj.GenerateResource.cache
+C:\Users\HP\source\repos\GestionAbscences\obj\Debug\ar-EG\GestionAbscences.resources.dll
+C:\Users\HP\source\repos\GestionAbscences\obj\Debug\fr\GestionAbscences.resources.dll
+C:\Users\HP\source\repos\GestionAbscences\obj\Debug\GestionAbscences.csprojAssemblyReference.cache

@@ -32,30 +32,28 @@
 <body class="sb-nav-fixed">
 
     <br>
-    <div class="btn btn-primary" onclick="fnExcelReport();">Export EXCEL</div>
 
+    @ViewBag.message
 
     <div class="form-group">
-        <div class="offset-2 row align-items-start">
-            <div class="col" style="padding-left:60px; font-weight:bold;">
+        <div class="offset-3 row align-items-start">
+            <div class="col-1" style="font-weight:bold; padding-left:60px;">
                 Du
             </div>
-            <div class="col">
-                <input type="date" name="debut" id="debut" style="padding:2px;" />
+            <div class="col-2">
+                <input type="date" name="debut" id="debut" style="padding:2px;" class="form-control" value="@ViewBag.d2" />
             </div>
 
-            <div class="col" style="padding-left:60px; font-weight:bold;">
+            <div class="col-1" style="font-weight:bold;  padding-left:60px;">
                 Au
             </div>
-            <div class="col">
-                <input type="date" name="fin" id="fin" style="padding:2px;" />
-            </div>
-            <div class="col">
-
+            <div class="col-2">
+                <input type="date" name="fin" id="fin" style="padding:2px;" class="form-control"  value="@ViewBag.f2"/>
             </div>
 
 
-            <div class=" col">
+
+            <div class=" col-3" style="padding-left:60px; ">
 
                 @Html.DropDownList("validation", new List<SelectListItem>
             { new SelectListItem {Text="Tous" , Value ="1"},
@@ -65,17 +63,25 @@
             new SelectListItem {Text="Validation N+2:En cours" , Value ="5"},
             new SelectListItem {Text="Validation N+2:Accepté" , Value ="6"},
             new SelectListItem {Text="Validation N+2:Refusé" , Value ="7"},
-            new SelectListItem {Text="Validation RH:En cours" , Value ="8" },
+            new SelectListItem {Text="Validation RH:En cours" , Value ="8" , Selected=true },
             new SelectListItem {Text="Validation RH:Accepté" , Value ="9"},
-            new SelectListItem {Text="Validation RH:Refusé" , Value ="10"} })
+            new SelectListItem {Text="Validation RH:Refusé" , Value ="10"} }, new { @class = "form-control" })
             </div>
-            <div class=" col">
+            <div class="col-1">
                 <button class="btn btn-info">
                     Rechercher
                 </button>
             </div>
         </div>
     </div>
+    <br>
+    <div class="btn btn-outline-success" onclick="fnExcelReport();">Export EXCEL</div>
+
+
+
+
+
+
     <br>
 
 
@@ -217,9 +223,15 @@
                                             @Html.DisplayFor(modelItem => item.ValidationN1)
                                         </p>
                                     }
+                                    else if (item.ValidationN1 == "accepte")
+                                    {
+                                        <p class="p-2 mb-2 bg-success text-dark">
+                                            @Html.DisplayFor(modelItem => item.ValidationN1)
+                                        </p>
+                                    }
                                     else
                                     {
-                                        <p class="p-2 mb-2 bg-success text-white">
+                                        <p class="p-2 mb-2 bg-light " style="color:gray;">
                                             @Html.DisplayFor(modelItem => item.ValidationN1)
                                         </p>
                                     }
@@ -245,9 +257,15 @@
                                             @Html.DisplayFor(modelItem => item.ValidationN2)
                                         </p>
                                     }
+                                    else if (item.ValidationN2 == "accepte")
+                                    {
+                                        <p class="p-2 mb-2 bg-success text-dark">
+                                            @Html.DisplayFor(modelItem => item.ValidationN2)
+                                        </p>
+                                    }
                                     else
                                     {
-                                        <p class="p-2 mb-2 bg-success text-white">
+                                        <p class="p-2 mb-2 bg-light " style="color:gray;">
                                             @Html.DisplayFor(modelItem => item.ValidationN2)
                                         </p>
                                     }
@@ -271,24 +289,33 @@
                                             @Html.DisplayFor(modelItem => item.ValdationRH)
                                         </p>
                                     }
-                                    else
+                                    else if (item.ValdationRH == "accepte")
                                     {
-                                        <p class="p-2 mb-2 bg-success text-white">
+                                        <p class="p-2 mb-2 bg-success text-dark">
                                             @Html.DisplayFor(modelItem => item.ValdationRH)
                                         </p>
+                                    }
+                                    else
+                                    {
+                                        <p class="p-2 mb-2 bg-light " style="color:gray;">
+                                            @Html.DisplayFor(modelItem => item.ValdationRH)
+                                        </p>
+
                                     }
 
 
                                 </td>
                                 <td>
-                                    @if (item.ValdationRH.Equals("accepte"))
+                                    @if (item.ValdationRH.Equals("En cours"))
 
                                     {
-                                        @Html.ActionLink("Répondre", "Validation", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                        @Html.ActionLink("Répondre", "Validation", new { id = item.idDemandeConge })
+
                                     }
+
                                     else
                                     {
-                                        @Html.ActionLink("Répondre", "Validation", new { id = item.idDemandeConge })
+                                        @Html.ActionLink("Répondre", "Validation", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
                                     }
 
 

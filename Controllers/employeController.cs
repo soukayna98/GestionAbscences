@@ -18,9 +18,9 @@ using System.Web.UI.WebControls;
 
 namespace GestionAbscences.Controllers
 {
-    public class employeController : Controller
+    public class employeController : BaseController
     {
-         private GestionAbscencesEntities9 db = new GestionAbscencesEntities9();
+         private GestionAbscencesEntities10 db = new GestionAbscencesEntities10();
 
       /*  public JsonResult GetTypetList(int Id_filiere)
         {
@@ -298,7 +298,7 @@ namespace GestionAbscences.Controllers
            
                 if (Request["dateDebut"].Equals("")  || typeCongeIdTypeconge.Equals(""))
             {
-                Session["demande"] = "Remlpir tout les champs svp !";
+                ViewBag.Message = "Remlpir tout les champs svp !";
                 return RedirectToAction("Index", "employe");
             }
             //date debut 
@@ -308,7 +308,7 @@ namespace GestionAbscences.Controllers
             {
                 if (debut < dc)
                 {
-                    Session["demande"] = "vérifier les dates svp!";
+                    ViewBag.Message = "vérifier les dates svp!";
                     return RedirectToAction("Index", "employe");
                 }
                 else if (typeCongeIdTypeconge.Equals("Mariage") && !(marriage.Equals("")))
@@ -463,7 +463,7 @@ namespace GestionAbscences.Controllers
             {
                 if (Request["dateDebut"].Equals("") || Request["dateFin"].Equals("") || typeCongeIdTypeconge.Equals(""))
                 {
-                    Session["demande"] = "Remlpir tout les champs svp !";
+                    ViewBag.Message = "Remlpir tout les champs svp !";
                     return RedirectToAction("Index", "employe");
                 }
                 DateTime fin = Convert.ToDateTime(Request["dateFin"]);
@@ -471,7 +471,7 @@ namespace GestionAbscences.Controllers
 
                 if ((debut < dc) || (fin < dc) || (fin < debut))
                 {
-                    Session["demande"] = "vérifier les dates svp!";
+                    ViewBag.Message = "vérifier les dates svp!";
                     return RedirectToAction("Index", "employe");
                 }
 
@@ -569,7 +569,7 @@ namespace GestionAbscences.Controllers
                     }
                     else
                     {
-                        Session["demande"] = "Vérifier vos données svp !";
+                        ViewBag.Message = "Vérifier vos données svp !";
                         return RedirectToAction("Index", "employe");
                     }
 
@@ -610,7 +610,7 @@ namespace GestionAbscences.Controllers
 
             db.SaveChanges();
 
-
+            ViewBag.Message = "HHHHYUYUBN";
 
 
             return RedirectToAction("historique", "employe");
@@ -634,6 +634,32 @@ namespace GestionAbscences.Controllers
 
 
         public ActionResult Imprimer(int? id)
+        {
+
+            //condition pas encore
+            if (id == null || db.demandeconge.Find(id).ValidationN1 == "refuse" || db.demandeconge.Find(id).ValidationN2 == "refuse")
+            {
+                //return RedirectToAction("Index", "Default");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var currentDemande = demandeService.ReadById(id.Value);
+            if (currentDemande == null || db.demandeconge.Find(id).ValidationN1 == "refuse" || db.demandeconge.Find(id).ValidationN2 == "refuse")
+            {
+                return HttpNotFound($"this demande ({id}) is not found");
+            }
+
+            demandeconge demandeconge = db.demandeconge.Find(id);
+            Session["uid"] = currentDemande.idDemandeConge;
+
+            if (demandeconge == null || db.demandeconge.Find(id).ValidationN1 == "refuse" || db.demandeconge.Find(id).ValidationN2 == "refuse")
+            {
+                return HttpNotFound();
+            }
+
+            return View(demandeconge);
+        }
+        public ActionResult Imprimer2(int? id)
         {
 
             //condition pas encore

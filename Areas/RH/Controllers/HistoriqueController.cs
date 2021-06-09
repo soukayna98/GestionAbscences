@@ -21,7 +21,7 @@ namespace GestionAbscences.Areas.RH.Controllers
 {
     public class HistoriqueController : Controller
     {
-        private GestionAbscencesEntities9 db = new GestionAbscencesEntities9();
+        private GestionAbscencesEntities10 db = new GestionAbscencesEntities10();
         private readonly DemandeService demandeService;
 
         public HistoriqueController()
@@ -54,12 +54,15 @@ namespace GestionAbscences.Areas.RH.Controllers
         {
             string d1 = Request["debut"].ToString();
             string f1 = Request["fin"].ToString();
-           
-            
+            ViewBag.d2 = Request["debut"].ToString();
+            ViewBag.f2 = Request["fin"].ToString();
+
+
             string val = Request["validation"].ToString();
+            
 
 
-            if(d1.Equals("") || f1.Equals("") || val.Equals(""))
+            if (d1.Equals("") || f1.Equals("") || val.Equals(""))
             {
                 ViewBag.message="Selectionner les dates et la catégorie svp !";
                 return RedirectToAction("historique");
@@ -158,29 +161,47 @@ namespace GestionAbscences.Areas.RH.Controllers
             int uid = int.Parse(Session["uid"].ToString());
             demandeconge e = db.demandeconge.Find(uid);
             string button = Request["button"];
+            DCTEMP dc = new DCTEMP();
 
             DateTime dateDebut = e.DateDebut.Value;
             DateTime dateFin = e.DateFin.Value;
-            var dure = (dateFin - dateDebut).Days;
+
+            /*var dure = (dateFin - dateDebut).Days;
             var dureM = (dateFin - dateDebut).TotalMinutes;
 
             double du = Convert.ToDouble(dure) + 1;
             double duM = Convert.ToDouble(dureM) + 1440;
-            double nb = Convert.ToDouble(e.employe.nbjoursR);
-            double nbM = Convert.ToDouble(e.employe.nbjoursR) * 24 * 60;
+            double nb = Convert.ToDouble(e.employe.nbHeureR);
+            double nbM = Convert.ToDouble(e.employe.nbHeureR) * 24 * 60;
             double res = nb - du;
             double resM = nbM - duM;
             double resJ = resM / 1440;
+            */
 
-            //  Session["dur1"] = duM;
+            var dureM = (dateFin - dateDebut).TotalHours;
+            double duM = Convert.ToDouble(dureM);
+            double nbM = Convert.ToDouble(e.employe.nbHeureR) ;
+            double resM = nbM - duM;
+
+            Session["resM"] = dureM + "vv";
             switch (button)
             {
                 case "Accepté":
                     e.ValdationRH = "accepte";
+                    e.employe.nbHeureR = resM.ToString();
+                    e.DateValidationRH = DateTime.Now;
+
+                    //DCTEMP
+                    dc.matricule = e.employe.matricule;
+                    dc.DateDebut = e.DateDebut;
+                    dc.DateFin = e.DateFin;
+                    dc.typeDeConge = e.typeconge.designation;
+                    dc.Status = "En att";
 
 
-                    e.employe.nbjoursR = res.ToString();
                     db.Entry(e).State = EntityState.Modified;
+
+                    db.DCTEMP.Add(dc);
                     db.SaveChanges();
                     return RedirectToAction("historique");
                 case "Refusé":

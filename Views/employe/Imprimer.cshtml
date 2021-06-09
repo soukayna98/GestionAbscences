@@ -44,7 +44,7 @@
                     </div>
 
                     <div class="col-4">
-                        <h1 class="text-center font-weight-bold my-2 font-italic  text-decoration-underline" style="color:black;  font-weight:bold; font-size:20px;"> Nador, Le @DateTime.Now.Date.ToString(("MM/dd/yyyy"))  </h1>
+                        <h1 class="text-center font-weight-bold my-2 font-italic  text-decoration-underline" style="color:black;  font-weight:bold; font-size:20px;"> Nador, Le @Model.DateValidationRH </h1>
                     </div>
                 </div>
                 <div class="row align-items-start text-decoration-underline">
@@ -67,6 +67,13 @@
                     </div>
 
                 </div>
+                @{
+                    DateTime dateDebut = Model.DateDebut.Value;
+                    DateTime dateFin = Model.DateFin.Value;
+                    var dure = (dateFin - dateDebut).Days;
+                    double du = Convert.ToDouble(dure) ;
+                    Session["du"] = du;
+                }
 
 
 
@@ -78,13 +85,13 @@
 
                     <div class="form-group">
                         <p style="font-size:large;">
-                            Monsieur @Model.employe.NomComplet   Mle @Model.employe.matricule, « grade »   à la SONASID, est autorisé à bénéficier au titre de l’année @DateTime.Now.Date.ToString(("yyyy")) d’un congé régulier de « durée » jours (xx j), à prendre du @Model.DateDebut au @Model.DateFin inclus.
+                            Monsieur @Model.employe.NomComplet   Mle @Model.employe.matricule, « @Model.employe.Classe»   à la SONASID, est autorisé à bénéficier au titre de l’année @DateTime.Now.Date.ToString(("yyyy")) d’un congé régulier de @Session["du"] jours , à prendre du @Model.DateDebut au @Model.DateFin inclus.
                             <br><br>
-                            A cette occasion, l’intéressé percevra l’indemnité forfaitaire de congé prévue par la note de service DG/IN° 43/92 du 1er Septembre 1992, et le protocole d’accord 2007 d’un montant de ……… Dirhams    (……..) Dirhams.
+                            A cette occasion, l’intéressé percevra l’indemnité forfaitaire de congé prévue par la note de service DG/IN° 43/92 du 1er Septembre 1992, et le protocole d’accord 2007 d’un montant de 700 Dirhams.
                             <br><br><br><br>
-                            -	Agent « Marié ou Célibataire »
+                            -	Agent : @Model.employe.Status
                             <br><br>
-                            -	Nbre d’enfants
+                            -	Nbre d’enfants : @Model.employe.nbEnfants
                             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><hr>
                         </p>
                     </div>

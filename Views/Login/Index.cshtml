@@ -5,12 +5,13 @@
     Layout = "~/Views/Shared/_offlineLayout.cshtml";
 }
 
-<title> Login Employe </title>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<title> @GestionAbscences.langagues.Resource1.Login </title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
 <div class="card shadow-lg border-0 rounded-lg mt-5">
-    <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
-    <div class="card-body">
+    <div class="card-header"><h3 class="text-center font-weight-light my-4">@GestionAbscences.langagues.Resource1.Login</h3></div>
+    <div class="card-body" dir="@GestionAbscences.langagues.Resource1.dir">
 
         @* <form action="/">
             @using (Html.BeginForm("Login", "Account", FormMethod.Post)) *@
@@ -24,7 +25,7 @@
 
             <div class="form-group">
 
-                <label class="small mb-1" for="inputEmailAddress">Identifiant</label>
+                <label class="small mb-10" for="inputEmailAddress">@GestionAbscences.langagues.Resource1.Identifiant</label>
                 @* <label >id</label>*@
                 @Html.TextBoxFor(m => m.matricule, new { @class = "form-control py-4", placeholder = "Enter identifiant" })
                 @* @Html.LabelFor(m => m.Id)*@
@@ -33,7 +34,7 @@
 
 
             <div class="form-group">
-                <label class="small mb-1" for="inputPassword">Password</label>
+                <label class="small mb-1" for="inputPassword">@GestionAbscences.langagues.Resource1.Password</label>
                 @*<input class="form-control py-4" id="inputPassword" type="password" placeholder="Enter password" />*@
 
                 @Html.TextBoxFor(m => m.password, new { @class = "form-control py-4", placeholder = "Enter Password", type = "password" })
@@ -42,22 +43,20 @@
             </div>
 
             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-              
-                <button type="submit" class="btn btn-primary btn-block">Login</button>
+
+                <button type="submit" class="btn btn-primary btn-block">@GestionAbscences.langagues.Resource1.Login</button>
             </div>
         }
     </div>
-   <div style="color:red;">
-        @Session["message"]
-    </div>
-  
+    
 
-    @*@ @if (Model != null && Model.Message != null)
-        {
-            <div class="alert alert-danger">
-                @Model.Message
 
-            </div>
-        }*@
-
+    @if (ViewBag.message != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                swal("@ViewBag.message");
+                    };
+        </script>
+    }
 </div>

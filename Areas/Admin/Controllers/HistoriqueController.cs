@@ -17,7 +17,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
 {
     public class HistoriqueController : Controller
     {
-        private GestionAbscencesEntities9 db = new GestionAbscencesEntities9();
+        private GestionAbscencesEntities10 db = new GestionAbscencesEntities10();
         private readonly DemandeService demandeService;
 
         public HistoriqueController()
@@ -190,14 +190,15 @@ namespace GestionAbscences.Areas.Admin.Controllers
             {
                 case "Accepté":
                     e.ValidationN1 = "accepte";
-                    
+                    e.DateValidationN1 = DateTime.Now;
+
                     db.Entry(e).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("historique");
                 case "Refusé":
                     e.ValidationN1 = "refuse";
-                    e.ValidationN2 = "******";
-                    e.ValdationRH = "******";
+                    e.ValidationN2 = "*******";
+                    e.ValdationRH = "*******";
                     db.Entry(e).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("historique");

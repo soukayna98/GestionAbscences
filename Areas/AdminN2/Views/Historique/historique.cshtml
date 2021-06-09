@@ -196,14 +196,15 @@
 
                                 </td>
                                 <td>
-                                    @if (item.ValidationN2.Equals("accepte"))
+                                    @if (item.ValidationN2.Equals("En cours"))
 
                                     {
-                                        @Html.ActionLink("Répondre", "Validation", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                        @Html.ActionLink("Répondre", "Validation", new { id = item.idDemandeConge })
+
                                     }
                                     else
                                     {
-                                        @Html.ActionLink("Répondre", "Validation", new { id = item.idDemandeConge })
+                                        @Html.ActionLink("Répondre", "Validation", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
                                     }
                                 </td>
 
