@@ -300,6 +300,7 @@ namespace GestionAbscences.Controllers
             {
                 ViewBag.Message = "Remlpir tout les champs svp !";
                 return RedirectToAction("Index", "employe");
+
             }
             //date debut 
             DateTime debut = Convert.ToDateTime(Request["dateDebut"]);
@@ -321,7 +322,7 @@ namespace GestionAbscences.Controllers
                             if (item.idtypeConge == 4)
                             {
 
-                                int x4 = int.Parse(item.dureeJ);
+                                int x4 = int.Parse(item.dureeJ) - 1;
                                 var df = debut.AddDays(x4);
                                 demande.DateFin = Convert.ToDateTime(df);
                                 demande.IdtypeConge = 4;
@@ -337,7 +338,7 @@ namespace GestionAbscences.Controllers
                             if (item.idtypeConge == 5)
                             {
 
-                                int x5 = int.Parse(item.dureeJ);
+                                int x5 = int.Parse(item.dureeJ) - 1;
                                 var df = debut.AddDays(x5);
                                 demande.DateFin = Convert.ToDateTime(df);
                                 demande.IdtypeConge = 5;
@@ -355,7 +356,7 @@ namespace GestionAbscences.Controllers
                             if (item.idtypeConge == 6)
                             {
 
-                                int x6 = int.Parse(item.dureeJ);
+                                int x6 = int.Parse(item.dureeJ) - 1;
                                 var df = debut.AddDays(x6);
                                 demande.DateFin = Convert.ToDateTime(df);
                                 demande.IdtypeConge = 6;
@@ -370,7 +371,7 @@ namespace GestionAbscences.Controllers
                             if (item.idtypeConge == 7)
                             {
 
-                                int x7 = int.Parse(item.dureeJ);
+                                int x7 = int.Parse(item.dureeJ) - 1;
                                 var df = debut.AddDays(x7);
                                 demande.DateFin = Convert.ToDateTime(df);
                                 demande.IdtypeConge = 7;
@@ -385,7 +386,7 @@ namespace GestionAbscences.Controllers
                             if (item.idtypeConge == 8)
                             {
 
-                                int x8= int.Parse(item.dureeJ);
+                                int x8= int.Parse(item.dureeJ) - 1;
                                 var df = debut.AddDays(x8);
                                 demande.DateFin = Convert.ToDateTime(df);
                                 demande.IdtypeConge = 8;
@@ -400,7 +401,7 @@ namespace GestionAbscences.Controllers
                             if (item.idtypeConge == 9)
                             {
 
-                                int x9 = int.Parse(item.dureeJ);
+                                int x9 = int.Parse(item.dureeJ) - 1;
                                 var df = debut.AddDays(x9);
                                 demande.DateFin = Convert.ToDateTime(df);
                                 demande.IdtypeConge = 9;
@@ -415,7 +416,7 @@ namespace GestionAbscences.Controllers
                             if (item.idtypeConge == 10)
                             {
 
-                                int x10 = int.Parse(item.dureeJ);
+                                int x10 = int.Parse(item.dureeJ) - 1;
                                 var df = debut.AddDays(x10);
                                 demande.DateFin = Convert.ToDateTime(df);
                                 demande.IdtypeConge = 10;
@@ -432,7 +433,7 @@ namespace GestionAbscences.Controllers
                             if (item.idtypeConge == 20)
                             {
 
-                                int x20 = int.Parse(item.dureeJ);
+                                int x20 = int.Parse(item.dureeJ) - 1;
                                 var df = debut.AddDays(x20);
                                 demande.DateFin = Convert.ToDateTime(df);
                                 demande.IdtypeConge = 20;
@@ -446,7 +447,7 @@ namespace GestionAbscences.Controllers
                             if (item.idtypeConge == 21)
                             {
 
-                                int x21= int.Parse(item.dureeJ);
+                                int x21= int.Parse(item.dureeJ) - 1;
                                 var df = debut.AddDays(x21);
                                 demande.DateFin = Convert.ToDateTime(df);
                                 demande.IdtypeConge = 21;
@@ -610,8 +611,7 @@ namespace GestionAbscences.Controllers
 
             db.SaveChanges();
 
-            ViewBag.Message = "HHHHYUYUBN";
-
+            
 
             return RedirectToAction("historique", "employe");
 

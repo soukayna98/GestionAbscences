@@ -5,9 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <script type="text/javascript">
-    function myfun() {
-        window.open();
-        
+    myfun = function() {
+
+
+        var x = window.open('/employe/Imprimer/#@ViewBag.id');
+        x.print();
+
+
     }
 </script>
 
@@ -21,22 +25,20 @@
     <meta name="author" content="" />
 
     <link rel="stylesheet" type="text/css" href="print.css" media="print">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" media="print">
     <link href="css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed" dir="@GestionAbscences.Langagues.Resource1.dir">
-    @using (Html.BeginForm("choixVal", "Historique", FormMethod.Post))
+    @using (Html.BeginForm())
 
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary()
 
 
-    <style type="text/css">
 
-      @media print {}
-    </style>
 
 
 
@@ -251,21 +253,42 @@
                                             @Html.ActionLink(GestionAbscences.langagues.Resource1.Modifier, "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
                                             if (item.IdtypeConge == 1)
                                             {
-                                                @Html.ActionLink(GestionAbscences.langagues.Resource1.Imprimertitre, "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-primary " })
+                                                
+                                        <button onclick="myfun()" class="btn btn-primary ">
+                                            @GestionAbscences.langagues.Resource1.Imprimertitre
+                                        </button>
 
-                                                <a id="@item.idDemandeConge" href=" @Url.Action("Imprimer","employe")" onclick="myfun()">
-                                                    lkl
-                                                </a>
+                                                <script type="text/javascript">
+                                                            myfun = function() {
 
-                                                <div id="imp" style="display:none;">
-                                                    lklkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
-                                                </div>
+
+                                                               var x = window.open('/employe/Imprimer/@item.idDemandeConge');
+                                                                  x.print();
+
+
+                                                           }
+                                                </script>
+
+
 
 
                                             }
                                             else
                                             {
-                                                @Html.ActionLink(GestionAbscences.langagues.Resource1.Imprimertitre, "Imprimer2", new { id = item.idDemandeConge }, new { @class = "btn btn-primary " })
+                                               
+                                    <button onclick="myfun1()" class="btn btn-primary ">
+                                       @GestionAbscences.langagues.Resource1.Imprimertitre
+                                    </button>
+                                                <script type="text/javascript">
+                                                            myfun1 = function() {
+
+
+                                                               var x = window.open('/employe/Imprimer2/@item.idDemandeConge');
+                                                                  x.print();
+
+
+                                                           }
+                                                </script>
                                             }
                                         }
                                         else if ((item.ValidationN1.Equals("accepte")) || (item.ValidationN2.Equals("accepte")))
@@ -332,7 +355,7 @@
                 {
                     txtArea1.document.open("txt/html", "replace");
                     txtArea1.document.write(tab_text);
-                    txtArea1.document.close();
+                   ViewBagtViewBagiewBagBagiewBagewBagewBagArea1.document.close();
                     txtArea1.focus();
                     sa = txtArea1.document.execCommand("SaveAs", true, "Say T.xls");
                 }
