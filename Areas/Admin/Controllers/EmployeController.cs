@@ -23,7 +23,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
         }
 
         // GET: Admin/Employe
-        public ActionResult Index()
+       /* public ActionResult Index()
         {
             //les employes from DB
             var employes = employeService.ReadAll();
@@ -43,6 +43,11 @@ namespace GestionAbscences.Areas.Admin.Controllers
                 });
             }
             return View(employesList);
+        }*/
+        public ActionResult Index()
+        {
+            var employe = db.employe.ToList();
+            return View(employe);
         }
 
         public ActionResult Create()

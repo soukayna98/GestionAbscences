@@ -136,7 +136,6 @@
     <Compile Include="Areas\AdminN2\Models\DemandeModel.cs" />
     <Compile Include="Areas\AdminN2\Models\EmployeModel.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Admin\Controllers\DemandeCongeController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeController.cs" />
@@ -545,6 +544,8 @@
     <Content Include="Areas\Admin\Views\Employe\Donnee.cshtml" />
     <Content Include="Areas\AdminN2\Views\Employe\Donnee.cshtml" />
     <Content Include="Areas\RH\Views\Employe\Donnee.cshtml" />
+    <Content Include="Areas\Admin\Views\DemandeConge\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DemandeConge\historique.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -597,7 +598,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\AdminN2\Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\DemandeConge\" />
     <Folder Include="Areas\RH\Data\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Imprimer\" />
