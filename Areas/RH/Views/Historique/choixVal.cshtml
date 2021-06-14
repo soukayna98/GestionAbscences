@@ -36,7 +36,7 @@
     @ViewBag.message
 
     <div class="form-group">
-        <div class="offset-3 row align-items-start">
+        <div class="offset-1 row align-items-start">
             <div class="col-1" style="font-weight:bold; padding-left:60px;">
                 Du
             </div>
@@ -48,7 +48,7 @@
                 Au
             </div>
             <div class="col-2">
-                <input type="date" name="fin" id="fin" style="padding:2px;" class="form-control"  value="@ViewBag.f2"/>
+                <input type="date" name="fin" id="fin" style="padding:2px;" class="form-control" value="@ViewBag.f2" />
             </div>
 
 
@@ -56,26 +56,31 @@
             <div class=" col-3" style="padding-left:60px; ">
 
                 @Html.DropDownList("validation", new List<SelectListItem>
-            { new SelectListItem {Text="Tous" , Value ="1"},
+            { new SelectListItem {Text="Tous" , Value ="1" , Selected=true},
             new SelectListItem {Text="Validation N+1:En cours" , Value ="2"},
             new SelectListItem {Text="Validation N+1:Accepté" , Value ="3"},
             new SelectListItem {Text="Validation N+1:Refusé" , Value ="4"},
             new SelectListItem {Text="Validation N+2:En cours" , Value ="5"},
             new SelectListItem {Text="Validation N+2:Accepté" , Value ="6"},
             new SelectListItem {Text="Validation N+2:Refusé" , Value ="7"},
-            new SelectListItem {Text="Validation RH:En cours" , Value ="8" , Selected=true },
+            new SelectListItem {Text="Validation RH:En cours" , Value ="8"  },
             new SelectListItem {Text="Validation RH:Accepté" , Value ="9"},
             new SelectListItem {Text="Validation RH:Refusé" , Value ="10"} }, new { @class = "form-control" })
             </div>
-            <div class="col-1">
+            <div class="col-1" style="padding-left:60px; ">
                 <button class="btn btn-info">
                     Rechercher
                 </button>
             </div>
+            <div class="col-2" style="padding-left:80px; ">
+                <div class="btn btn-outline-success" onclick="fnExcelReport();">Export EXCEL</div>
+
+
+            </div>
         </div>
     </div>
     <br>
-    <div class="btn btn-outline-success" onclick="fnExcelReport();">Export EXCEL</div>
+    
 
 
 

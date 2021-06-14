@@ -1,0 +1,150 @@
+﻿@model IEnumerable<GestionAbscences.Data.employe>
+
+@{
+    ViewBag.Title = "Empoloyés";
+    @* Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";*@
+}
+
+<h2>Liste des Employés</h2>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title> Liste des Employes </title>
+
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+</head>
+<body class="sb-nav-fixed">
+
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table mr-1"></i>
+            Employe DataTable
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+
+                    @*<table class="table">*@
+                    <thead>
+                        <tr class="table-success">
+                            <th>
+                                @Html.DisplayNameFor(model => model.matricule)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.NomComplet)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Classe)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.affectation)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DateDebut)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DateFin)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.role)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.password)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.nbjours)
+                            </th>
+                            <th>
+                                nbJreste
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Status)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.soldeConge)
+                            </th>
+
+                            <th>  @Html.DisplayNameFor(model => model.nbEnfants)</th>
+
+                        </tr>
+                    </thead>
+                    <tfoot>
+
+
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.matricule)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NomComplet)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Classe)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.affectation)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateDebut)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateFin)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.role)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.password)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.nbjours)
+                                </td>
+                                <td>
+                                    @Session["nbjoursR"]
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.soldeConge)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.nbEnfants)
+                                </td>
+
+
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <script src="assets/demo/datatables-demo.js"></script>
+
+</body>
+</html>

@@ -16,6 +16,7 @@ namespace GestionAbscences.Controllers
         // GET: Login
         public ActionResult Index()
         {
+            Session.Clear();
             return View();
         }
 
@@ -46,11 +47,14 @@ namespace GestionAbscences.Controllers
         [HttpPost]
         public ActionResult Index(employe log)
         {
+           
             var user = db.employe.Where(x => x.matricule == log.matricule && x.password == log.password).ToList().FirstOrDefault();
             if (user != null)
             {
                 var heure = Convert.ToDouble(user.nbHeureR);
-                var heure1 =( heure / 24);
+                var heur1 =( heure / 24);
+                int  heure1 =(int)heur1;
+
                 Session["userName"] = user.NomComplet;
                 Session["matricule"] = user.matricule;
                 Session["idEmploye"] = user.idEmploye;

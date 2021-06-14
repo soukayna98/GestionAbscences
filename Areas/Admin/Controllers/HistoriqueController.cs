@@ -28,60 +28,102 @@ namespace GestionAbscences.Areas.Admin.Controllers
 
         //private GestionAbscencesEntities1 db = new GestionAbscencesEntities1();
 
-       
-    
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult choixVal()
+        {
+            string d1 = Request["debut"].ToString();
+            string f1 = Request["fin"].ToString();
+            ViewBag.d2 = Request["debut"].ToString();
+            ViewBag.f2 = Request["fin"].ToString();
+
+
+            string val = Request["validation"].ToString();
+
+
+
+            if (d1.Equals("") || f1.Equals("") || val.Equals(""))
+            {
+                ViewBag.message = "Selectionner les dates et la catégorie svp !";
+                return RedirectToAction("historique");
+            }
+            else
+            {
+                DateTime debut = Convert.ToDateTime(Request["debut"]);
+
+                DateTime fin = Convert.ToDateTime(Request["fin"]);
+
+                if (val.Equals("1"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("2"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("3"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "accepte" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("4"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "refuse" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("5"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "En cours" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("6"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "accepte" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("7"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "refuse" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("8"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValdationRH == "En cours" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("9"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValdationRH == "accepte" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("10"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValdationRH == "refuse" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+
+
+            }
+
+
+            return RedirectToAction("historique");
+
+        }
+
         public ActionResult historique()
         {
+            string aff = Session["affectation"].ToString();
             ViewBag.val1 = new SelectList(db.demandeconge, "idDemandeConge", "ValidationN1");
             ViewBag.val2 = new SelectList(db.demandeconge, "idDemandeConge", "ValidationN2");
             ViewBag.valR = new SelectList(db.demandeconge, "idDemandeConge", "ValdationRH");
             ViewBag.dateD = new SelectList(db.demandeconge, "idDemandeConge", "DateDebut");
 
-            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours");
+            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours" && p.employe.affectation.Equals(aff));
             return View(demandeConge.ToList());
         }
-     /*   [HttpPost]
-        public ActionResult historique(int? v1, int? v2 , int? vrh, int? dateD)
-        {
-            if (v1 == null)
-            {
-                ViewBag.val1 = new SelectList(db.demandeconge, "idDemandeConge", "ValidationN1");
-                ViewBag.val2 = new SelectList(db.demandeconge, "idDemandeConge", "ValidationN2");
-                ViewBag.valR = new SelectList(db.demandeconge, "idDemandeConge", "ValdationRH");
-                ViewBag.dateD = new SelectList(db.demandeconge, "idDemandeConge", "DateDebut");
-                var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == v2 && p.ValdationRH == vrh && p.DateDebut == dateD);
-                return View(demandeConge.ToList());
-            }
-            else if (v2 == null)
-            {
-                ViewBag.val1 = new SelectList(db.demandeconge, "idDemandeConge", "ValidationN1");
-                ViewBag.val2 = new SelectList(db.demandeconge, "idDemandeConge", "ValidationN2");
-                ViewBag.valR = new SelectList(db.demandeconge, "idDemandeConge", "ValdationRH");
-                ViewBag.dateD = new SelectList(db.demandeconge, "idDemandeConge", "DateDebut");
-                var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours");
-
-                return View(demandeConge.ToList());
-            }
-            else if (catId == null && marId == null)
-            {
-                ViewBag.val1 = new SelectList(db.demandeconge, "idDemandeConge", "ValidationN1");
-                ViewBag.val2 = new SelectList(db.demandeconge, "idDemandeConge", "ValidationN2");
-                ViewBag.valR = new SelectList(db.demandeconge, "idDemandeConge", "ValdationRH");
-                ViewBag.dateD = new SelectList(db.demandeconge, "idDemandeConge", "DateDebut");
-                var voitures = db.Voitures.Include(v => v.Categorie1).Include(v => v.Marque1).Include(v => v.Module1).Include(v => v.Propretaire1).OrderBy(v => v.montant);
-                return View(voitures.ToList());
-            }
-            else
-            {
-                ViewBag.val1 = new SelectList(db.demandeconge, "idDemandeConge", "ValidationN1");
-                ViewBag.val2 = new SelectList(db.demandeconge, "idDemandeConge", "ValidationN2");
-                ViewBag.valR = new SelectList(db.demandeconge, "idDemandeConge", "ValdationRH");
-                ViewBag.dateD = new SelectList(db.demandeconge, "idDemandeConge", "DateDebut");
-                var voitures = db.Voitures.Include(v => v.Categorie1).Include(v => v.Marque1).Include(v => v.Module1).Include(v => v.Propretaire1).OrderBy(v => v.montant).Where(x => x.Categorie1.Id == catId && x.Marque1.Id == marId);
-                return View(voitures.ToList());
-            }
-
-        }*/
+    
         public ActionResult validation(int? id)
         {
             if (id == null)

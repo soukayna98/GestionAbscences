@@ -490,7 +490,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
 
 
 
-            demande.ValidationN1 = "En cours";
+            demande.ValidationN1 = "------";
             demande.ValidationN2 = "En cours";
             demande.ValdationRH = "En cours";
 

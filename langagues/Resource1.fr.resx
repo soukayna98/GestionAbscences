@@ -165,7 +165,7 @@
   <data name="changerlemotdepasse" xml:space="preserve">
     <value>changer le mot de passe</value>
   </data>
-  <data name="choixdecongé" xml:space="preserve">
+  <data name="CHOIXDECONGÉ" xml:space="preserve">
     <value>choix de congé</value>
   </data>
   <data name="Circoncision" xml:space="preserve">

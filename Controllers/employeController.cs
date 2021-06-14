@@ -22,18 +22,103 @@ namespace GestionAbscences.Controllers
     {
          private GestionAbscencesEntities10 db = new GestionAbscencesEntities10();
 
-      /*  public JsonResult GetTypetList(int Id_filiere)
+        /*  public JsonResult GetTypetList(int Id_filiere)
+          {
+              db.Configuration.ProxyCreationEnabled = false;
+              List<typeConge> TypeList = db.typeconge.Where(x => x.idtypeConge == Id_filiere).ToList();
+              return Json(TypeList, JsonRequestBehavior.AllowGet);
+          }
+        */
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult choixVal()
         {
-            db.Configuration.ProxyCreationEnabled = false;
-            List<typeConge> TypeList = db.typeconge.Where(x => x.idtypeConge == Id_filiere).ToList();
-            return Json(TypeList, JsonRequestBehavior.AllowGet);
+            string d1 = Request["debut"].ToString();
+            string f1 = Request["fin"].ToString();
+            ViewBag.d2 = Request["debut"].ToString();
+            ViewBag.f2 = Request["fin"].ToString();
+
+
+            string val = Request["validation"].ToString();
+
+
+
+            if (d1.Equals("") || f1.Equals("") || val.Equals(""))
+            {
+                ViewBag.message = "Selectionner les dates et la catégorie svp !";
+                return RedirectToAction("historique");
+            }
+            else
+            {
+                DateTime debut = Convert.ToDateTime(Request["debut"]);
+
+                DateTime fin = Convert.ToDateTime(Request["fin"]);
+
+                if (val.Equals("1"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("2"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("3"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "accepte" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("4"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "refuse" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("5"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "En cours" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("6"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "accepte" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("7"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "refuse" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("8"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValdationRH == "En cours" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("9"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValdationRH == "accepte" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("10"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValdationRH == "refuse" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+
+
+            }
+
+
+            return RedirectToAction("historique");
+
         }
-      */
+
 
         // GET: employe
         public ActionResult Index()
         {
             string w = Session["matricule"].ToString();
+           
             //  Session["tranche1"] = ""; Session["test1"] = ""; Session["tranche2"] = ""; Session["test2"] = ""; Session["rel"] = ""; Session["test3"] = "";
 
             int a = 0;
@@ -77,7 +162,7 @@ namespace GestionAbscences.Controllers
                 else
                 {
                     
-                    Session["test1"] = a;
+                    Session["test1"] = b;
                 }
 
             }
@@ -167,24 +252,80 @@ namespace GestionAbscences.Controllers
              {
             int uid = int.Parse(Session["modifierID"].ToString());
             demandeconge e = db.demandeconge.Find(uid);
+            double joursR = Convert.ToDouble(Session["nbjoursR"].ToString());
 
-            DateTime debut = Convert.ToDateTime(Request["dateDebut"]);
+            DateTime debut = (Convert.ToDateTime(Request["dateDebut"]));
             DateTime fin = Convert.ToDateTime(Request["dateFin"]);
-            TimeSpan dateSpan = fin - debut;
+           
+
+            var dure = (fin - debut).Days;
 
             int idT = e.IdtypeConge;
             string button = Request["modifier"];
-            string dateDebut = Request["dateDebut"] + " " + Request["timeDebut"];
-            string dateFin = Request["dateFin"] + " " + Request["timeFin"];
+           string dateDebut = Request["dateDebut"] + " " + Request["timeDebut"];
+           string dateFin = Request["dateFin"] + " " + Request["timeFin"];
             DateTime dc = DateTime.Now;
             switch (button)
             {
                 case "valide":
 
+                    if(idT==2 && dure >= 7 && joursR >= dure)
+                    {
+                        e.DateDebut = Convert.ToDateTime(dateDebut);
+                        e.DateFin = Convert.ToDateTime(dateFin);
+                        e.DateDC = dc;
+                      
+                        
+                    }
+                    else if (idT == 1 && dure >= 10 && joursR >= dure)
+                    {
+                        e.DateDebut = Convert.ToDateTime(dateDebut);
+                        e.DateFin = Convert.ToDateTime(dateFin);
+                        e.DateDC = dc;
+                     
+                       
+                    }
+                    else if (idT == 3 && dure >= 0 && joursR >= dure)
+                    {
+                        e.DateDebut = Convert.ToDateTime(dateDebut);
+                        e.DateFin = Convert.ToDateTime(dateFin);
+                        e.DateDC = dc; 
+                        
+                    }
+                    else if (idT == 11 && dure >= 0 && joursR >= dure)
+                    {
+                        e.DateDebut = Convert.ToDateTime(dateDebut);
+                        e.DateFin = Convert.ToDateTime(dateFin);
+                        e.DateDC = dc;
 
-                    e.DateDebut = Convert.ToDateTime(dateDebut);
-                    e.DateFin = Convert.ToDateTime(dateFin);
-                    e.DateDC = dc;
+                    }
+                    else if (idT == 12 && dure == 1 && joursR >= dure)
+                    {
+                        e.DateDebut = Convert.ToDateTime(dateDebut);
+                        e.DateFin = Convert.ToDateTime(dateFin);
+                        e.DateDC = dc;
+
+                    }
+                    else if (idT == 13 && dure >= 0 && joursR >= dure)
+                    {
+                        e.DateDebut = Convert.ToDateTime(dateDebut);
+                        e.DateFin = Convert.ToDateTime(dateFin);
+                        e.DateDC = dc;
+
+                    }
+                    else if (idT == 14 && dure == 2 && joursR >= dure)
+                    {
+                        e.DateDebut = Convert.ToDateTime(dateDebut);
+                        e.DateFin = Convert.ToDateTime(dateFin);
+                        e.DateDC = dc;
+
+                    }
+                    else
+                    {
+                        ViewBag.mess = "Verifiez les dates ";
+                    }
+
+
                     db.Entry(e).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("historique");
@@ -203,13 +344,14 @@ namespace GestionAbscences.Controllers
             [HttpGet]
         public ActionResult changePassword()
         {
-            
+            Session["Message"] = null;
             return View();
         }
 
         public ActionResult historique()
         {
             //employe e = new employe();
+            Session["Message"] = null;
 
             string x = Session["matricule"].ToString();
 
@@ -225,12 +367,14 @@ namespace GestionAbscences.Controllers
         [HttpGet]
         public ActionResult Donnée()
         {
+            Session["Message"] = null;
             return View();
         }
 
         [HttpPost,ValidateAntiForgeryToken]
         public ActionResult changePassword(ChangePasswordModel obj)
         {
+
               if(ModelState.IsValid)
                {
                 int uid = int.Parse(Session["idEmploye"].ToString());
@@ -243,13 +387,13 @@ namespace GestionAbscences.Controllers
                     e.password = obj.NewPassword;
                     db.Entry(e).State = EntityState.Modified;
                     db.SaveChanges();
-                    Session["Message"] = "Your Password is updated successfully";
+                    Session["Messag"] = "Your Password is updated successfully";
                     return RedirectToAction("Index", "Default");
 
                 }
                 else
                 {
-                    Session["Message"] = "Invalid currrent  Password";
+                    Session["Messag"] = "Invalid currrent  Password";
                     return RedirectToAction("Index", "Default");
                 }
 
@@ -266,6 +410,8 @@ namespace GestionAbscences.Controllers
         [HttpPost]
         public ActionResult Dashboard1()
         {
+            Session["Message"] = null;
+
             //donnée from index (view)
             int uid = int.Parse(Session["idEmploye"].ToString());
             employe e = db.employe.Find(uid);
@@ -298,7 +444,9 @@ namespace GestionAbscences.Controllers
            
                 if (Request["dateDebut"].Equals("")  || typeCongeIdTypeconge.Equals(""))
             {
-                ViewBag.Message = "Remlpir tout les champs svp !";
+                
+                Session["Message"] = "Remlpir tout les champs svp";
+                // ViewBag.Message = "Remlpir tout les champs svp !";
                 return RedirectToAction("Index", "employe");
 
             }
@@ -309,7 +457,7 @@ namespace GestionAbscences.Controllers
             {
                 if (debut < dc)
                 {
-                    ViewBag.Message = "vérifier les dates svp!";
+                    Session["Message"] = "Verifier vos choix svp!";
                     return RedirectToAction("Index", "employe");
                 }
                 else if (typeCongeIdTypeconge.Equals("Mariage") && !(marriage.Equals("")))
@@ -462,17 +610,22 @@ namespace GestionAbscences.Controllers
             }
             else
             {
-                if (Request["dateDebut"].Equals("") || Request["dateFin"].Equals("") || typeCongeIdTypeconge.Equals(""))
+                if (Request["dateDebut"].Equals("") || Request["dateFin"].Equals(""))
                 {
-                    ViewBag.Message = "Remlpir tout les champs svp !";
+                    Session["Message"] = "Remlpir tout les champs svp ";
                     return RedirectToAction("Index", "employe");
                 }
                 DateTime fin = Convert.ToDateTime(Request["dateFin"]);
                 TimeSpan dateSpan = fin - debut;
-
+                if(typeCongeIdTypeconge.Equals(""))
+                {
+                    Session["Message"] = "Selectionner un type de conge svp ";
+                    return RedirectToAction("Index", "employe");
+                }
+                else
                 if ((debut < dc) || (fin < dc) || (fin < debut))
                 {
-                    ViewBag.Message = "vérifier les dates svp!";
+                    Session["Message"] = "verifier les dates svp";
                     return RedirectToAction("Index", "employe");
                 }
 
@@ -570,7 +723,8 @@ namespace GestionAbscences.Controllers
                     }
                     else
                     {
-                        ViewBag.Message = "Vérifier vos données svp !";
+                        Session["Message"] = "Verifier vos donnees svp ";
+                       // ViewBag.Message = "Vérifier vos données svp !";
                         return RedirectToAction("Index", "employe");
                     }
 

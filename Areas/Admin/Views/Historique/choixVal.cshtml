@@ -24,68 +24,62 @@
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
 </head>
-
 @using (Html.BeginForm("choixVal", "Historique", FormMethod.Post))
 
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
-<body class="sb-nav-fixed">
+    <body class="sb-nav-fixed">
 
-    <br>
+        <br>
 
-  
+        @ViewBag.message
 
-    <div class="form-group">
-        <div class="offset-1 row align-items-start">
-            <div class="col-1" style="font-weight:bold; padding-left:60px;">
-                Du
+        <div class="form-group">
+            <div class="offset-1 row align-items-start">
+                <div class="col-1" style="font-weight:bold; padding-left:60px;">
+                    Du
+                </div>
+                <div class="col-2">
+                    <input type="date" name="debut" id="debut" style="padding:2px;" class="form-control" value="@ViewBag.d2" />
+                </div>
+
+                <div class="col-1" style="font-weight:bold;  padding-left:60px;">
+                    Au
+                </div>
+                <div class="col-2">
+                    <input type="date" name="fin" id="fin" style="padding:2px;" class="form-control" value="@ViewBag.f2" />
+                </div>
+
+
+
+                <div class=" col-3" style="padding-left:60px; ">
+
+                    @Html.DropDownList("validation", new List<SelectListItem>
+                { new SelectListItem {Text="Tous" , Value ="1"},
+                new SelectListItem {Text="Validation N+1:En cours" , Value ="2"},
+                new SelectListItem {Text="Validation N+1:Accepté" , Value ="3"},
+                new SelectListItem {Text="Validation N+1:Refusé" , Value ="4"},
+                new SelectListItem {Text="Validation N+2:En cours" , Value ="5"},
+                new SelectListItem {Text="Validation N+2:Accepté" , Value ="6"},
+                new SelectListItem {Text="Validation N+2:Refusé" , Value ="7"},
+                new SelectListItem {Text="Validation RH:En cours" , Value ="8" , Selected=true },
+                new SelectListItem {Text="Validation RH:Accepté" , Value ="9"},
+                new SelectListItem {Text="Validation RH:Refusé" , Value ="10"} }, new { @class = "form-control" })
+                </div>
+                <div class="col-1" style="padding-left:60px;">
+                    <button class="btn btn-info">
+                        Rechercher
+                    </button>
+                </div>
+                <div class="col-2" style="padding-left:80px; ">
+                    <div class="btn btn-outline-success" onclick="fnExcelReport();">Export EXCEL</div>
+
+
+                </div>
             </div>
-            <div class="col-2">
-                <input type="date" name="debut" id="debut" style="padding:2px;" class="form-control" />
-            </div>
-
-            <div class="col-1" style="font-weight:bold;  padding-left:60px;">
-                Au
-            </div>
-            <div class="col-2">
-                <input type="date" name="fin" id="fin" style="padding:2px;" class="form-control" />
-            </div>
-
-
-
-            <div class=" col-3" style="padding-left:60px; ">
-
-                @Html.DropDownList("validation", new List<SelectListItem>
-            { new SelectListItem {Text="Tous" , Value ="1"},
-            new SelectListItem {Text="Validation N+1:En cours" , Value ="2"},
-            new SelectListItem {Text="Validation N+1:Accepté" , Value ="3"},
-            new SelectListItem {Text="Validation N+1:Refusé" , Value ="4"},
-            new SelectListItem {Text="Validation N+2:En cours" , Value ="5"},
-            new SelectListItem {Text="Validation N+2:Accepté" , Value ="6"},
-            new SelectListItem {Text="Validation N+2:Refusé" , Value ="7"},
-            new SelectListItem {Text="Validation RH:En cours" , Value ="8" , Selected=true },
-            new SelectListItem {Text="Validation RH:Accepté" , Value ="9"},
-            new SelectListItem {Text="Validation RH:Refusé" , Value ="10"} }, new { @class = "form-control" })
-            </div>
-            <div class="col-1" style="padding-left:60px; ">
-                <button class="btn btn-info">
-                    Rechercher
-                </button>
-
-
-
-            </div>
-            <div class="col-2" style="padding-left:80px; ">
-                <div class="btn btn-outline-success" onclick="fnExcelReport();">Export EXCEL</div>
-
-
-            </div>
-
         </div>
-    </div>
-    <br>
-    
+        <br>
 
 
 
@@ -96,71 +90,100 @@
 
 
 
-    <div class="card mb-4">
-        <div class="card-header">
-            <i class="fas fa-table mr-1"></i>
-            Historique des demandes de congés
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="example" width="100%" cellspacing="0">
-
-                    <thead>
-                        <tr class="table-success">
-                            <th>
-                                @*Html.DisplayNameFor(model => model.DateDC)*@
-                                Date creation DC
-                            </th>
-                            <th>
-                                @*Html.DisplayNameFor(model => model.employe.matricule)*@
-                                Matricule
-                            </th>
-                            <th>
-                                @*Html.DisplayNameFor(model => model.employe.NomComplet)*@
-                                Nom complet
-                            </th>
-                            <th>
-                                @*Html.DisplayNameFor(model => model.typeconge.designation)*@
-                                Designation
-                            </th>
-                            <th>
-                                @*Html.DisplayNameFor(model => model.DateDebut)*@
-
-                                Debut
-
-                            </th>
-
-                            <th>
-                                @*Html.DisplayNameFor(model => model.DateFin)*@
-                                Fin
-                            </th>
-
-                            <th>
-                                @*Html.DisplayNameFor(model => model.ValidationN1)*@
-                                Validation N+1
-                            </th>
-                            <th>
-                                @*Html.DisplayNameFor(model => model.ValidationN2)*@
-                                Validation N+2
-                            </th>
-                            <th>
-                                @*Html.DisplayNameFor(model => model.ValidationN2)*@
-                                Validation RH
-                            </th>
-                            <th>
-
-                            </th>
+        @*     @using (Html.BeginForm("historique1", "Historique"))
+            {
+                @Html.AntiForgeryToken()
 
 
-                        </tr>
-                    </thead>
+                <div class="form-group">
+                    <div class="row align-items-start">
+                        <div class="col-2" style="padding-left:60px; font-weight:bold;">
+                            Du
+                        </div>
+                        <div class="col-3">
+                            <input type="date" name="debut" id="debut" style="padding:2px;" />
+                        </div>
 
-                    <tfoot>
+                        <div class="col-2" style="padding-left:60px; font-weight:bold;">
+                            Au
+                        </div>
+                        <div class="col-3">
+                            <input type="date" name="fin" id="fin" style="padding:2px;" />
+                        </div>
+                        <button class="btn btn-info">
+                            Rechercher
+                        </button>
+                    </div>
+                </div>
+            }
+        *@
 
-                    </tfoot>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
+
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                Historique des demandes de congés
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="example" width="100%" cellspacing="0">
+
+                        <thead>
+                            <tr class="table-success">
+                                <th>
+                                    @*Html.DisplayNameFor(model => model.DateDC)*@
+                                    Date creation DC
+                                </th>
+                                <th>
+                                    @*Html.DisplayNameFor(model => model.employe.matricule)*@
+                                    Matricule
+                                </th>
+                                <th>
+                                    @*Html.DisplayNameFor(model => model.employe.NomComplet)*@
+                                    Nom complet
+                                </th>
+                                <th>
+                                    @*Html.DisplayNameFor(model => model.typeconge.designation)*@
+                                    Designation
+                                </th>
+                                <th>
+                                    @*Html.DisplayNameFor(model => model.DateDebut)*@
+
+                                    Debut
+
+                                </th>
+
+                                <th>
+                                    @*Html.DisplayNameFor(model => model.DateFin)*@
+                                    Fin
+                                </th>
+
+                                <th>
+                                    @*Html.DisplayNameFor(model => model.ValidationN1)*@
+                                    Validation N+1
+                                </th>
+                                <th>
+                                    @*Html.DisplayNameFor(model => model.ValidationN2)*@
+                                    Validation N+2
+                                </th>
+                                <th>
+                                    @*Html.DisplayNameFor(model => model.ValidationN2)*@
+                                    Validation RH
+                                </th>
+                                <th>
+
+                                </th>
+
+
+                            </tr>
+                        </thead>
+
+                        <tfoot>
+
+                        </tfoot>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
 
 
                             <tr>
@@ -207,7 +230,7 @@
                                     }
                                     else
                                     {
-                                        <p class="p-2 mb-2 bg-light text-white">
+                                        <p class="p-2 mb-2 bg-light " style="color:gray;">
                                             @Html.DisplayFor(modelItem => item.ValidationN1)
                                         </p>
                                     }
@@ -241,7 +264,7 @@
                                     }
                                     else
                                     {
-                                        <p class="p-2 mb-2 bg-light text-white">
+                                        <p class="p-2 mb-2 bg-light " style="color:gray;">
                                             @Html.DisplayFor(modelItem => item.ValidationN2)
                                         </p>
                                     }
@@ -271,47 +294,47 @@
                                             @Html.DisplayFor(modelItem => item.ValdationRH)
                                         </p>
                                     }
-
                                     else
                                     {
-                                        <p class="p-2 mb-2 bg-light text-white">
+                                        <p class="p-2 mb-2 bg-light " style="color:gray;">
                                             @Html.DisplayFor(modelItem => item.ValdationRH)
                                         </p>
+
                                     }
 
 
                                 </td>
                                 <td>
-                                    @if (item.ValdationRH.Equals("En cours"))
+                                    @{ string aff = Session["affectation"].ToString();
+                                    }
+                                    @if (item.ValidationN1.Equals("En cours") && item.employe.affectation.Equals(aff))
 
                                     {
                                         @Html.ActionLink("Répondre", "Validation", new { id = item.idDemandeConge })
 
                                     }
-
                                     else
                                     {
                                         @Html.ActionLink("Répondre", "Validation", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
                                     }
-
-
                                 </td>
 
+
                             </tr>
-                        }
+                            }
 
-                    </tbody>
+                        </tbody>
 
-                </table>
+                    </table>
+
+                </div>
+
+                <br />
+                <br />
 
             </div>
-
-            <br />
-            <br />
-
         </div>
-    </div>
-    <script>
+        <script>
 
         function fnExcelReport() {
             var tab_text = "<table border='2px'>";
@@ -355,16 +378,16 @@
         }
 
 
-    </script>
+        </script>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-    <script src="assets/demo/datatables-demo.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+        <script src="assets/demo/datatables-demo.js"></script>
 
 
-</body>
+    </body>
 }
 </html>

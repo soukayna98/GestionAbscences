@@ -66,23 +66,24 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td style="text-align:center;">
-                                    @Html.DisplayFor(modelItem => item.date)
-                                </td>
-                                <td style="text-align:center;">
-                                    @Html.DisplayFor(modelItem => item.employe.matricule)
-                                </td>
-                               
-                                <td style="text-align:center;">
-                                    @Html.DisplayFor(modelItem => item.entite.Designation)
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                   
-                                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                                </td>
-                            </tr>
+                        <tr>
+                            <td style="text-align:center;">
+                                @Html.DisplayFor(modelItem => item.date)
+                            </td>
+                            <td style="text-align:center;">
+                                @Html.DisplayFor(modelItem => item.employe.matricule)
+                            </td>
+
+                            <td style="text-align:center;">
+                                @Html.DisplayFor(modelItem => item.entite.Designation)
+                            </td>
+                            @*  <td>
+          @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+
+        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+                            *@
+                        </tr>
                         }
                     </tbody>
 

@@ -18,8 +18,8 @@
 </head>
 <body>
     <div class="container">
-        
-        
+
+        <br>
 
         <div class="container">
 
@@ -35,6 +35,8 @@
                             {
                                 @Html.AntiForgeryToken()
                                 @Html.ValidationSummary()
+
+
 
                                 <div class="row align-items-start">
                                     <div class="col">
@@ -441,30 +443,42 @@
 
                                             </div>
 
+
                                         </div>
 
                                     </div>
 
 
 
+
+
+
+
                                 </div>
-                                if (ViewBag.Message != null)
+                                if (Session["Message"] != null)
                                 {
-                                    <script type="text/javascript">
+                        <script type="text/javascript">
                                        window.onload = function () {
-                                          swal("@ViewBag.Message");
-                               };
-                                    </script>
+                                           swal("@Session["Message"]");
+
+                            };
+                           
+                        </script>
                                 }
+
+
 
 
                             }
                         </div>
-                       
+
                     </div>
                 </div>
             </div>
         </div>
+
+
+
 
         <script type="text/javascript">
             function masquer_div() {
@@ -543,11 +557,11 @@
         <script src="~/Content/cont2/vendor/jquery/jquery.min.js"></script>
         <script src="~/Content/cont2/js/main.js"></script>
         <link rel="stylesheet" href="~/Content/cont2/css/style.css">
-      
 
 
 
-       
+
+
 
     </div>
 
