@@ -1,5 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="GestionAbscencesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CumulRecup">
+    <Key>
+      <PropertyRef Name="IDCumulRecup" />
+    </Key>
+    <Property Name="IDCumulRecup" Type="int" Nullable="false" />
+    <Property Name="CumulHr" Type="timestamp" StoreGeneratedPattern="Computed" />
+    <Property Name="CumulJF" Type="real" />
+    <Property Name="CumulR" Type="real" />
+    <Property Name="Mois" Type="int" />
+    <Property Name="Annee" Type="int" />
+    <Property Name="IDEmploye" Type="int" />
+  </EntityType>
   <EntityType Name="dc temp">
     <Key>
       <PropertyRef Name="Id" />
@@ -9,6 +21,17 @@
     <Property Name="Date Debut" Type="datetime" />
     <Property Name="Date Fin" Type="datetime" />
     <Property Name="type congé" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="DCTEMP">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="matricule" Type="int" />
+    <Property Name="DateDebut" Type="datetime" />
+    <Property Name="DateFin" Type="datetime" />
+    <Property Name="typeDeConge" Type="varchar(max)" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="demandeconge">
     <Key>
@@ -25,6 +48,10 @@
     <Property Name="justification" Type="varchar(max)" />
     <Property Name="ValidationRH" Type="varchar" MaxLength="10" />
     <Property Name="Annulation" Type="varchar" MaxLength="50" />
+    <Property Name="DateValidationN1" Type="datetime" />
+    <Property Name="DateValidationN2" Type="datetime" />
+    <Property Name="DateValidationRH" Type="datetime" />
+    <Property Name="soldeConge" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="employe">
     <Key>
@@ -41,13 +68,14 @@
     <Property Name="matricule" Type="varchar" MaxLength="50" />
     <Property Name="affectation" Type="varchar" MaxLength="50" />
     <Property Name="role" Type="varchar" MaxLength="50" />
-    <Property Name="soldeConge" Type="float" />
     <Property Name="nbjoursA" Type="float" />
     <Property Name="Sexe" Type="varchar" MaxLength="50" />
     <Property Name="Cause" Type="varchar(max)" />
     <Property Name="Observetion" Type="varchar(max)" />
-    <Property Name="situation familiale" Type="varchar(max)" />
-    <Property Name="nombre enfant" Type="int" />
+    <Property Name="situationFamiliale" Type="varchar(max)" />
+    <Property Name="nbEnfants" Type="int" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
+    <Property Name="nbHeureR" Type="varchar" MaxLength="50" />
   </EntityType>
   <!--Erreurs détectées durant la génération :
 avertissement 6002: La table/vue 'GestionAbscences.dbo.employehasentite' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
@@ -167,7 +195,9 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="GestionAbscencesModelStoreContainer">
+    <EntitySet Name="CumulRecup" EntityType="Self.CumulRecup" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="dc temp" EntityType="Self.dc temp" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DCTEMP" EntityType="Self.DCTEMP" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="demandeconge" EntityType="Self.demandeconge" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="employe" EntityType="Self.employe" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="entite" EntityType="Self.entite" Schema="dbo" store:Type="Tables" />

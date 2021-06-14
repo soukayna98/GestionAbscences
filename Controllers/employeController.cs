@@ -16,7 +16,7 @@ namespace GestionAbscences.Controllers
 {
     public class employeController : BaseController
     {
-        private GestionAbscencesEntities7 db = new GestionAbscencesEntities7();
+        private GestionAbscencesEntities9 db = new GestionAbscencesEntities9();
 
         // GET: employe
         public ActionResult Index()
@@ -411,12 +411,113 @@ namespace GestionAbscences.Controllers
                         demande.DateFin = Convert.ToDateTime(dateFin);
 
                     }
+
                     else if (typeCongeIdTypeconge.Equals("1 ere tranche") && dateSpan >= t10 && dateSpan <= t) //obj <JR ,obj >=10
                     {
                         demande.IdtypeConge = 1;
                         demande.DateFin = Convert.ToDateTime(dateFin);
 
+                        var employe = db.employe.Find(uid);
+                        if (employe.Sexe.Equals("Homme") || employe.Sexe.Equals("Femme"))
+                        {
+                            if (employe.situationFamiliale.Equals("celibataire"))
+                            {
+                                if (employe.Classe.Equals("TAMCA"))
+                                {
+                                    demande.soldeConge = "700";
+                                }
+                                else if (employe.Classe.Equals("OE"))
+                                {
+                                    demande.soldeConge = "600";
+                                }
+                            }
+                            else if ( employe.situationFamiliale.Equals("Marie"))
+                            {
+                                if (employe.Classe.Equals("TAMCA"))
+                                {
+                                    demande.soldeConge = "950";
+                                }
+                                else if (employe.Classe.Equals("OE"))
+                                {
+                                    demande.soldeConge = "800";
+                                }
+                            }
+                            else if ( employe.situationFamiliale.Equals("Marie") && employe.nbEnfants == 1)
+                            {
+                                if (employe.Classe.Equals("TAMCA"))
+                                {
+                                    demande.soldeConge = "1250";
+                                }
+                                else if (employe.Classe.Equals("OE"))
+                                {
+                                    demande.soldeConge = "1000";
+                                }
+                            }
+                            else if (employe.situationFamiliale.Equals("Marie") && employe.nbEnfants == 2)
+                            {
+                                if (employe.Classe.Equals("TAMCA"))
+                                {
+                                    demande.soldeConge = "1550";
+                                }
+                                else if (employe.Classe.Equals("OE"))
+                                {
+                                    demande.soldeConge = "1200";
+                                }
+                            }
+                            else if ( employe.situationFamiliale.Equals("Marie") && employe.nbEnfants == 3)
+                            {
+                                if (employe.Classe.Equals("TAMCA"))
+                                {
+                                    demande.soldeConge = "1850";
+                                }
+                                else if (employe.Classe.Equals("OE"))
+                                {
+                                    demande.soldeConge = "1400";
+                                }
+                            }
+                            else if ( employe.situationFamiliale.Equals("Marie") && employe.nbEnfants == 4)
+                            {
+                                if (employe.Classe.Equals("TAMCA"))
+                                {
+                                    demande.soldeConge = "2150";
+                                }
+                                else if (employe.Classe.Equals("OE"))
+                                {
+                                    demande.soldeConge = "1600";
+                                }
+                            }
+                            else if (employe.situationFamiliale.Equals("Marie") && employe.nbEnfants == 5)
+                            {
+                                if (employe.Classe.Equals("TAMCA"))
+                                {
+                                    demande.soldeConge = "2450";
+                                }
+                                else if (employe.Classe.Equals("OE"))
+                                {
+                                    demande.soldeConge = "1800";
+                                }
+                            }
+                            else if ( employe.situationFamiliale.Equals("Marie") && employe.nbEnfants == 6)
+                            {
+                                if (employe.Classe.Equals("TAMCA"))
+                                {
+                                    demande.soldeConge = "2750";
+                                }
+                                else if (employe.Classe.Equals("OE"))
+                                {
+                                    demande.soldeConge = "2000";
+                                }
+                            }
+
+                        }
+                        else
+                        {
+                            RedirectToAction("Index", "employe");
+                        }
+
                     }
+
+
                     else if (typeCongeIdTypeconge.Equals("2 eme tranche") && dateSpan >= t7 && dateSpan <= tR)//obj <7(t7) , obj <=jR
                     {
                         demande.IdtypeConge = 2;
@@ -497,23 +598,8 @@ namespace GestionAbscences.Controllers
                         Session["demande"] = "Vérifier vos données svp !";
                         return RedirectToAction("Index", "employe");
                     }
-
-
-
-
-
                 }
-
-
-
-
-
-
-
-
             }
-
-
 
             demande.ValidationN1 = "En cours";
             demande.ValidationN2 = "En cours";
@@ -526,10 +612,6 @@ namespace GestionAbscences.Controllers
             demande.DateDC = dc;
             demande.justification = justification;
             demande.Annulation = "non";
-
-
-
-
 
             db.demandeconge.Add(demande);
 

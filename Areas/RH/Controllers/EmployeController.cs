@@ -14,7 +14,7 @@ namespace GestionAbscences.Areas.RH.Controllers
     public class EmployeController : BaseController
     {
         // GET: RH/Employe
-        private GestionAbscencesEntities7 db = new GestionAbscencesEntities7();
+        private GestionAbscencesEntities9 db = new GestionAbscencesEntities9();
 
         private readonly EmployeService employeService;
         // GET: RH/Employe
@@ -45,7 +45,7 @@ namespace GestionAbscences.Areas.RH.Controllers
             data.affectation = Request["affectation"];
             data.role = Request["role"];
             data.password = Request["password"];
-            data.soldeConge = Convert.ToInt32(Request["soldeConge"]);
+            //data.soldeConge = Convert.ToInt32(Request["soldeConge"]);
             data.Classe = Request["Classe"];
             data.DateDebut = Convert.ToDateTime(Request["DateDebut"]);
             //  data.DateFin = Convert.ToDateTime(Request["DateFin"]);

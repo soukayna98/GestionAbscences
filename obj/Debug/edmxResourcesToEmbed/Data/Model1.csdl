@@ -1,5 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="GestionAbscencesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CumulRecup">
+    <Key>
+      <PropertyRef Name="IDCumulRecup" />
+    </Key>
+    <Property Name="IDCumulRecup" Type="Int32" Nullable="false" />
+    <Property Name="CumulHr" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="CumulJF" Type="Single" />
+    <Property Name="CumulR" Type="Single" />
+    <Property Name="Mois" Type="Int32" />
+    <Property Name="Annee" Type="Int32" />
+    <Property Name="IDEmploye" Type="Int32" />
+  </EntityType>
   <EntityType Name="dc_temp">
     <Key>
       <PropertyRef Name="Id" />
@@ -9,6 +21,17 @@
     <Property Name="Date_Debut" Type="DateTime" Precision="3" />
     <Property Name="Date_Fin" Type="DateTime" Precision="3" />
     <Property Name="type_congé" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="DCTEMP">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="matricule" Type="Int32" />
+    <Property Name="DateDebut" Type="DateTime" Precision="3" />
+    <Property Name="DateFin" Type="DateTime" Precision="3" />
+    <Property Name="typeDeConge" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="demandeconge">
     <Key>
@@ -25,6 +48,10 @@
     <Property Name="justification" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="ValidationRH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="Annulation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DateValidationN1" Type="DateTime" Precision="3" />
+    <Property Name="DateValidationN2" Type="DateTime" Precision="3" />
+    <Property Name="DateValidationRH" Type="DateTime" Precision="3" />
+    <Property Name="soldeConge" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="employe" Relationship="Self.fk_DemandeConge_Employe" FromRole="demandeconge" ToRole="employe" />
     <NavigationProperty Name="typeconge" Relationship="Self.fk_DemandeConge_typeConge" FromRole="demandeconge" ToRole="typeconge" />
   </EntityType>
@@ -43,13 +70,14 @@
     <Property Name="matricule" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="affectation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="soldeConge" Type="Double" />
     <Property Name="nbjoursA" Type="Double" />
     <Property Name="Sexe" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Cause" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Observetion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="situation_familiale" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="nombre_enfant" Type="Int32" />
+    <Property Name="situationFamiliale" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="nbEnfants" Type="Int32" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="nbHeureR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="demandeconge" Relationship="Self.fk_DemandeConge_Employe" FromRole="employe" ToRole="demandeconge" />
     <NavigationProperty Name="employehasentite" Relationship="Self.fk_employehasentite_Employe" FromRole="employe" ToRole="employehasentite" />
   </EntityType>
@@ -174,8 +202,10 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="GestionAbscencesEntities7" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="GestionAbscencesEntities9" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CumulRecup" EntityType="Self.CumulRecup" />
     <EntitySet Name="dc_temp" EntityType="Self.dc_temp" />
+    <EntitySet Name="DCTEMP" EntityType="Self.DCTEMP" />
     <EntitySet Name="demandeconge" EntityType="Self.demandeconge" />
     <EntitySet Name="employe" EntityType="Self.employe" />
     <EntitySet Name="entite" EntityType="Self.entite" />

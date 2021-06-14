@@ -159,6 +159,12 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Data\CumulRecup.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\DCTEMP.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\dc_temp.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -534,6 +540,11 @@
     <Content Include="Areas\RH\Views\typeconges\Index.cshtml" />
     <Content Include="Areas\RH\Views\typeconges\Modifier.cshtml" />
     <Content Include="Areas\RH\Views\Employe\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Employe\Donnee.cshtml" />
+    <Content Include="Areas\AdminN2\Views\Employe\Donnee.cshtml" />
+    <Content Include="Areas\RH\Views\Employe\Donnee.cshtml" />
+    <Content Include="Areas\Admin\Views\DemandeConge\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DemandeConge\historique.cshtml" />
     <EntityDeploy Include="Data\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -541,11 +552,6 @@
     <Content Include="Data\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\Admin\Views\Employe\Donnee.cshtml" />
-    <Content Include="Areas\AdminN2\Views\Employe\Donnee.cshtml" />
-    <Content Include="Areas\RH\Views\Employe\Donnee.cshtml" />
-    <Content Include="Areas\Admin\Views\DemandeConge\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\DemandeConge\historique.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
