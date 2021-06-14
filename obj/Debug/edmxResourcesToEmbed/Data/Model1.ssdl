@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="GestionAbscencesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="dc temp">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="matricule" Type="int" />
+    <Property Name="Date Debut" Type="datetime" />
+    <Property Name="Date Fin" Type="datetime" />
+    <Property Name="type congé" Type="varchar(max)" />
+  </EntityType>
   <EntityType Name="demandeconge">
     <Key>
       <PropertyRef Name="idDemandeConge" />
@@ -36,6 +46,8 @@
     <Property Name="Sexe" Type="varchar" MaxLength="50" />
     <Property Name="Cause" Type="varchar(max)" />
     <Property Name="Observetion" Type="varchar(max)" />
+    <Property Name="situation familiale" Type="varchar(max)" />
+    <Property Name="nombre enfant" Type="int" />
   </EntityType>
   <!--Erreurs détectées durant la génération :
 avertissement 6002: La table/vue 'GestionAbscences.dbo.employehasentite' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
@@ -154,11 +166,8 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Function Name="getemprecordssp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="start" Type="datetime" Mode="In" />
-    <Parameter Name="end" Type="datetime" Mode="In" />
-  </Function>
   <EntityContainer Name="GestionAbscencesModelStoreContainer">
+    <EntitySet Name="dc temp" EntityType="Self.dc temp" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="demandeconge" EntityType="Self.demandeconge" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="employe" EntityType="Self.employe" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="entite" EntityType="Self.entite" Schema="dbo" store:Type="Tables" />

@@ -599,6 +599,32 @@ namespace GestionAbscences.Controllers
             return View(demandeconge);
         }
 
+        public ActionResult Imprimer2(int? id)
+        {
+            //condition pas encore
+            if (id == null || db.demandeconge.Find(id).ValidationN1 == "refuse" || db.demandeconge.Find(id).ValidationN2 == "refuse")
+            {
+                //return RedirectToAction("Index", "Default");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var currentDemande = demandeService.ReadById(id.Value);
+            if (currentDemande == null || db.demandeconge.Find(id).ValidationN1 == "refuse" || db.demandeconge.Find(id).ValidationN2 == "refuse")
+            {
+                return HttpNotFound($"this demande ({id}) is not found");
+            }
+
+            demandeconge demandeconge = db.demandeconge.Find(id);
+            Session["uid"] = currentDemande.idDemandeConge;
+
+            if (demandeconge == null || db.demandeconge.Find(id).ValidationN1 == "refuse" || db.demandeconge.Find(id).ValidationN2 == "refuse")
+            {
+                return HttpNotFound();
+            }
+
+            return View(demandeconge);
+        }
+
         public ActionResult modifier(int? id)
         {
             demandeconge demandeconge = db.demandeconge.Find(id);

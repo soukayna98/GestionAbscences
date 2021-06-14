@@ -56,7 +56,6 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="@Url.Action("Index","Login",new { area = "" })">Se Connecté</a>
                     <a class="dropdown-item" href="@Url.Action("Donnee","Account")">Profil</a>
 
                     <div class="dropdown-divider"></div>
@@ -72,81 +71,43 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Core</div>
                         <a class="nav-link" href="index.html">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Dashboard
                         </a>
-                        <div class="sb-sidenav-menu-heading">Interface</div>
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                            Layouts
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="layout-static.html">Static Navigation</a>
-                                <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
-                            </nav>
-                        </div>
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                            Pages
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                    Authentication
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
-                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="@Url.Action("Index","Login",new { area = "" })">Login</a>
-
-                                        <a class="nav-link" href="@Url.Action("changePassword","Account")">changer le mot de passe</a>
-                                    </nav>
-                                </div>
-
-                            </nav>
-                        </div>
-                        
-
-
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                        <a class="nav-link" href="@Url.Action("Index","Employe")">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                           Employés
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+
+                            Liste des employés
                         </a>
-                        <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="@Url.Action("Index","Employe")">Liste des employés</a>
 
-                                <a class="nav-link" href="@Url.Action("Index","entites")">Entités</a>                                
-                                <a class="nav-link" href="@Url.Action("Index","employehasentites")">Affectation</a>
-
-                            </nav>
-                        </div>
-
-
-
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                        <a class="nav-link" href="@Url.Action("Index","entites")">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Demande de Congé
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+
+                            Entités
                         </a>
-                        <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="@Url.Action("historiques","Historique")">Historique</a>
+                        <a class="nav-link" href="@Url.Action("Index","employehasentites")">
+                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
 
-                                <a class="nav-link" href="@Url.Action("historique","Historique")">Demande en attente de réponse</a>
-                                <a class="nav-link" href="@Url.Action("Index","Annuler")">Demande accepté</a>
+                            Affectation
+                        </a>
 
-                            </nav>
-                        </div>
+                        <a class="nav-link" href="@Url.Action("historiques","Historique")">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
 
+                            Historique
+                        </a>
 
+                        <a class="nav-link" href="@Url.Action("historique","Historique")">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
 
+                            Demande en attente de réponse
+                        </a>
+                        <a class="nav-link" href="@Url.Action("Index","Annuler")">
+                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+
+                            Demande accepté
+                        </a>
 
 
                         <a class="nav-link" href="@Url.Action("Index","typeconges")">
@@ -154,7 +115,11 @@
                             Type de congé
                         </a>
 
-                    
+                        <a class="nav-link" href="@Url.Action("Donnee","Employe")">
+                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+
+                           Fiche signalétique
+                        </a>
 
 
                     </div>

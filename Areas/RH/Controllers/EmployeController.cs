@@ -18,6 +18,11 @@ namespace GestionAbscences.Areas.RH.Controllers
 
         private readonly EmployeService employeService;
         // GET: RH/Employe
+        public ActionResult Donnee()
+        {
+
+            return View();
+        }
         public ActionResult Index()
         {
 

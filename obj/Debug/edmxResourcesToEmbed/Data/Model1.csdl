@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="GestionAbscencesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="dc_temp">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="matricule" Type="Int32" />
+    <Property Name="Date_Debut" Type="DateTime" Precision="3" />
+    <Property Name="Date_Fin" Type="DateTime" Precision="3" />
+    <Property Name="type_congé" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
   <EntityType Name="demandeconge">
     <Key>
       <PropertyRef Name="idDemandeConge" />
@@ -38,6 +48,8 @@
     <Property Name="Sexe" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Cause" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Observetion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="situation_familiale" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="nombre_enfant" Type="Int32" />
     <NavigationProperty Name="demandeconge" Relationship="Self.fk_DemandeConge_Employe" FromRole="employe" ToRole="demandeconge" />
     <NavigationProperty Name="employehasentite" Relationship="Self.fk_employehasentite_Employe" FromRole="employe" ToRole="employehasentite" />
   </EntityType>
@@ -162,7 +174,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="GestionAbscencesEntities6" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="GestionAbscencesEntities7" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="dc_temp" EntityType="Self.dc_temp" />
     <EntitySet Name="demandeconge" EntityType="Self.demandeconge" />
     <EntitySet Name="employe" EntityType="Self.employe" />
     <EntitySet Name="entite" EntityType="Self.entite" />
@@ -194,26 +207,5 @@
       <End Role="supervisionher" EntitySet="supervisionher" />
       <End Role="entitesuper" EntitySet="entitesuper" />
     </AssociationSet>
-    <FunctionImport Name="getemprecordssp" ReturnType="Collection(GestionAbscencesModel.getemprecordssp_Result)">
-      <Parameter Name="start" Mode="In" Type="DateTime" />
-      <Parameter Name="end" Mode="In" Type="DateTime" />
-    </FunctionImport>
-    <FunctionImport Name="Getfunctionemp" EntitySet="demandeconge" ReturnType="Collection(GestionAbscencesModel.demandeconge)">
-      <Parameter Name="start" Mode="In" Type="DateTime" />
-      <Parameter Name="end" Mode="In" Type="DateTime" />
-    </FunctionImport>
   </EntityContainer>
-  <ComplexType Name="getemprecordssp_Result">
-    <Property Type="Int32" Name="idDemandeConge" Nullable="false" />
-    <Property Type="DateTime" Name="DateDebut" Nullable="true" Precision="23" />
-    <Property Type="DateTime" Name="DateFin" Nullable="true" Precision="23" />
-    <Property Type="DateTime" Name="DateDC" Nullable="true" Precision="23" />
-    <Property Type="String" Name="ValidationN1" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="ValidationN2" Nullable="true" MaxLength="10" />
-    <Property Type="Int32" Name="IdEmploye" Nullable="false" />
-    <Property Type="Int32" Name="IdtypeConge" Nullable="false" />
-    <Property Type="String" Name="justification" Nullable="true" />
-    <Property Type="String" Name="ValidationRH" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="Annulation" Nullable="true" MaxLength="50" />
-  </ComplexType>
 </Schema>

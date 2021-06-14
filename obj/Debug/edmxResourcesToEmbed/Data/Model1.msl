@@ -1,6 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="GestionAbscencesModelStoreContainer" CdmEntityContainer="GestionAbscencesEntities6">
+  <EntityContainerMapping StorageEntityContainer="GestionAbscencesModelStoreContainer" CdmEntityContainer="GestionAbscencesEntities7">
+    <EntitySetMapping Name="dc_temp">
+      <EntityTypeMapping TypeName="GestionAbscencesModel.dc_temp">
+        <MappingFragment StoreEntitySet="dc temp">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="matricule" ColumnName="matricule" />
+          <ScalarProperty Name="Date_Debut" ColumnName="Date Debut" />
+          <ScalarProperty Name="Date_Fin" ColumnName="Date Fin" />
+          <ScalarProperty Name="type_congé" ColumnName="type congé" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="demandeconge">
       <EntityTypeMapping TypeName="GestionAbscencesModel.demandeconge">
         <MappingFragment StoreEntitySet="demandeconge">
@@ -37,6 +48,8 @@
           <ScalarProperty Name="Sexe" ColumnName="Sexe" />
           <ScalarProperty Name="Cause" ColumnName="Cause" />
           <ScalarProperty Name="Observetion" ColumnName="Observetion" />
+          <ScalarProperty Name="situation_familiale" ColumnName="situation familiale" />
+          <ScalarProperty Name="nombre_enfant" ColumnName="nombre enfant" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -84,23 +97,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="getemprecordssp" FunctionName="GestionAbscencesModel.Store.getemprecordssp">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="GestionAbscencesModel.getemprecordssp_Result">
-          <ScalarProperty Name="idDemandeConge" ColumnName="idDemandeConge" />
-          <ScalarProperty Name="DateDebut" ColumnName="DateDebut" />
-          <ScalarProperty Name="DateFin" ColumnName="DateFin" />
-          <ScalarProperty Name="DateDC" ColumnName="DateDC" />
-          <ScalarProperty Name="ValidationN1" ColumnName="ValidationN1" />
-          <ScalarProperty Name="ValidationN2" ColumnName="ValidationN2" />
-          <ScalarProperty Name="IdEmploye" ColumnName="IdEmploye" />
-          <ScalarProperty Name="IdtypeConge" ColumnName="IdtypeConge" />
-          <ScalarProperty Name="justification" ColumnName="justification" />
-          <ScalarProperty Name="ValidationRH" ColumnName="ValidationRH" />
-          <ScalarProperty Name="Annulation" ColumnName="Annulation" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="Getfunctionemp" FunctionName="GestionAbscencesModel.Store.getemprecordssp" />
   </EntityContainerMapping>
 </Mapping>

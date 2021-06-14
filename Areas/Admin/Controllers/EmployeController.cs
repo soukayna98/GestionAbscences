@@ -126,6 +126,11 @@ namespace GestionAbscences.Areas.Admin.Controllers
             return View(data);
         }
 
+        public ActionResult Donnee()
+        {
+
+            return View();
+        }
 
 
         /*  public ActionResult Delete(int? Id)

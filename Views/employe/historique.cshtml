@@ -1,8 +1,9 @@
 @model IEnumerable<GestionAbscences.Data.demandeconge>
 
 <script type="text/javascript">
-    function popupBasique(page) {
-        window.open(page);
+    myfun = function() {
+        var x = window.open('/employe/Imprimer/#@ViewBag.id');
+        x.print();
     }
 </script>
 </br>
@@ -31,7 +32,7 @@
 
     <div class="sb-nav-fixed">
 
-      
+
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table mr-1"></i>
@@ -68,10 +69,9 @@
     </div>
 
 
-
     <div class="sb-nav-fixed">
         <div class="btn btn-primary" onclick="fnExcelReport();">Export EXCEL</div>
-</br></br>
+        </br></br>
 
         <div class="card mb-4">
             <div class="card-header">
@@ -80,13 +80,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-
-
-
-
-
-
-                    <table class="table table-bordered" id="xx" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr class="table-success">
                                 <th>
@@ -134,8 +128,6 @@
 
                         </thead>
                         <tfoot>
-
-
                         </tfoot>
 
                         <tbody>
@@ -185,11 +177,6 @@
                                             </p>
                                         }
                                     </td>
-
-
-
-
-
                                     <td>
 
                                         @if (item.ValidationN2 == "refuse")
@@ -255,29 +242,54 @@
                                     </td>
 
                                     <td>
+
                                         @if (item.ValidationRH.Equals("Accepte"))
                                         {
-                                            @Html.ActionLink("Imprimer titre", "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-primary " })
-                                            @Html.ActionLink("Modifier", "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
-                                        }
+                                            @Html.ActionLink(GestionAbscences.Langagues.Resource1.Modifier, "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                            if (item.IdtypeConge == 1)
+                                            {
 
+                                                <button onclick="myfun()" class="btn btn-primary ">
+                                                    @GestionAbscences.Langagues.Resource1.Imprimertitre
+                                                </button>
+                                                <script type="text/javascript">
+                                                            myfun = function() {
+                                                               var x = window.open('/employe/Imprimer/@item.idDemandeConge');
+                                                                  x.print();
+                                                           }
+                                                </script>
+                                            }
+                                            else
+                                            {
+                                                <button onclick="myfun1()" class="btn btn-primary ">
+                                                    @GestionAbscences.Langagues.Resource1.Imprimertitre
+                                                </button>
+                                                <script type="text/javascript">
+                                                            myfun1 = function() {
+                                                               var x = window.open('/employe/Imprimer2/@item.idDemandeConge');
+                                                                  x.print();
+                                                           }
+                                                </script>
+                                            }
+                                        }
                                         else if ((item.ValidationN1.Equals("Accepte")) || (item.ValidationN2.Equals("Accepte")))
                                         {
-                                            @Html.ActionLink("Imprimer titre", "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled " })
-                                            @Html.ActionLink("Modifier", "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })}
-
-
+                                            @Html.ActionLink(GestionAbscences.Langagues.Resource1.Imprimertitre, "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled " })
+                                            @Html.ActionLink(GestionAbscences.Langagues.Resource1.Modifier, "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })}
+                                        else if (item.ValidationN1.Equals("En cours"))
+                                        {
+                                            @Html.ActionLink(GestionAbscences.Langagues.Resource1.Modifier, "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-primary " })
+                                            @Html.ActionLink(GestionAbscences.Langagues.Resource1.Imprimertitre, "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                        }
                                         else if (item.ValidationN1.Equals("refuse") || (item.ValidationN2.Equals("refuse")) || (item.ValidationRH.Equals("refuse")))
                                         {
-                                            @Html.ActionLink("Modifier", "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled " })
-                                            @Html.ActionLink("Imprimer titre", "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                            @Html.ActionLink(GestionAbscences.Langagues.Resource1.Modifier, "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled " })
+                                            @Html.ActionLink(GestionAbscences.Langagues.Resource1.Imprimertitre, "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
                                         }
-
-
                                         else
                                         {
-                                            @Html.ActionLink(@GestionAbscences.Langagues.Resource1.Imprimertitre, "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
-                                            @Html.ActionLink(@GestionAbscences.Langagues.Resource1.Modifier, "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                            @Html.ActionLink(GestionAbscences.Langagues.Resource1.Imprimertitre, "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                            @Html.ActionLink(GestionAbscences.Langagues.Resource1.Modifier, "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
                                         }
 
                                     </td>
@@ -289,18 +301,8 @@
                 </div>
             </div>
         </div>
+
     </div>
-
-
-
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-    <script src="assets/demo/datatables-demo.js"></script>
-
     <script>
         function fnExcelReport() {
             var tab_text = "<table border='2px'>";
@@ -323,7 +325,7 @@
             {
                 txtArea1.document.open("txt/html", "replace");
                 txtArea1.document.write(tab_text);
-                txtArea1.document.close();
+                ViewBagtViewBagiewBagBagiewBagewBagewBagArea1.document.close();
                 txtArea1.focus();
                 sa = txtArea1.document.execCommand("SaveAs", true, "Say T.xls");
             }
@@ -332,6 +334,15 @@
             return (sa);
         }
     </script>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <script src="assets/demo/datatables-demo.js"></script>
 
 
 
