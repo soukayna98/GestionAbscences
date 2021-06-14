@@ -510,9 +510,97 @@ namespace GestionAbscences.Controllers
                             }
 
                         }
-                        else
+                        else if ( employe.Sexe.Equals("Femme"))
                         {
-                            RedirectToAction("Index", "employe");
+                            if (employe.situationFamiliale.Equals("celibataire"))
+                            {
+                                if (employe.Classe.Equals("TAMCA"))
+                                {
+                                    demande.soldeConge = "700";
+                                }
+                                else if (employe.Classe.Equals("OE"))
+                                {
+                                    demande.soldeConge = "600";
+                                }
+                            }
+                            else if (employe.situationFamiliale.Equals("Marie"))
+                            {
+                                if (employe.Classe.Equals("TAMCA"))
+                                {
+                                    demande.soldeConge = "700";
+                                }
+                                else if (employe.Classe.Equals("OE"))
+                                {
+                                    demande.soldeConge = "600";
+                                }
+                            }
+                            else if (employe.situationFamiliale.Equals("Marie") && employe.nbEnfants == 1)
+                            {
+                                if (employe.Classe.Equals("TAMCA"))
+                                {
+                                    demande.soldeConge = "1250";
+                                }
+                                else if (employe.Classe.Equals("OE"))
+                                {
+                                    demande.soldeConge = "1000";
+                                }
+                            }
+                            else if (employe.situationFamiliale.Equals("Marie") && employe.nbEnfants == 2)
+                            {
+                                if (employe.Classe.Equals("TAMCA"))
+                                {
+                                    demande.soldeConge = "1550";
+                                }
+                                else if (employe.Classe.Equals("OE"))
+                                {
+                                    demande.soldeConge = "1200";
+                                }
+                            }
+                            else if (employe.situationFamiliale.Equals("Marie") && employe.nbEnfants == 3)
+                            {
+                                if (employe.Classe.Equals("TAMCA"))
+                                {
+                                    demande.soldeConge = "1850";
+                                }
+                                else if (employe.Classe.Equals("OE"))
+                                {
+                                    demande.soldeConge = "1400";
+                                }
+                            }
+                            else if (employe.situationFamiliale.Equals("Marie") && employe.nbEnfants == 4)
+                            {
+                                if (employe.Classe.Equals("TAMCA"))
+                                {
+                                    demande.soldeConge = "2150";
+                                }
+                                else if (employe.Classe.Equals("OE"))
+                                {
+                                    demande.soldeConge = "1600";
+                                }
+                            }
+                            else if (employe.situationFamiliale.Equals("Marie") && employe.nbEnfants == 5)
+                            {
+                                if (employe.Classe.Equals("TAMCA"))
+                                {
+                                    demande.soldeConge = "2450";
+                                }
+                                else if (employe.Classe.Equals("OE"))
+                                {
+                                    demande.soldeConge = "1800";
+                                }
+                            }
+                            else if (employe.situationFamiliale.Equals("Marie") && employe.nbEnfants == 6)
+                            {
+                                if (employe.Classe.Equals("TAMCA"))
+                                {
+                                    demande.soldeConge = "2750";
+                                }
+                                else if (employe.Classe.Equals("OE"))
+                                {
+                                    demande.soldeConge = "2000";
+                                }
+                            }
+
                         }
 
                     }
