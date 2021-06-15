@@ -423,6 +423,7 @@ namespace GestionAbscences.Controllers
             string dateFin = Request["dateFin"] ;
             string timeFin = Request["timeFin"] ;
 
+
             string operation = Request["operation"].ToString();
             string marriage = Request["marriage1"].ToString();
             string deces = Request["deces1"].ToString();
@@ -508,6 +509,7 @@ namespace GestionAbscences.Controllers
                                 int x4 = int.Parse(item.dureeJ) - 1;
                                 var df = debut.AddDays(x4);
                                 demande.DateFin = Convert.ToDateTime(df);
+                                demande.DateDebut = Convert.ToDateTime(dateDebut);
                                 demande.IdtypeConge = 4;
                             }
                         }
@@ -524,6 +526,7 @@ namespace GestionAbscences.Controllers
                                 int x5 = int.Parse(item.dureeJ) - 1;
                                 var df = debut.AddDays(x5);
                                 demande.DateFin = Convert.ToDateTime(df);
+                                demande.DateDebut = Convert.ToDateTime(dateDebut);
                                 demande.IdtypeConge = 5;
                             }
                         }
@@ -542,6 +545,7 @@ namespace GestionAbscences.Controllers
                                 int x6 = int.Parse(item.dureeJ) - 1;
                                 var df = debut.AddDays(x6);
                                 demande.DateFin = Convert.ToDateTime(df);
+                                demande.DateDebut = Convert.ToDateTime(dateDebut);
                                 demande.IdtypeConge = 6;
                             }
                         }
@@ -557,6 +561,7 @@ namespace GestionAbscences.Controllers
                                 int x7 = int.Parse(item.dureeJ) - 1;
                                 var df = debut.AddDays(x7);
                                 demande.DateFin = Convert.ToDateTime(df);
+                                demande.DateDebut = Convert.ToDateTime(dateDebut);
                                 demande.IdtypeConge = 7;
                             }
                         }
@@ -572,6 +577,7 @@ namespace GestionAbscences.Controllers
                                 int x8 = int.Parse(item.dureeJ) - 1;
                                 var df = debut.AddDays(x8);
                                 demande.DateFin = Convert.ToDateTime(df);
+                                demande.DateDebut = Convert.ToDateTime(dateDebut);
                                 demande.IdtypeConge = 8;
                             }
                         }
@@ -587,6 +593,7 @@ namespace GestionAbscences.Controllers
                                 int x9 = int.Parse(item.dureeJ) - 1;
                                 var df = debut.AddDays(x9);
                                 demande.DateFin = Convert.ToDateTime(df);
+                                demande.DateDebut = Convert.ToDateTime(dateDebut);
                                 demande.IdtypeConge = 9;
                             }
                         }
@@ -602,6 +609,7 @@ namespace GestionAbscences.Controllers
                                 int x10 = int.Parse(item.dureeJ) - 1;
                                 var df = debut.AddDays(x10);
                                 demande.DateFin = Convert.ToDateTime(df);
+                                demande.DateDebut = Convert.ToDateTime(dateDebut);
                                 demande.IdtypeConge = 10;
                             }
                         }
@@ -619,6 +627,7 @@ namespace GestionAbscences.Controllers
                                 int x20 = int.Parse(item.dureeJ) - 1;
                                 var df = debut.AddDays(x20);
                                 demande.DateFin = Convert.ToDateTime(df);
+                                demande.DateDebut = Convert.ToDateTime(dateDebut);
                                 demande.IdtypeConge = 20;
                             }
                         }
@@ -633,6 +642,7 @@ namespace GestionAbscences.Controllers
                                 int x21 = int.Parse(item.dureeJ) - 1;
                                 var df = debut.AddDays(x21);
                                 demande.DateFin = Convert.ToDateTime(df);
+                                demande.DateDebut = Convert.ToDateTime(dateDebut);
                                 demande.IdtypeConge = 21;
                             }
                         }
@@ -654,6 +664,7 @@ namespace GestionAbscences.Controllers
                         int x22 = int.Parse(item.dureeJ)-1;
                         var df = debut.AddDays(x22);
                         demande.DateFin = Convert.ToDateTime(df);
+                        demande.DateDebut = Convert.ToDateTime(dateDebut);
                         demande.IdtypeConge = 22;
                     }
                 }
@@ -668,35 +679,39 @@ namespace GestionAbscences.Controllers
                         int x15 = int.Parse(item.dureeJ)-1;
                         var df = debut.AddDays(x15);
                         demande.DateFin = Convert.ToDateTime(df);
+                        demande.DateDebut = Convert.ToDateTime(dateDebut);
                         demande.IdtypeConge = 15;
                     }
                 }
             }
             else
             {
-                if (Request["dateDebut"].Equals("") || Request["dateFin"].Equals(""))
+                if (Request["dateDebut"].Equals("") || Request["dateFin"].Equals("") )
                 {
                     Session["Message"] = "Remlpir tout les champs svp ";
                     return RedirectToAction("Index", "employe");
                 }
               DateTime fin = Convert.ToDateTime(Request["dateFin"]);
-              /* DateTime dfin = Convert.ToDateTime(dateFin);
-               DateTime tfin = Convert.ToDateTime(timeFin);
-               DateTime ddeb = Convert.ToDateTime(dateDebut);
-               DateTime tdeb = Convert.ToDateTime(timeDebut);
-
-                DateTime x = ddeb  dfin;*/
-                DateTime y = Convert.ToDateTime(Request["dateDebut"]);
 
                 TimeSpan dateSpan = fin - debut;
-               // TimeSpan dateSpan = fin - deb;
+
+
+                // concatenation-------------------------------------------------------------------------------------------------
+
+                DateTime dtd1 = DateTime.Parse(Request["dateDebut"] + " " + Request["timeDebut"]);
+                DateTime dtf1 = DateTime.Parse(Request["dateFin"] + " " + Request["timeFin"]);
+                TimeSpan timeSpan = dtf1 - dtd1;
+
+
                 if (typeCongeIdTypeconge.Equals(""))
                 {
                     Session["Message"] = "Selectionner un type de conge svp ";
                     return RedirectToAction("Index", "employe");
                 }
                 else
-                if ((debut < dc) || (fin < dc) || (fin < debut))
+               if ((debut < dc) || (fin < dc) || (fin < debut))
+
+                
                 {
                     Session["Message"] = "verifier les dates svp";
                     return RedirectToAction("Index", "employe");
@@ -711,12 +726,14 @@ namespace GestionAbscences.Controllers
 
                         demande.IdtypeConge = 3;
                         demande.DateFin = Convert.ToDateTime(dateFin);
+                        demande.DateDebut = Convert.ToDateTime(dateDebut);
 
                     }
                     else if (typeCongeIdTypeconge.Equals("1 ere tranche") && dateSpan >= t10 && dateSpan <= t) //obj <JR ,obj >=10
                     {
                         demande.IdtypeConge = 1;
                         demande.DateFin = Convert.ToDateTime(dateFin);
+                        demande.DateDebut = Convert.ToDateTime(dateDebut);
 
                         //****
                         var employe = db.employe.Find(uid);
@@ -812,24 +829,27 @@ namespace GestionAbscences.Controllers
                             }
 
                         }
-                        
-                        
-
-                    //******solde
 
 
 
-                }
+                        //******solde
+
+
+
+                    }
                     else if (typeCongeIdTypeconge.Equals("2 eme tranche") && dateSpan >= t7 && dateSpan <= tR)//obj <7(t7) , obj <=jR
                     {
                         demande.IdtypeConge = 2;
                         demande.DateFin = Convert.ToDateTime(dateFin);
-
+                        demande.DateDebut = Convert.ToDateTime(dateDebut);
                     }
-                    else if (typeCongeIdTypeconge.Equals("1/2 journée") && dateSpan <= t12)
+                    //èèèèèèèèèèèèèèèèèèèè
+                    else if (typeCongeIdTypeconge.Equals("1/2 journée") && timeSpan <= t12)
                     {
 
-                        demande.DateFin = Convert.ToDateTime(dateFin);
+                        // demande.DateFin = Convert.ToDateTime(dateFin);
+                        demande.DateFin = Convert.ToDateTime(dtf1);
+                        demande.DateDebut = Convert.ToDateTime(dtd1);
                         demande.IdtypeConge = 11;
 
                     }
@@ -837,11 +857,15 @@ namespace GestionAbscences.Controllers
                     {
                         demande.DateFin = Convert.ToDateTime(dateFin);
                         demande.IdtypeConge = 12;
+                        demande.DateDebut = Convert.ToDateTime(dateDebut);
 
                     }
-                    else if (typeCongeIdTypeconge.Equals("1.5 journée") && dateSpan <= t112)
+                    //---------------------------------------
+                    else if (typeCongeIdTypeconge.Equals("1.5 journée") && timeSpan <= t112)
                     {
-                        demande.DateFin = Convert.ToDateTime(dateFin);
+                        //demande.DateFin = Convert.ToDateTime(dateFin);
+                        demande.DateFin = Convert.ToDateTime(dtf1);
+                        demande.DateDebut = Convert.ToDateTime(dtd1);
                         demande.IdtypeConge = 13;
 
                     }
@@ -849,46 +873,54 @@ namespace GestionAbscences.Controllers
                     {
                         demande.DateFin = Convert.ToDateTime(dateFin);
                         demande.IdtypeConge = 14;
+                        demande.DateDebut = Convert.ToDateTime(dateDebut);
 
                     }
-                   
 
-                  
 
-             
 
-                    else if (typeCongeIdTypeconge.Equals("H.S") && dateSpan <= ths )
-                    {
 
-                            demande.IdtypeConge = 23;
-                            demande.DateFin = Convert.ToDateTime(dateFin);
-                       
-                            Session["Message"] = "Votre nombte H.S est insufisant ";
-                        
 
-                    }
+
+
                     else if (typeCongeIdTypeconge.Equals("J.R") && dateSpan <= tjR)
                     {
-                        
-                            demande.IdtypeConge = 24;
-                            demande.DateFin = Convert.ToDateTime(dateFin);
-                       
-                        
+
+                        demande.IdtypeConge = 24;
+                        demande.DateFin = Convert.ToDateTime(dateFin);
+                        demande.DateDebut = Convert.ToDateTime(dateDebut);
+
+
                     }
                     else if (typeCongeIdTypeconge.Equals("J.F") && dateSpan <= tjf)
                     {
                         demande.IdtypeConge = 25;
                         demande.DateFin = Convert.ToDateTime(dateFin);
+                        demande.DateDebut = Convert.ToDateTime(dateDebut);
                     }
                     else if (typeCongeIdTypeconge.Equals("heures"))
                     {
                         demande.IdtypeConge = 26;
                         demande.DateFin = Convert.ToDateTime(dateFin);
+                        demande.DateDebut = Convert.ToDateTime(dateDebut);
                     }
                     else if (typeCongeIdTypeconge.Equals("jours"))
                     {
                         demande.IdtypeConge = 27;
                         demande.DateFin = Convert.ToDateTime(dateFin);
+                        demande.DateDebut = Convert.ToDateTime(dateDebut);
+
+                    }
+
+                    // 6666
+                    else if (typeCongeIdTypeconge.Equals("H.S") && timeSpan <= ths)
+                    {
+
+                        demande.IdtypeConge = 23;
+                        demande.DateFin = Convert.ToDateTime(dtf1);
+                        demande.DateDebut = Convert.ToDateTime(dtd1);
+
+
 
                     }
                     else
@@ -921,7 +953,7 @@ namespace GestionAbscences.Controllers
 
             demande.IdEmploye = uid;
 
-            demande.DateDebut = Convert.ToDateTime(dateDebut);
+           
 
             demande.DateDC = dc;
             demande.justification = justification;

@@ -178,24 +178,28 @@ namespace GestionAbscences.Areas.RH.Controllers
             double resJ = resM / 1440;
             */
 
-            var recup = db.CumulRecup.Include(d => d.employe).Where(p => p.employe.idEmploye == uid).Select(u => new {
+            var recup = db.CumulRecup.Include(d => d.employe).Where(p => p.employe.idEmploye == e.IdEmploye).Select(u => new {
                 hs = u.CumulHr,
                 jf = u.CumulJrF,
-                jr = u.CumulJrR
+                jr = u.CumulJrR ,
+                id = u.IDCumulRecup
 
             }).Single();
 
-            double hsA = Convert.ToDouble(recup.hs);
+            CumulRecup cr = db.CumulRecup.Find(recup.id);
+
+            double hsA = Convert.ToDouble(cr.CumulHr);
 
             //en heure 
-            double jf = Convert.ToDouble(recup.jf) * 24;
+            double jf = Convert.ToDouble(recup.jf) ;
 
 
-            double jR = Convert.ToDouble(recup.jr) * 24;
+            double jR = Convert.ToDouble(recup.jr) ;
            
 
 
             var dureM = (dateFin - dateDebut).TotalHours;
+            var dureD = (dateFin - dateDebut).Days;
             double duM = Convert.ToDouble(dureM);
             double nbM = Convert.ToDouble(e.employe.nbHeureR) ;
             double resM = nbM - duM;
@@ -206,13 +210,32 @@ namespace GestionAbscences.Areas.RH.Controllers
             switch (button)
             {
                 case "Accepté":
-                  /*  if(e.IdtypeConge== 22 )
+                   if(e.IdtypeConge== 23 )
                     {
-                        double du1 = hsA - dureM;
+                        double dhs = hsA - dureM;
+                        cr.CumulHr = Convert.ToString(dhs);
 
-                    }*/
+                    }else
+                    if (e.IdtypeConge == 25)
+                    {
+                        double dhs = jf - dureD;
+                        string dh = Convert.ToString(dhs);
+                        cr.CumulJrF = float.Parse(dh);
+
+                    }else
+                    if (e.IdtypeConge == 24)
+                    {
+                        double dhs = jR - dureD;
+                        string dh = Convert.ToString(dhs);
+                        cr.CumulJrR =  float.Parse(dh);
+
+                    }
+                    else
+                    {
+                        e.employe.nbHeureR = resM.ToString();
+                    }
                     e.ValdationRH = "accepte";
-                    e.employe.nbHeureR = resM.ToString();
+                    
                     e.DateValidationRH = DateTime.Now;
 
                     //DCTEMP

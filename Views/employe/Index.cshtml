@@ -167,7 +167,7 @@
                                         </div>
                                         <div class="form-radio-group">
                                             <div class="form-radio-item">
-                                                <input type="radio" name="typeCongeIdTypeconge" id="1/2 journée" value="1/2 journée" onclick="masquer_div1();">
+                                                <input type="radio" name="typeCongeIdTypeconge" id="1/2 journée" value="1/2 journée" onclick="time();">
                                                 <label for="1/2 journée">@GestionAbscences.langagues.Resource1._1_2journée</label>
                                                 <span class="check"></span>
                                             </div>
@@ -177,7 +177,7 @@
                                                 <span class="check"></span>
                                             </div>
                                             <div class="form-radio-item">
-                                                <input type="radio" name="typeCongeIdTypeconge" id="1.5 journée" value="1.5 journée" onclick="masquer_div1();">
+                                                <input type="radio" name="typeCongeIdTypeconge" id="1.5 journée" value="1.5 journée" onclick="time();">
                                                 <label for="1.5 journée">@GestionAbscences.langagues.Resource1._1_5journée</label>
                                                 <span class="check"></span>
                                             </div>
@@ -284,7 +284,7 @@
 
                                         <div class="form-radio-group">
                                             <div class="form-radio-item">
-                                                <input type="radio" name="typeCongeIdTypeconge" id="H.S" value="H.S" onclick="masquer_div1();">
+                                                <input type="radio" name="typeCongeIdTypeconge" id="H.S" value="H.S" onclick="time();">
                                                 <label for="H.S">@GestionAbscences.langagues.Resource1.H_S</label>
                                                 <span class="check"></span>
                                             </div>
@@ -491,6 +491,7 @@
                 }
                 document.getElementById('dateFin').disabled = true;
                 document.getElementById('timeFin').disabled = true;
+                document.getElementById('timeDebut').disabled = true;
             }
 
         </script>
@@ -509,6 +510,7 @@
                 }
                 document.getElementById('dateFin').disabled = true;
                 document.getElementById('timeFin').disabled = true;
+                document.getElementById('timeDebut').disabled = true;
             }
 
         </script>
@@ -527,6 +529,7 @@
                 }
                 document.getElementById('dateFin').disabled = true;
                 document.getElementById('timeFin').disabled = true;
+                document.getElementById('timeDebut').disabled = true;
 
 
             }
@@ -545,7 +548,27 @@
                     document.getElementById('a_operation').style.display = 'none';
                 }
                 document.getElementById('dateFin').disabled = false;
+                document.getElementById('timeFin').disabled = true;
+                document.getElementById('timeDebut').disabled = true;
+
+            }
+
+        </script>
+        <script type="text/javascript">
+            function time() {
+                if (document.getElementById('a_masquer')) {
+                    document.getElementById('a_masquer').style.display = 'none';
+
+                }
+                if (document.getElementById('a_marriage')) {
+                    document.getElementById('a_marriage').style.display = 'none';
+                }
+                if (document.getElementById('a_operation')) {
+                    document.getElementById('a_operation').style.display = 'none';
+                }
+                document.getElementById('dateFin').disabled = false;
                 document.getElementById('timeFin').disabled = false;
+                document.getElementById('timeDebut').disabled = false;
 
             }
 
@@ -564,6 +587,8 @@
                 }
                 document.getElementById('dateFin').disabled = true;
                 document.getElementById('timeFin').disabled = true;
+               
+                document.getElementById('timeDebut').disabled = true;
 
             }
 
