@@ -39,8 +39,8 @@ namespace GestionAbscences.Areas.RH.Controllers
         public ActionResult historique()
         {
 
-            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where((p => p.ValidationN2 == "accepte" && p.ValidationN1 != "refuse"));
-            return View(demandeConge.ToList());
+            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where((p => p.ValidationN2 == "accepte" && p.ValidationN1 != "refuse")).OrderByDescending(news => news.DateDC).Take(10).ToList();
+            return View(demandeConge);
 
 
         }

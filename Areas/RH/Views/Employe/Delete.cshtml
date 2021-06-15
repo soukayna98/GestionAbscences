@@ -96,23 +96,38 @@
 
                                     </td>
                                     <td>
-                                        @Model.nbjoursR
+                                        @Model.nbHeureR
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="font-weight:bold; text-align:center;">
-                                        last year
+                                        Sexe
                                     </td>
                                     <td>
-                                        @Model.nbjoursA
+                                        @Model.sexe
                                     </td>
                                     <td style="font-weight:bold; text-align:center;">
-                                        Solde de congé
+                                        Status
 
                                     </td>
                                     <td>
-                                        @Model.soldeConge
+                                        @Model.Status
                                     </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:bold; text-align:center;">
+                                        Nb Enfants
+                                    </td>
+                                    <td>
+                                        @Model.nbEnfants
+                                    </td>
+                                    <td style="font-weight:bold; text-align:center;">
+                                       
+                                    </td>
+                                    <td>
+                                       
+                                    </td>
+
                                 </tr>
                             </table>
                             <br />
@@ -121,11 +136,11 @@
                             <div class="row align-items-start">
 
                                 <div class="col-3">
-                                    <button type="submit" style="padding-left:40px; margin-left:270px; padding-right:40px" class="btn btn-success   btn-lg bt" id="submit" name="button" value="Supprimer">Supprimer</button>
+                                    <button type="submit" style="padding-left:40px; margin-left:270px; padding-right:40px" class="btn btn-success btn-danger  btn-lg bt" name="button" value="Sup"> Annuler</button>
                                 </div>
 
                                 <div class="col-3">
-                                    <button type="submit" style="padding-left:40px; margin-left:290px; padding-right:40px" class="btn btn-white btn-primary  btn-lg bt" name="button" value="Annuler"> Annuler</button>
+                                    <button type="submit" style="padding-left:40px; margin-left:290px; padding-right:40px" class="btn btn-white btn-primary  btn-lg bt" name="button" value="Annuler"> Supprimer</button>
                                 </div>
                             </div>
 

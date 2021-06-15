@@ -366,7 +366,7 @@
                                         {
                                             @Html.ActionLink(GestionAbscences.langagues.Resource1.Imprimertitre, "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-primary disabled " })
                                             @Html.ActionLink(GestionAbscences.langagues.Resource1.Modifier, "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })}
-                                        else if (item.ValidationN1.Equals("En cours"))
+                                        else if (item.ValidationN1.Equals("*******"))
                                         {
                                             @Html.ActionLink(GestionAbscences.langagues.Resource1.Modifier, "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-primary " })
                                             @Html.ActionLink(GestionAbscences.langagues.Resource1.Imprimertitre, "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })

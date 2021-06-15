@@ -122,8 +122,8 @@ namespace GestionAbscences.Areas.Admin.Controllers
             ViewBag.valR = new SelectList(db.demandeconge, "idDemandeConge", "ValdationRH");
             ViewBag.dateD = new SelectList(db.demandeconge, "idDemandeConge", "DateDebut");
 
-            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours" && p.employe.affectation.Equals(aff));
-            return View(demandeConge.ToList());
+            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours" && p.employe.affectation.Equals(aff)).OrderByDescending(news => news.DateDC).Take(10).ToList();
+            return View(demandeConge);
         }
     
         public ActionResult validation(int? id)

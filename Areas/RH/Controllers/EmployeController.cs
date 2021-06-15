@@ -74,7 +74,9 @@ namespace GestionAbscences.Areas.RH.Controllers
             data.affectation = Request["affectation"];
             data.role = Request["role"];
             data.password = Request["password"];
-            data.soldeConge = Convert.ToInt32(Request["soldeConge"]);
+            data.sexe = Request["sexe"];
+            data.Status = Request["Status"];
+            data.nbEnfants = Convert.ToInt32(Request["nbEnfants"]);
             data.Classe = Request["Classe"];
             data.DateDebut =Convert.ToDateTime( Request["DateDebut"]);
             
@@ -94,12 +96,13 @@ namespace GestionAbscences.Areas.RH.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var currentEmploye = employeService.ReadById(id.Value);
+            //    var currentEmploye = employeService.ReadById(id.Value);
+           var currentEmploye = db.employe.Find(id);
             if (currentEmploye == null)
             {
                 return HttpNotFound($"this demande ({id}) is not found");
             }
-
+          
 
             employe e = db.employe.Find(id);
             Session["idE"] = currentEmploye.idEmploye;
@@ -124,14 +127,14 @@ namespace GestionAbscences.Areas.RH.Controllers
             string button = Request["button"];
             switch (button)
             {
-                case "Supprimer":
+                case "Annuler":
                     e.DateFin = dc;
                     e.password = "supprime";
                     db.Entry(e).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index");
 
-                case "Annuler":
+                case "Sup":
 
                     return RedirectToAction("Index");
 

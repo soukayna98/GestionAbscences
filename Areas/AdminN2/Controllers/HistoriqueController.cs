@@ -167,9 +167,9 @@ namespace GestionAbscences.Areas.AdminN2.Controllers
         }*/
         public ActionResult historique()
         {
-            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "En cours");
+            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "En cours").OrderByDescending(news => news.DateDC).Take(10).ToList();
 
-            return View(demandeConge.ToList());
+            return View(demandeConge);
         }
         public ActionResult validation(int? id)
         {

@@ -26,9 +26,9 @@ namespace GestionAbscences.Areas.RH.Controllers
         // GET: RH/Annuler
         public ActionResult Index()
         {
-            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValdationRH == "accepte" && p.ValidationN2 == "accepte");
+            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValdationRH == "accepte" && p.ValidationN2 == "accepte").OrderByDescending(news => news.DateDC).Take(10).ToList();
 
-            return View(demandeConge.ToList());
+            return View(demandeConge);
 
         }
 

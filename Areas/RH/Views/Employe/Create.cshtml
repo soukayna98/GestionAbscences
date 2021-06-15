@@ -86,24 +86,31 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.nbjoursR, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.nbHeureR, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.nbjoursR, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.nbjoursR, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.nbHeureR, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.nbHeureR, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(model => model.nbjoursA, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.sexe, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.nbjoursA, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.nbjoursA, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.sexe, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.sexe, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(model => model.soldeConge, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.soldeConge, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.soldeConge, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.nbEnfants, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.nbEnfants, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.nbEnfants, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -117,19 +124,19 @@
             </div>
         </div>
     </div>
-        <br />
+    <br />
 
 
-        @if (ViewBag.Message != null)
-        {
-            <div class="alert alert-danger">
-                <h3>
-                    @ViewBag.Message
-                </h3>
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-danger">
+            <h3>
+                @ViewBag.Message
+            </h3>
 
-            </div>
-        }
-    </div>
+        </div>
+    }
+</div>
 }
 
 <div>
