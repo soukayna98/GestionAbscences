@@ -13,10 +13,10 @@ namespace GestionAbscences.Data
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class GestionAbscencesEntities10 : DbContext
+    public partial class GestionAbscencesEntities11 : DbContext
     {
-        public GestionAbscencesEntities10()
-            : base("name=GestionAbscencesEntities10")
+        public GestionAbscencesEntities11()
+            : base("name=GestionAbscencesEntities11")
         {
         }
     
@@ -25,6 +25,7 @@ namespace GestionAbscences.Data
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<CumulRecup> CumulRecup { get; set; }
         public virtual DbSet<DCTEMP> DCTEMP { get; set; }
         public virtual DbSet<demandeconge> demandeconge { get; set; }
         public virtual DbSet<employe> employe { get; set; }

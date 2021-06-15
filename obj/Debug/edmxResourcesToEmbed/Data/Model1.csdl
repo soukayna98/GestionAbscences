@@ -1,5 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="GestionAbscencesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CumulRecup">
+    <Key>
+      <PropertyRef Name="IDCumulRecup" />
+    </Key>
+    <Property Name="IDCumulRecup" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idEmploye" Type="Int32" />
+    <Property Name="CumulHr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CumulJrF" Type="Single" />
+    <Property Name="CumulJrR" Type="Single" />
+    <Property Name="Mois" Type="Int32" />
+    <Property Name="Annee" Type="Int32" />
+    <NavigationProperty Name="employe" Relationship="Self.FK_CumulRecup_Employe" FromRole="CumulRecup" ToRole="employe" />
+  </EntityType>
   <EntityType Name="DCTEMP">
     <Key>
       <PropertyRef Name="Id" />
@@ -29,6 +42,7 @@
     <Property Name="DateValidationN1" Type="DateTime" Precision="3" />
     <Property Name="DateValidationN2" Type="DateTime" Precision="3" />
     <Property Name="DateValidationRH" Type="DateTime" Precision="3" />
+    <Property Name="soldeConge" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="employe" Relationship="Self.fk_DemandeConge_Employe" FromRole="demandeconge" ToRole="employe" />
     <NavigationProperty Name="typeconge" Relationship="Self.fk_DemandeConge_typeConge" FromRole="demandeconge" ToRole="typeconge" />
   </EntityType>
@@ -52,6 +66,7 @@
     <Property Name="sexe" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="nbEnfants" Type="Int32" />
+    <NavigationProperty Name="CumulRecup" Relationship="Self.FK_CumulRecup_Employe" FromRole="employe" ToRole="CumulRecup" />
     <NavigationProperty Name="demandeconge" Relationship="Self.fk_DemandeConge_Employe" FromRole="employe" ToRole="demandeconge" />
     <NavigationProperty Name="employehasentite" Relationship="Self.fk_employehasentite_Employe" FromRole="employe" ToRole="employehasentite" />
   </EntityType>
@@ -103,6 +118,18 @@
     <Property Name="dureeJ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="demandeconge" Relationship="Self.fk_DemandeConge_typeConge" FromRole="typeconge" ToRole="demandeconge" />
   </EntityType>
+  <Association Name="FK_CumulRecup_Employe">
+    <End Role="employe" Type="Self.employe" Multiplicity="0..1" />
+    <End Role="CumulRecup" Type="Self.CumulRecup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employe">
+        <PropertyRef Name="idEmploye" />
+      </Principal>
+      <Dependent Role="CumulRecup">
+        <PropertyRef Name="idEmploye" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="fk_DemandeConge_Employe">
     <End Role="employe" Type="Self.employe" Multiplicity="1" />
     <End Role="demandeconge" Type="Self.demandeconge" Multiplicity="*" />
@@ -175,7 +202,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="GestionAbscencesEntities10" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="GestionAbscencesEntities11" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CumulRecup" EntityType="Self.CumulRecup" />
     <EntitySet Name="DCTEMP" EntityType="Self.DCTEMP" />
     <EntitySet Name="demandeconge" EntityType="Self.demandeconge" />
     <EntitySet Name="employe" EntityType="Self.employe" />
@@ -184,6 +212,10 @@
     <EntitySet Name="entitesuper" EntityType="Self.entitesuper" />
     <EntitySet Name="supervisionher" EntityType="Self.supervisionher" />
     <EntitySet Name="typeconge" EntityType="Self.typeconge" />
+    <AssociationSet Name="FK_CumulRecup_Employe" Association="Self.FK_CumulRecup_Employe">
+      <End Role="employe" EntitySet="employe" />
+      <End Role="CumulRecup" EntitySet="CumulRecup" />
+    </AssociationSet>
     <AssociationSet Name="fk_DemandeConge_Employe" Association="Self.fk_DemandeConge_Employe">
       <End Role="employe" EntitySet="employe" />
       <End Role="demandeconge" EntitySet="demandeconge" />

@@ -10,20 +10,22 @@ namespace GestionAbscences.Areas.Admin.Controllers
 {
     public class DefaultController : Controller
     {
-        private GestionAbscencesEntities10 db = new GestionAbscencesEntities10();
+        private GestionAbscencesEntities11 db = new GestionAbscencesEntities11();
         // GET: Admin/Default
         public ActionResult Index()
         {
+            Session["demande"] = null;
             return View();
         }
         [HttpGet]
         public ActionResult changePassword()
         {
-
+            Session["demande"] = null;
             return View();
         }
         public ActionResult employe()
         {
+            Session["demande"] = null;
             string aff = Session["affectation"].ToString();
             var employe = db.employe.Where(p => p.affectation.Equals(aff));
 
@@ -66,7 +68,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Donnée()
         {
-
+            Session["demande"] = null;
             return View();
         }
 

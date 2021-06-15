@@ -177,6 +177,10 @@
                                 <th>
                                     @GestionAbscences.langagues.Resource1.ValidationRH
                                 </th>
+                                <th>
+                                    
+                                </th>
+
 
 
                             </tr>
@@ -227,9 +231,15 @@
                                                 @Html.DisplayFor(modelItem => item.ValidationN1)
                                             </p>
                                         }
+                                        else if (item.ValidationN1 == "accepte")
+                                        {
+                                            <p class="p-2 mb-2 bg-success text-dark">
+                                                @Html.DisplayFor(modelItem => item.ValidationN1)
+                                            </p>
+                                        }
                                         else
                                         {
-                                            <p class="p-2 mb-2 bg-success text-white">
+                                            <p class="p-2 mb-2 bg-white text-dark ">
                                                 @Html.DisplayFor(modelItem => item.ValidationN1)
                                             </p>
                                         }
@@ -294,7 +304,7 @@
                                         }
                                         else
                                         {
-                                            <p class="p-2 mb-2 bg-white text-dark">
+                                            <p class="p-2 mb-2 bg-white text-dark text-center">
                                                 @Html.DisplayFor(modelItem => item.ValdationRH)
                                             </p>
                                         }
@@ -322,7 +332,8 @@
 
 
                                                                var x = window.open('/employe/Imprimer/@item.idDemandeConge');
-                                                                  x.print();
+                                                                x.print();
+                                                                window.close('/employe/Imprimer/@item.idDemandeConge');
 
 
                                                            }
@@ -343,7 +354,8 @@
 
 
                                                                var x = window.open('/employe/Imprimer2/@item.idDemandeConge');
-                                                                  x.print();
+                                                                x.print();
+                                                                window.close('/employe/Imprimer2/@item.idDemandeConge');
 
 
                                                            }

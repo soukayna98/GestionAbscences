@@ -383,13 +383,16 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                <div class="form-group shadow-textarea col-12">
-
-                                                    <label for="justification">@GestionAbscences.langagues.Resource1.Observation</label>
+                                                <div class="form-input">
                                                     <div class="row align-items-start">
-                                                        <textarea class="form-control z-depth-1" name="justification" id="justification" rows="1" placeholder=@GestionAbscences.langagues.Resource1.votreObservation></textarea>
+                                                        <div class="col-11">
+                                                            <label for="justification">@GestionAbscences.langagues.Resource1.Observation</label>
+                                                            <input type="text" class="form-control py-4" name="justification" id="justification" value="" placeholder=@GestionAbscences.langagues.Resource1.votreObservation> 
+                                                            
+                                                        </div>
                                                     </div>
                                                 </div>
+                                              
                                             </div>
                                             <div class="form-input ">
 
@@ -451,11 +454,11 @@
 
 
                                 </div>
-                                if (Session["Message"] != null)
+                                if (Session["demande"] != null)
                                 {
                                     <script type="text/javascript">
                                        window.onload = function () {
-                                           swal("@Session["Message"]");
+                                           swal("@Session["demande"]");
 
                             };
 

@@ -1,6 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="GestionAbscencesModelStoreContainer" CdmEntityContainer="GestionAbscencesEntities10">
+  <EntityContainerMapping StorageEntityContainer="GestionAbscencesModelStoreContainer" CdmEntityContainer="GestionAbscencesEntities11">
+    <EntitySetMapping Name="CumulRecup">
+      <EntityTypeMapping TypeName="GestionAbscencesModel.CumulRecup">
+        <MappingFragment StoreEntitySet="CumulRecup">
+          <ScalarProperty Name="IDCumulRecup" ColumnName="IDCumulRecup" />
+          <ScalarProperty Name="idEmploye" ColumnName="idEmploye" />
+          <ScalarProperty Name="CumulHr" ColumnName="CumulHr" />
+          <ScalarProperty Name="CumulJrF" ColumnName="CumulJrF" />
+          <ScalarProperty Name="CumulJrR" ColumnName="CumulJrR" />
+          <ScalarProperty Name="Mois" ColumnName="Mois" />
+          <ScalarProperty Name="Annee" ColumnName="Annee" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="DCTEMP">
       <EntityTypeMapping TypeName="GestionAbscencesModel.DCTEMP">
         <MappingFragment StoreEntitySet="DCTEMP">
@@ -30,6 +43,7 @@
           <ScalarProperty Name="DateValidationN1" ColumnName="DateValidationN1" />
           <ScalarProperty Name="DateValidationN2" ColumnName="DateValidationN2" />
           <ScalarProperty Name="DateValidationRH" ColumnName="DateValidationRH" />
+          <ScalarProperty Name="soldeConge" ColumnName="soldeConge" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

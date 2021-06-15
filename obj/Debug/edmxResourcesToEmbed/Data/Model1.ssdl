@@ -1,5 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="GestionAbscencesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CumulRecup">
+    <Key>
+      <PropertyRef Name="IDCumulRecup" />
+    </Key>
+    <Property Name="IDCumulRecup" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idEmploye" Type="int" />
+    <Property Name="CumulHr" Type="varchar" MaxLength="50" />
+    <Property Name="CumulJrF" Type="real" />
+    <Property Name="CumulJrR" Type="real" />
+    <Property Name="Mois" Type="int" />
+    <Property Name="Annee" Type="int" />
+  </EntityType>
   <EntityType Name="DCTEMP">
     <Key>
       <PropertyRef Name="Id" />
@@ -29,6 +41,7 @@
     <Property Name="DateValidationN1" Type="datetime" />
     <Property Name="DateValidationN2" Type="datetime" />
     <Property Name="DateValidationRH" Type="datetime" />
+    <Property Name="soldeConge" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="employe">
     <Key>
@@ -91,6 +104,18 @@
     <Property Name="designation" Type="varchar" MaxLength="45" Nullable="false" />
     <Property Name="dureeJ" Type="varchar" MaxLength="50" />
   </EntityType>
+  <Association Name="FK_CumulRecup_Employe">
+    <End Role="employe" Type="Self.employe" Multiplicity="0..1" />
+    <End Role="CumulRecup" Type="Self.CumulRecup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employe">
+        <PropertyRef Name="idEmploye" />
+      </Principal>
+      <Dependent Role="CumulRecup">
+        <PropertyRef Name="idEmploye" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="fk_DemandeConge_Employe">
     <End Role="employe" Type="Self.employe" Multiplicity="1" />
     <End Role="demandeconge" Type="Self.demandeconge" Multiplicity="*" />
@@ -164,6 +189,7 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="GestionAbscencesModelStoreContainer">
+    <EntitySet Name="CumulRecup" EntityType="Self.CumulRecup" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DCTEMP" EntityType="Self.DCTEMP" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="demandeconge" EntityType="Self.demandeconge" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="employe" EntityType="Self.employe" Schema="dbo" store:Type="Tables" />
@@ -172,6 +198,10 @@
     <EntitySet Name="entitesuper" EntityType="Self.entitesuper" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="supervisionher" EntityType="Self.supervisionher" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="typeconge" EntityType="Self.typeconge" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CumulRecup_Employe" Association="Self.FK_CumulRecup_Employe">
+      <End Role="employe" EntitySet="employe" />
+      <End Role="CumulRecup" EntitySet="CumulRecup" />
+    </AssociationSet>
     <AssociationSet Name="fk_DemandeConge_Employe" Association="Self.fk_DemandeConge_Employe">
       <End Role="employe" EntitySet="employe" />
       <End Role="demandeconge" EntitySet="demandeconge" />

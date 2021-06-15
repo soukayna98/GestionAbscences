@@ -11,7 +11,7 @@ namespace GestionAbscences.Areas.AdminN2.Controllers
 {
     public class DefaultController : Controller
     {
-        private GestionAbscencesEntities10 db = new GestionAbscencesEntities10();
+        private GestionAbscencesEntities11 db = new GestionAbscencesEntities11();
         // GET: Admin/Default
         public ActionResult Index()
         {

@@ -188,6 +188,9 @@
     <Compile Include="Controllers\employeController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Data\CumulRecup.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\DCTEMP.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -570,19 +573,7 @@
     <Content Include="Areas\RH\Views\employehasentites\Details.cshtml" />
     <Content Include="Areas\RH\Views\employehasentites\Edit.cshtml" />
     <Content Include="Areas\RH\Views\employehasentites\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\employehasentites\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\employehasentites\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\employehasentites\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\employehasentites\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\employehasentites\Index.cshtml" />
     <Content Include="Areas\RH\Views\Historique\choixVal.cshtml" />
-    <EntityDeploy Include="Data\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Data\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\AdminN2\Views\Default\Donnée.cshtml" />
     <Content Include="Areas\AdminN2\Views\Default\changePassword.cshtml" />
     <Content Include="Areas\AdminN2\Views\Default\employe.cshtml" />
@@ -593,6 +584,13 @@
     <Content Include="Areas\Admin\Views\Default\Donnée.cshtml" />
     <Content Include="Areas\Admin\Views\Default\employe.cshtml" />
     <Content Include="Areas\Admin\Views\Historique\choixVal.cshtml" />
+    <EntityDeploy Include="Data\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Data\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
     <None Include="Dockerfile" />
     <None Include=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>

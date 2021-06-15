@@ -21,7 +21,7 @@ namespace GestionAbscences.Areas.RH.Controllers
 {
     public class HistoriqueController : Controller
     {
-        private GestionAbscencesEntities10 db = new GestionAbscencesEntities10();
+        private GestionAbscencesEntities11 db = new GestionAbscencesEntities11();
         private readonly DemandeService demandeService;
 
         public HistoriqueController()
@@ -178,15 +178,39 @@ namespace GestionAbscences.Areas.RH.Controllers
             double resJ = resM / 1440;
             */
 
+            var recup = db.CumulRecup.Include(d => d.employe).Where(p => p.employe.idEmploye == uid).Select(u => new {
+                hs = u.CumulHr,
+                jf = u.CumulJrF,
+                jr = u.CumulJrR
+
+            }).Single();
+
+            double hsA = Convert.ToDouble(recup.hs);
+
+            //en heure 
+            double jf = Convert.ToDouble(recup.jf) * 24;
+
+
+            double jR = Convert.ToDouble(recup.jr) * 24;
+           
+
+
             var dureM = (dateFin - dateDebut).TotalHours;
             double duM = Convert.ToDouble(dureM);
             double nbM = Convert.ToDouble(e.employe.nbHeureR) ;
             double resM = nbM - duM;
 
-            Session["resM"] = dureM + "vv";
+            
+
+            
             switch (button)
             {
                 case "Accepté":
+                  /*  if(e.IdtypeConge== 22 )
+                    {
+                        double du1 = hsA - dureM;
+
+                    }*/
                     e.ValdationRH = "accepte";
                     e.employe.nbHeureR = resM.ToString();
                     e.DateValidationRH = DateTime.Now;

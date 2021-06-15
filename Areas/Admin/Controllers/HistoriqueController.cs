@@ -17,7 +17,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
 {
     public class HistoriqueController : Controller
     {
-        private GestionAbscencesEntities10 db = new GestionAbscencesEntities10();
+        private GestionAbscencesEntities11 db = new GestionAbscencesEntities11();
         private readonly DemandeService demandeService;
 
         public HistoriqueController()
@@ -32,6 +32,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult choixVal()
         {
+            Session["demande"] = null;
             string d1 = Request["debut"].ToString();
             string f1 = Request["fin"].ToString();
             ViewBag.d2 = Request["debut"].ToString();
@@ -114,6 +115,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
 
         public ActionResult historique()
         {
+            Session["demande"] = null;
             string aff = Session["affectation"].ToString();
             ViewBag.val1 = new SelectList(db.demandeconge, "idDemandeConge", "ValidationN1");
             ViewBag.val2 = new SelectList(db.demandeconge, "idDemandeConge", "ValidationN2");
@@ -126,6 +128,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
     
         public ActionResult validation(int? id)
         {
+            Session["demande"] = null;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -225,6 +228,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Validation()
         {
+            Session["demande"] = null;
             int uid = int.Parse(Session["uid"].ToString());
             demandeconge e = db.demandeconge.Find(uid);
             string button = Request["button"];

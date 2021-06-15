@@ -17,6 +17,7 @@ namespace GestionAbscences.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public employe()
         {
+            this.CumulRecup = new HashSet<CumulRecup>();
             this.demandeconge = new HashSet<demandeconge>();
             this.employehasentite = new HashSet<employehasentite>();
         }
@@ -38,6 +39,8 @@ namespace GestionAbscences.Data
         public string Status { get; set; }
         public Nullable<int> nbEnfants { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CumulRecup> CumulRecup { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<demandeconge> demandeconge { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

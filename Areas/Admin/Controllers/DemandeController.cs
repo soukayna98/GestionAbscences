@@ -19,7 +19,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
 
     public class DemandeController : Controller
     {
-        private GestionAbscencesEntities10 db = new GestionAbscencesEntities10();
+        private GestionAbscencesEntities11 db = new GestionAbscencesEntities11();
         private readonly DemandeService demandeService;
 
 
@@ -149,7 +149,9 @@ namespace GestionAbscences.Areas.Admin.Controllers
         }
         public ActionResult historique()
         {
-            
+            Session["demande"] = null;
+
+
             string x = Session["matricule"].ToString();
 
             int x1 = int.Parse(x);
@@ -199,7 +201,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
             if (Request["dateDebut"].Equals("") || typeCongeIdTypeconge.Equals(""))
             {
                 Session["demande"] = "Remlpir tout les champs svp !";
-                return RedirectToAction("Index", "employe");
+                return RedirectToAction("Index", "Demande");
             }
             //date debut 
             DateTime debut = Convert.ToDateTime(Request["dateDebut"]);
@@ -209,7 +211,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
                 if (debut < dc)
                 {
                     Session["demande"] = "vérifier les dates svp!";
-                    return RedirectToAction("Index", "employe");
+                    return RedirectToAction("Index", "Demande");
                 }
                 else if (typeCongeIdTypeconge.Equals("Mariage") && !(marriage.Equals("")))
                 {
@@ -364,7 +366,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
                 if (Request["dateDebut"].Equals("") || Request["dateFin"].Equals("") || typeCongeIdTypeconge.Equals(""))
                 {
                     Session["demande"] = "Remlpir tout les champs svp !";
-                    return RedirectToAction("Index", "employe");
+                    return RedirectToAction("Index", "Demande");
                 }
                 DateTime fin = Convert.ToDateTime(Request["dateFin"]);
                 TimeSpan dateSpan = fin - debut;
@@ -372,7 +374,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
                 if ((debut < dc) || (fin < dc) || (fin < debut))
                 {
                     Session["demande"] = "vérifier les dates svp!";
-                    return RedirectToAction("Index", "employe");
+                    return RedirectToAction("Index", "Demande");
                 }
 
                 else
@@ -490,7 +492,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
 
 
 
-            demande.ValidationN1 = "------";
+            demande.ValidationN1 = "*******";
             demande.ValidationN2 = "En cours";
             demande.ValdationRH = "En cours";
 
@@ -528,6 +530,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult modifier()
         {
+            Session["demande"] = null;
             int uid = int.Parse(Session["modifierID"].ToString());
             demandeconge e = db.demandeconge.Find(uid);
             string button = Request["modifier"];
