@@ -4,15 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e4bed1ab17784e2caff20efca2173a43" Name="Diagram1">
-        <EntityTypeShape EntityType="GestionAbscencesModel.dc_temp" Width="1.5" PointX="5.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionAbscencesModel.demandeconge" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionAbscencesModel.employe" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionAbscencesModel.entite" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionAbscencesModel.supervisionher" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionAbscencesModel.typeconge" Width="1.5" PointX="0.75" PointY="13.875" IsExpanded="true" />
+      <Diagram DiagramId="3fcaa3ff9714424baf1e5ae67a0c1f7e" Name="Diagram1">
+        <EntityTypeShape EntityType="GestionAbscencesModel.CumulRecup" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAbscencesModel.DCTEMP" Width="1.5" PointX="5.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAbscencesModel.demandeconge" Width="1.5" PointX="6" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAbscencesModel.employe" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAbscencesModel.entite" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAbscencesModel.supervisionher" Width="1.5" PointX="0.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionAbscencesModel.typeconge" Width="1.5" PointX="3.75" PointY="9.875" IsExpanded="true" />
         <EntityTypeShape EntityType="GestionAbscencesModel.employehasentite" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GestionAbscencesModel.entitesuper" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="GestionAbscencesModel.IdEmploye" ManuallyRouted="false" />
         <AssociationConnector Association="GestionAbscencesModel.fk_DemandeConge_Employe" ManuallyRouted="false" />
         <AssociationConnector Association="GestionAbscencesModel.fk_DemandeConge_typeConge" ManuallyRouted="false" />
         <AssociationConnector Association="GestionAbscencesModel.fk_employehasentite_Employe" ManuallyRouted="false" />

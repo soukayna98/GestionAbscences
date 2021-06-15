@@ -25,6 +25,10 @@ namespace GestionAbscences.Data
         public string justification { get; set; }
         public string ValidationRH { get; set; }
         public string Annulation { get; set; }
+        public Nullable<System.DateTime> DateValidationN1 { get; set; }
+        public Nullable<System.DateTime> DateValidationN2 { get; set; }
+        public Nullable<System.DateTime> DateValidationRH { get; set; }
+        public string soldeConge { get; set; }
     
         public virtual employe employe { get; set; }
         public virtual typeconge typeconge { get; set; }

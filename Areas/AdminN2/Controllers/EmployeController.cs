@@ -39,5 +39,11 @@ namespace GestionAbscences.Areas.AdminN2.Controllers
             }
             return View(employesList);
         }
+
+        public ActionResult Donnee()
+        {
+
+            return View();
+        }
     }
 }

@@ -136,7 +136,6 @@
     <Compile Include="Areas\AdminN2\Models\DemandeModel.cs" />
     <Compile Include="Areas\AdminN2\Models\EmployeModel.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Admin\Controllers\DemandeCongeController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeController.cs" />
@@ -160,7 +159,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Data\dc_temp.cs">
+    <Compile Include="Data\CumulRecup.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\DCTEMP.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\demandeconge.cs">
@@ -535,6 +537,11 @@
     <Content Include="Areas\RH\Views\typeconges\Index.cshtml" />
     <Content Include="Areas\RH\Views\typeconges\Modifier.cshtml" />
     <Content Include="Areas\RH\Views\Employe\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Employe\Donnee.cshtml" />
+    <Content Include="Areas\AdminN2\Views\Employe\Donnee.cshtml" />
+    <Content Include="Areas\RH\Views\Employe\Donnee.cshtml" />
+    <Content Include="Areas\Admin\Views\DemandeConge\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DemandeConge\historique.cshtml" />
     <EntityDeploy Include="Data\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -588,12 +595,13 @@
     <Content Include="Views\employe\Donnee.cshtml" />
     <Content Include="Views\employe\Imprimer.cshtml" />
     <Content Include="Views\employe\modifier.cshtml" />
+    <Content Include="Views\employe\Imprimer2.cshtml" />
+    <Content Include="Views\employe\choixVal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\AdminN2\Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\DemandeConge\" />
     <Folder Include="Areas\RH\Data\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Imprimer\" />

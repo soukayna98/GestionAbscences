@@ -12,12 +12,16 @@ namespace GestionAbscences.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class dc_temp
+    public partial class CumulRecup
     {
-        public int Id { get; set; }
-        public Nullable<int> matricule { get; set; }
-        public Nullable<System.DateTime> Date_Debut { get; set; }
-        public Nullable<System.DateTime> Date_Fin { get; set; }
-        public string type_congé { get; set; }
+        public int IDCumulRecup { get; set; }
+        public Nullable<float> CumulHr { get; set; }
+        public Nullable<float> CumulJrF { get; set; }
+        public Nullable<float> CumulJrR { get; set; }
+        public Nullable<int> Mois { get; set; }
+        public Nullable<int> Annee { get; set; }
+        public Nullable<int> IdEmploye { get; set; }
+    
+        public virtual employe employe { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
 {
     public class EmployeController : BaseController
     {
-        private GestionAbscencesEntities7 db = new GestionAbscencesEntities7();
+        private GestionAbscencesEntities11 db = new GestionAbscencesEntities11();
         private readonly EmployeService employeService;
 
         public EmployeController()
@@ -23,7 +23,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
         }
 
         // GET: Admin/Employe
-        public ActionResult Index()
+       /* public ActionResult Index()
         {
             //les employes from DB
             var employes = employeService.ReadAll();
@@ -43,6 +43,11 @@ namespace GestionAbscences.Areas.Admin.Controllers
                 });
             }
             return View(employesList);
+        }*/
+        public ActionResult Index()
+        {
+            var employe = db.employe.ToList();
+            return View(employe);
         }
 
         public ActionResult Create()
@@ -126,6 +131,11 @@ namespace GestionAbscences.Areas.Admin.Controllers
             return View(data);
         }
 
+        public ActionResult Donnee()
+        {
+
+            return View();
+        }
 
 
         /*  public ActionResult Delete(int? Id)

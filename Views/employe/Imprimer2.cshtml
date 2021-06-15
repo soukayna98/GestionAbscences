@@ -1,0 +1,104 @@
+﻿@model GestionAbscences.Data.demandeconge
+@{
+    ViewBag.Title = "Validation";
+    Layout = "~/Views/Shared/_offlineLayout.cshtml";
+
+}
+
+<script type="text/javascript">
+    function myfun() {
+        window.print();
+    }
+</script>
+
+
+
+
+<div class="container">
+
+    <div class="row justify-content-center">
+        <div class="col-lg-12">
+            <div>
+                <div class="row align-items-start text-decoration-underline" style="margin-top:30px;">
+                    <div class="col-3">
+
+                        <img src="~/Content/images/sonasid.jpg" width="120" height="120" style=" border-radius:8px; ">
+                    </div>
+                    <div class="col-1">
+
+
+                    </div>
+
+                    <div class="col-5">
+                        <h1 class="text-center font-weight-bold my-2 font-italic  text-decoration-underline" style="color:coral; margin-top:30px; font-weight:bold; font-size:30px;"> TITRE DE CONGE </h1> 
+                    </div>
+                </div>
+                <hr>
+
+                <div class="row align-items-start text-decoration-underline" style="margin-top:30px;">
+
+                    <div class="col-7">
+
+
+                    </div>
+
+                    <div class="col-4">
+                        <h1 class="text-center font-weight-bold my-2 font-italic  text-decoration-underline" style="color:black;  font-weight:bold; font-size:20px;"> Nador, Le  </h1>
+                    </div>
+                </div>
+                <div class="row align-items-start text-decoration-underline">
+                    <div class="col-3">
+
+                        <h1 class="text-center font-weight-bold my-2 font-italic text-decoration-underline" style="color: black; margin-top: 30px; font-weight: bold; font-size: 20px;"> APN/A/NS/XX/XXXX </h1>
+                    </div>
+
+                </div>
+                <br><br><br><br>
+
+                <div class="row align-items-start ">
+                    <div class="col">
+
+                        <h1 class="text-center font-weight-bold my-2 font-italic  text-decoration-underline" style=" margin-top: 30px; font-weight: bold; font-size: 20px;">
+                            TITRE DE CONGE <br>
+                            (@Model.typeconge.designation)
+                            <br><br><br><br>
+                        </h1>
+                    </div>
+
+                </div>
+
+
+                @{
+                    DateTime dateDebut = Model.DateDebut.Value;
+                    DateTime dateFin = Model.DateFin.Value;
+                    var dure = (dateFin - dateDebut).Days;
+                    double du = Convert.ToDouble(dure) ;
+                    Session["du"] = du;
+                }
+
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        <p style="font-size:large;">
+                            M/Mme @Model.employe.NomComplet  Mle @Model.employe.matricule, « @Model.employe.Classe »   à la SONASID, est autorisé à bénéficier au titre de l’année @DateTime.Now.Date.ToString(("yyyy")) d’un congé  de  @Session["du"] jours , à prendre du @Model.DateDebut au @Model.DateFin inclus.
+
+                            <br><br><br><br><br><br><br>
+
+                            <br><br><br><br><br><br><br><br><br><br><br>
+                            <br><br><br><br><br><br><br><br><br><br><br><br><br><hr>
+                        </p>
+                    </div>
+                }
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
