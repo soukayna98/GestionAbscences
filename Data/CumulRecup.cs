@@ -15,11 +15,13 @@ namespace GestionAbscences.Data
     public partial class CumulRecup
     {
         public int IDCumulRecup { get; set; }
-        public byte[] CumulHr { get; set; }
-        public Nullable<float> CumulJF { get; set; }
-        public Nullable<float> CumulR { get; set; }
+        public Nullable<float> CumulHr { get; set; }
+        public Nullable<float> CumulJrF { get; set; }
+        public Nullable<float> CumulJrR { get; set; }
         public Nullable<int> Mois { get; set; }
         public Nullable<int> Annee { get; set; }
-        public Nullable<int> IDEmploye { get; set; }
+        public Nullable<int> IdEmploye { get; set; }
+    
+        public virtual employe employe { get; set; }
     }
 }

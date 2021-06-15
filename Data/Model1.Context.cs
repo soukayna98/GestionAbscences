@@ -13,10 +13,10 @@ namespace GestionAbscences.Data
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class GestionAbscencesEntities9 : DbContext
+    public partial class GestionAbscencesEntities11 : DbContext
     {
-        public GestionAbscencesEntities9()
-            : base("name=GestionAbscencesEntities9")
+        public GestionAbscencesEntities11()
+            : base("name=GestionAbscencesEntities11")
         {
         }
     
@@ -26,7 +26,6 @@ namespace GestionAbscences.Data
         }
     
         public virtual DbSet<CumulRecup> CumulRecup { get; set; }
-        public virtual DbSet<dc_temp> dc_temp { get; set; }
         public virtual DbSet<DCTEMP> DCTEMP { get; set; }
         public virtual DbSet<demandeconge> demandeconge { get; set; }
         public virtual DbSet<employe> employe { get; set; }

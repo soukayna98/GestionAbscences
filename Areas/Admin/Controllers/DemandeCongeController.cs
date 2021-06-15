@@ -13,7 +13,7 @@ namespace GestionAbscences.Areas.Admin.Controllers
     public class DemandeCongeController : BaseController
     {
         // GET: Admin/DemandeConge
-        private GestionAbscencesEntities9 db = new GestionAbscencesEntities9();
+        private GestionAbscencesEntities11 db = new GestionAbscencesEntities11();
         private readonly DemandeService demandeService;
 
 

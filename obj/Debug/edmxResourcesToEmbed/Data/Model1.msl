@@ -1,27 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="GestionAbscencesModelStoreContainer" CdmEntityContainer="GestionAbscencesEntities9">
+  <EntityContainerMapping StorageEntityContainer="GestionAbscencesModelStoreContainer" CdmEntityContainer="GestionAbscencesEntities11">
     <EntitySetMapping Name="CumulRecup">
       <EntityTypeMapping TypeName="GestionAbscencesModel.CumulRecup">
         <MappingFragment StoreEntitySet="CumulRecup">
           <ScalarProperty Name="IDCumulRecup" ColumnName="IDCumulRecup" />
           <ScalarProperty Name="CumulHr" ColumnName="CumulHr" />
-          <ScalarProperty Name="CumulJF" ColumnName="CumulJF" />
-          <ScalarProperty Name="CumulR" ColumnName="CumulR" />
+          <ScalarProperty Name="CumulJrF" ColumnName="CumulJrF" />
+          <ScalarProperty Name="CumulJrR" ColumnName="CumulJrR" />
           <ScalarProperty Name="Mois" ColumnName="Mois" />
           <ScalarProperty Name="Annee" ColumnName="Annee" />
-          <ScalarProperty Name="IDEmploye" ColumnName="IDEmploye" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="dc_temp">
-      <EntityTypeMapping TypeName="GestionAbscencesModel.dc_temp">
-        <MappingFragment StoreEntitySet="dc temp">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="matricule" ColumnName="matricule" />
-          <ScalarProperty Name="Date_Debut" ColumnName="Date Debut" />
-          <ScalarProperty Name="Date_Fin" ColumnName="Date Fin" />
-          <ScalarProperty Name="type_congé" ColumnName="type congé" />
+          <ScalarProperty Name="IdEmploye" ColumnName="IdEmploye" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

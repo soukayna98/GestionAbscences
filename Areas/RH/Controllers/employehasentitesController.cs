@@ -11,7 +11,7 @@ namespace GestionAbscences.Areas.RH.Controllers
     public class employehasentitesController : Controller
     {
         // GET: RH/employehasentites
-        private GestionAbscencesEntities9 db = new GestionAbscencesEntities9();
+        private GestionAbscencesEntities11 db = new GestionAbscencesEntities11();
 
         // GET: Admin/employehasentites
        /* public ActionResult Index()

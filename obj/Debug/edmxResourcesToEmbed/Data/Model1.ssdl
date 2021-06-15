@@ -5,22 +5,12 @@
       <PropertyRef Name="IDCumulRecup" />
     </Key>
     <Property Name="IDCumulRecup" Type="int" Nullable="false" />
-    <Property Name="CumulHr" Type="timestamp" StoreGeneratedPattern="Computed" />
-    <Property Name="CumulJF" Type="real" />
-    <Property Name="CumulR" Type="real" />
+    <Property Name="CumulHr" Type="real" />
+    <Property Name="CumulJrF" Type="real" />
+    <Property Name="CumulJrR" Type="real" />
     <Property Name="Mois" Type="int" />
     <Property Name="Annee" Type="int" />
-    <Property Name="IDEmploye" Type="int" />
-  </EntityType>
-  <EntityType Name="dc temp">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="matricule" Type="int" />
-    <Property Name="Date Debut" Type="datetime" />
-    <Property Name="Date Fin" Type="datetime" />
-    <Property Name="type congé" Type="varchar(max)" />
+    <Property Name="IdEmploye" Type="int" />
   </EntityType>
   <EntityType Name="DCTEMP">
     <Key>
@@ -194,9 +184,20 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="IdEmploye">
+    <End Role="employe" Type="Self.employe" Multiplicity="0..1" />
+    <End Role="CumulRecup" Type="Self.CumulRecup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employe">
+        <PropertyRef Name="idEmploye" />
+      </Principal>
+      <Dependent Role="CumulRecup">
+        <PropertyRef Name="IdEmploye" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="GestionAbscencesModelStoreContainer">
     <EntitySet Name="CumulRecup" EntityType="Self.CumulRecup" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="dc temp" EntityType="Self.dc temp" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DCTEMP" EntityType="Self.DCTEMP" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="demandeconge" EntityType="Self.demandeconge" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="employe" EntityType="Self.employe" Schema="dbo" store:Type="Tables" />
@@ -240,6 +241,10 @@ avertissement 6002: La table/vue 'GestionAbscences.dbo.entitesuper' n'a pas de c
     <AssociationSet Name="fk_entitesuper_SupervisionHer" Association="Self.fk_entitesuper_SupervisionHer">
       <End Role="supervisionher" EntitySet="supervisionher" />
       <End Role="entitesuper" EntitySet="entitesuper" />
+    </AssociationSet>
+    <AssociationSet Name="IdEmploye" Association="Self.IdEmploye">
+      <End Role="employe" EntitySet="employe" />
+      <End Role="CumulRecup" EntitySet="CumulRecup" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

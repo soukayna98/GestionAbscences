@@ -5,22 +5,13 @@
       <PropertyRef Name="IDCumulRecup" />
     </Key>
     <Property Name="IDCumulRecup" Type="Int32" Nullable="false" />
-    <Property Name="CumulHr" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
-    <Property Name="CumulJF" Type="Single" />
-    <Property Name="CumulR" Type="Single" />
+    <Property Name="CumulHr" Type="Single" />
+    <Property Name="CumulJrF" Type="Single" />
+    <Property Name="CumulJrR" Type="Single" />
     <Property Name="Mois" Type="Int32" />
     <Property Name="Annee" Type="Int32" />
-    <Property Name="IDEmploye" Type="Int32" />
-  </EntityType>
-  <EntityType Name="dc_temp">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="matricule" Type="Int32" />
-    <Property Name="Date_Debut" Type="DateTime" Precision="3" />
-    <Property Name="Date_Fin" Type="DateTime" Precision="3" />
-    <Property Name="type_congé" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IdEmploye" Type="Int32" />
+    <NavigationProperty Name="employe" Relationship="Self.IdEmploye" FromRole="CumulRecup" ToRole="employe" />
   </EntityType>
   <EntityType Name="DCTEMP">
     <Key>
@@ -78,6 +69,7 @@
     <Property Name="nbEnfants" Type="Int32" />
     <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="nbHeureR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CumulRecup" Relationship="Self.IdEmploye" FromRole="employe" ToRole="CumulRecup" />
     <NavigationProperty Name="demandeconge" Relationship="Self.fk_DemandeConge_Employe" FromRole="employe" ToRole="demandeconge" />
     <NavigationProperty Name="employehasentite" Relationship="Self.fk_employehasentite_Employe" FromRole="employe" ToRole="employehasentite" />
   </EntityType>
@@ -130,6 +122,18 @@
     <NavigationProperty Name="entite" Relationship="Self.fk_entitesuper_Entite" FromRole="entitesuper" ToRole="entite" />
     <NavigationProperty Name="supervisionher" Relationship="Self.fk_entitesuper_SupervisionHer" FromRole="entitesuper" ToRole="supervisionher" />
   </EntityType>
+  <Association Name="IdEmploye">
+    <End Role="employe" Type="Self.employe" Multiplicity="0..1" />
+    <End Role="CumulRecup" Type="Self.CumulRecup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employe">
+        <PropertyRef Name="idEmploye" />
+      </Principal>
+      <Dependent Role="CumulRecup">
+        <PropertyRef Name="IdEmploye" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="fk_DemandeConge_Employe">
     <End Role="employe" Type="Self.employe" Multiplicity="1" />
     <End Role="demandeconge" Type="Self.demandeconge" Multiplicity="*" />
@@ -202,9 +206,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="GestionAbscencesEntities9" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="GestionAbscencesEntities11" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="CumulRecup" EntityType="Self.CumulRecup" />
-    <EntitySet Name="dc_temp" EntityType="Self.dc_temp" />
     <EntitySet Name="DCTEMP" EntityType="Self.DCTEMP" />
     <EntitySet Name="demandeconge" EntityType="Self.demandeconge" />
     <EntitySet Name="employe" EntityType="Self.employe" />
@@ -213,6 +216,10 @@
     <EntitySet Name="typeconge" EntityType="Self.typeconge" />
     <EntitySet Name="employehasentite" EntityType="Self.employehasentite" />
     <EntitySet Name="entitesuper" EntityType="Self.entitesuper" />
+    <AssociationSet Name="IdEmploye" Association="Self.IdEmploye">
+      <End Role="employe" EntitySet="employe" />
+      <End Role="CumulRecup" EntitySet="CumulRecup" />
+    </AssociationSet>
     <AssociationSet Name="fk_DemandeConge_Employe" Association="Self.fk_DemandeConge_Employe">
       <End Role="employe" EntitySet="employe" />
       <End Role="demandeconge" EntitySet="demandeconge" />
