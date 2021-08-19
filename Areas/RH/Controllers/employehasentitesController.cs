@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace GestionAbscences.Areas.RH.Controllers
 {
@@ -13,13 +14,12 @@ namespace GestionAbscences.Areas.RH.Controllers
         // GET: RH/employehasentites
         private GestionAbscencesEntities11 db = new GestionAbscencesEntities11();
 
-        // GET: Admin/employehasentites
-       /* public ActionResult Index()
+        public ActionResult Index()
         {
             var employehasentite = db.employehasentite.Include(e => e.employe).Include(e => e.entite);
             return View(employehasentite.ToList());
         }
-       */
+
         // GET: Admin/employehasentites/Details/5
         public ActionResult Details(int? id)
         {
@@ -44,6 +44,8 @@ namespace GestionAbscences.Areas.RH.Controllers
         }
 
         // POST: Admin/employehasentites/Create
+        // Afin de déjouer les attaques par survalidation, activez les propriétés spécifiques auxquelles vous voulez établir une liaison. Pour 
+        // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IdEmploye,IdEntite,date")] employehasentite employehasentite)

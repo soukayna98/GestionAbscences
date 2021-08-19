@@ -1,0 +1,420 @@
+﻿
+@{
+    ViewBag.Title = "historiqueMois";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<GestionAbscences.Data.demandeconge>
+
+
+@{
+    ViewBag.Title = @GestionAbscences.Langagues.Resource1.Historique;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    myfun = function() {
+        var x = window.open('/employe/Imprimer/#@ViewBag.id');
+        <a href="~/Views/employe/historique.cshtml">~/Views/employe/historique.cshtml</a>
+        x.print();
+    }
+</script>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style type="text/css">
+        #ovale {
+            outline-color: darkblue;
+            height: 50px;
+            border-radius: 20px / 20px;
+            background: #EFEFEF;
+            margin-left: 320px;
+            margin-bottom: 20px;
+        }
+
+        #ovale1 {
+            width: 40px;
+            height: 50px;
+            border-radius: 20px / 20px;
+            background: #EFEFEF;
+            margin-left: 50px;
+            margin-bottom: 20px;
+            padding-left: 20px;
+            padding-top: 20px;
+        }
+
+        #text1 {
+            font-size: 18px;
+            color: darkblue;
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <link rel="stylesheet" type="text/css" href="print.css" media="print">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" media="print">
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+</head>
+<body class="sb-nav-fixed" dir="@GestionAbscences.Langagues.Resource1.dir">
+    @using (Html.BeginForm())
+
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+
+
+
+        <div class="row align-items-start">
+            <div class="col-1"> </div>
+            <div class="col-2" id="ovale"> <span id="text1"> @GestionAbscences.Langagues.Resource1.Nombredejourtotal :  @Session["nbjours"]  </span> </div>
+            <div class="col-2" id="ovale1"> <span id="text1">  @GestionAbscences.Langagues.Resource1.NombredejourRestants :   @Session["nbjoursR"]  </span> </div>
+        </div>
+
+
+
+
+
+        <div class="col-2" style="padding-left:40px; ">
+            <div class="btn btn-outline-success" onclick="fnExcelReport();">Export EXCEL</div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <br>
+
+        @* <div class="card mb-4">*@
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                @GestionAbscences.Langagues.Resource1.Historiquedesdemandesdecongesde  @Session["userName"]
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="example" width="100%" cellspacing="0" style="font-size:80%;">
+                        <thead>
+                            <tr class="table-success">
+                                <th>
+                                    @GestionAbscences.Langagues.Resource1.DatecreationDC
+                                </th>
+                                <th>
+                                    @GestionAbscences.Langagues.Resource1.Matricule
+                                </th>
+                                <th>
+                                    @GestionAbscences.Langagues.Resource1.Nomcomplet
+                                </th>
+                                <th>
+                                    @GestionAbscences.Langagues.Resource1.Designation
+                                </th>
+                                <th>
+                                    @GestionAbscences.Langagues.Resource1.Debut
+
+                                </th>
+
+                                <th>
+                                    @GestionAbscences.Langagues.Resource1.Fin
+                                </th>
+
+                                <th>
+                                    @GestionAbscences.Langagues.Resource1.ValidationN_1
+                                </th>
+                                <th>
+                                    @GestionAbscences.Langagues.Resource1.ValidationN_2
+                                </th>
+                                <th>
+                                    @GestionAbscences.Langagues.Resource1.ValidationRH
+                                </th>
+
+
+                            </tr>
+
+                        </thead>
+                        <tfoot>
+
+
+                        </tfoot>
+
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DateDC)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.employe.matricule)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.employe.NomComplet)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.typeconge.designation)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DateDebut)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DateFin)
+                                    </td>
+
+                                    <td>
+                                        @if (item.ValidationN1 == "refuse")
+                                        {
+
+
+                                            <p class="p-2 mb-2 bg-danger text-white">
+                                                @Html.DisplayFor(modelItem => item.ValidationN1)
+                                            </p>
+                                        }
+                                        else if (item.ValidationN1 == "En cours")
+                                        {
+                                            <p class="p-2 mb-2 bg-warning text-dark">
+                                                @Html.DisplayFor(modelItem => item.ValidationN1)
+                                            </p>
+                                        }
+                                        else if (item.ValidationN1 == "accepte")
+                                        {
+                                            <p class="p-2 mb-2 bg-success text-dark">
+                                                @Html.DisplayFor(modelItem => item.ValidationN1)
+                                            </p>
+                                        }
+                                        else
+                                        {
+                                            <p class="p-2 mb-2 bg-light text-dark">
+                                                @Html.DisplayFor(modelItem => item.ValidationN1)
+                                            </p>
+                                        }
+                                    </td>
+
+
+
+
+
+                                    <td>
+
+                                        @if (item.ValidationN2 == "refuse")
+                                        {
+
+
+                                            <p class="p-2 mb-2 bg-danger text-white">
+                                                @Html.DisplayFor(modelItem => item.ValidationN2)
+                                            </p>
+                                        }
+                                        else if (item.ValidationN2 == "En cours")
+                                        {
+                                            <p class="p-2 mb-2 bg-warning text-dark">
+                                                @Html.DisplayFor(modelItem => item.ValidationN2)
+                                            </p>
+                                        }
+                                        else if (item.ValidationN2 == "accepte")
+                                        {
+                                            <p class="p-2 mb-2 bg-success text-dark">
+                                                @Html.DisplayFor(modelItem => item.ValidationN2)
+                                            </p>
+                                        }
+                                        else
+                                        {
+                                            <p class="p-2 mb-2 bg-white text-dark ">
+                                                @Html.DisplayFor(modelItem => item.ValidationN2)
+                                            </p>
+                                        }
+
+
+                                    </td>
+                                    <td>
+
+                                        @if (item.ValidationRH == "refuse")
+                                        {
+
+
+                                            <p class="p-2 mb-2 bg-danger text-white">
+                                                @Html.DisplayFor(modelItem => item.ValidationRH)
+                                            </p>
+                                        }
+                                        else if (item.ValidationRH == "En cours")
+                                        {
+                                            <p class="p-2 mb-2 bg-warning text-dark">
+                                                @Html.DisplayFor(modelItem => item.ValidationRH)
+                                            </p>
+                                        }
+                                        else if (item.ValidationRH == "accepte")
+                                        {
+                                            <p class="p-2 mb-2 bg-success text-dark">
+                                                @Html.DisplayFor(modelItem => item.ValidationRH)
+                                            </p>
+                                        }
+                                        else
+                                        {
+                                            <p class="p-2 mb-2 bg-white text-dark">
+                                                @Html.DisplayFor(modelItem => item.ValidationRH)
+                                            </p>
+                                        }
+
+
+                                    </td>
+
+                                    <td>
+                                        @* <a href="@Url.Action("Delete", new {item.Id })" class="btn btn-danger">Delete</a>*@
+                                        @* <a href="@Url.Action("Edit", new {item.Id })" class="btn btn-warning">Edit</a>*@
+                                        @if (item.ValidationRH.Equals("accepte"))
+                                        {
+
+
+                                            @Html.ActionLink(GestionAbscences.Langagues.Resource1.Modifier, "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                            if (item.IdtypeConge == 1)
+                                            {
+
+                                                <button onclick="myfun()" class="btn btn-primary ">
+                                                    @GestionAbscences.Langagues.Resource1.Imprimertitre
+                                                </button>
+
+                                                <script type="text/javascript">
+                                                            myfun = function() {
+
+
+                                                               var x = window.open('/employe/Imprimer/@item.idDemandeConge');
+                                                                  x.print();
+
+
+                                                           }
+                                                </script>
+
+
+
+
+                                            }
+                                            else
+                                            {
+
+                                                <button onclick="myfun1()" class="btn btn-primary ">
+                                                    @GestionAbscences.Langagues.Resource1.Imprimertitre
+                                                </button>
+                                                <script type="text/javascript">
+                                                            myfun1 = function() {
+
+
+                                                               var x = window.open('/employe/Imprimer2/@item.idDemandeConge');
+                                                                  x.print();
+
+
+                                                           }
+                                                </script>
+                                            }
+                                        }
+                                        else if ((item.ValidationN1.Equals("accepte")) || (item.ValidationN2.Equals("accepte")))
+                                        {
+                                            @Html.ActionLink(GestionAbscences.Langagues.Resource1.Imprimertitre, "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled " })
+                                            @Html.ActionLink(GestionAbscences.Langagues.Resource1.Modifier, "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })}
+                                        else if (item.ValidationN1.Equals("En cours"))
+                                        {
+                                            if (item.IdtypeConge == 1 || item.IdtypeConge == 2 || item.IdtypeConge == 3 || item.IdtypeConge == 24 || item.IdtypeConge == 25 || item.IdtypeConge == 12 || item.IdtypeConge == 14)
+                                            {
+                                                @Html.ActionLink(GestionAbscences.Langagues.Resource1.Modifier, "modifier4", new { id = item.idDemandeConge }, new { @class = "btn btn-primary " })
+                                            }
+                                            else if (item.IdtypeConge == 11 || item.IdtypeConge == 13 || item.IdtypeConge == 23)
+                                            {
+                                                @Html.ActionLink(GestionAbscences.Langagues.Resource1.Modifier, "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-primary " })
+                                            }
+                                            else
+                                            {
+                                                @Html.ActionLink(GestionAbscences.Langagues.Resource1.Modifier, "modifier2", new { id = item.idDemandeConge }, new { @class = "btn btn-primary " })
+                                            }
+
+                                            @Html.ActionLink(GestionAbscences.Langagues.Resource1.Imprimertitre, "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                        }
+                                        else if (item.ValidationN1.Equals("refuse") || (item.ValidationN2.Equals("refuse")) || (item.ValidationRH.Equals("refuse")))
+                                        {
+                                            @Html.ActionLink(GestionAbscences.Langagues.Resource1.Modifier, "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled " })
+                                            @Html.ActionLink(GestionAbscences.Langagues.Resource1.Imprimertitre, "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink(GestionAbscences.Langagues.Resource1.Imprimertitre, "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                            @Html.ActionLink(GestionAbscences.Langagues.Resource1.Modifier, "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                        }
+
+                                        @* @Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
+                                        @* @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <script>
+            function fnExcelReport() {
+                var tab_text = "<table border='2px'>";
+                var tab_text = tab_text + "<tr bgcolor='#eeeeee' height='50'><th colspan='12' style='text-align:center; font-size:20px;'>Historique</th></tr><tr bgcolor='#bf997e' height='50' color='#FFFFFF'>";
+                var i = 0;
+                tab = document.getElementById('example'); // id of table
+                for (i = 0; i < tab.rows.length; i++) {
+                    var row = tab.rows[i];
+                    var numberOfCells = row.cells.length;
+                    row.deleteCell(numberOfCells - 1);
+                    tab_text = tab_text + tab.rows[i].innerHTML + "</tr>";
+                }
+                tab_text = tab_text + "</table>";
+                tab_text = tab_text.replace(/<a[^>]*>|<\/a>/g, "");//remove if u want links in your table
+                tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
+                tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+                var ua = window.navigator.userAgent;
+                var msie = ua.indexOf("MSIE ");
+                if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+                {
+                    txtArea1.document.open("txt/html", "replace");
+                    txtArea1.document.write(tab_text);
+                    ViewBagtViewBagiewBagBagiewBagewBagewBagArea1.document.close();
+                    txtArea1.focus();
+                    sa = txtArea1.document.execCommand("SaveAs", true, "Say T.xls");
+                }
+                else                 //other browser not tested on IE 11
+                    sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+                return (sa);
+            }
+        </script>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+        <script src="assets/demo/datatables-demo.js"></script>
+
+    }
+</body>
+
+
+</html>
+

@@ -94,15 +94,14 @@ namespace GestionAbscences.Areas.RH.Controllers
         {
             if (id == null)
             {
-                //return RedirectToAction("Index", "Default");
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
             var currentDemande = demandeService.ReadById(id.Value);
             if (currentDemande == null)
             {
                 return HttpNotFound($"this demande ({id}) is not found");
             }
+
 
             demandeconge demandeconge = db.demandeconge.Find(id);
             Session["uid"] = currentDemande.idDemandeConge;
@@ -113,28 +112,7 @@ namespace GestionAbscences.Areas.RH.Controllers
             }
 
             return View(demandeconge);
-            /*
-            var historiqueModel = new HistoriqueModel
-            {
-                IdDemande = currentDemande.idDemandeConge,
-                IdType = currentDemande.IdtypeConge,
-                //Nom = currentDemande.employe.NomComplet,
-                //matricule = currentDemande.employe.matricule,
-                DateD = (DateTime)currentDemande.DateDebut,
-                DateF = (DateTime)currentDemande.DateFin,
-                Datedc = (DateTime)currentDemande.DateDC,
-                validation1 = currentDemande.ValidationN1,
-                validation2 = currentDemande.ValidationN2,
-                IdEmploye = currentDemande.IdEmploye
-
-
-
-            };
-
-            return View(historiqueModel);*/
         }
-
-
 
         [HttpPost]
         public ActionResult Validation()
@@ -142,27 +120,101 @@ namespace GestionAbscences.Areas.RH.Controllers
             int uid = int.Parse(Session["uid"].ToString());
             demandeconge e = db.demandeconge.Find(uid);
             string button = Request["button"];
+            DCTEMP dc = new DCTEMP();
 
             DateTime dateDebut = e.DateDebut.Value;
             DateTime dateFin = e.DateFin.Value;
-            var dure = (dateFin - dateDebut).Days;
-            var dureM = (dateFin - dateDebut).TotalMinutes;
 
-            double du = Convert.ToDouble(dure) + 1;
-            double duM = Convert.ToDouble(dureM) + 1440;
-            double nb = Convert.ToDouble(e.employe.nbjoursR);
-            double nbM = Convert.ToDouble(e.employe.nbjoursR) * 24 * 60;
-            double res = nb - du;
+
+            int annee = Convert.ToInt32(DateTime.Now.ToString("yyyy"));
+            int mois = Convert.ToInt32(DateTime.Now.ToString("MM"));
+
+            var recup = db.CumulRecup.Include(d => d.employe).Where(p => p.employe.idEmploye == e.IdEmploye && p.Annee == annee && p.Mois == mois).Select(u => new {
+                hs = u.CumulHr,
+                jf = u.CumulJrF,
+                jr = u.CumulJrR,
+                id = u.IDCumulRecup
+
+            }).Single();
+
+            CumulRecup cr = db.CumulRecup.Find(recup.id);
+
+            double hsA = Convert.ToDouble(cr.CumulHr);
+
+            //en heure 
+            double jf = Convert.ToDouble(recup.jf);
+
+
+            double jR = Convert.ToDouble(recup.jr);
+
+
+
+            var dureM = (dateFin - dateDebut).TotalHours;
+            var dureD = (dateFin - dateDebut).Days + 1;
+            double duM = Convert.ToDouble(dureM);
+            double nbM = Convert.ToDouble(e.employe.nbHeureR);
             double resM = nbM - duM;
-            double resJ = resM / 1440;
 
-            //  Session["dur1"] = duM;
+
+
+
             switch (button)
             {
                 case "Accepté":
-                    e.ValidationRH = "Accepte";
-                    e.employe.nbjoursR = Convert.ToInt32(res);
+                    if (e.IdtypeConge == 23)
+                    {
+                        double dhs = hsA - dureM;
+                        cr.CumulHr = float.Parse (Convert.ToString(dhs));
+                        e.ValidationRH = "accepte";
+
+                    }
+                    else
+                     if (e.IdtypeConge == 25)
+                    {
+                        double dhs = jf - dureD;
+                        string dh = Convert.ToString(dhs);
+                        cr.CumulJrF = float.Parse(dh);
+                        e.ValidationRH = "accepte";
+
+                    }
+                    else
+                     if (e.IdtypeConge == 24)
+                    {
+                        double dhs = jR - dureD;
+                        string dh = Convert.ToString(dhs);
+                        cr.CumulJrR = float.Parse(dh);
+                        e.ValidationRH = "accepte";
+
+                    }
+                    else
+                     if (e.IdtypeConge == 4 || e.IdtypeConge == 5 || e.IdtypeConge == 22 || e.IdtypeConge == 6 || e.IdtypeConge == 7 || e.IdtypeConge == 8 || e.IdtypeConge == 9 || e.IdtypeConge == 10 || e.IdtypeConge == 15 || e.IdtypeConge == 20 || e.IdtypeConge == 21)
+                    {
+                        e.ValidationRH = "accepte";
+                    }
+                    else
+                    {
+                        e.employe.nbHeureR = resM.ToString();
+                        e.ValidationRH = "accepte";
+                    }
+
+                    if (e.ValidationN1.Equals("En cours"))
+                    {
+                        e.ValidationN1 = "*******";
+                    }
+
+                    e.DateValidationRH = DateTime.Now;
+
+                    //DCTEMP
+                    dc.matricule = int.Parse(e.employe.matricule);
+                    dc.DateDebut = e.DateDebut;
+                    dc.DateFin = e.DateFin;
+                    dc.typeDeConge = e.typeconge.designation;
+                    dc.Status = "En att";
+
+
                     db.Entry(e).State = EntityState.Modified;
+
+                    db.DCTEMP.Add(dc);
                     db.SaveChanges();
                     return RedirectToAction("historique");
                 case "Refusé":
@@ -188,9 +240,12 @@ namespace GestionAbscences.Areas.RH.Controllers
         {
             string d1 = Request["debut"].ToString();
             string f1 = Request["fin"].ToString();
+            ViewBag.d2 = Request["debut"].ToString();
+            ViewBag.f2 = Request["fin"].ToString();
 
 
             string val = Request["validation"].ToString();
+
 
 
             if (d1.Equals("") || f1.Equals("") || val.Equals(""))
@@ -206,57 +261,62 @@ namespace GestionAbscences.Areas.RH.Controllers
 
                 if (val.Equals("1"))
                 {
-                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.DateDebut >= debut && p.DateDebut <= fin);
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.DateDebut >= debut && p.DateDebut <= fin).OrderByDescending(news => news.DateDC).ToList();
                     return View(demandeConge.ToList());
                 }
                 else if (val.Equals("2"))
                 {
-                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours" && p.DateDebut >= debut && p.DateDebut <= fin).OrderByDescending(news => news.DateDC).ToList();
                     return View(demandeConge.ToList());
                 }
                 else if (val.Equals("3"))
                 {
-                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "accepte" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "accepte" && p.DateDebut >= debut && p.DateDebut <= fin).OrderByDescending(news => news.DateDC).ToList();
                     return View(demandeConge.ToList());
                 }
                 else if (val.Equals("4"))
                 {
-                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "refuse" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "refuse" && p.DateDebut >= debut && p.DateDebut <= fin).OrderByDescending(news => news.DateDC).ToList();
                     return View(demandeConge.ToList());
                 }
                 else if (val.Equals("5"))
                 {
-                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "En cours" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "En cours" && p.DateDebut >= debut && p.DateDebut <= fin).OrderByDescending(news => news.DateDC).ToList();
                     return View(demandeConge.ToList());
                 }
                 else if (val.Equals("6"))
                 {
-                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "accepte" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "accepte" && p.DateDebut >= debut && p.DateDebut <= fin).OrderByDescending(news => news.DateDC).ToList();
                     return View(demandeConge.ToList());
                 }
                 else if (val.Equals("7"))
                 {
-                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "refuse" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "refuse" && p.DateDebut >= debut && p.DateDebut <= fin).OrderByDescending(news => news.DateDC).ToList();
                     return View(demandeConge.ToList());
                 }
                 else if (val.Equals("8"))
                 {
-                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationRH == "En cours" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationRH == "En cours" && p.DateDebut >= debut && p.DateDebut <= fin).OrderByDescending(news => news.DateDC).ToList();
                     return View(demandeConge.ToList());
                 }
                 else if (val.Equals("9"))
                 {
-                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationRH == "accepte" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationRH == "accepte" && p.DateDebut >= debut && p.DateDebut <= fin).OrderByDescending(news => news.DateDC).ToList();
                     return View(demandeConge.ToList());
                 }
                 else if (val.Equals("10"))
                 {
-                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationRH == "refuse" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationRH == "refuse" && p.DateDebut >= debut && p.DateDebut <= fin).OrderByDescending(news => news.DateDC).ToList();
                     return View(demandeConge.ToList());
                 }
-                return RedirectToAction("historique");
+
 
             }
+
+
+            return RedirectToAction("historique");
+
+        
         }
     }
 }

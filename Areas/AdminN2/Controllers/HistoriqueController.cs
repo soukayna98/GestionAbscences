@@ -24,6 +24,92 @@ namespace GestionAbscences.Areas.AdminN2.Controllers
             demandeService = new DemandeService();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult choixVal()
+        {
+            string d1 = Request["debut"].ToString();
+            string f1 = Request["fin"].ToString();
+            ViewBag.d2 = Request["debut"].ToString();
+            ViewBag.f2 = Request["fin"].ToString();
+
+
+            string val = Request["validation"].ToString();
+
+
+
+            if (d1.Equals("") || f1.Equals("") || val.Equals(""))
+            {
+                ViewBag.message = "Selectionner les dates et la catégorie svp !";
+                return RedirectToAction("historique");
+            }
+            else
+            {
+                DateTime debut = Convert.ToDateTime(Request["debut"]);
+
+                DateTime fin = Convert.ToDateTime(Request["fin"]);
+
+                if (val.Equals("1"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("2"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "En cours" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("3"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "accepte" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("4"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN1 == "refuse" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("5"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "En cours" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("6"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "accepte" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("7"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "refuse" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("8"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationRH == "En cours" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("9"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationRH == "accepte" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+                else if (val.Equals("10"))
+                {
+                    var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationRH == "refuse" && p.DateDebut >= debut && p.DateDebut <= fin);
+                    return View(demandeConge.ToList());
+                }
+
+
+            }
+
+
+            return RedirectToAction("historique");
+
+        }
+
+
+
         //private GestionAbscencesEntities1 db = new GestionAbscencesEntities1();
 
         // GET: Admin/Historique
@@ -58,9 +144,9 @@ namespace GestionAbscences.Areas.AdminN2.Controllers
          }*/
         public ActionResult historique()
         {
-            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "En cours" && p.ValidationN1 != "refuse");
+            var demandeConge = db.demandeconge.Include(d => d.employe).Include(d => d.typeconge).Where(p => p.ValidationN2 == "En cours").OrderByDescending(news => news.DateDC).Take(10).ToList();
 
-            return View(demandeConge.ToList());
+            return View(demandeConge);
         }
         public ActionResult historiques()
         {
@@ -124,16 +210,21 @@ namespace GestionAbscences.Areas.AdminN2.Controllers
             int uid = int.Parse(Session["uid"].ToString());
             demandeconge e = db.demandeconge.Find(uid);
             string button = Request["button"];
+
+
+
             switch (button)
             {
                 case "Accepté":
-                    e.ValidationN2 = "Accepte";
+                    e.ValidationN2 = "accepte";
+                    e.DateValidationN2 = DateTime.Now;
+
                     db.Entry(e).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("historique");
                 case "Refusé":
                     e.ValidationN2 = "refuse";
-                    e.ValidationRH = "****";
+                    e.ValidationRH = "*******";
                     db.Entry(e).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("historique");
@@ -148,6 +239,47 @@ namespace GestionAbscences.Areas.AdminN2.Controllers
 
 
         }
+
+        /*  [HttpPost]
+         * 
+        public ActionResult Validation()
+        {
+             string validation1 = Request.Form["validation1"];
+               string validation2 = Request.Form["validation2"];
+               int uid = int.Parse(Session["uid"].ToString());
+               demandeconge e = db.demandeconge.Find(uid);
+               Session["index"] = uid;
+               if (validation2.Equals("Accepte"))
+               {
+                        e.ValidationN2 = "Accepté";
+               }
+                else if (validation2.Equals("Refuse"))
+               {
+                        e.ValidationN2 = "refusé";
+               }
+           else 
+           {
+               e.ValidationN2 = "En cours";
+           }
+           if (validation1.Equals("Accepte"))
+               {
+               e.ValidationN1 = "Accepté";
+               }
+           else if (validation1.Equals("Refuse"))
+           {
+               e.ValidationN1 = "refusé";
+           }
+           else
+           {
+               e.ValidationN1 = "En cours";
+           }
+           db.Entry(e).State = EntityState.Modified;
+               db.SaveChanges();
+           return RedirectToAction("Index" ,"Default");
+       }*/
+
+
+
 
 
     }

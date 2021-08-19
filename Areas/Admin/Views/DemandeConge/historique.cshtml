@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = @GestionAbscences.Langagues.Resource1.Historique;
-    
+
 }
 <script type="text/javascript">
     myfun = function() {
@@ -14,6 +14,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style type="text/css">
+        #ovale {
+            outline-color: darkblue;
+            height: 50px;
+            border-radius: 20px / 20px;
+            background: #EFEFEF;
+            margin-left: 320px;
+            margin-bottom: 20px;
+        }
+
+        #ovale1 {
+            width: 40px;
+            height: 50px;
+            border-radius: 20px / 20px;
+            background: #EFEFEF;
+            margin-left: 50px;
+            margin-bottom: 20px;
+            padding-left: 20px;
+            padding-top: 20px;
+        }
+
+        #text1 {
+            font-size: 18px;
+            color: darkblue;
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -26,55 +60,22 @@
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
 </head>
-<br>
+
 <body class="sb-nav-fixed" dir="@GestionAbscences.Langagues.Resource1.dir">
-    <div class="sb-nav-fixed">
 
-
-        <div class="card mb-4">
-            <div class="card-header">
-                <i class="fas fa-table mr-1"></i>
-                @GestionAbscences.Langagues.Resource1.Nombredejourdecongesde @Session["userName"]
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered">
-
-                        <tr>
-                            <td style=" text-align:center;font-weight:bold;">
-                                @GestionAbscences.Langagues.Resource1.Nombredejourtotal
-                            </td>
-
-                            <td style=" text-align:center;font-weight:bold;">
-                                @GestionAbscences.Langagues.Resource1.NombredejourRestants
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style=" text-align:center;">
-                                @Session["nbjours"]
-                            </td>
-
-
-                            <td style=" text-align:center;">
-                                @Session["nbjoursR"]
-                            </td>
-                        </tr>
-
-                    </table>
-                </div>
-            </div>
-        </div>
+    <br>
+    <div class="row align-items-start">
+        <div class="col-1"> </div>
+        <div class="col-2" id="ovale"> <span id="text1"> @GestionAbscences.Langagues.Resource1.Nombredejourtotal :  @Session["nbjours"]  </span> </div>
+        <div class="col-2" id="ovale1"> <span id="text1">  @GestionAbscences.Langagues.Resource1.NombredejourRestants :   @Session["nbjoursR"]  </span> </div>
     </div>
-
-
-    @using (Html.BeginForm("choixVal", "Historique", FormMethod.Post))
+    @using (Html.BeginForm("choixVal2", "Demande", FormMethod.Post))
 
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary()
 
 
-        <br>
 
 
 
@@ -127,58 +128,68 @@
         </div>
         <br>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+        @* <div class="card mb-4">*@
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table mr-1"></i>
-                @GestionAbscences.Langagues.Resource1.Historiquedesdemandesdecongesde @Session["userName"]
+                @GestionAbscences.Langagues.Resource1.Historiquedesdemandesdecongesde  @Session["userName"]
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="example" width="100%" cellspacing="0" style="font-size:80%;">
                         <thead>
                             <tr class="table-success">
                                 <th>
-                                    @*Html.DisplayNameFor(model => model.DateDC)*@
                                     @GestionAbscences.Langagues.Resource1.DatecreationDC
                                 </th>
                                 <th>
-                                    @*Html.DisplayNameFor(model => model.employe.matricule)*@
                                     @GestionAbscences.Langagues.Resource1.Matricule
                                 </th>
                                 <th>
-                                    @*Html.DisplayNameFor(model => model.employe.NomComplet)*@
                                     @GestionAbscences.Langagues.Resource1.Nomcomplet
                                 </th>
                                 <th>
-                                    @*Html.DisplayNameFor(model => model.typeconge.designation)*@
                                     @GestionAbscences.Langagues.Resource1.Designation
                                 </th>
                                 <th>
-                                    @*Html.DisplayNameFor(model => model.DateDebut)*@
-
                                     @GestionAbscences.Langagues.Resource1.Debut
 
                                 </th>
 
                                 <th>
-                                    @*Html.DisplayNameFor(model => model.DateFin)*@
                                     @GestionAbscences.Langagues.Resource1.Fin
                                 </th>
 
                                 <th>
-                                    @*Html.DisplayNameFor(model => model.ValidationN1)*@
                                     @GestionAbscences.Langagues.Resource1.ValidationN_1
                                 </th>
                                 <th>
-                                    @*Html.DisplayNameFor(model => model.ValidationN2)*@
                                     @GestionAbscences.Langagues.Resource1.ValidationN_2
                                 </th>
                                 <th>
-                                    @*Html.DisplayNameFor(model => model.ValidationN2)*@
                                     @GestionAbscences.Langagues.Resource1.ValidationRH
                                 </th>
-                                <th></th>
+                                <th>
+
+                                </th>
+
+
+
                             </tr>
+
                         </thead>
                         <tfoot>
 
@@ -189,169 +200,211 @@
 
                             @foreach (var item in Model)
                             {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DateDC)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.employe.matricule)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.employe.NomComplet)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.typeconge.designation)
-                                </td>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DateDC)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.employe.matricule)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.employe.NomComplet)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.typeconge.designation)
+                                    </td>
 
-                                <td id="dated">
-                                    @Html.DisplayFor(modelItem => item.DateDebut)
-                                </td>
-                                <td id="datef">
-                                    @Html.DisplayFor(modelItem => item.DateFin)
-                                </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DateDebut)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DateFin)
+                                    </td>
 
-                                <td>
-                                    @if (item.ValidationN1 == "refuse")
-                                    {
-
-
-                                        <p class="p-2 mb-2 bg-danger text-white">
-                                            @Html.DisplayFor(modelItem => item.ValidationN1)
-                                        </p>
-                                    }
-                                    else if (item.ValidationN1 == "En cours")
-                                    {
-                                        <p class="p-2 mb-2 bg-warning text-dark">
-                                            @Html.DisplayFor(modelItem => item.ValidationN1)
-                                        </p>
-                                    }
-                                    else
-                                    {
-                                        <p class="p-2 mb-2 bg-success text-white">
-                                            @Html.DisplayFor(modelItem => item.ValidationN1)
-                                        </p>
-                                    }
-                                </td>
-                                <td>
-
-                                    @if (item.ValidationN2 == "refuse")
-                                    {
-
-
-                                        <p class="p-2 mb-2 bg-danger text-white">
-                                            @Html.DisplayFor(modelItem => item.ValidationN2)
-                                        </p>
-                                    }
-                                    else if (item.ValidationN2 == "En cours")
-                                    {
-                                        <p class="p-2 mb-2 bg-warning text-dark">
-                                            @Html.DisplayFor(modelItem => item.ValidationN2)
-                                        </p>
-                                    }
-                                    else if (item.ValidationN2 == "Accepte")
-                                    {
-                                        <p class="p-2 mb-2 bg-success text-white">
-                                            @Html.DisplayFor(modelItem => item.ValidationN2)
-                                        </p>
-                                    }
-                                    else
-                                    {
-                                        <p class="p-2 mb-2 bg-light text-dark">
-                                            @Html.DisplayFor(modelItem => item.ValidationN2)
-                                        </p>
-                                    }
-
-
-                                </td>
-
-                                <td>
-
-                                    @if (item.ValidationRH == "refuse")
-                                    {
-
-
-                                        <p class="p-2 mb-2 bg-danger text-white">
-                                            @Html.DisplayFor(modelItem => item.ValidationRH)
-                                        </p>
-                                    }
-                                    else if (item.ValidationRH == "En cours")
-                                    {
-                                        <p class="p-2 mb-2 bg-warning text-dark">
-                                            @Html.DisplayFor(modelItem => item.ValidationRH)
-                                        </p>
-                                    }
-                                    else if (item.ValidationRH == "Accepte")
-                                    {
-                                        <p class="p-2 mb-2 bg-success text-white">
-                                            @Html.DisplayFor(modelItem => item.ValidationRH)
-                                        </p>
-                                    }
-                                    else
-                                    {
-                                        <p class="p-2 mb-2 bg-light text-dark">
-                                            @Html.DisplayFor(modelItem => item.ValidationRH)
-                                        </p>
-                                    }
-
-
-
-
-                                </td>
-
-                                <td>
-
-                                    @if (item.ValidationRH.Equals("Accepte"))
-                                    {
-                                        @Html.ActionLink(GestionAbscences.Langagues.Resource1.Modifier, "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
-                                        if (item.IdtypeConge == 1)
+                                    <td>
+                                        @if (item.ValidationN1 == "refuse")
                                         {
 
-                                            <button onclick="myfun()" class="btn btn-primary ">
-                                                @GestionAbscences.Langagues.Resource1.Imprimertitre
-                                            </button>
-                                            <script type="text/javascript">
-                                                            myfun = function() {
-                                                               var x = window.open('/employe/Imprimer/@item.idDemandeConge');
-                                                                  x.print();
-                                                           }
-                                            </script>
+
+                                            <p class="p-2 mb-2 bg-danger text-white">
+                                                @Html.DisplayFor(modelItem => item.ValidationN1)
+                                            </p>
+                                        }
+                                        else if (item.ValidationN1 == "En cours")
+                                        {
+                                            <p class="p-2 mb-2 bg-warning text-dark">
+                                                @Html.DisplayFor(modelItem => item.ValidationN1)
+                                            </p>
+                                        }
+                                        else if (item.ValidationN1 == "accepte")
+                                        {
+                                            <p class="p-2 mb-2 bg-success text-dark">
+                                                @Html.DisplayFor(modelItem => item.ValidationN1)
+                                            </p>
                                         }
                                         else
                                         {
-                                            <button onclick="myfun1()" class="btn btn-primary ">
-                                                @GestionAbscences.Langagues.Resource1.Imprimertitre
-                                            </button>
-                                            <script type="text/javascript">
-                                                            myfun1 = function() {
-                                                               var x = window.open('/employe/Imprimer2/@item.idDemandeConge');
-                                                                  x.print();
-                                                           }
-                                            </script>
+                                            <p class="p-2 mb-2 bg-white text-dark ">
+                                                @Html.DisplayFor(modelItem => item.ValidationN1)
+                                            </p>
                                         }
-                                    }
-                                    else if  (item.ValidationN2.Equals("Accepte"))
-                                    {
-                                        @Html.ActionLink(GestionAbscences.Langagues.Resource1.Imprimertitre, "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled " })
-                                        @Html.ActionLink(GestionAbscences.Langagues.Resource1.Modifier, "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })}
-                                    
-                                    else if (item.ValidationN2.Equals("En cours"))
-                                    {
-                                        @Html.ActionLink(GestionAbscences.Langagues.Resource1.Modifier, "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-primary " })
-                                        @Html.ActionLink(GestionAbscences.Langagues.Resource1.Imprimertitre, "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
-                                    }
-                                    else if ( (item.ValidationN2.Equals("refuse")) || (item.ValidationRH.Equals("refuse")))
-                                    {
-                                        @Html.ActionLink(GestionAbscences.Langagues.Resource1.Modifier, "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled " })
-                                        @Html.ActionLink(GestionAbscences.Langagues.Resource1.Imprimertitre, "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
-                                    }
-                                    else
-                                    {
-                                        @Html.ActionLink(GestionAbscences.Langagues.Resource1.Imprimertitre, "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
-                                        @Html.ActionLink(GestionAbscences.Langagues.Resource1.Modifier, "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
-                                    }
+                                    </td>
 
-                                </td>
-                            </tr>
+
+
+
+
+                                    <td>
+
+                                        @if (item.ValidationN2 == "refuse")
+                                        {
+
+
+                                            <p class="p-2 mb-2 bg-danger text-white">
+                                                @Html.DisplayFor(modelItem => item.ValidationN2)
+                                            </p>
+                                        }
+                                        else if (item.ValidationN2 == "En cours")
+                                        {
+                                            <p class="p-2 mb-2 bg-warning text-dark">
+                                                @Html.DisplayFor(modelItem => item.ValidationN2)
+                                            </p>
+                                        }
+                                        else if (item.ValidationN2 == "accepte")
+                                        {
+                                            <p class="p-2 mb-2 bg-success text-dark">
+                                                @Html.DisplayFor(modelItem => item.ValidationN2)
+                                            </p>
+                                        }
+                                        else
+                                        {
+                                            <p class="p-2 mb-2 bg-white text-dark ">
+                                                @Html.DisplayFor(modelItem => item.ValidationN2)
+                                            </p>
+                                        }
+
+
+                                    </td>
+                                    <td>
+
+                                        @if (item.ValidationRH == "refuse")
+                                        {
+
+
+                                            <p class="p-2 mb-2 bg-danger text-white">
+                                                @Html.DisplayFor(modelItem => item.ValidationRH)
+                                            </p>
+                                        }
+                                        else if (item.ValidationRH == "En cours")
+                                        {
+                                            <p class="p-2 mb-2 bg-warning text-dark">
+                                                @Html.DisplayFor(modelItem => item.ValidationRH)
+                                            </p>
+                                        }
+                                        else if (item.ValidationRH == "accepte")
+                                        {
+                                            <p class="p-2 mb-2 bg-success text-dark">
+                                                @Html.DisplayFor(modelItem => item.ValidationRH)
+                                            </p>
+                                        }
+                                        else
+                                        {
+                                            <p class="p-2 mb-2 bg-white text-dark text-center">
+                                                @Html.DisplayFor(modelItem => item.ValidationRH)
+                                            </p>
+                                        }
+
+
+                                    </td>
+
+                                    <td>
+                                        @* <a href="@Url.Action("Delete", new {item.Id })" class="btn btn-danger">Delete</a>*@
+                                        @* <a href="@Url.Action("Edit", new {item.Id })" class="btn btn-warning">Edit</a>*@
+                                        @if (item.ValidationRH.Equals("accepte"))
+                                        {
+
+
+                                            @Html.ActionLink(GestionAbscences.Langagues.Resource1.Modifier, "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                            if (item.IdtypeConge == 1)
+                                            {
+
+                                                <button onclick="myfun()" class="btn btn-primary ">
+                                                    @GestionAbscences.Langagues.Resource1.Imprimertitre
+                                                </button>
+
+                                                <script type="text/javascript">
+                                                            myfun = function() {
+
+
+                                                               var x = window.open('/employe/Imprimer/@item.idDemandeConge');
+                                                                x.print();
+                                                                window.close('/employe/Imprimer/@item.idDemandeConge');
+
+
+                                                           }
+                                                </script>
+
+
+
+
+                                            }
+                                            else
+                                            {
+
+                                                <button onclick="myfun1()" class="btn btn-primary ">
+                                                    @GestionAbscences.Langagues.Resource1.Imprimertitre
+                                                </button>
+                                                <script type="text/javascript">
+                                                            myfun1 = function() {
+
+
+                                                               var x = window.open('/employe/Imprimer2/@item.idDemandeConge');
+                                                                x.print();
+                                                                window.close('/employe/Imprimer2/@item.idDemandeConge');
+
+
+                                                           }
+                                                </script>
+                                            }
+                                        }
+                                        else if ((item.ValidationN1.Equals("accepte")) || (item.ValidationN2.Equals("accepte")))
+                                        {
+                                            @Html.ActionLink(GestionAbscences.Langagues.Resource1.Imprimertitre, "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled " })
+                                            @Html.ActionLink(GestionAbscences.Langagues.Resource1.Modifier, "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })}
+                                        else if (item.ValidationN1.Equals("*******"))
+                                        {
+                                            if (item.IdtypeConge == 1 || item.IdtypeConge == 2 || item.IdtypeConge == 3 || item.IdtypeConge == 24 || item.IdtypeConge == 25 || item.IdtypeConge == 12 || item.IdtypeConge == 14)
+                                            {
+                                                @Html.ActionLink(GestionAbscences.Langagues.Resource1.Modifier, "modifier4", new { id = item.idDemandeConge }, new { @class = "btn btn-primary " })
+                                            }
+                                            else if (item.IdtypeConge == 11 || item.IdtypeConge == 13 || item.IdtypeConge == 23)
+                                            {
+                                                @Html.ActionLink(GestionAbscences.Langagues.Resource1.Modifier, "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-primary " })
+                                            }
+                                            else
+                                            {
+                                                @Html.ActionLink(GestionAbscences.Langagues.Resource1.Modifier, "modifier2", new { id = item.idDemandeConge }, new { @class = "btn btn-primary " })
+                                            }
+
+
+                                            @Html.ActionLink(GestionAbscences.Langagues.Resource1.Imprimertitre, "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                        }
+                                        else if (item.ValidationN1.Equals("refuse") || (item.ValidationN2.Equals("refuse")) || (item.ValidationRH.Equals("refuse")))
+                                        {
+                                            @Html.ActionLink(GestionAbscences.Langagues.Resource1.Modifier, "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled " })
+                                            @Html.ActionLink(GestionAbscences.Langagues.Resource1.Imprimertitre, "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink(GestionAbscences.Langagues.Resource1.Imprimertitre, "Imprimer", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                            @Html.ActionLink(GestionAbscences.Langagues.Resource1.Modifier, "modifier", new { id = item.idDemandeConge }, new { @class = "btn btn-default disabled" })
+                                        }
+
+                                        @* @Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
+                                        @* @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                                    </td>
+
+                                </tr>
                             }
                         </tbody>
                     </table>
@@ -359,8 +412,6 @@
                 </div>
             </div>
         </div>
-
-       
         <script>
             function fnExcelReport() {
                 var tab_text = "<table border='2px'>";
@@ -392,8 +443,6 @@
                 return (sa);
             }
         </script>
-
-
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

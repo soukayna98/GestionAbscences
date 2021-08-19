@@ -136,6 +136,7 @@
     <Compile Include="Areas\AdminN2\Models\DemandeModel.cs" />
     <Compile Include="Areas\AdminN2\Models\EmployeModel.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\Dashb1Controller.cs" />
     <Compile Include="Areas\Admin\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Admin\Controllers\DemandeCongeController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeController.cs" />
@@ -146,6 +147,7 @@
     <Compile Include="Areas\Admin\Models\HistoriqueModel.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Areas\RH\Controllers\AnnulerController.cs" />
+    <Compile Include="Areas\RH\Controllers\DashRHController.cs" />
     <Compile Include="Areas\RH\Controllers\DefaultController.cs" />
     <Compile Include="Areas\RH\Controllers\EmployeController.cs" />
     <Compile Include="Areas\RH\Controllers\employehasentitesController.cs" />
@@ -154,6 +156,7 @@
     <Compile Include="Areas\RH\Controllers\typecongesController.cs" />
     <Compile Include="Areas\RH\RHAreaRegistration.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\DashBController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\employeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -223,6 +226,7 @@
     <Compile Include="Models\ChangePasswordModel.cs" />
     <Compile Include="Models\HistoriqueModel.cs" />
     <Compile Include="Models\LoginModl.cs" />
+    <Compile Include="Models\typeConge.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AdminService.cs" />
     <Compile Include="Services\DemandeService.cs" />
@@ -408,6 +412,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="js\chart-area-demo.js" />
+    <Content Include="js\chart-bar-demo.js" />
     <Content Include="js\ddtf.js" />
     <Content Include="js\scripts.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -549,6 +555,21 @@
     <Content Include="Data\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\DemandeConge\modifier.cshtml" />
+    <Content Include="Areas\Admin\Views\DemandeConge\modifier2.cshtml" />
+    <Content Include="Areas\Admin\Views\DemandeConge\modifier4.cshtml" />
+    <Content Include="Areas\Admin\Views\DemandeConge\choixVal2.cshtml" />
+    <Content Include="Areas\Admin\Views\DemandeConge\historiqueMois.cshtml" />
+    <Content Include="Areas\Admin\Views\Historique\choixVal.cshtml" />
+    <Content Include="Areas\AdminN2\Views\Historique\choixVal.cshtml" />
+    <Content Include="Areas\RH\Views\Annuler\choixVal1.cshtml" />
+    <Content Include="Areas\RH\Views\employehasentites\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashb1\Global.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashb1\Accepte.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashb1\Refuse.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashb1\Encours.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashb1\Index.cshtml" />
+    <Content Include="Areas\RH\Views\DashRH\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -597,6 +618,14 @@
     <Content Include="Views\employe\modifier.cshtml" />
     <Content Include="Views\employe\Imprimer2.cshtml" />
     <Content Include="Views\employe\choixVal.cshtml" />
+    <Content Include="Views\DashB\Index.cshtml" />
+    <Content Include="Views\DashB\Global.cshtml" />
+    <Content Include="Views\DashB\Accepte.cshtml" />
+    <Content Include="Views\DashB\Refuse.cshtml" />
+    <Content Include="Views\DashB\Encours.cshtml" />
+    <Content Include="Views\employe\historiqueMois.cshtml" />
+    <Content Include="Views\employe\modifier2.cshtml" />
+    <Content Include="Views\employe\modifier4.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

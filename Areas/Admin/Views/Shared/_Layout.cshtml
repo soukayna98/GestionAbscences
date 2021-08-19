@@ -6,59 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    
+
     <link href="~/css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
 </head>
-<body class="sb-nav-fixed">
+<body class="sb-nav-fixed" dir="@GestionAbscences.Langagues.Resource1.dir">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="@Url.Action("Donnee","Account")">@Session["userName"] <br /> Matricule : @Session["matricule"]</a>
+        <a class="navbar-brand" href="@Url.Action("Donnée","employe")"><h6> @Session["userName"]  <br /> Mle : @Session["matricule"] </h6> </a>
         <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
-
-
-        <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-
-            <div class="input-group">
-                <div class="input-group-append">
-
-                    <ul>
-                        <li>
-                            </br>
-                            @* @Html.ActionLink("English", "Index", "Language", new { language = "en" }, null)
-                            *@
-                            <a href="@Url.Action("Frensh","Language",new { area = "" })"><p class="p-2 mb-2 bg-warning text-dark">@GestionAbscences.Langagues.Resource1.Frensh</p></a>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li>
-                            </br>
-                            <a href="@Url.Action("English","Language",new { area = "" })"><p class="p-2 mb-2 bg-success text-dark">@GestionAbscences.Langagues.Resource1.English</p></a>
-                            @*                            @Html.ActionLink("Français", "Index", "Language", new { language = "fr" }, null)
-                            *@
-                        </li>
-                    </ul>
-                    <ul>
-                        <li>
-                            </br>
-                            @*                            @Html.ActionLink("Arabic", "Index", "Language", new { language = "ar" }, null)
-                            *@
-                            <a href="@Url.Action("Arabic","Language",new { area = "" })"><p class="p-2 mb-2 bg-danger text-dark">@GestionAbscences.Langagues.Resource1.Arabic</p></a>
-
-                        </li>
-                    </ul>
+        @*
+            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <div class="input-group-append">
+                        <ul>
+                            <li>
+                                </br>
+                                <a href="/Language/Frensh" style="color:antiquewhite;"><p class="p-2 mb-2  ">@GestionAbscences.Langagues.Resource1.Frensh</p></a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                </br>
+                                <a href="/Language/English" style="color:antiquewhite;"><p class="p-2 mb-2 ">@GestionAbscences.Langagues.Resource1.English</p></a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                </br>
+                                <a href="/Language/Arabic" style="color:antiquewhite;"><p class="p-2 mb-2 ">@GestionAbscences.Langagues.Resource1.Arabic</p></a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </form>
-
-
+            </form>
+        *@<!-- Navbar Search-->
         <!-- Navbar-->
         <ul class="navbar-nav ml-auto ml-md-0">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="@Url.Action("Donnee","Account")">Profil</a>
+
+                    <a class="dropdown-item" href="@Url.Action("Donnée","Default")">Profil</a>
 
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="@Url.Action("Index","Login", new { area = "" })"> Déconnecter</a>
@@ -73,40 +63,50 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <a class="nav-link" href="index.html">
+                        <div class="sb-sidenav-menu-heading"></div>
+                        <a class="nav-link" href="@Url.Action("Index", "Dashb1")">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Dashboard
                         </a>
 
-                        <a class="nav-link" href="@Url.Action("Index","DemandeConge")">
+                        <a class="nav-link" href="@Url.Action("Index" , "DemandeConge")">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Saisir une demande
                         </a>
-                        <a class="nav-link" href="@Url.Action("Index","Employe")">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                            Liste des Employés
-                        </a>
-                        <a class="nav-link" href="@Url.Action("historique","Historique")">
+                        <a class="nav-link" href="@Url.Action("historiqueMois","DemandeConge")">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Demande en attente
+                            Demande en cours
                         </a>
-                        <a class="nav-link" href="@Url.Action("historique","DemandeConge")">
+
+
+                        <a class="nav-link" href="@Url.Action("historique" , "DemandeConge")">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Historique DC Personnel
                         </a>
-                        <a class="nav-link" href="@Url.Action("historiques","Historique")">
+
+                        <a class="nav-link" href="@Url.Action("historique","Historique")">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Historique DC Equipe
                         </a>
-                        <a class="nav-link" href="@Url.Action("Donnee","Employe")">
+                        <a class="nav-link" href="@Url.Action("employe" , "Default")">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                            Liste des Employés
+                        </a>
+                        <a class="nav-link" href="@Url.Action("Donnée","Default")">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Fiche Signalétique
                         </a>
+                        <a class="nav-link" href="@Url.Action("Index","Login")">
+
+                            <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                            Déconnecter
+                        </a>
+
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
-                    <div class="small">Logged in as: </div>
-                    Admin N+1
+                    <div class="small">Logged in as:</div>
+                    Admin
                 </div>
             </nav>
         </div>
@@ -117,7 +117,7 @@
 
                 @RenderBody()
             </div>
-            
+
 
         </div>
     </div>

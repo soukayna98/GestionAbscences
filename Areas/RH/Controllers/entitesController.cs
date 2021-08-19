@@ -14,7 +14,6 @@ namespace GestionAbscences.Areas.RH.Controllers
         // GET: RH/entites
         private GestionAbscencesEntities11 db = new GestionAbscencesEntities11();
 
-        // GET: RH/entites
         public ActionResult Index()
         {
             return View(db.entite.ToList());
@@ -35,6 +34,8 @@ namespace GestionAbscences.Areas.RH.Controllers
             return View(entite);
         }
 
+
+
         // GET: RH/entites/Create
         public ActionResult Create()
         {
@@ -43,7 +44,9 @@ namespace GestionAbscences.Areas.RH.Controllers
 
 
         // POST: RH/entites/Create
-         [HttpPost]
+        // Afin de déjouer les attaques par survalidation, activez les propriétés spécifiques auxquelles vous voulez établir une liaison. Pour 
+        // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(entite entite)
         {
@@ -70,7 +73,9 @@ namespace GestionAbscences.Areas.RH.Controllers
         }
 
         // POST: RH/entites/Edit/5
-          [HttpPost]
+        // Afin de déjouer les attaques par survalidation, activez les propriétés spécifiques auxquelles vous voulez établir une liaison. Pour 
+        // plus de détails, consultez https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "idEntite,Designation")] entite entite)
         {

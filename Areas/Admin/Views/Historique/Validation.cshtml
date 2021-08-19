@@ -5,15 +5,15 @@
 
 }
 
-</br>
+<br>
 
 <div class="container">
 
     <div class="row justify-content-center">
         <div class="col-lg-12">
-            <div class="card shadow-lg border-0 rounded-lg mt-0 " style="margin-right:90px; margin-left:60px;height:auto;">
+            <div class="card shadow-lg border-0 rounded-lg mt-0 " style="margin-right:90px;margin-top:10px; margin-left:60px;height:auto;">
 
-                <div class="card-header " style="background-color:#EFEFEF; padding:10px;"><h2 class="text-center font-weight-bold my-0"> Demande en attente de réponse</h2></div>
+                <div class="card-header " style="background-color:#EFEFEF;  padding:10px;"><h2 class="text-center font-weight-bold my-0">Validez la demande de congé</h2></div>
 
 
                 @using (Html.BeginForm())
@@ -24,14 +24,14 @@
                         <form>
                             <table class="table table-light table-striped" style="margin-left:90px;margin-right:90px; width:750px; margin-top:10px;">
                                 <tr>
-                                    <td style="font-weight:bold; text-align:center;text-align:left ">
-                                        @GestionAbscences.Langagues.Resource1.Nomcomplet
+                                    <td style="font-weight:bold; ">
+                                        Nom complet
                                     </td>
                                     <td>
                                         @Model.employe.NomComplet
                                     </td>
-                                    <td style="font-weight:bold; text-align:center;text-align:left">
-                                        @GestionAbscences.Langagues.Resource1.Matricule
+                                    <td style="font-weight:bold; ">
+                                        Matricule
                                     </td>
                                     <td>
                                         @Model.employe.matricule
@@ -39,40 +39,54 @@
 
                                 </tr>
                                 <tr>
-                                    <td style="font-weight:bold; text-align:center;text-align:left">
+                                    <td style="font-weight:bold; ">
                                         Type de congé
                                     </td>
                                     <td>
                                         @Model.typeconge.designation
                                     </td>
-                                    <td style="font-weight:bold; text-align:center;text-align:left">
+                                    <td style="font-weight:bold; ">
+                                        Affectation
+                                    </td>
+                                    <td>
+                                        @Model.employe.affectation
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:bold; ">
                                         Date de demande
+
                                     </td>
                                     <td>
                                         @Model.DateDC
                                     </td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
                                 </tr>
 
                                 <tr>
-                                    <td style="font-weight:bold; text-align:center;text-align:left">
-                                        @GestionAbscences.Langagues.Resource1.Debut
+                                    <td style="font-weight:bold; ">
+                                        Date début
                                     </td>
                                     <td>
                                         @Model.DateDebut
                                     </td>
-                                    <td style="font-weight:bold; text-align:center;text-align:left">
-                                        @GestionAbscences.Langagues.Resource1.Fin
+                                    <td style="font-weight:bold; ">
+                                        Date fin
 
                                     </td>
                                     <td>
                                         @Model.DateFin
                                     </td>
+
                                 </tr>
                             </table>
                             <br />
 
                             <div class="col-12" style="font-weight:bold; margin-left:70px; color:cornflowerblue; font-size:20px;">
-                                votre décision :
+                                Votre décision  :
                             </div>
                             <br />
 
@@ -99,4 +113,3 @@
         </div>
     </div>
 </div>
-
