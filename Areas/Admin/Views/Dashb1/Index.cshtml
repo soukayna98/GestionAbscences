@@ -96,39 +96,59 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-chart-area mr-1"></i>
-                            Area Chart Example
+                            Bar Chart : Demandse Non traitées
                         </div>
 
-                        <script src="https://code.highcharts.com/highcharts.js"></script>
-                        <script src="https://code.highcharts.com/modules/exporting.js"></script>
-                        <script src="https://code.highcharts.com/modules/export-data.js"></script>
-                        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
-                        <figure class="highcharts-figure">
-                            <div id="container"></div>
-                            <p class="highcharts-description">
-                                This chart shows how data labels can be added to the data series. This
-                                can increase readability and comprehension for small datasets.
-                            </p>
-                        </figure>
+                    </div>
+                    <div class="card-body"></div>
+                    <div class="chart">
+                        <img src="@Url.Action("GetData" , "Dashb1")">
+                        <img src="@Url.Action("GetDat" , "Dashb1")">
 
-<script>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+
+
+
+
+        <!-- jQuery -->
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <!-- Bootstrap 4 -->
+        <!-- ChartJS -->
+        <script src="~/Scripts/Chart.min.js"></script>
+
+        <!-- AdminLTE for demo purposes -->
+
+
+
+
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+        
+
+       
+            <figure class="highcharts-figure">
+                <div id="container"></div>
+               
+            </figure>
+            <script>
+
     Highcharts.chart('container', {
         chart: {
             type: 'line'
         },
-        title: {
-            text: 'Demandes de congés'
-        },
-        subtitle: {
-            text: 'Source: WorldClimate.com'
-        },
         xAxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        },
+            categories: @Session["mois"]
+            },
         yAxis: {
             title: {
-                text: 'Les demandes de congé'
+                text: 'Demandes en cours'
             }
         },
         plotOptions: {
@@ -140,47 +160,31 @@
             }
         },
         series: [{
-            name: 'Accepté',
-            data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-        }, {
             name: 'En cours',
-            data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-        }, {
-            name: 'Refusé',
-            data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 10.6, 14.2, 10.3, 6.6, 5.8]
-        }]
+            data : @Session["count"]
+
+        } ]
     });
 
+            </script>
+        
 
 
-</script>
 
-                    </div>
-                </div>
-                <div class="col-xl-6">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-chart-bar mr-1"></i>
-                            Bar Chart Example
-                        </div>
-                        <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                    </div>
-                </div>
-            </div>
 
 
 
     </main>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="js/chart-bar-demo.js"></script>
-    <script src="~/js/chart-area-demo.js"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-    <script src="assets/demo/datatables-demo.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+<script src="js/chart-bar-demo.js"></script>
+<script src="~/js/chart-area-demo.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+<script src="assets/demo/datatables-demo.js"></script>
 </body>
 </html>
 

@@ -570,7 +570,9 @@
     <Content Include="Areas\Admin\Views\Dashb1\Encours.cshtml" />
     <Content Include="Areas\Admin\Views\Dashb1\Index.cshtml" />
     <Content Include="Areas\RH\Views\DashRH\Index.cshtml" />
+    <Content Include="Areas\RH\Views\DashRH\chart.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />

@@ -1,94 +1,54 @@
 ﻿@{
- Layout = "~/Areas/RH/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/RH/Views/Shared/_Layout.cshtml";
 }
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Dashboard - SB Admin</title>
-    <link href="css/styles.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
-</head>
-<body class="sb-nav-fixed">
 
 
 
-        <div class="row">
-            <div class="col-xl-6">
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <i class="fas fa-chart-area mr-1"></i>
-                        Area Chart Example
-                    </div>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
-                    <script src="https://code.highcharts.com/highcharts.js"></script>
-                    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-                    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-                    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<figure class="highcharts-figure">
+    <div id="container"></div>
+    <p class="highcharts-description">
+        This chart shows how data labels can be added to the data series. This
+        can increase readability and comprehension for small datasets.
+    </p>
+</figure>
+<h1>jsklfjklsn</h1>
+<script>
 
-                   
+    Highcharts.chart('container', {
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Monthly Average Temperature'
+        },
+        subtitle: {
+            text: 'Source: WorldClimate.com'
+        },
+        xAxis: {
+            categories: ["janvier", "Février", "Mars", "Avril", "May", "juin", "juillet", "Aout", "September", "October", "November", "December"]
+        },
+        yAxis: {
+            title: {
+                text: 'Temperature (°C)'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: false
+            }
+        },
+        series: [{
+            name: 'Tokyo',
+            data: [@Session["NT1"],@Session["NT2"],@Session["NT3"],@Session["NT4"],@Session["NT5"],@Session["NT6"],@Session["NT7"],@Session["NT8"],@Session["NT9"],@Session["NT10"],@Session["NT11"],@Session["NT12"],]
+        }, ]
+    });
 
-                    <script>
-                        $(document).ready(function () {
-                            $.getJSON("/DashRH/Index", function (data) {
-                                var dates = [];
-                                var counts = [];
-                                for (var i = 0; i < data.length; i++) {
-                                    dates.push(data[i].date);
-                                    counts.push(data[i].count);
-                                }
-
-                                Highcharts.chart('container', {
-                                    chart: {
-                                        type: 'line'
-                                    },
-                                    title: {
-                                        text: 'Demandes de congés'
-                                    },
-                                    
-                                    xAxis: {
-                                        categories: dates
-                                    },
-                                    yAxis: {
-                                        title: {
-                                            text: 'Les demandes de congé'
-                                        }
-                                    },
-                                    plotOptions: {
-                                        line: {
-                                            dataLabels: {
-                                                enabled: true
-                                            },
-                                            enableMouseTracking: false
-                                        }
-                                    },
-                                    series: [{
-                                        name: 'Accepté',
-                                        data: counts
-                                    }]
-                                });
-
-                            });
-                        });
-
-
-                    </script>
-
-                </div>
-            </div>
-
-        </div>
-
-
-
-    
-
-    
-</body>
-</html>
-
+</script>
